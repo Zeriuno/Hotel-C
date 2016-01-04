@@ -1,9 +1,10 @@
 #Questions
 
-
 ##Définition de l'application
 
 → S'agit-il d'une application pour la réservation dans un hôtel, une chaîne, une aire géographique comprenant plusieurs établissements? Si oui, une liste est nécessaire.
+
+→ Le texte doit-il être en français?
 
 → Envoi de confirmation au client lorsque la réservation est effectuée ?
 
@@ -11,7 +12,7 @@
 
 → Faut-il gérer le personnel, avec une liste du personnel par exemple ?
 
-→ Faut-il prévoir l'entretien extraordinaire des chambres (peinture, changement de mobilier, réaménagement), et si c'est le cas y a-t-il une méthode calendaire ou autre?
+→ Faut-il que l'application prévoie l'entretien extraordinaire des chambres (peinture, changement de mobilier, réaménagement), et si c'est le cas y a-t-il une méthode calendaire ou autre?
 
 ##Définition de l'hôtel
 
@@ -24,10 +25,10 @@ Avons nous vraiment besoin de savoir où est l'hôtel? Avec les règles pour la 
 
 → Catégorie de l'hôtel?
 
-
 → Y a-t-i un restaurant? Oui.
 
 → services supplémentaires?
+
   * Chauffeur/voiturier
   * Repassage
   * Excursion
@@ -57,13 +58,16 @@ Avons nous vraiment besoin de savoir où est l'hôtel? Avec les règles pour la 
 
 ##Tarification et cetera
 
+→ Comment est établi le prix des chambres, quelles sont les périodes (haute saison/mi-saison/basse saison)?
+
+
+- Y a-t-il des réductions pour plusieurs nuits/chambres/personnes? Si oui, selon quel schéma?
+
 → Quelles règles pour l'annulation (sans retenue, avec, combien, en fonction de quel délai par rapport au début du séjour) ?
 
-→ Quelles règles pour le paiement (à l'avance, à l'arrivée, au départ)?
+→ Quelles règles pour le paiement (à l'avance, à l'arrivée, au départ, une caution doit-elle être versée)? Quels moyens de paiement sont-ils acceptés?
 
 → Quand sont la haute et la basse saison? (Si l'hôtel se situe en France, se caler sur les vacances des trois zones? prendre en compte les weekends prolongés dus aux jours fériés?)
-
-→ Règles de tarification, réductions pour plusieurs nuits? Si oui, à partir de combien?
 
 → Si l'hôtel se situe à l'étranger, taxe de séjour (par personne)?
 
