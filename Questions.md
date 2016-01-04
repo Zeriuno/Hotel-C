@@ -60,3 +60,5 @@
 → Quand sont la haute et la basse saison? (Si l'hôtel se situe en France, se caler sur les vacances des trois zones? prendre en compte les weekends prolongés dus aux jours fériés?)
 
 → Règles de tarification, réductions pour plusieurs nuits? Si oui, à partir de combien?
+→ Si l'hôtel se situe à l'étranger, taxe de séjour (par personne)?
+→ Baisse des prix pour atteindre un taux maximum de remplissage?
