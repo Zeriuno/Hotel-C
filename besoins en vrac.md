@@ -7,7 +7,7 @@ Interview Mo
 ---
 
 haute/basse saison
-réservation planning → la réservation s'injecte dans un plannng
+réservation planning → la réservation s'injecte dans un planning
 encaissement d'une caution par CB
 tarif
 petit-déj/pas
