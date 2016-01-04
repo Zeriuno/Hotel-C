@@ -17,11 +17,15 @@
 
 → Quelle numérotation pour les chambres, comment est-il fait l'hôtel, un seul bâtiment ou plusieurs (cas dans lequel un même numéro de chambre pourrait exister dans plusieurs bâtiments)? Liste des chambres nécessaire.
 
+→ Où est l'hôtel?
+
+Avons nous vraiment besoin de savoir où est l'hôtel? Avec les règles pour la tarification et l'acceptation des réservation, notre curiosité est satisfaite, je crois.
+
+
 → Catégorie de l'hôtel?
 
-→ Où est l'hôtel, quelle catégorie?
 
-→ restaurant? Oui.
+→ Y a-t-i un restaurant? Oui.
 
 → services supplémentaires?
   * Chauffeur/voiturier
