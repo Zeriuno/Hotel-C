@@ -24,19 +24,7 @@
 
 → Y a-t-il des distinctions notables parmi les chambres (fumeur/non fumeur; animaux acceptés/non acceptés)?
 
-→ L'hôtel offre-t-il des services supplémentaires?
-
-  * Chauffeur/voiturier
-  * Repassage
-  * Excursion
-  * Garderie
-  * Room service
-  * Minibar
-  * Fax
-  * Internet
-  * D'autres... (lesquels?)
-
-Lesquels parmi ces services sont-ils payants?
+→ L'hôtel offre-t-il des services supplémentaires? (Chauffeur/voiturier, , repassage, excursion, garderie, room service, minibar, fax, internet, d'autres...) Lesquels parmi ces services sont-ils payants?
 
 ##Tarif et cetera
 
