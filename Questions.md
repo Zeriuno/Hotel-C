@@ -2,71 +2,71 @@
 
 ##Définition de l'application
 
-→ S'agit-il d'une application pour la réservation dans un hôtel, une chaîne d'hôtels, une aire géographique comprenant plusieurs établissements? S'il ne s'agit pas d'un seul hôtel, une liste des établissements est nécessaire.
+* S'agit-il d'une application pour la réservation dans un hôtel, une chaîne d'hôtels, une aire géographique comprenant plusieurs établissements? S'il ne s'agit pas d'un seul hôtel, une liste des établissements est nécessaire.
 
-→ Le texte de l'application doit-il être en français?
+* Le texte de l'application doit-il être en français?
 
-→ Est-il nécessaire d'envoyer une confirmation au client lorsque la réservation est effectuée ? De quel type
+* Est-il nécessaire d'envoyer une confirmation au client lorsque la réservation est effectuée ? De quel type
 
-→ Le logiciel doit-il gérer uniquement les réservations ou bien le paiement également? Est-ce qu'il y a une application consacrée au paiement qui prend la suite? Si c'est le cas est-ce qu'il y a des contraintes dans le format de données que l'application de facturation prend en input? Le logiciel doit-il fournir à l'application pour le paiement uniquement les données qui concernent la réservation ou bien également les autres services demandés par le client au cours de son séjour?
+* Le logiciel doit-il gérer uniquement les réservations ou bien le paiement également? Est-ce qu'il y a une application consacrée au paiement qui prend la suite? Si c'est le cas est-ce qu'il y a des contraintes dans le format de données que l'application de facturation prend en input? Le logiciel doit-il fournir à l'application pour le paiement uniquement les données qui concernent la réservation ou bien également les autres services demandés par le client au cours de son séjour?
 
-→ Faut-il gérer le personnel, avec une liste du personnel par exemple ?
+* Faut-il gérer le personnel, avec une liste du personnel par exemple ?
 
-→ L'application prendra en compte la possible indisponibilité de certaines chambres à cause de travaux d'entretiens. Ces travaux pourront être indiqués de manière ponctuelle. En plus de cela, faut-il que l'application prenne en charge des travaux d'entretien extraordinaire (peinture, changement de mobilier, réaménagement) prévus selon un calendrier? Si oui, comment est-il structuré?
+* L'application prendra en compte la possible indisponibilité de certaines chambres à cause de travaux d'entretiens. Ces travaux pourront être indiqués de manière ponctuelle. En plus de cela, faut-il que l'application prenne en charge des travaux d'entretien extraordinaire (peinture, changement de mobilier, réaménagement) prévus selon un calendrier? Si oui, comment est-il structuré?
 
 ##Définition de l'hôtel
 
-→ Quelle est la numérotation des chambres, comment l'hôtel est-il fait, un seul bâtiment ou plusieurs (cas dans lequel un même numéro de chambre pourrait exister dans plusieurs bâtiments)? Une liste des chambres est nécessaire.
+* Quelle est la numérotation des chambres, comment l'hôtel est-il fait, un seul bâtiment ou plusieurs (cas dans lequel un même numéro de chambre pourrait exister dans plusieurs bâtiments)? Une liste des chambres est nécessaire.
 
-→ Catégorie de l'hôtel?
+* Catégorie de l'hôtel?
 
-→ Quelles catégories de chambres sont présentes (simple, double, triple...; chambre/suite; avec vue; avec balcon; avec salle de bain/salle de douche)?
+* Quelles catégories de chambres sont présentes (simple, double, triple...; chambre/suite; avec vue; avec balcon; avec salle de bain/salle de douche)?
 
-→ Y a-t-il des distinctions notables parmi les chambres (fumeur/non fumeur; animaux acceptés/non acceptés)?
+* Y a-t-il des distinctions notables parmi les chambres (fumeur/non fumeur; animaux acceptés/non acceptés)?
 
-→ L'hôtel offre-t-il des services supplémentaires? (Chauffeur/voiturier, , repassage, excursion, garderie, room service, minibar, fax, internet, d'autres...) Lesquels parmi ces services sont-ils payants?
+* L'hôtel offre-t-il des services supplémentaires? (Chauffeur/voiturier, , repassage, excursion, garderie, room service, minibar, fax, internet, d'autres...) Lesquels parmi ces services sont-ils payants?
 
 ##Tarif et cetera
 
-→ Comment est établi le prix des chambres, quelles sont les périodes (haute saison/mi-saison/basse saison)?
+* Comment est établi le prix des chambres, quelles sont les périodes (haute saison/mi-saison/basse saison)?
 
-→ Y a-t-il une distinction entre différents canaux par lesquels vient une réservation (client, agence, site)? Laquelle?
+* Y a-t-il une distinction entre différents canaux par lesquels vient une réservation (client, agence, site)? Laquelle?
 
-→ Quelles sont les modalités de séjour prévues (petit déjeuner non inclus/inclus/demi-pension/pension complète)? Comment est calculé leur prix?
+* Quelles sont les modalités de séjour prévues (petit déjeuner non inclus/inclus/demi-pension/pension complète)? Comment est calculé leur prix?
 
-→ Y a-t-il des réductions pour plusieurs nuits/chambres/personnes? Si oui, selon quel schéma?
+* Y a-t-il des réductions pour plusieurs nuits/chambres/personnes? Si oui, selon quel schéma?
 
-→ Quelles sont les règles pour l'annulation (sans retenue/avec, combien, en fonction de quels délais) ?
+* Quelles sont les règles pour l'annulation (sans retenue/avec, combien, en fonction de quels délais) ?
 
-→ Quelles règles pour le paiement (à l'avance, à l'arrivée, au départ, une caution doit-elle être versée)? Quels moyens de paiement sont acceptés?
+* Quelles règles pour le paiement (à l'avance, à l'arrivée, au départ, une caution doit-elle être versée)? Quels moyens de paiement sont acceptés?
 
-→ Quand sont la haute et la basse saison? (Si l'hôtel se situe en France, se caler sur les vacances des trois zones? prendre en compte les weekends prolongés dus aux jours fériés?)
+* Quand sont la haute et la basse saison? (Si l'hôtel se situe en France, se caler sur les vacances des trois zones? prendre en compte les weekends prolongés dus aux jours fériés?)
 
-→ Si l'hôtel se situe à l'étranger, taxe de séjour (par personne)?
+* Si l'hôtel se situe à l'étranger, taxe de séjour (par personne)?
 
-→ Baisse des prix pour atteindre un taux maximum de remplissage?
+* Baisse des prix pour atteindre un taux maximum de remplissage?
 
 
 ##Définition du restaurant
 
 Lors de la présentation des sujets vous aviez dit que l'établissement inclut également un restaurant.
 
-→ L'accès au restaurant est-il possible même sans le forfait, et si c'est le cas, est-ce que la note est mise sur le compte de la chambre ou bien elle est réglée sur le moment?
+* L'accès au restaurant est-il possible même sans le forfait, et si c'est le cas, est-ce que la note est mise sur le compte de la chambre ou bien elle est réglée sur le moment?
 
-→ Faut-il gérer le planning des tables?
+* Faut-il gérer le planning des tables?
 
-→ Quelles options tarifaires (buffet, menu, à la carte)?
+* Quelles options tarifaires (buffet, menu, à la carte)?
 
-→ En cas de tarifs tels que demi-pension ou pension complète, quel est le forfait du restaurant inclus, et quelles sont les options tarifaires à appliquer pour ce qui n'est pas inclus dans le forfait?
+* En cas de tarifs tels que demi-pension ou pension complète, quel est le forfait du restaurant inclus, et quelles sont les options tarifaires à appliquer pour ce qui n'est pas inclus dans le forfait?
 
 ##Traitement des réservations
 
-→ Est-il nécessaire de mettre en attente les demandes qui ne peuvent être satisfaites? Ou bien les demandes sont prises et enregistrées tout de suite si elles peuvent être satisfaites, rejetées si elles ne peuvent pas être satisfaites? Si mise en attente il y a, quels sont les détails des règles de la mise en attente (pour combien de jours les demandes restent en attente, passage en réservation automatique ou après confirmation du client, fréquence du contrôle)?
+* Est-il nécessaire de mettre en attente les demandes qui ne peuvent être satisfaites? Ou bien les demandes sont prises et enregistrées tout de suite si elles peuvent être satisfaites, rejetées si elles ne peuvent pas être satisfaites? Si mise en attente il y a, quels sont les détails des règles de la mise en attente (pour combien de jours les demandes restent en attente, passage en réservation automatique ou après confirmation du client, fréquence du contrôle)?
 
-→ Existe-t-il une base de clients? Quelles informations contient-elle? Faut-il permettre de sélectionner parmi les clients passés pour attribuer une réservation à une personne?
+* Existe-t-il une base de clients? Quelles informations contient-elle? Faut-il permettre de sélectionner parmi les clients passés pour attribuer une réservation à une personne?
 
-→ Quelles informations sur le client sont nécessaires (Nom, Prénom, contact -quel type-, date de naissance, pièce d'identité, carte de crédit), et à quel moment (réservation, arrivée) ?
+* Quelles informations sur le client sont nécessaires (Nom, Prénom, contact -quel type-, date de naissance, pièce d'identité, carte de crédit), et à quel moment (réservation, arrivée) ?
 
-→ Est-il nécessaire de garder trace des réservations annulées?
+* Est-il nécessaire de garder trace des réservations annulées?
 
-→ Sur quelle période les réservations sont-elles ouvertes (un an, dix-huit mois, deux ans...)?
+* Sur quelle période les réservations sont-elles ouvertes (un an, dix-huit mois, deux ans...)?
