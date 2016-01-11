@@ -1,17 +1,20 @@
 #INTRODUCTION
 
 ##Objet 
-Ce document a pour objet de définir les exigences liées à l’application concernant la gestion d’un hôtel. 
+Ce document a pour objet de définir les exigences liées au programme concernant la gestion d’un hôtel. 
 Il est destiné à la réservation de chambres dans un hôtel pour une période définie.
 
 ##Portée
-L’application consiste en la gestion d’un hôtel : 
+Le programme consiste en la gestion d’un hôtel : 
 *réservation 
 *consultation des réservations, des chambres 
 *modification des prix, du statut des chambres
 
+L’hôtel est constitué d’un seul bâtiment à 5 étages, avec chacun 10 chambres. 
+La gestion du restaurant ne consiste qu’en la réservation de menus (choix entre 3 menus) au moment de la réservation de la/des chambres. Par exemple, le client peut réserver 2 menus 2 et 4 menus 3, qu’il paie lors de la réservation. 
+
 ###RÉSERVATION 
-La réservation d’une chambre s’effectue par le biais de l’application. Chaque réservation a un numéro unique, concerne un client, peu importe le nombre de personnes occupant la chambre. Elle peut concerner plusieurs chambres : par conséquent, chaque chambre (numéro) liée à la réservation figure dans cette dernière. Les réservations comportent les éléments suivants : 
+La réservation d’une chambre s’effectue par le biais du programme. Chaque réservation a un numéro unique, concerne un client, peu importe le nombre de personnes occupant la chambre. Elle peut concerner plusieurs chambres : par conséquent, chaque chambre (numéro) liée à la réservation figure dans cette dernière. Les réservations comportent les éléments suivants : 
 La réservation peut s’effectuer jusqu’à un an à partir de la date du jour. 
 Chaque réservation a une date de début et une date de fin, a un coût. 
 
@@ -25,6 +28,7 @@ Pour résumer, une réservation comprend les données suivantes :
 *numéro de chambre (une ou plusieurs)
 *prix fixe
 *coût supplémentaire
+*champ libre (ex : demande d’un lit d’appoint)
 
 ###ORGANISATION 
 A chaque jour l’utilisateur a accès au statut de la chambre et au code correspondant au motif en cas d’indisponibilité de la chambre. 
@@ -153,11 +157,15 @@ Si des prix sont modifiés après réservation des chambres, aucun frais supplé
 
 Lorsqu’une chambre est réservée à une date donnée, son statut n’est plus modifiable sauf pour cause de travaux exceptionnels (code C), par exemple s’il y a une fuite d’eau ou tout autre type d’incidents empêchant au client d’accéder à sa chambre. 
 
+On suppose qu’une chambre ne peut pas être modifiée : le client ne peut pas modifier la chambre qu’on lui a attribuée. Il doit annuler sa réservation et en effectuer une autre ?? 
+
+La gestion du restaurant doit prendre en compte le nombre de repas possibles durant le séjour, ainsi que le nombre de personnes dans la réservation de chambres (il faudrait donc demander le nombre de personnes lors de la réservation pour un contrôle de cohérence). 
+
 #EXIGENCES SPECIFIQUES
 
 ##Exigences fonctionnelles
 
 
 ##Exigences non fonctionnelles
-L’application doit fonctionner avec Linux. 
+Le programme doit fonctionner avec Linux. 
 
