@@ -35,3 +35,7 @@ déclarations
     champ bain_ou_douche en booléen /*... peut être developpé!*/
     champ remarques en chaîne de caractères
   fin d'enregistrement
+
+/* Ne pourrait-on pas aussi ajouter un champ remarques dans la reservation?
+pour le numero de telephone du client, pourquoi ne pas mettre un entier? pour tenir compte des numéros étrangers?
+Où tenons-nous compte des réservations du restaurant? dans la résa? */
