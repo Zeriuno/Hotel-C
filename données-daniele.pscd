@@ -14,14 +14,14 @@ déclarations
   2016-01-01
   20160101 -> qui n'est d'ailleurs pas un nombre trop grand et que l'on sait découper sans problèmes car les positions de ses éléments syntactiques sont fixes.
   */
+    champ code_réservation en /*en que sais-je! Chaîne ou bien entiers, à voir*/
     champ date_arrivée en chaîne de caractères
     champ date_départ en chaîne de caractères
     champ nom_client en chaîne de caractères
     champ prénom_client en chaîne de caractères
     champ numéro_téléphone_client en chaîne de caractères /*+33 6 53332003*/
-    champ état en chaîne de caractères /*ou bien entiers ou bien un caractère... à voir*/
+    champ état en chaîne de caractères /*ou bien entiers ou bien un caractère... à voir → Pourquoi serait-il nécessaire? Inutile*/
     champ code_chambre en entiers /*un seul numéro de chambre pour réservation, en cas de plusieurs chambres, plusieurs réservations  (?)*/
-    champ
     champ prix_chambre en réels
     champ prix_services en tableau de frais
     champ montant_reglé en réels
@@ -36,6 +36,17 @@ déclarations
     champ remarques en chaîne de caractères
   fin d'enregistrement
 
+<<<<<<< HEAD
 /* Ne pourrait-on pas aussi ajouter un champ remarques dans la reservation?
 pour le numero de telephone du client, pourquoi ne pas mettre un entier? pour tenir compte des numéros étrangers?
 Où tenons-nous compte des réservations du restaurant? dans la résa? */
+=======
+  type jour en enregistrement
+    champ date en entiers
+    champ code_réservation en /*en que sais-je! Chaîne ou bien entiers, à voir*/
+  fin d'enregistrement
+
+   variable planning en tableau [20][366] /*la taille est [chambres][jours], l'ordre des deux est à discuter*/
+
+fin déclarations
+>>>>>>> origin/master
