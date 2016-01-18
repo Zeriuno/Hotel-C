@@ -36,11 +36,22 @@ déclarations
     champ remarques en chaîne de caractères
   fin d'enregistrement
 
-<<<<<<< HEAD
-/* Ne pourrait-on pas aussi ajouter un champ remarques dans la reservation?
-pour le numero de telephone du client, pourquoi ne pas mettre un entier? pour tenir compte des numéros étrangers?
-Où tenons-nous compte des réservations du restaurant? dans la résa? */
-=======
+/*
+V: Ne pourrait-on pas aussi ajouter un champ remarques dans la reservation?
+D: Le problème que pose le champ remarques (j'y pensais justement ces derniers jours) est de pouvoir le lire. Si tu veux le lire et assigner ce que tu lis à des variables, alors il faut que ce qui y est renseigné corresponde à un schéma stricte. Si par contre la lecture est faite par un homme, cela peut avoir un sens.
+
+v: Pour le numero de telephone du client, pourquoi ne pas mettre un entier? pour tenir compte des numéros étrangers?
+D: Alors, oui, tout d'abord un numéro de téléphone n'est pas forcement une suite de chiffres: +33 6 12 34 56 78.
+  1. Il y a le plus, qui n'est pas un chiffre (en effet on pourrait décider de ne prendre en compte que les numéros français, mais c'est une limitation que nous ne pouvons pas imposer à l'hôtel). Il y a des espaces, si on veut rendre cela lisible (→ tiens, ce serait bien de reformatter le numéro saisi)
+
+Ayant fait des tests, ensuite, il y a le fait que:
+  2. Un numéro avec un zéro au début est stocké sans le zéro. On ne peut pas rentrer 06 12 34 56 78 et puis faire afficher le numéro sans le premier 0.
+  3. Nous ne lisons pas le numéro dans sa totalité, mais cela donne 612.346.789 (avec 33 devant, éventuellement). C'est plus que ce qu'on peut stocker dans un entier `int`. J'ai essayé le `long int`, qui était encore trop petit. Je crois qu'il existe `long long int`, mais il reste les autres points.
+
+V: Où tenons-nous compte des réservations du restaurant? dans la résa?
+D: Mhh, je ne vois pas vraiment de quoi tu parles, il faut que je regarde à nouveau.
+*/
+
   type jour en enregistrement
     champ date en entiers
     champ code_réservation en /*en que sais-je! Chaîne ou bien entiers, à voir*/
@@ -49,4 +60,3 @@ Où tenons-nous compte des réservations du restaurant? dans la résa? */
    variable planning en tableau [20][366] /*la taille est [chambres][jours], l'ordre des deux est à discuter*/
 
 fin déclarations
->>>>>>> origin/master
