@@ -22,7 +22,7 @@ déclarations
     champ numéro_téléphone_client en chaîne de caractères /*+33 6 53332003*/
     champ état en chaîne de caractères /*ou bien entiers ou bien un caractère... à voir → Pourquoi serait-il nécessaire? Inutile*/
     champ code_chambre en entiers /*un seul numéro de chambre pour réservation, en cas de plusieurs chambres, plusieurs réservations  (?)*/
-    champ prix_chambre en réels
+    champ prix_chambre en réels /* pour une ou plusieurs chambres aussi*/
     champ prix_services en tableau de frais
     champ montant_reglé en réels
   fin d'enregistrement
@@ -39,6 +39,7 @@ déclarations
 /*
 V: Ne pourrait-on pas aussi ajouter un champ remarques dans la reservation?
 D: Le problème que pose le champ remarques (j'y pensais justement ces derniers jours) est de pouvoir le lire. Si tu veux le lire et assigner ce que tu lis à des variables, alors il faut que ce qui y est renseigné corresponde à un schéma stricte. Si par contre la lecture est faite par un homme, cela peut avoir un sens.
+V: Ok, mais dans ce cas, ne devrait-on pas enlever le champ remarques du type enregistrement?
 
 v: Pour le numero de telephone du client, pourquoi ne pas mettre un entier? pour tenir compte des numéros étrangers?
 D: Alors, oui, tout d'abord un numéro de téléphone n'est pas forcement une suite de chiffres: +33 6 12 34 56 78.
@@ -50,6 +51,7 @@ Ayant fait des tests, ensuite, il y a le fait que:
 
 V: Où tenons-nous compte des réservations du restaurant? dans la résa?
 D: Mhh, je ne vois pas vraiment de quoi tu parles, il faut que je regarde à nouveau.
+V: quand un client va au restaurant, qu'il choisit le menu 1 et 3 par exemple, de quel champ s'agit-il ici? prix_services? ou alors c'est dans les frais?'
 */
 
   type jour en enregistrement
