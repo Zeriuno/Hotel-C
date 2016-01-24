@@ -32,7 +32,9 @@ déclarations
     champ numéro_de_chambre en entiers
     champ nombre_de_lits en entiers
     champ vue en booléen
-    champ bain_ou_douche en booléen /*... peut être developpé!*/
+    champ bain_ou_douche en booléen /* 0 bain, 1 douche */
+    champ fumeur en booléen /* 0 non fumeur, 1 fumeur */
+    champ animaux en booléen /* 0 pas d'animaux, 1 animaux acceptés */
     champ remarques en chaîne de caractères
   fin d'enregistrement
 
