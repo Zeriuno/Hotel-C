@@ -18,7 +18,7 @@ main()
     printf("4 - Rechercher une chambre.\n\n")              ;
     printf("------------------------------------------\n") ;
     printf("     PLANNING      \n\n")                      ;
-    printf("5 - Mettre à jour la date du planning.\n\n")     ;
+    printf("5 - Mettre à jour la date du planning.\n\n")   ;
     /*printf("6 - Imprimer le programme d'aujourd'hui.\n") ; On ne l'a pas mis dans le planning, mais c'est une idée dont on avait parlé. On verra plus tard si et comment le faire.*/
     printf("-------------------\n") ;
 
