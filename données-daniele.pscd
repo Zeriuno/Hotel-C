@@ -3,7 +3,7 @@ déclarations
   type frais en enregistrement
     /*champ code_commande en chaîne de caractères*/
     champ date_commande en chaîne de caractères
-    champ montant_commnde en réels
+    champ montant_commande en réels
     champ nom_commande en chaîne de caractères
   fin d'enregistrement
 
