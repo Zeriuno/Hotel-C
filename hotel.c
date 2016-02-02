@@ -1,3 +1,18 @@
+/*#########################################################################
+#                                                                         #
+#                                  hotel.c                                #
+#                                                                         #
+###########################################################################
+
+* v 0.0   - 2016-01-31 squelette du main
+* v 0.0.1 - 2016-02-02 ajout de l'option '6 - Modifier le catalogue des services.'
+à faire: données
+
+
+
+
+*/
+
 #include <stdio.h>
 
 main()
@@ -17,16 +32,17 @@ main()
     printf("3 - Déclarer des travaux dans une chambre.\n") ;
     printf("4 - Rechercher une chambre.\n\n")              ;
     printf("------------------------------------------\n") ;
-    printf("     PLANNING      \n\n")                      ;
+    printf("     PARAMÉTRES    \n\n")                      ;
     printf("5 - Mettre à jour la date du planning.\n\n")   ;
-    /*printf("6 - Imprimer le programme d'aujourd'hui.\n") ; On ne l'a pas mis dans le planning, mais c'est une idée dont on avait parlé. On verra plus tard si et comment le faire.*/
+    printf("6 - Modifier le catalogue des services.\n\n")   ;
+    /*printf("7 - Imprimer le programme d'aujourd'hui.\n") ; On ne l'a pas mis dans le planning, mais c'est une idée dont on avait parlé. On verra plus tard si et comment le faire.*/
     printf("-------------------\n") ;
 
     printf("Faire un choix : ") ;
     scanf("%d", &choix)         ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
     switch(choix)
     {
-      case 1: case 2: case 3: case 4: case 5: /*case 6:*/
+      case 1: case 2: case 3: case 4: case 5: case 6:/*case 7:*/
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
         break ;
       case 9:
