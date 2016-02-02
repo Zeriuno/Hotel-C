@@ -47,6 +47,7 @@
 * L'hôtel offre-t-il des services supplémentaires? (Chauffeur/voiturier, , repassage, excursion, garderie, room service, minibar, fax, internet, d'autres...) Lesquels parmi ces services sont-ils payants?
 
 **Le minimum. Minibar, internet, room service.**
+**Ils sont listés dans un catalogue.**
 
 
 ##Tarif et cetera
