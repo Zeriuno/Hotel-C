@@ -25,6 +25,7 @@ void catalogue_services_menu()                   ; /*Ajout de la procédure pour
 void chargement_catalogue_services()             ;
 void saisie_services()                           ;
 void enreg_catalogue_services()                  ;
+void modif_services()                            ;
 
 void mauvais_choix(int par_choisi)               ;
 /*Variables globales*/
@@ -124,8 +125,7 @@ void catalogue_services_menu()
         affichage_catalogue();
         break;
       case 2:
-       /*f1 = fopen("catalogue-services.txt", "w") ; À modulariser
-        fclose(f1);*/
+       modif_services();
         break;
       case 3:
        saisie_services();
@@ -147,6 +147,36 @@ void mauvais_choix(int par_choix){
   printf("Vous avez sélectionné %d : ce choix n'est pas disponible. Veuillez ressaisir.\n", par_choix);
 }
 
+void modif_services()
+{
+  char nom_serv[MAX_NOM_SERVICE];
+  int prix_serv;
+  struct entree_service service;
+  if (nb_services==O)
+  {
+    printf("Il n'y a actuellement aucun service dans le catalogue pour la modification\n");
+  }
+  else
+  {
+    strcpy(nom_serv, "début")          ;
+    while(strcmp(nom_serv,"fin") != 0)
+    {
+      printf("Entrez le nom du service à modifier ('fin' pour terminer) : ");
+      scanf("%s", nom_serv)
+      if (strcmp(nom_serv, "fin"))
+      {
+        printf("Fin de la modification. Retour au menu précédent. \n");
+      }
+      else
+      {
+        printf("Entrez le prix du service : ");
+        scanf("%f", &prix_serv)               ;
+      }
+    }
+    sauv_catalogue_services=1;
+  }
+}
+
 void saisie_services()
 {
   struct entree_service service;
@@ -164,7 +194,8 @@ void saisie_services()
     else
     {
       printf("Saisir le prix : ")       ; /*test pour éviter des prix avec virgule au lieu du point*/
-      scanf("%f", &service.prix_service) ;
+      scanf("%.2f", &service.prix_service) ;
+      printf("\n");
       catalogue_services[i++] = service ;
     }
   }
