@@ -145,10 +145,6 @@ void catalogue_services_menu()
   }
 }
 
-void mauvais_choix(int par_choix){
-  printf("Vous avez sélectionné %d : ce choix n'est pas disponible. Veuillez ressaisir.\n", par_choix);
-}
-
 void modif_services()
 {
   char nom_serv[MAX_NOM_SERVICE] ;
@@ -274,4 +270,20 @@ void affichage_catalogue()
       printf("%s : %.2f\n", service.nom_service, service.prix_service) ;
     }
   }
+}
+
+/*############################################
+#                                            #
+#             mauvais_choix                  #
+#                                            #
+##############################################
+
+Fonction appellée par les menus de choix.
+Elle signale à l'utilisateur que le choix fait n'est pas disponible.
+Elle reçoit un paramètre pour signaler quel est le choix qui a été fait.
+
+*/
+
+void mauvais_choix(int par_choix){
+  printf("Vous avez sélectionné %d : ce choix n'est pas disponible. Veuillez ressaisir.\n", par_choix);
 }
