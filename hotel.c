@@ -187,7 +187,7 @@ void enreg_catalogue_services(){
   for(i = 0; i < nb_services ; i++)
   {
     service = catalogue_services[i] ;
-    fprintf(f1, "%s %f", service.nom_service, service.prix_service);
+    fprintf(f1, "%s %f\n", service.nom_service, service.prix_service);
   }
   fclose(f1)                                      ;
   sauv_catalogue_services = 0                     ;
