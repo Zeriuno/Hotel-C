@@ -128,19 +128,19 @@ void catalogue_services_menu()
     switch(choix_cat)
     {
       case 1:
-        affichage_catalogue();
-        break;
+        affichage_catalogue()    ;
+        break                    ;
       case 2:
-       modif_services();
-        break;
+        modif_services()         ;
+        break                    ;
       case 3:
-       saisie_services();
-        break;
+        saisie_services()        ;
+        break                    ;
       case 9:
-        break;
+        break                    ;
       default:
-        mauvais_choix(choix_cat);
-        break;
+        mauvais_choix(choix_cat) ;
+        break                    ;
     }
   }
 }
