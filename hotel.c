@@ -32,6 +32,7 @@ void chargement_catalogue_services()             ;
 void saisie_services()                           ;
 void enreg_catalogue_services()                  ;
 void modif_services()                            ;
+void suppression_services()                      ;
 
 /*Variables globales*/
 
@@ -119,7 +120,6 @@ void catalogue_services_menu()
     printf("1 - Lire le catalogue des services\n")         ;
     printf("2 - Modifier le catalogue des services\n")     ;
     printf("3 - Ajouter un service\n")                     ;
-    printf("4 - Supprimer un service\n")                   ;
     printf("9 - Quitter et revenir au menu principal\n\n") ;
 
     printf("Choisissez une action : ")                     ;
@@ -134,10 +134,6 @@ void catalogue_services_menu()
         break;
       case 3:
        saisie_services();
-        break;
-      case 4:
-      /*f1 = fopen("catalogue-services.txt", "w") ; À modulariser
-        fclose(f1);*/
         break;
       case 9:
         break;
@@ -156,17 +152,20 @@ void modif_services()
 {
   char nom_serv[MAX_NOM_SERVICE];
   float prix_serv;
+  int i = 0;
   struct entree_service service;
   if (nb_services== 0)
   {
-    printf("Il n'y a actuellement aucun service dans le catalogue pour la modification\n");
+    printf("Il n'y a actuellement aucun service dans le catalogue pour la modification.\n");
   }
   else
   {
     strcpy(nom_serv, "début")          ;
     while(strcmp(nom_serv,"fin") != 0)
     {
-      printf("Entrez le nom du service à modifier ('fin' pour terminer) : ");
+      service = catalogue_services[i];
+      printf("Nom actuel du service : %s\n", service.nom_service);
+      printf("Nouveau nom ('fin' pour terminer) : ");
       scanf("%s", nom_serv);
       if (strcmp(nom_serv, "fin"))
       {
@@ -174,8 +173,10 @@ void modif_services()
       }
       else
       {
-        printf("Entrez le prix du service : ");
+        printf("Prix actuel du service : %f\n", service.prix_service);
+        printf("Nouveau prix : ");
         scanf("%f", &prix_serv)               ;
+        i++;
       }
     }
     sauv_catalogue_services=1;
