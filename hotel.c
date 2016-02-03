@@ -20,7 +20,9 @@
 
 /*Déclarations préliminaires*/
 
+void affichage_catalogue();
 void catalogue_services_menu()                   ; /*Ajout de la procédure pour afficher le menu qui montre les choix sur le catalogue de services*/
+void chargement_catalogue_services()             ;
 void saisie_services()                           ;
 void enreg_catalogue_services()                  ;
 
@@ -101,11 +103,10 @@ main()
 }
 
 
-void catalogue_services_menu(){
-  int choix_cat = 0 ;
-  FILE *f1          ;
-
-
+void catalogue_services_menu()
+{
+  int choix_cat = 0               ;
+  chargement_catalogue_services() ;
   while(choix_cat != 9){
     printf("\n")                                           ;
     printf("    CATALOGUE DES SERVICES\n\n")               ;
@@ -120,8 +121,7 @@ void catalogue_services_menu(){
     switch(choix_cat)
     {
       case 1:
-        /*f1 = fopen("catalogue-services.txt", "r") ; À modulariser
-        fclose(f1);*/
+        affichage_catalogue();
         break;
       case 2:
        /*f1 = fopen("catalogue-services.txt", "w") ; À modulariser
@@ -192,4 +192,48 @@ void enreg_catalogue_services(){
   fclose(f1)                                      ;
   sauv_catalogue_services = 0                     ;
   printf("Le catalogue a bien été sauvegardé.\n") ;
+}
+
+void chargement_catalogue_services()
+{
+  FILE *f1                      ;
+  struct entree_service service ;
+  char test_sauv                ;
+  int i                         ;
+
+  if (sauv_catalogue_services == 1)
+  {
+    printf("Le catalogue chargé a été modifié.\n") ;
+    printf("Voulez-vous sauvegarder les modifications effectuées? (O/n)");
+    scanf("%c", &test_sauv) ;
+    if(test_sauv != "n")
+    {
+      enreg_catalogue_services()
+    }
+  }
+  f1 = fopen("catalogue-services.txt", "r") ;
+  for(i = 0 ; i < nb_services ; i++)
+  {
+    fscanf(f1, "%s %f", service.nom_service, &service.prix_service) ;
+    catalogue_services[i] = service                                 ;
+  }
+  fclose(f1) ;
+}
+
+void affichage_catalogue()
+{
+  struct entree_service service ;
+  int i                         ;
+  if(nb_services == 0)
+  {
+    printf("Le catalogue des services est vide.\n");
+  }
+  else
+  {
+    for(i=0; i < nb_services; i++)
+    {
+      service = catalogue_services[i]                               ;
+      printf("%s : %f\n", service.nom_service, service.prix_service);
+    }
+  }
 }
