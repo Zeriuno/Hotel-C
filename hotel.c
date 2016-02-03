@@ -18,20 +18,21 @@
 
 /*Constantes*/
 
-#define MAX_CAT_SERV 20    /*Constante qui limite le catalogue des services -- ajouter un test concernant cette limite*/
-#define MAX_NOM_SERVICE 21
+#define MAX_CAT_SERV 20    /* Constante qui limite le catalogue des services -- ajouter un test concernant cette limite*/
+#define MAX_NOM_SERVICE 21 /* Taille maximale de la chaîne de caractères qui décrit les services complémentaires*/
+
 
 /*Déclarations préliminaires*/
 
-void mauvais_choix(int par_choisi)               ; /*Mauvais choix à l'intérieur du menu*/
+void mauvais_choix(int par_choisi)   ; /* Mauvais choix à l'intérieur des menus*/
 
 /*Gestion des services complémentaires*/
-void affichage_catalogue();
-void catalogue_services_menu()                   ; /*Ajout de la procédure pour afficher le menu qui montre les choix sur le catalogue de services*/
-void chargement_catalogue_services()             ;
-void saisie_services()                           ;
-void enreg_catalogue_services()                  ;
-void modif_services()                            ;
+void catalogue_services_menu()       ; /* Menu qui montre les choix possibles pour le catalogue de services*/
+void chargement_catalogue_services() ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente*/
+void affichage_catalogue()           ; /* Montre le tableau de services*/
+void saisie_services()               ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés*/
+void enreg_catalogue_services()      ; /* Sauvegarde le tableau chargé en mémoire dans un fichier*/
+void modif_services()                ; /* Pour modifier les services déjà listés*/
 
 /*Variables globales*/
 
@@ -44,22 +45,23 @@ struct resa{
   char telclient[13]    ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
 };
 
-
-  /*ici on parle du catalogue_services*/
-
-int sauv_catalogue_services = 0; /*Pour contrôler s'il faut sauvegarder le catalogue_services. Si c'est 0, le catalogue n'est pas à sauvegarder, si c'est 1 il faut le sauvegarder.*/
-int nb_services = 0 ;
-struct entree_service
-{            /*Service additionnel facturé par l'hôtel, référence du catalogue*/
-  char  nom_service[MAX_NOM_SERVICE]  ;
-  float prix_service ;
-};
-struct entree_service catalogue_services[MAX_CAT_SERV];  /*Catalogue listant les services*/
 struct frais{
   int datefrais        ; /*autrement on en fera une string de 9, 'aaaammjj' (8) + '\0'*/
   float montantfrais   ;
   int codefrais[200] ;
 };
+
+  /* Variables globales concernant le catalogue_services*/
+
+int sauv_catalogue_services = 0 ; /* Test. 1 : tableau à sauvegarder; 0 non.*/
+int nb_services = 0             ; /* Pour garder trace du nombre de services déjà saisis*/
+
+struct entree_service /* Modèle du service additionnel*/
+{
+  char  nom_service[MAX_NOM_SERVICE]  ;
+  float prix_service                  ;
+};
+struct entree_service catalogue_services[MAX_CAT_SERV] ;  /* Tableau listant les services*/
 
 main()
 {
@@ -154,9 +156,9 @@ void mauvais_choix(int par_choix){
 
 void modif_services()
 {
-  char nom_serv[MAX_NOM_SERVICE];
-  float prix_serv;
-  struct entree_service service;
+  char nom_serv[MAX_NOM_SERVICE] ;
+  float prix_serv                ;
+  struct entree_service service  ;
   if (nb_services== 0)
   {
     printf("Il n'y a actuellement aucun service dans le catalogue pour la modification\n");
@@ -166,16 +168,16 @@ void modif_services()
     strcpy(nom_serv, "début")          ;
     while(strcmp(nom_serv,"fin") != 0)
     {
-      printf("Entrez le nom du service à modifier ('fin' pour terminer) : ");
-      scanf("%s", nom_serv);
+      printf("Entrez le nom du service à modifier ('fin' pour terminer) : ") ;
+      scanf("%s", nom_serv)                                                  ;
       if (strcmp(nom_serv, "fin"))
       {
-        printf("Fin de la modification. Retour au menu précédent. \n");
+        printf("Fin de la modification. Retour au menu précédent. \n")       ;
       }
       else
       {
-        printf("Entrez le prix du service : ");
-        scanf("%f", &prix_serv)               ;
+        printf("Entrez le prix du service : ") ;
+        scanf("%f", &prix_serv)                ;
       }
     }
     sauv_catalogue_services=1;
@@ -184,8 +186,8 @@ void modif_services()
 
 void saisie_services()
 {
-  struct entree_service service;
-  int i = nb_services ;
+  struct entree_service service ;
+  int i = nb_services           ;
 
   strcpy(service.nom_service, "début")          ;
   while(strcmp(service.nom_service,"fin") != 0)
@@ -198,10 +200,10 @@ void saisie_services()
     }
     else
     {
-      printf("Saisir le prix : ")       ; /*test pour éviter des prix avec virgule au lieu du point*/
+      printf("Saisir le prix : ")        ; /*test pour éviter des prix avec virgule au lieu du point*/
       scanf("%f", &service.prix_service) ;
-      printf("\n");
-      catalogue_services[i++] = service ;
+      printf("\n")                       ;
+      catalogue_services[i++] = service  ;
     }
   }
   if(i > 0)
@@ -214,16 +216,16 @@ void saisie_services()
 }
 
 void enreg_catalogue_services(){
-  FILE *f1 ;
-  f1 = fopen("catalogue-services.txt", "w")       ;
-  int i ;
-  struct entree_service service;
+  FILE *f1                                  ;
+  f1 = fopen("catalogue-services.txt", "w") ;
+  int i                                     ;
+  struct entree_service service             ;
 
 
   for(i = 0; i < nb_services ; i++)
   {
-    service = catalogue_services[i] ;
-    fprintf(f1, "%s %f\n", service.nom_service, service.prix_service);
+    service = catalogue_services[i]                                   ;
+    fprintf(f1, "%s %f\n", service.nom_service, service.prix_service) ;
   }
   fclose(f1)                                      ;
   sauv_catalogue_services = 0                     ;
@@ -239,12 +241,12 @@ void chargement_catalogue_services()
 
   if (sauv_catalogue_services == 1)
   {
-    printf("Le catalogue chargé a été modifié.\n") ;
-    printf("Voulez-vous sauvegarder les modifications effectuées? (O/n)");
-    scanf("%c", &test_sauv) ;
+    printf("Le catalogue chargé a été modifié.\n")                        ;
+    printf("Voulez-vous sauvegarder les modifications effectuées? (O/n)") ;
+    scanf("%c", &test_sauv)                                               ;
     if(test_sauv != 'n')
     {
-      enreg_catalogue_services();
+      enreg_catalogue_services()            ;
     }
   }
   f1 = fopen("catalogue-services.txt", "r") ;
@@ -253,7 +255,7 @@ void chargement_catalogue_services()
     fscanf(f1, "%s %f", service.nom_service, &service.prix_service) ;
     catalogue_services[i] = service                                 ;
   }
-  fclose(f1) ;
+  fclose(f1)                                                        ;
 }
 
 void affichage_catalogue()
@@ -262,14 +264,14 @@ void affichage_catalogue()
   int i                         ;
   if(nb_services == 0)
   {
-    printf("Le catalogue des services est vide.\n");
+    printf("Le catalogue des services est vide.\n") ;
   }
   else
   {
     for(i=0; i < nb_services; i++)
     {
-      service = catalogue_services[i]                               ;
-      printf("%s : %f\n", service.nom_service, service.prix_service);
+      service = catalogue_services[i]                                ;
+      printf("%s : %f\n", service.nom_service, service.prix_service) ;
     }
   }
 }
