@@ -150,9 +150,9 @@ void mauvais_choix(int par_choix){
 void modif_services()
 {
   char nom_serv[MAX_NOM_SERVICE];
-  int prix_serv;
+  float prix_serv;
   struct entree_service service;
-  if (nb_services==O)
+  if (nb_services== 0)
   {
     printf("Il n'y a actuellement aucun service dans le catalogue pour la modification\n");
   }
@@ -162,7 +162,7 @@ void modif_services()
     while(strcmp(nom_serv,"fin") != 0)
     {
       printf("Entrez le nom du service à modifier ('fin' pour terminer) : ");
-      scanf("%s", nom_serv)
+      scanf("%s", nom_serv);
       if (strcmp(nom_serv, "fin"))
       {
         printf("Fin de la modification. Retour au menu précédent. \n");
@@ -194,7 +194,7 @@ void saisie_services()
     else
     {
       printf("Saisir le prix : ")       ; /*test pour éviter des prix avec virgule au lieu du point*/
-      scanf("%.2f", &service.prix_service) ;
+      scanf("%f", &service.prix_service) ;
       printf("\n");
       catalogue_services[i++] = service ;
     }
