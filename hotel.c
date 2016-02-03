@@ -260,11 +260,11 @@ void chargement_catalogue_services()
 
 void affichage_catalogue()
 {
-  struct entree_service service ;
-  int i                         ;
+  struct entree_service service                                        ;
+  int i                                                                ;
   if(nb_services == 0)
   {
-    printf("Le catalogue des services est vide.\n") ;
+    printf("Le catalogue des services est vide.\n")                    ;
   }
   else
   {
