@@ -7,7 +7,8 @@
 * v 0.0   - 2016-01-31 squelette du main
 * v 0.0.1 - 2016-02-02 ajout de l'option '6 - Modifier le catalogue des services.'
 * v 0.0.2 - 2016-02-03 procédure mauvais_choix, procédure catalogue_services_menu
-à faire: données
+* v 0.0.2 - 2016-02-03 Saisie et enregistrement du catalogue des services
+
 */
 
 #include <stdio.h>
