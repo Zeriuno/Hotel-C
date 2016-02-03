@@ -270,7 +270,7 @@ void affichage_catalogue()
     for(i=0; i < nb_services; i++)
     {
       service = catalogue_services[i]                               ;
-      printf("%s : %f\n", service.nom_service, service.prix_service);
+      printf("%s : %.2f\n", service.nom_service, service.prix_service);
     }
   }
 }

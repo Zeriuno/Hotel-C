@@ -1,0 +1,3 @@
+internet 5.000000
+cocktail 8.000000
+excursion 28.000000
