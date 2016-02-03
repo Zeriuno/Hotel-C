@@ -32,7 +32,7 @@ struct reservation{
   int datedepart   ;
   char nomclient[50] ;
   char prenomclient[50] ;
-    char telclient[13] ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
+  char telclient[13] ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
 };
 
 
@@ -40,9 +40,10 @@ struct reservation{
 
 int sauv_catalogue_services = 0; /*Pour contrôler s'il faut sauvegarder le catalogue_services. Si c'est 0, le catalogue n'est pas à sauvegarder, si c'est 1 il faut le sauvegarder.*/
 int nb_services = 0 ;
-struct entree_service{            /*Service additionnel facturé par l'hôtel, référence du catalogue*/
-  float prix_service ;
+struct entree_service
+{            /*Service additionnel facturé par l'hôtel, référence du catalogue*/
   char  nom_service[MAX_NOM_SERVICE]  ;
+  float prix_service ;
 };
 struct entree_service catalogue_services[MAX_CAT_SERV];  /*Catalogue listant les services*/
 struct frais{
@@ -155,14 +156,14 @@ void saisie_services()
   {
     printf("Saisir le nom du service ('fin' pour terminer) : ") ;
     scanf("%s", service.nom_service)                            ;
-    if(strcmp(service.nom_service,"fin") = 0)
+    if(strcmp(service.nom_service,"fin") == 0)
     {
       printf("Fin de la saisie. Retour au menu précédent.\n") ;
     }
     else
     {
       printf("Saisir le prix : ")       ; /*test pour éviter des prix avec virgule au lieu du point*/
-      scanf("%f", service.prix_service) ;
+      scanf("%f", &service.prix_service) ;
       catalogue_services[i++] = service ;
     }
   }
@@ -179,6 +180,8 @@ void enreg_catalogue_services(){
   FILE *f1 ;
   f1 = fopen("catalogue-services.txt", "w")       ;
   int i ;
+  struct entree_service service;
+
 
   for(i = 0; i < nb_services ; i++)
   {
