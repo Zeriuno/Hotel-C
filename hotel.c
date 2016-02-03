@@ -14,7 +14,7 @@
 #include <string.h>
 /*Constantes*/
 
-#define MAX_CAT_SERV 20 /*Constante qui limite le catalogue des services*/
+#define MAX_CAT_SERV 20 /*Constante qui limite le catalogue des services -- ajouter un test concernant cette limite*/
 #define MAX_NOM_SERVICE 21
 
 /*Déclarations préliminaires*/
