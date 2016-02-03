@@ -237,9 +237,9 @@ void chargement_catalogue_services()
     printf("Le catalogue chargé a été modifié.\n") ;
     printf("Voulez-vous sauvegarder les modifications effectuées? (O/n)");
     scanf("%c", &test_sauv) ;
-    if(test_sauv != "n")
+    if(test_sauv != 'n')
     {
-      enreg_catalogue_services()
+      enreg_catalogue_services();
     }
   }
   f1 = fopen("catalogue-services.txt", "r") ;
