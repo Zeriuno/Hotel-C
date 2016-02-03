@@ -40,11 +40,11 @@ struct reservation{
 
 int sauv_catalogue_services = 0; /*Pour contrôler s'il faut sauvegarder le catalogue_services. Si c'est 0, le catalogue n'est pas à sauvegarder, si c'est 1 il faut le sauvegarder.*/
 int nb_services = 0 ;
-struct service{            /*Service additionnel facturé par l'hôtel, référence du catalogue*/
+struct entree_service{            /*Service additionnel facturé par l'hôtel, référence du catalogue*/
   float prix_service ;
   char  nom_service[MAX_NOM_SERVICE]  ;
 };
-struct service catalogue_services[MAX_CAT_SERV];  /*Catalogue listant les services*/
+struct entree_service catalogue_services[MAX_CAT_SERV];  /*Catalogue listant les services*/
 struct frais{
   int datefrais        ; /*autrement on en fera une string de 9, 'aaaammjj' (8) + '\0'*/
   float montantfrais   ;
@@ -147,6 +147,7 @@ void mauvais_choix(int par_choix){
 
 void saisie_services()
 {
+  struct entree_service service;
   int i = nb_services ;
 
   strcpy(service.nom_service, "début")          ;
