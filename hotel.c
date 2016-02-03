@@ -14,13 +14,18 @@
 
 #include <stdio.h>
 #include <string.h>
+
+
 /*Constantes*/
 
-#define MAX_CAT_SERV 20 /*Constante qui limite le catalogue des services -- ajouter un test concernant cette limite*/
+#define MAX_CAT_SERV 20    /*Constante qui limite le catalogue des services -- ajouter un test concernant cette limite*/
 #define MAX_NOM_SERVICE 21
 
 /*Déclarations préliminaires*/
 
+void mauvais_choix(int par_choisi)               ; /*Mauvais choix à l'intérieur du menu*/
+
+/*Gestion des services complémentaires*/
 void affichage_catalogue();
 void catalogue_services_menu()                   ; /*Ajout de la procédure pour afficher le menu qui montre les choix sur le catalogue de services*/
 void chargement_catalogue_services()             ;
@@ -28,16 +33,15 @@ void saisie_services()                           ;
 void enreg_catalogue_services()                  ;
 void modif_services()                            ;
 
-void mauvais_choix(int par_choisi)               ;
 /*Variables globales*/
 
-struct reservation{
+struct resa{
   /*code de réservation, à déterminer comment il est construit*/
-  int datearrivee  ;
-  int datedepart   ;
-  char nomclient[50] ;
+  int datearrivee       ;
+  int datedepart        ;
+  char nomclient[50]    ;
   char prenomclient[50] ;
-  char telclient[13] ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
+  char telclient[13]    ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
 };
 
 
