@@ -42,7 +42,7 @@ int sauv_catalogue_services = 0; /*Pour contrôler s'il faut sauvegarder le cata
 int nb_services = 0 ;
 struct service{            /*Service additionnel facturé par l'hôtel, référence du catalogue*/
   float prix_service ;
-  char  nom_service[]  ;
+  char  nom_service[MAX_NOM_SERVICE]  ;
 };
 struct service catalogue_services[MAX_CAT_SERV];  /*Catalogue listant les services*/
 struct frais{
@@ -145,7 +145,8 @@ void mauvais_choix(int par_choix){
   printf("Vous avez sélectionné %d : ce choix n'est pas disponible. Veuillez ressaisir.\n", par_choix);
 }
 
-void saisie_services(){
+void saisie_services()
+{
   int i = nb_services ;
 
   strcpy(service.nom_service, "début")          ;
@@ -159,7 +160,7 @@ void saisie_services(){
     }
     else
     {
-      printf("Saisir le prix : ")       ;
+      printf("Saisir le prix : ")       ; /*test pour éviter des prix avec virgule au lieu du point*/
       scanf("%f", service.prix_service) ;
       catalogue_services[i++] = service ;
     }
@@ -171,4 +172,19 @@ void saisie_services(){
     sauv_catalogue_services = 1                    ;
     enreg_catalogue_services()                     ;
   }
+}
+
+void enreg_catalogue_services(){
+  FILE *f1 ;
+  f1 = fopen("catalogue-services.txt", "w")       ;
+  int i ;
+
+  for(i = 0; i < nb_services ; i++)
+  {
+    service = catalogue_services[i] ;
+    fprintf(f1, "%s %f", service.nom_service, service.prix_service);
+  }
+  fclose(f1)                                      ;
+  sauv_catalogue_services = 0                     ;
+  printf("Le catalogue a bien été sauvegardé.\n") ;
 }
