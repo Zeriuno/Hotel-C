@@ -121,7 +121,6 @@ void catalogue_services_menu()
     printf("1 - Lire le catalogue des services\n")         ;
     printf("2 - Modifier le catalogue des services\n")     ;
     printf("3 - Ajouter un service\n")                     ;
-    printf("4 - Supprimer un service\n")                   ;
     printf("9 - Quitter et revenir au menu principal\n\n") ;
 
     printf("Choisissez une action : ")                     ;
@@ -136,10 +135,6 @@ void catalogue_services_menu()
         break;
       case 3:
        saisie_services();
-        break;
-      case 4:
-      /*f1 = fopen("catalogue-services.txt", "w") ; À modulariser
-        fclose(f1);*/
         break;
       case 9:
         break;
@@ -159,44 +154,49 @@ void modif_services()
   char nom_serv[MAX_NOM_SERVICE] ;
   float prix_serv                ;
   struct entree_service service  ;
+  int i = 0                      ;
   if (nb_services== 0)
   {
-    printf("Il n'y a actuellement aucun service dans le catalogue pour la modification\n");
+    printf("Il n'y a actuellement aucun service dans le catalogue pour la modification.\n");
   }
   else
   {
     strcpy(nom_serv, "début")          ;
     while(strcmp(nom_serv,"fin") != 0)
     {
-      printf("Entrez le nom du service à modifier ('fin' pour terminer) : ") ;
-      scanf("%s", nom_serv)                                                  ;
+      service = catalogue_services[i]                                  ;
+      printf("Nom actuel du service : %s\n", service.nom_service)      ;
+      printf("Nouveau nom ('fin' pour terminer) : ")                   ;
+      scanf("%s", nom_serv)                                            ;
       if (strcmp(nom_serv, "fin"))
       {
-        printf("Fin de la modification. Retour au menu précédent. \n")       ;
+        printf("Fin de la modification. Retour au menu précédent. \n") ;
       }
       else
       {
-        printf("Entrez le prix du service : ") ;
-        scanf("%f", &prix_serv)                ;
+        printf("Prix actuel du service : %f\n", service.prix_service) ;
+        printf("Nouveau prix : ")                                     ;
+        scanf("%f", &prix_serv)                                       ;
+        i++                                                           ;
       }
     }
-    sauv_catalogue_services=1;
+    sauv_catalogue_services=1                                         ;
   }
 }
 
 void saisie_services()
 {
-  struct entree_service service ;
-  int i = nb_services           ;
+  struct entree_service service                                 ;
+  int i = nb_services                                           ;
 
-  strcpy(service.nom_service, "début")          ;
+  strcpy(service.nom_service, "début")                          ;
   while(strcmp(service.nom_service,"fin") != 0)
   {
     printf("Saisir le nom du service ('fin' pour terminer) : ") ;
     scanf("%s", service.nom_service)                            ;
     if(strcmp(service.nom_service,"fin") == 0)
     {
-      printf("Fin de la saisie. Retour au menu précédent.\n") ;
+      printf("Fin de la saisie. Retour au menu précédent.\n")   ;
     }
     else
     {
@@ -270,8 +270,8 @@ void affichage_catalogue()
   {
     for(i=0; i < nb_services; i++)
     {
-      service = catalogue_services[i]                                ;
-      printf("%s : %f\n", service.nom_service, service.prix_service) ;
+      service = catalogue_services[i]                                  ;
+      printf("%s : %.2f\n", service.nom_service, service.prix_service) ;
     }
   }
 }
