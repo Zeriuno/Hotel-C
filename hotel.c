@@ -107,10 +107,21 @@ main()
         break ;
     }
   }
-
 }
 
+/*############################################
+#                                            #
+#              PARTIE SERVICES               #
+#       #############################        #
+#                                            #
+#           catalogue_services_menu          #
+#                                            #
+##############################################
 
+Menu qui affiche les choix concernant les services de l'hôtel.
+
+
+*/
 void catalogue_services_menu()
 {
   int choix_cat = 0                                        ;
@@ -145,6 +156,16 @@ void catalogue_services_menu()
   }
 }
 
+/*############################################
+#                                            #
+#             modif_services                 #
+#                                            #
+##############################################
+
+Modifie les services déjà saisis.
+
+
+*/
 void modif_services()
 {
   char nom_serv[MAX_NOM_SERVICE] ;
@@ -180,6 +201,16 @@ void modif_services()
   }
 }
 
+/*############################################
+#                                            #
+#            saisie_services                 #
+#                                            #
+##############################################
+
+Saisie par l'utilisateur de services.
+Ils sont chargés dans un tableau après ceux déjà lus depuis le fichier.
+
+*/
 void saisie_services()
 {
   struct entree_service service                                 ;
@@ -205,11 +236,22 @@ void saisie_services()
   if(i > 0)
   {
     nb_services = i                                ;
-    printf("%d services présents.\n", nb_services) ;
+    printf("%d services présents dans le catalogue.\n", nb_services) ;
     sauv_catalogue_services = 1                    ;
     enreg_catalogue_services()                     ;
   }
 }
+
+/*############################################
+#                                            #
+#         enreg_catalogue_services           #
+#                                            #
+##############################################
+
+Enregistre le tableau dans le fichier catalogue-services.txt.
+Affiche un message de confirmation.
+
+*/
 
 void enreg_catalogue_services(){
   FILE *f1                                  ;
@@ -228,12 +270,23 @@ void enreg_catalogue_services(){
   printf("Le catalogue a bien été sauvegardé.\n") ;
 }
 
+/*############################################
+#                                            #
+#       chargement_catalogue_services        #
+#                                            #
+##############################################
+
+Lit le fichier catalogue-services.txt et charge son contenu dans le tableau de services.
+
+*/
 void chargement_catalogue_services()
 {
   FILE *f1                      ;
   struct entree_service service ;
   char test_sauv                ;
   int i                         ;
+
+/* Le chargement du catalogue a lieu de manière automatique lors de l'entrée dans le menu de services. Il n'est donc pas nécessaire de faire ce test. Bloc de code gardé ici pour d'éventuels futurs changements dans le processus qui pourraient se servir de cette fonction.
 
   if (sauv_catalogue_services == 1)
   {
@@ -244,7 +297,7 @@ void chargement_catalogue_services()
     {
       enreg_catalogue_services()            ;
     }
-  }
+  }*/
   f1 = fopen("catalogue-services.txt", "r") ;
   for(i = 0 ; i < nb_services ; i++)
   {
@@ -252,8 +305,20 @@ void chargement_catalogue_services()
     catalogue_services[i] = service                                 ;
   }
   fclose(f1)                                                        ;
+  nb_services = i                                                   ;
 }
 
+
+/*############################################
+#                                            #
+#           affichage_catalogue              #
+#                                            #
+##############################################
+
+Affiche les données déjà chargées dans le tableau de services.
+
+
+*/
 void affichage_catalogue()
 {
   struct entree_service service                                        ;
@@ -283,7 +348,6 @@ Elle signale à l'utilisateur que le choix fait n'est pas disponible.
 Elle reçoit un paramètre pour signaler quel est le choix qui a été fait.
 
 */
-
 void mauvais_choix(int par_choix){
   printf("Vous avez sélectionné %d : ce choix n'est pas disponible. Veuillez ressaisir.\n", par_choix);
 }
