@@ -124,8 +124,9 @@ main()
     printf("Faire un choix : ") ;
     scanf("%d", &choix)         ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
     struct cha chambre          ;
+
+    switch(choix)
     {
-      switch(choix)
       case 1: case 2: case 3:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
         break;
