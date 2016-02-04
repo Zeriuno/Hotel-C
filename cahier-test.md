@@ -1,5 +1,12 @@
 #Cahier de tests
 
+##Recherche chambres
+
+1. On demande la saisie du numéro de chambre à rechercher
+ → En cas de recherche sans résultats, un message d'erreur est affiché.
+
+2.
+
 ##Menu services
 
 1. Accéder au menu des services → Les choix possibles sont affiché, une invite de saisie est affichée, on attend la saisie de l'utilisateur.
