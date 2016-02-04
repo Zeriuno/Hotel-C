@@ -1,3 +1,4 @@
-internet 5.000000
-cocktail 8.000000
-excursion 28.000000
+internet 4.00
+cocktail 8.00
+excursion 28.00
+roomservice 15.00

@@ -197,21 +197,24 @@ void modif_services()
   else
   {
     strcpy(nom_serv, "début")          ;
-    while(strcmp(nom_serv,"fin") != 0)
+    while(strcmp(nom_serv,"fin\0") != 0)
     {
       service = catalogue_services[i]                                  ;
       printf("Nom actuel du service : %s\n", service.nom_service)      ;
       printf("Nouveau nom ('fin' pour terminer) : ")                   ;
       scanf("%s", nom_serv)                                            ;
-      if (strcmp(nom_serv, "fin"))
+      printf("%s\n", nom_serv);
+      if (strcmp(nom_serv, "fin")== 0)
       {
         printf("Fin de la modification. Retour au menu précédent. \n") ;
       }
       else
       {
-        printf("Prix actuel du service : %f\n", service.prix_service) ;
+        strcpy(service.nom_service, nom_serv)                         ;
+        printf("Prix actuel du service : %.2f\n", service.prix_service);
         printf("Nouveau prix : ")                                     ;
-        scanf("%f", &prix_serv)                                       ;
+        scanf("%f", &service.prix_service)                            ;
+        catalogue_services[i]=service                                 ;
         i++                                                           ;
       }
     }
