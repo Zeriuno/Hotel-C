@@ -20,7 +20,10 @@
 
 #define MAX_CAT_SERV 20    /* Constante qui limite le catalogue des services -- ajouter un test concernant cette limite*/
 #define MAX_NOM_SERVICE 21 /* Taille maximale de la chaîne de caractères qui décrit les services complémentaires*/
+#define MAX_NB_CHAMBRES 50 /*Utilisée dans tab_chambres[]*/
 
+/*Chambres*/
+int rech_chambre(char chambre_rech[]);
 
 /*Déclarations préliminaires*/
 
@@ -57,6 +60,8 @@ struct cha
   int animaux     ; /* 0 pas d'animaux, 1 animaux acceptés */
   /*champ remarques en chaîne de caractères*/
 }
+  /* Variables globales concernant les chambres*/
+struct cha tab_chambres[MAX_NB_CHAMBRES]; /*Tableau listant les chambres*/
 
 struct frais{
   int datefrais        ; /*autrement on en fera une string de 9, 'aaaammjj' (8) + '\0'*/
@@ -408,5 +413,15 @@ void affichage_catalogue()
       service = catalogue_services[i]                                  ;
       printf("%s : %.2f\n", service.nom_service, service.prix_service) ;
     }
+  }
+}
+
+int rech_chambre(char chambre_rech[])
+{
+  struct cha chambre ;
+  int, numcase=NON_TROUVE;
+  for (i=0; i<nbchambre; i++)
+  {
+    chambre=[i];
   }
 }
