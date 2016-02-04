@@ -32,6 +32,11 @@ void chargement_chambres()           ;
 
 void mauvais_choix(int par_choisi)   ; /* Mauvais choix à l'intérieur des menus*/
 
+/*Réservations*/
+void creer_reservation()             ;
+void cible_date()                    ;
+void cible_chambre()                 ;
+
 /*Gestion des services complémentaires*/
 void catalogue_services_menu()       ; /* Menu qui montre les choix possibles pour le catalogue de services*/
 void chargement_catalogue_services() ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente*/
@@ -117,8 +122,8 @@ main()
     printf("Faire un choix : ") ;
     scanf("%d", &choix)         ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
     struct cha chambre          ;
-    switch(choix)
     {
+      switch(choix)
       case 1: case 2: case 3:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
         break;
@@ -171,6 +176,69 @@ void mauvais_choix(int par_choix)
 }
 
 
+/*############################################
+#                                            #
+#             PARTIE RESERVATIONS            #
+#       #############################        #
+#                                            #
+#             creer_reservation              #
+#                                            #
+##############################################
+
+Procédure pour créer un réservation.
+
+
+*//*pour l'instant cela ne peut pas marcher
+void creer_reservation()
+{
+  cible_date()    ;
+  cible_chambre() ;
+  rech_période(date_debut, date_fin ) ;
+
+}
+
+/*############################################
+#                                            #
+#                cible_date                  #
+#                                            #
+##############################################
+
+Procédure pour créer un saisir une date.
+
+
+*//*ça ne peut pas marcher pour le moment
+void /*à voir: affecte des variables globales? saisie_date()
+{
+  printf("Saisir la date de début (jj/mm/aa) : ")           ;
+  scanf("%d/%d/%d\n", &jour_debut, &mois_debut, &an_debut)  ;
+  printf("Saisir la date de fin (jj/mm/aa) : ")             ;
+  scanf("%d/%d/%d\n", &jour_fin, &mois_fin, &an_fin)        ;
+}*/
+
+/*############################################
+#                                            #
+#              cible_chambre                 #
+#                                            #
+##############################################
+
+Procédure pour déterminer quelle chambre recherche le client.
+
+*//*
+void cible_chambre()
+{
+int bain        ; 0 baignoire; 1 douche
+int fumeur      ; 0 non fumeur, 1 fumeur
+int animaux     ; 0 pas d'animaux, 1 animaux acceptés
+
+  printf("Combien de lits (saisir 1 ou 2) ? ");
+  scanf("%d", &cible lits) ;
+  printf("Chambre avec vue ? ") ;
+  scanf("%", &cible_vue) ;
+  printf("");
+  printf("");
+  printf("");
+  printf("");
+}*/
 /*############################################
 #                                            #
 #              PARTIE SERVICES               #
