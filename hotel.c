@@ -317,10 +317,11 @@ void chargement_catalogue_services()
     }
   }*/
   f1 = fopen("catalogue-services.txt", "r") ;
-  for(i = 0 ; i < nb_services ; i++)
+  while(!feof(f1))
   {
-    fscanf(f1, "%s %f", service.nom_service, &service.prix_service) ;
-    catalogue_services[i] = service                                 ;
+    fscanf(f1, "%s %f\n", service.nom_service, &service.prix_service) ;
+    catalogue_services[i] = service                                   ;
+    i++                                                               ;
   }
   fclose(f1)                                                        ;
   nb_services = i                                                   ;
