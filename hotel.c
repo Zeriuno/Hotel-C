@@ -211,7 +211,7 @@ void modif_services()
       {
         printf("Prix actuel du service : %f\n", service.prix_service) ;
         printf("Nouveau prix : ")                                     ;
-        scanf("%.2f", &prix_serv)                                       ;
+        scanf("%.2f", &prix_serv)                                     ;
         i++                                                           ;
       }
     }
