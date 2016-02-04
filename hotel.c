@@ -59,7 +59,7 @@ struct cha
   int fumeur      ; /* 0 non fumeur, 1 fumeur */
   int animaux     ; /* 0 pas d'animaux, 1 animaux acceptés */
   /*champ remarques en chaîne de caractères*/
-}
+};
   /* Variables globales concernant les chambres*/
 struct cha tab_chambres[MAX_NB_CHAMBRES]; /*Tableau listant les chambres*/
 
