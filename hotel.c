@@ -21,9 +21,11 @@
 #define MAX_CAT_SERV 20    /* Constante qui limite le catalogue des services -- ajouter un test concernant cette limite - Utilisé pour catalogue_services */
 #define MAX_NOM_SERVICE 21 /* Taille maximale de la chaîne de caractères qui décrit les services complémentaires - Utilisé pour nom_service */
 #define MAX_NB_CHAMBRES 50 /*Utilisée dans tab_chambres[]*/
+#define NON_TROUVE -1 /*Pour tester si un résultat a été trouvé à la recherche*/
 
 /*Chambres*/
 int rech_chambre(char chambre_rech[]);
+void chargement_chambres()           ;
 
 /*Déclarations préliminaires*/
 
@@ -112,10 +114,11 @@ main()
 
     printf("Faire un choix : ") ;
     scanf("%d", &choix)         ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
+    struct cha chambre          ;
     switch(choix)
     {
       case 1: case 2: case 3:
-      break; 
+      break;
       case 4:
       chargement_chambres();
       printf("Entrez le numéro de la chambre à rechercher: ");
