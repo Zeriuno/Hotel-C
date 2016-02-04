@@ -62,7 +62,6 @@ struct cha
 };
   /* Variables globales concernant les chambres*/
 struct cha tab_chambres[MAX_NB_CHAMBRES]; /*Tableau listant les chambres*/
-int nbchambre;
 
   /* Variables globales concernant les frais*/
 struct frais{
@@ -87,6 +86,7 @@ struct entree_service catalogue_services[MAX_CAT_SERV] ;  /* Tableau listant les
 main()
 {
   int choix = 0 ; /* Déclaration de la variable et initialisation à une valeur qui permet de rentrer dans le 'while'. */
+  int res_chambre = 0; /*Résultat recherche chambres */
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
   while(choix != 9) /* 9 est la valeur pour quitter. */
   {
@@ -114,12 +114,29 @@ main()
     scanf("%d", &choix)         ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
     switch(choix)
     {
-      case 1: case 2: case 3: case 4: case 5: /*case 7:*/
+      case 1: case 2: case 3:
+      break; 
+      case 4:
+      chargement_chambres();
+      printf("Entrez le numéro de la chambre à rechercher: ");
+      scanf("%d", &chambre_cible);
+      res_chambre=rech_chambre(chambre_cible);
+      if(res_chambre == NON_TROUVE)
+      {
+        printf("%d n'a pas été trouvé. \n", chambre_cible);
+      }
+      else
+      {
+        chambre=tab_chambres[res_chambre];
+        printf("%d\n", chambre.num_chambre);
+      }
+      break;
+      case 5: /*case 7:*/
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
-        break ;
+        break;
       case 6:
         catalogue_services_menu();
-        break;
+        break ;
       case 9:
         printf("Vous avez choisi de quitter l'application.\nMerci et au revoir.\n") ;
         break ;
@@ -418,11 +435,21 @@ void affichage_catalogue()
   }
 }
 
+/*############################################
+#                                            #
+#           rech_chambre                     #
+#                                            #
+##############################################
+
+Rechercher les chambres par leur numéro.
+
+
+*/
 int rech_chambre(char chambre_rech[])
 {
   struct cha chambre ;
-  int, numcase_chambre=NON_TROUVE;
-  for (i=0; i<nbchambre; i++)
+  int i, numcase_chambre=NON_TROUVE;
+  for (i=0; i<MAX_NB_CHAMBRES; i++)
   {
     chambre=tab_chambres[i];
     if (strcmp(chambre.num_chambre, chambre_rech) == 0)
