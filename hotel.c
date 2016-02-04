@@ -62,12 +62,15 @@ struct cha
 };
   /* Variables globales concernant les chambres*/
 struct cha tab_chambres[MAX_NB_CHAMBRES]; /*Tableau listant les chambres*/
+int nbchambre;
 
+  /* Variables globales concernant les frais*/
 struct frais{
   int datefrais        ; /*autrement on en fera une string de 9, 'aaaammjj' (8) + '\0'*/
   float montantfrais   ;
   int codefrais[200] ;
 };
+
 
   /* Variables globales concernant le catalogue_services*/
 
@@ -418,9 +421,14 @@ void affichage_catalogue()
 int rech_chambre(char chambre_rech[])
 {
   struct cha chambre ;
-  int, numcase=NON_TROUVE;
+  int, numcase_chambre=NON_TROUVE;
   for (i=0; i<nbchambre; i++)
   {
-    chambre=[i];
+    chambre=tab_chambres[i];
+    if (strcmp(chambre.num_chambre, chambre_rech) == 0)
+    {
+      numcase_chambre=i;
+    }
   }
+  return numcase_chambre;
 }
