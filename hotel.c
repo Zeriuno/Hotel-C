@@ -129,34 +129,34 @@ main()
     {
       case 1: case 2: case 3:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
-        break;
+        break                                                                                             ;
       case 4:
-      chargement_chambres();
-      printf("Entrez le numéro de la chambre à rechercher: ");
-      scanf("%d", &chambre_cible);
-      res_chambre=rech_chambre(chambre_cible);
-      if(res_chambre == NON_TROUVE)
-      {
-        printf("%d n'a pas été trouvé. \n", chambre_cible);
-      }
-      else
-      {
-        chambre=tab_chambres[res_chambre];
-        printf("%d\n", chambre.num_chambre);
-      }
-      break;
+        chargement_chambres()                                                                             ;
+        printf("Entrez le numéro de la chambre à rechercher: ")                                           ;
+        scanf("%d", &chambre_cible)                                                                       ;
+        res_chambre=rech_chambre(chambre_cible)                                                           ;
+        if(res_chambre == NON_TROUVE)
+        {
+          printf("%d n'a pas été trouvé. \n", chambre_cible)                                              ;
+        }
+        else
+        {
+          chambre=tab_chambres[res_chambre]                                                               ;
+          printf("%d\n", chambre.num_chambre)                                                             ;
+        }
+        break                                                                                             ;
       case 5: /*case 7:*/
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
-        break;
+        break                                                                                             ;
       case 6:
-        catalogue_services_menu();
-        break ;
+        catalogue_services_menu()                                                                         ;
+        break                                                                                             ;
       case 9:
         printf("Vous avez choisi de quitter l'application.\nMerci et au revoir.\n") ;
-        break ;
+        break                                                                                             ;
       default:
-        mauvais_choix(choix);
-        break ;
+        mauvais_choix(choix)                                                                              ;
+        break                                                                                             ;
     }
   }
 }
@@ -311,29 +311,29 @@ void modif_services()
   }
   else
   {
-    strcpy(nom_serv, "début")          ;
+    strcpy(nom_serv, "début")                                           ;
     while(strcmp(nom_serv,"fin\0") != 0)
     {
-      service = catalogue_services[i]                                  ;
-      printf("Nom actuel du service : %s\n", service.nom_service)      ;
-      printf("Nouveau nom ('fin' pour terminer) : ")                   ;
-      scanf("%s", nom_serv)                                            ;
+      service = catalogue_services[i]                                   ;
+      printf("Nom actuel du service : %s\n", service.nom_service)       ;
+      printf("Nouveau nom ('fin' pour terminer) : ")                    ;
+      scanf("%s", nom_serv)                                             ;
       printf("%s\n", nom_serv);
       if (strcmp(nom_serv, "fin")== 0)
       {
-        printf("Fin de la modification. Retour au menu précédent. \n") ;
+        printf("Fin de la modification. Retour au menu précédent. \n")  ;
       }
       else
       {
-        strcpy(service.nom_service, nom_serv)                         ;
+        strcpy(service.nom_service, nom_serv)                          ;
         printf("Prix actuel du service : %.2f\n", service.prix_service);
-        printf("Nouveau prix : ")                                     ;
-        scanf("%f", &service.prix_service)                            ;
-        catalogue_services[i]=service                                 ;
-        i++                                                           ;
+        printf("Nouveau prix : ")                                      ;
+        scanf("%f", &service.prix_service)                             ;
+        catalogue_services[i]=service                                  ;
+        i++                                                            ;
       }
     }
-    sauv_catalogue_services=1                                         ;
+    sauv_catalogue_services=1                                          ;
   }
 }
 
@@ -371,10 +371,10 @@ void saisie_services()
   }
   if(i > 0)
   {
-    nb_services = i                                ;
+    nb_services = i                                                  ;
     printf("%d services présents dans le catalogue.\n", nb_services) ;
-    sauv_catalogue_services = 1                    ;
-    enreg_catalogue_services()                     ;
+    sauv_catalogue_services = 1                                      ;
+    enreg_catalogue_services()                                       ;
   }
 }
 
@@ -398,7 +398,7 @@ void enreg_catalogue_services(){
 
   for(i = 0; i < nb_services ; i++)
   {
-    service = catalogue_services[i]                                   ;
+    service = catalogue_services[i]                                     ;
     fprintf(f1, "%s %.2f\n", service.nom_service, service.prix_service) ;
   }
   fclose(f1)                                      ;
@@ -441,8 +441,8 @@ void chargement_catalogue_services()
     catalogue_services[i] = service                                   ;
     i++                                                               ;
   }
-  fclose(f1)                                                        ;
-  nb_services = i                                                   ;
+  fclose(f1)                                                          ;
+  nb_services = i                                                     ;
 }
 
 
@@ -508,8 +508,8 @@ void chargement_chambres()
     tab_chambres[i] = chambre                                         ;
     i++                                                               ;
   }
-  fclose(f1)                                                        ;
-  nb_services = i                                                   ;
+  fclose(f1)                                                          ;
+  nb_services = i                                                     ;
 }
 
 
@@ -564,33 +564,33 @@ void modification_chambre()
   else
   {
     chambre=tab_chambres[res_chambre];
-    printf("Numéro actuel de la chambre: %d\n", chambre.num_chambre);
+    printf("Numéro actuel de la chambre: %d\n", chambre.num_chambre) ;
     printf("Nouveau numéro de la chambre: %d\n", chambre.num_chambre);
-    scanf("%d", &chambre.num_chambre);
+    scanf("%d", &chambre.num_chambre)                                ;
 
-    printf("Nombre actuel de lits: %d\n", chambre.nb_lits);
-    printf("Nouveau nombre de lits: %d\n", chambre.nb_lits);
-    scanf("%d", &chambre.nb_lits);
+    printf("Nombre actuel de lits: %d\n", chambre.nb_lits)           ;
+    printf("Nouveau nombre de lits: %d\n", chambre.nb_lits)          ;
+    scanf("%d", &chambre.nb_lits)                                    ;
 
-    printf("Chambre avec vue : %d\n", chambre.vue);
-    printf("Chambre avec vue : %d\n", chambre.vue);
-    scanf("%d", &chambre.vue);
+    printf("Chambre avec vue : %d\n", chambre.vue)                   ;
+    printf("Chambre avec vue : %d\n", chambre.vue)                   ;
+    scanf("%d", &chambre.vue)                                        ;
 
-    printf("Douche ou baignoire : %d\n", chambre.bain);
-    printf("Douche ou baignoire : %d\n", chambre.bain);
-    scanf("%d", &chambre.bain);
+    printf("Douche ou baignoire : %d\n", chambre.bain)               ;
+    printf("Douche ou baignoire : %d\n", chambre.bain)               ;
+    scanf("%d", &chambre.bain)                                       ;
 
-    printf("Fumeur ou non : %d\n", chambre.fumeur);
-    printf("Fumeur ou non : %d\n", chambre.fumeur);
-    scanf("%d", &chambre.fumeur);
+    printf("Fumeur ou non : %d\n", chambre.fumeur)                   ;
+    printf("Fumeur ou non : %d\n", chambre.fumeur)                   ;
+    scanf("%d", &chambre.fumeur)                                     ;
 
-    printf("Animaux acceptés ou non : %d\n", chambre.animaux);
-    printf("Animaux ou non : %d\n", chambre.animaux);
-    scanf("%d", &chambre.animaux);
+    printf("Animaux acceptés ou non : %d\n", chambre.animaux)        ;
+    printf("Animaux ou non : %d\n", chambre.animaux)                 ;
+    scanf("%d", &chambre.animaux)                                    ;
 
-    tab_chambres[res_chambre]=chambre;
-    a_sauv_chambre=1;
-    enreg_chambre();
+    tab_chambres[res_chambre]=chambre                                ;
+    a_sauv_chambre=1                                                 ;
+    enreg_chambre()                                                  ;
   }
 }
 
@@ -609,7 +609,7 @@ void enreg_chambre()
   FILE *f1                                  ;
   f1 = fopen("chambres.txt", "w")           ;
   int i                                     ;
-  struct cha chambre                       ;
+  struct cha chambre                        ;
 
   for(i = 0; i < MAX_NB_CHAMBRES ; i++)
   {
