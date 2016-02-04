@@ -36,7 +36,8 @@ void modif_services()                ; /* Pour modifier les services déjà list
 
 /*Variables globales*/
 
-struct resa{
+struct resa
+{
   /*code de réservation, à déterminer comment il est construit*/
   int datearrivee       ;
   int datedepart        ;
@@ -44,6 +45,18 @@ struct resa{
   char prenomclient[50] ;
   char telclient[13]    ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
 };
+
+struct cha
+{  /* structure pour les chambres*/
+  /*int code_chambre ;*/
+  int num_chambre ; /* Numéro selon la codification de l'hôtel */
+  int nb_lits     ;
+  int vue         ; /* 0 pas de vue; 1 avec vue */
+  int bain        ; /* 0 baignoire; 1 douche */
+  int fumeur      ; /* 0 non fumeur, 1 fumeur */
+  int animaux     ; /* 0 pas d'animaux, 1 animaux acceptés */
+  /*champ remarques en chaîne de caractères*/
+}
 
 struct frais{
   int datefrais        ; /*autrement on en fera une string de 9, 'aaaammjj' (8) + '\0'*/
