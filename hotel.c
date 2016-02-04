@@ -369,18 +369,17 @@ void modif_chambre()
 Lit le fichier chambres.txt et charge son contenu dans le tableau de chambres.
 
 */
-void chargement_catalogue_services()
+void chargement_chambres()
 {
   FILE *f1                      ;
-  struct cha chambre ;
-  char test_sauv                ;
+  struct cha chambre            ;
   int i                         ;
 
   f1 = fopen("chambres.txt", "r") ;
   while(!feof(f1))
   {
-    fscanf(f1, "%s %f\n", chambre.nom_service, &chambre.prix_service) ;
-    chambres[i] = chambre                                   ;
+    fscanf(f1, "%d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.nb_lits, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
+    tab_chambres[i] = chambre                                         ;
     i++                                                               ;
   }
   fclose(f1)                                                        ;
