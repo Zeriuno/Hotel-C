@@ -343,6 +343,45 @@ void chargement_catalogue_services()
   nb_services = i                                                   ;
 }
 
+/*############################################
+#                                            #
+#              modif_chambre                 #
+#                                            #
+##############################################
+
+*/
+void modif_chambre()
+{
+
+}
+
+/*############################################
+#                                            #
+#             chargement_chambres            #
+#                                            #
+##############################################
+
+Lit le fichier chambres.txt et charge son contenu dans le tableau de chambres.
+
+*/
+void chargement_catalogue_services()
+{
+  FILE *f1                      ;
+  struct cha chambre ;
+  char test_sauv                ;
+  int i                         ;
+
+  f1 = fopen("chambres.txt", "r") ;
+  while(!feof(f1))
+  {
+    fscanf(f1, "%s %f\n", chambre.nom_service, &chambre.prix_service) ;
+    chambres[i] = chambre                                   ;
+    i++                                                               ;
+  }
+  fclose(f1)                                                        ;
+  nb_services = i                                                   ;
+}
+
 
 /*############################################
 #                                            #
