@@ -9,7 +9,7 @@
 * v 0.0.2 - 2016-02-03 procédure mauvais_choix, procédure catalogue_services_menu
 * v 0.0.2 - 2016-02-03 Saisie et enregistrement du catalogue des services
 * v 0.1.0 - 2016-02-03 Sous-menu pour les services complet
-
+* v 0.1.1 - 2016-02-04 On s'attaque aux chambres
 */
 
 #include <stdio.h>
