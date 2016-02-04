@@ -24,7 +24,7 @@
 #define NON_TROUVE -1 /*Pour tester si un résultat a été trouvé à la recherche*/
 
 /*Chambres*/
-int rech_chambre(char chambre_rech[]);
+int rech_chambre(int chambre_rech);
 void chargement_chambres()           ;
 
 /*Déclarations préliminaires*/
@@ -89,6 +89,7 @@ main()
 {
   int choix = 0 ; /* Déclaration de la variable et initialisation à une valeur qui permet de rentrer dans le 'while'. */
   int res_chambre = 0; /*Résultat recherche chambres */
+  int chambre_cible = 0; /*Chambre recherchée*/
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
   while(choix != 9) /* 9 est la valeur pour quitter. */
   {
@@ -448,14 +449,15 @@ Rechercher les chambres par leur numéro.
 
 
 */
-int rech_chambre(char chambre_rech[])
+int rech_chambre(int par_rech)
 {
-  struct cha chambre ;
-  int i, numcase_chambre=NON_TROUVE;
+  struct cha chambre                ;
+  int chambre_rech=0                ;
+  int i, numcase_chambre=NON_TROUVE ;
   for (i=0; i<MAX_NB_CHAMBRES; i++)
   {
     chambre=tab_chambres[i];
-    if (strcmp(chambre.num_chambre, chambre_rech) == 0)
+    if (chambre.num_chambre==chambre_rech)
     {
       numcase_chambre=i;
     }
