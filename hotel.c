@@ -119,7 +119,8 @@ main()
     switch(choix)
     {
       case 1: case 2: case 3:
-      break;
+        printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
+        break;
       case 4:
       chargement_chambres();
       printf("Entrez le numéro de la chambre à rechercher: ");
