@@ -24,7 +24,7 @@
 #define NON_TROUVE -1 /*Pour tester si un résultat a été trouvé à la recherche*/
 
 /*Chambres*/
-int rech_chambre(int chambre_rech);
+int rech_chambre(int chambre_rech)   ;
 void chargement_chambres()           ;
 
 /*Déclarations préliminaires*/
