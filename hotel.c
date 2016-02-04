@@ -25,11 +25,12 @@
 #define NON_TROUVE -1 /*Pour tester si un résultat a été trouvé à la recherche*/
 
 /*Chambres*/
-int rech_chambre(int chambre_rech)   ;
-void chargement_chambres()           ;
+int rech_chambre(int chambre_rech);
+void chargement_chambres()        ;
+void modification_chambre()       ;
+void enreg_chambre()              ;
 
 /*Déclarations préliminaires*/
-
 void mauvais_choix(int par_choisi)   ; /* Mauvais choix à l'intérieur des menus*/
 
 /*Réservations*/
@@ -70,6 +71,7 @@ struct cha
 };
   /* Variables globales concernant les chambres*/
 struct cha tab_chambres[MAX_NB_CHAMBRES]; /*Tableau listant les chambres*/
+int a_sauv_chambre=0                    ; /*pour la modification des chambres*/
 
   /* Variables globales concernant les frais*/
 struct frais{
@@ -442,6 +444,35 @@ void chargement_catalogue_services()
   nb_services = i                                                   ;
 }
 
+
+/*############################################
+#                                            #
+#           affichage_catalogue              #
+#                                            #
+##############################################
+
+Affiche les données déjà chargées dans le tableau de services.
+
+
+*/
+void affichage_catalogue()
+{
+  struct entree_service service                                        ;
+  int i                                                                ;
+  if(nb_services == 0)
+  {
+    printf("Le catalogue des services est vide.\n")                    ;
+  }
+  else
+  {
+    for(i=0; i < nb_services; i++)
+    {
+      service = catalogue_services[i]                                  ;
+      printf("%s : %.2f\n", service.nom_service, service.prix_service) ;
+    }
+  }
+}
+
 /*############################################
 #                                            #
 #              modif_chambre                 #
@@ -483,34 +514,6 @@ void chargement_chambres()
 
 /*############################################
 #                                            #
-#           affichage_catalogue              #
-#                                            #
-##############################################
-
-Affiche les données déjà chargées dans le tableau de services.
-
-
-*/
-void affichage_catalogue()
-{
-  struct entree_service service                                        ;
-  int i                                                                ;
-  if(nb_services == 0)
-  {
-    printf("Le catalogue des services est vide.\n")                    ;
-  }
-  else
-  {
-    for(i=0; i < nb_services; i++)
-    {
-      service = catalogue_services[i]                                  ;
-      printf("%s : %.2f\n", service.nom_service, service.prix_service) ;
-    }
-  }
-}
-
-/*############################################
-#                                            #
 #           rech_chambre                     #
 #                                            #
 ##############################################
@@ -533,4 +536,86 @@ int rech_chambre(int par_rech)
     }
   }
   return numcase_chambre;
+}
+
+/*############################################
+#                                            #
+#           modification_chambre                     #
+#                                            #
+##############################################
+
+Modifier les chambres par la recherche de leur numéro.
+
+
+*/
+void modification_chambre()
+{
+  struct cha chambre                                    ;
+  int chambre_rech=0                                    ;
+  int res_chambre = 0                                   ; /*Résultat recherche chambres */
+  printf("Entrez le numéro de la chambre à modifier : ");
+  scanf("%d",&chambre_rech )                            ;
+  res_chambre=rech_chambre(chambre_rech)                ;
+  if (res_chambre == NON_TROUVE)
+  {
+    printf("Aucune modification: %d n'a pas été trouvé\n", chambre_rech);
+  }
+  else
+  {
+    chambre=tab_chambres[res_chambre];
+    printf("Numéro actuel de la chambre: %d\n", chambre.num_chambre);
+    printf("Nouveau numéro de la chambre: %d\n", chambre.num_chambre);
+    scanf("%d", &chambre.num_chambre);
+
+    printf("Nombre actuel de lits: %d\n", chambre.nb_lits);
+    printf("Nouveau nombre de lits: %d\n", chambre.nb_lits);
+    scanf("%d", &chambre.nb_lits);
+
+    printf("Chambre avec vue : %d\n", chambre.vue);
+    printf("Chambre avec vue : %d\n", chambre.vue);
+    scanf("%d", &chambre.vue);
+
+    printf("Douche ou baignoire : %d\n", chambre.bain);
+    printf("Douche ou baignoire : %d\n", chambre.bain);
+    scanf("%d", &chambre.bain);
+
+    printf("Fumeur ou non : %d\n", chambre.fumeur);
+    printf("Fumeur ou non : %d\n", chambre.fumeur);
+    scanf("%d", &chambre.fumeur);
+
+    printf("Animaux acceptés ou non : %d\n", chambre.animaux);
+    printf("Animaux ou non : %d\n", chambre.animaux);
+    scanf("%d", &chambre.animaux);
+
+    tab_chambres[res_chambre]=chambre;
+    a_sauv_chambre=1;
+    enreg_chambre();
+  }
+}
+
+/*############################################
+#                                            #
+#           enreg_chambre                    #
+#                                            #
+##############################################
+
+Enregistrer automatique lors de la modification des chambres.
+
+
+*/
+void enreg_chambre()
+{
+  FILE *f1                                  ;
+  f1 = fopen("chambres.txt", "w")           ;
+  int i                                     ;
+  struct cha chambre                       ;
+
+  for(i = 0; i < MAX_NB_CHAMBRES ; i++)
+  {
+    chambre = tab_chambres[i]               ;
+    fscanf(f1, "%d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.nb_lits, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
+  }
+  fclose(f1)                                                ;
+  a_sauv_chambre = 0                                        ;
+  printf("La liste des chambres a bien été sauvegardée.\n") ;
 }
