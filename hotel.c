@@ -63,7 +63,7 @@ struct cha
 {  /* structure pour les chambres*/
   /*int code_chambre ;*/
   int num_chambre ; /* Numéro selon la codification de l'hôtel */
-  int nb_lits     ;
+  int type_lits   ;
   int vue         ; /* 0 pas de vue; 1 avec vue */
   int bain        ; /* 0 baignoire; 1 douche */
   int fumeur      ; /* 0 non fumeur, 1 fumeur */
@@ -510,7 +510,7 @@ void chargement_chambres()
   f1 = fopen("chambres.txt", "r") ;
   while(!feof(f1))
   {
-    fscanf(f1, "%d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.nb_lits, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
+    fscanf(f1, "%d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.type_lits, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
     tab_chambres[i] = chambre                                         ;
     i++                                                               ;
   }
@@ -543,6 +543,7 @@ int rech_chambre(int par_rech)
     }
   }
   return numcase_chambre;
+
 }
 
 /*############################################
@@ -574,9 +575,9 @@ void modification_chambre()
     printf("Nouveau numéro de la chambre: %d\n", chambre.num_chambre);
     scanf("%d", &chambre.num_chambre)                                ;
 
-    printf("Nombre actuel de lits: %d\n", chambre.nb_lits)           ;
-    printf("Nouveau nombre de lits: %d\n", chambre.nb_lits)          ;
-    scanf("%d", &chambre.nb_lits)                                    ;
+    printf("Type actuel de lits: %d\n", chambre.type_lits)           ;
+    printf("Nouveau type de lits: %d\n", chambre.type_lits)          ;
+    scanf("%d", &chambre.type_lits)                                    ;
 
     printf("Chambre avec vue : %d\n", chambre.vue)                   ;
     printf("Chambre avec vue : %d\n", chambre.vue)                   ;
@@ -620,7 +621,7 @@ void enreg_chambre()
   for(i = 0; i < MAX_NB_CHAMBRES ; i++)
   {
     chambre = tab_chambres[i]               ;
-    fscanf(f1, "%d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.nb_lits, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
+    fscanf(f1, "%d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.type_lits, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
   }
   fclose(f1)                                                ;
   a_sauv_chambre = 0                                        ;
@@ -641,9 +642,13 @@ void affichage_chambre()
 {
   struct cha chambre                                                   ;
   int i                                                                ;
-  for(i=0; i < MAX_NB_CHAMBRES; i++)
-    {
+
       chambre = tab_chambres[i]                                        ;
-      printf"%d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.nb_lits, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
+      printf("Numéro de la chambre : %d\n", chambre.num_chambre)       ;
+      printf("Type de lits: %d\n", chambre.type_lits)                  ;
+      printf("Vue: %d\n", chambre.vue)                                 ;
+      printf("Douche ou baignoire : %d\n", chambre.bain)               ;
+      printf("Fumeurs ou non : %d\n", chambre.fumeur)                  ;
+      printf("Animaux autorisés : %d\n", chambre.animaux)              ;
     }
 }
