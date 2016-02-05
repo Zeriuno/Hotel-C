@@ -207,7 +207,7 @@ void creer_reservation()
 #                                            #
 ##############################################
 
-Procédure pour créer un saisir une date.
+Procédure pour saisir une date.
 
 
 *//*ça ne peut pas marcher pour le moment
@@ -230,15 +230,20 @@ Procédure pour déterminer quelle chambre recherche le client.
 *//*
 void cible_chambre()
 {
-int bain        ; 0 baignoire; 1 douche
-int fumeur      ; 0 non fumeur, 1 fumeur
-int animaux     ; 0 pas d'animaux, 1 animaux acceptés
-
-  printf("Combien de lits (saisir 1 ou 2) ? ");
-  scanf("%d", &cible lits) ;
-  printf("Chambre avec vue ? ") ;
-  scanf("%", &cible_vue) ;
-  printf("");
+  int cible_lits        ; 1 lit simple ; 2 deux lits simples ; 3 lit double
+  int cible_vue
+  int cible_bain        ; 0 indifférent, 1 douche, 2 baignoire
+  int cible_fumeur      ; 0 indifférent, 1 fumeur, 2 non fumeur
+  int cible_animaux     ; 0 indifférent, 1 animaux acceptés, 2 pas d'animaux
+  printf("Quel type de lits ?\n");
+  printf("1 - un lit simple\n")  ;
+  printf("2 - deux lits simples\n");
+  printf("3 - un lit double\n")    ;
+  printf("Saisir le type de lits :") ;
+  scanf("%d", &cible_lits)       ;
+  printf("Chambre avec baignoire ou douche ?") ;
+  printf("Chambre avec vue ? ")                ;
+  scanf("%", &cible_vue)                       ;
   printf("");
   printf("");
   printf("");
