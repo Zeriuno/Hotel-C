@@ -31,6 +31,7 @@ void modification_chambre()       ;
 void enreg_chambre()              ;
 void affichage_chambre()          ;
 
+
 /*Déclarations préliminaires*/
 void mauvais_choix(int par_choisi)   ; /* Mauvais choix à l'intérieur des menus*/
 
@@ -72,6 +73,8 @@ struct cha
 };
   /* Variables globales concernant les chambres*/
 struct cha tab_chambres[MAX_NB_CHAMBRES]; /*Tableau listant les chambres*/
+struct cha chambre;
+
 int a_sauv_chambre=0                    ; /*pour la modification des chambres*/
 
   /* Variables globales concernant les frais*/
@@ -110,6 +113,9 @@ main()
   int choix = 0 ; /* Déclaration de la variable et initialisation à une valeur qui permet de rentrer dans le 'while'. */
   int res_chambre = 0; /*Résultat recherche chambres */
   int chambre_cible = 0; /*Chambre recherchée*/
+  char choix_modif[100];
+  char poubelle;
+
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
   while(choix != 9) /* 9 est la valeur pour quitter. */
   {
@@ -135,7 +141,6 @@ main()
 
     printf("Faire un choix : ") ;
     scanf("%d", &choix)         ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
-    struct cha chambre          ;
 
     switch(choix)
     {
@@ -154,7 +159,20 @@ main()
         else
         {
           chambre=tab_chambres[res_chambre]                                                               ;
-          printf("%d\n", chambre.num_chambre)                                                             ;
+          affichage_chambre();
+          printf("Voulez-vous modifier la chambre? (o/N)\n");
+          while ( getchar() =='\n' ){
+            poubelle = getchar();
+          }
+          scanf("%s", choix_modif);
+          if (choix_modif=='o')
+          {
+            modification_chambre();
+          }
+          else
+          {
+            printf("Retour au menu\n");
+          }
         }
         break                                                                                             ;
       case 5: /*case 7:*/
@@ -491,17 +509,6 @@ void affichage_catalogue()
   }
 }
 
-/*############################################
-#                                            #
-#              modif_chambre                 #
-#                                            #
-##############################################
-
-*/
-void modif_chambre()
-{
-
-}
 
 /*############################################
 #                                            #
@@ -515,7 +522,6 @@ Lit le fichier chambres.txt et charge son contenu dans le tableau de chambres.
 void chargement_chambres()
 {
   FILE *f1                      ;
-  struct cha chambre            ;
   int i = 0                     ;
 
   f1 = fopen("chambres.txt", "r") ;
@@ -541,15 +547,16 @@ Rechercher les chambres par leur numéro.
 */
 int rech_chambre(int par_rech)
 {
-  struct cha chambre                ;
-  int chambre_rech=0                ;
-  int i, numcase_chambre=NON_TROUVE ;
-  for (i=0; i<MAX_NB_CHAMBRES; i++)
+  int i =0, numcase_chambre=NON_TROUVE ;
+  while ((i<MAX_NB_CHAMBRES)&&(numcase_chambre==NON_TROUVE))
   {
     chambre=tab_chambres[i];
-    if (chambre.num_chambre==chambre_rech)
+    if (chambre.num_chambre==par_rech)
     {
       numcase_chambre=i;
+    }
+    else{
+      i++;
     }
   }
   return numcase_chambre;
@@ -558,7 +565,7 @@ int rech_chambre(int par_rech)
 
 /*############################################
 #                                            #
-#           modification_chambre                     #
+#           modification_chambre             #
 #                                            #
 ##############################################
 
@@ -568,10 +575,9 @@ Modifier les chambres par la recherche de leur numéro.
 */
 void modification_chambre()
 {
-  struct cha chambre                                    ;
   int chambre_rech=0                                    ;
   int res_chambre = 0                                   ; /*Résultat recherche chambres */
-  printf("Entrez le numéro de la chambre à modifier : ");
+  /*printf("Entrez le numéro de la chambre à modifier : ");
   scanf("%d",&chambre_rech )                            ;
   res_chambre=rech_chambre(chambre_rech)                ;
   if (res_chambre == NON_TROUVE)
@@ -580,7 +586,7 @@ void modification_chambre()
   }
   else
   {
-    chambre=tab_chambres[res_chambre];
+    chambre=tab_chambres[res_chambre];*/
     printf("Numéro actuel de la chambre: %d\n", chambre.num_chambre) ;
     printf("Nouveau numéro de la chambre: %d\n", chambre.num_chambre);
     scanf("%d", &chambre.num_chambre)                                ;
@@ -608,7 +614,7 @@ void modification_chambre()
     tab_chambres[res_chambre]=chambre                                ;
     a_sauv_chambre=1                                                 ;
     enreg_chambre()                                                  ;
-  }
+  /*}*/
 }
 
 /*############################################
@@ -626,7 +632,6 @@ void enreg_chambre()
   FILE *f1                                  ;
   f1 = fopen("chambres.txt", "w")           ;
   int i                                     ;
-  struct cha chambre                        ;
 
   for(i = 0; i < MAX_NB_CHAMBRES ; i++)
   {
@@ -650,14 +655,10 @@ Affiche les données déjà chargées dans la liste des chambres.
 */
 void affichage_chambre()
 {
-  struct cha chambre                                                   ;
-  int i                                                                ;
-
-      chambre = tab_chambres[i]                                        ;
-      printf("Numéro de la chambre : %d\n", chambre.num_chambre)       ;
-      printf("Type de lits: %d\n", chambre.type_lits)                  ;
-      printf("Vue: %d\n", chambre.vue)                                 ;
-      printf("Douche ou baignoire : %d\n", chambre.bain)               ;
-      printf("Fumeurs ou non : %d\n", chambre.fumeur)                  ;
-      printf("Animaux autorisés : %d\n", chambre.animaux)              ;
+    printf("Numéro de la chambre : %d\n", chambre.num_chambre)       ;
+    printf("Type de lits: %d\n", chambre.type_lits)                  ;
+    printf("Vue: %d\n", chambre.vue)                                 ;
+    printf("Douche ou baignoire : %d\n", chambre.bain)               ;
+    printf("Fumeurs ou non : %d\n", chambre.fumeur)                  ;
+    printf("Animaux autorisés : %d\n\n", chambre.animaux)            ;
 }
