@@ -650,5 +650,4 @@ void affichage_chambre()
       printf("Douche ou baignoire : %d\n", chambre.bain)               ;
       printf("Fumeurs ou non : %d\n", chambre.fumeur)                  ;
       printf("Animaux autorisés : %d\n", chambre.animaux)              ;
-    }
 }
