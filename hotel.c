@@ -11,6 +11,7 @@
 * v 0.1.0 - 2016-02-03 Sous-menu pour les services complet
 * v 0.1.1 - 2016-02-04 On s'attaque aux chambres
 * v 0.1.1 - 2016-02-04 Ebauches pour la réservation
+* v 0.1.2 - 2016-02-05 Modification des chambres presque fonctionnelle
 */
 
 #include <stdio.h>
@@ -309,6 +310,7 @@ void catalogue_services_menu()
         break                    ;
       case 2:
         modif_services()         ;
+/*        enreg_chambre()          ;*/
         break                    ;
       case 3:
         saisie_services()        ;
@@ -612,8 +614,7 @@ void modification_chambre()
     scanf("%d", &chambre.animaux)                                    ;
 
     tab_chambres[res_chambre]=chambre                                ;
-    a_sauv_chambre=1                                                 ;
-    enreg_chambre()                                                  ;
+    /*a_sauv_chambre=1                                                 ; ça après*/
   /*}*/
 }
 
