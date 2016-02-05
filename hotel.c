@@ -142,9 +142,7 @@ main()
     printf("-------------------\n")                        ;
 
     printf("Faire un choix : ")                            ;
-    scanf("%d", &choix)                                    ;
-    while((poubelle=getchar()) != '\n')                    ;
-     /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
+    scanf("%d", &choix)                                    ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
 
     switch(choix)
     {
@@ -165,6 +163,7 @@ main()
           chambre=tab_chambres[res_chambre]                  ;
           affichage_chambre()                                ;
           printf("Voulez-vous modifier la chambre (o/N) ? ") ;
+          while((poubelle=getchar()) != '\n')                ;
           scanf("%c", &choix_modif)                          ;
           if (choix_modif == 'o')
           {
