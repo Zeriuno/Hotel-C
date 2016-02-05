@@ -578,7 +578,8 @@ Modifier les chambres par la recherche de leur numéro.
 void modification_chambre()
 {
   int chambre_rech=0                                    ;
-  int res_chambre = 0                                   ; /*Résultat recherche chambres */
+  int res_chambre = 0                                   ;
+  /*Résultat recherche chambres */
   /*printf("Entrez le numéro de la chambre à modifier : ");
   scanf("%d",&chambre_rech )                            ;
   res_chambre=rech_chambre(chambre_rech)                ;
