@@ -94,6 +94,17 @@ struct entree_service /* Modèle du service additionnel*/
 };
 struct entree_service catalogue_services[MAX_CAT_SERV] ;  /* Tableau listant les services*/
 
+
+/*############################################
+#                                            #
+#                    main                    #
+#       #############################        #
+#                                            #
+#                                            #
+#                                            #
+##############################################
+*/
+
 main()
 {
   int choix = 0 ; /* Déclaration de la variable et initialisation à une valeur qui permet de rentrer dans le 'while'. */
