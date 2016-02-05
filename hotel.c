@@ -50,6 +50,8 @@ void modif_services()                ; /* Pour modifier les services déjà list
 
 /*Variables globales*/
 
+char poubelle           ; /*pour vider le buffer des \n*/
+
 struct resa
 {
   /*code de réservation, à déterminer comment il est construit*/
@@ -114,7 +116,6 @@ main()
   int res_chambre = 0   ; /*Résultat recherche chambres */
   int chambre_cible = 0 ; /*Chambre recherchée*/
   char choix_modif      ;
-  char poubelle         ;
 
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
   while(choix != 9) /* 9 est la valeur pour quitter. */
