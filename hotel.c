@@ -80,10 +80,11 @@ struct cha chambre;
 int a_sauv_chambre=0                    ; /*pour la modification des chambres*/
 
   /* Variables globales concernant les frais*/
-struct frais{
+struct frais
+{
   int datefrais        ; /*autrement on en fera une string de 9, 'aaaammjj' (8) + '\0'*/
   float montantfrais   ;
-  int codefrais[200] ;
+  int codefrais[200]   ;
 };
 
 
@@ -161,16 +162,15 @@ main()
         {
           chambre=tab_chambres[res_chambre]                  ;
           affichage_chambre()                                ;
-          printf("Voulez-vous modifier la chambre? (o/N)\n") ;
-          while((poubelle=getchar()) != '\n')                ;
+          printf("Voulez-vous modifier la chambre (o/N) ? ") ;
           scanf("%c", &choix_modif)                          ;
-          if (choix_modif=='o')
+          if (choix_modif == 'o')
           {
             modification_chambre();
           }
           else
           {
-            printf("Retour au menu\n");
+            printf("Retour au menu.\n");
           }
         }
         break                                                                                             ;
@@ -549,19 +549,19 @@ Rechercher les chambres par leur numéro.
 int rech_chambre(int par_rech)
 {
   int i =0, numcase_chambre=NON_TROUVE ;
-  while ((i<MAX_NB_CHAMBRES)&&(numcase_chambre==NON_TROUVE))
+  while((i<MAX_NB_CHAMBRES)&&(numcase_chambre==NON_TROUVE))
   {
     chambre=tab_chambres[i]            ;
-    if (chambre.num_chambre==par_rech)
+    if(chambre.num_chambre==par_rech)
     {
       numcase_chambre=i                ;
     }
-    else{
+    else
+    {
       i++                              ;
     }
   }
   return numcase_chambre               ;
-
 }
 
 /*############################################
@@ -589,7 +589,7 @@ void modification_chambre()
   {
     chambre=tab_chambres[res_chambre];*/
     printf("Numéro actuel de la chambre: %d\n", chambre.num_chambre) ;
-    printf("Nouveau numéro de la chambre: %d\n", chambre.num_chambre);
+    printf("Nouveau numéro de la chambre: %d", chambre.num_chambre)  ;
     scanf("%d", &chambre.num_chambre)                                ;
 
     printf("Type actuel de lits: %d\n", chambre.type_lits)           ;
