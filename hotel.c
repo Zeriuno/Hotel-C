@@ -168,11 +168,9 @@ main()
           if (choix_modif == 'o')
           {
             modification_chambre();
+
           }
-          else
-          {
-            printf("Retour au menu.\n");
-          }
+          printf("Retour au menu.\n");
         }
         break                                                                                             ;
       case 5: /*case 7:*/
