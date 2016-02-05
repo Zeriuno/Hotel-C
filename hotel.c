@@ -29,6 +29,7 @@ int rech_chambre(int chambre_rech);
 void chargement_chambres()        ;
 void modification_chambre()       ;
 void enreg_chambre()              ;
+void affichage_chambre()          ;
 
 /*Déclarations préliminaires*/
 void mauvais_choix(int par_choisi)   ; /* Mauvais choix à l'intérieur des menus*/
@@ -469,7 +470,7 @@ void affichage_catalogue()
     for(i=0; i < nb_services; i++)
     {
       service = catalogue_services[i]                                  ;
-      printf("%s : %.2f\n", service.nom_service, service.prix_service) ;
+      printf("%s : %.2f € \n", service.nom_service, service.prix_service) ;
     }
   }
 }
@@ -619,4 +620,25 @@ void enreg_chambre()
   fclose(f1)                                                ;
   a_sauv_chambre = 0                                        ;
   printf("La liste des chambres a bien été sauvegardée.\n") ;
+}
+
+/*############################################
+#                                            #
+#           affichage_chambre                #
+#                                            #
+##############################################
+
+Affiche les données déjà chargées dans la liste des chambres.
+
+
+*/
+void affichage_chambre()
+{
+  struct cha chambre                                                   ;
+  int i                                                                ;
+  for(i=0; i < MAX_NB_CHAMBRES; i++)
+    {
+      chambre = tab_chambres[i]                                        ;
+      printf"%d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.nb_lits, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
+    }
 }
