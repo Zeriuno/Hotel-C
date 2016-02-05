@@ -587,28 +587,28 @@ void modification_chambre()
   else
   {
     chambre=tab_chambres[res_chambre];*/
-    printf("Numéro actuel de la chambre: %d\n", chambre.num_chambre) ;
-    printf("Nouveau numéro de la chambre: %d", chambre.num_chambre)  ;
+    printf("Numéro actuel de la chambre : %d\n", chambre.num_chambre) ;
+    printf("Nouveau numéro de la chambre : ")  ;
     scanf("%d", &chambre.num_chambre)                                ;
 
-    printf("Type actuel de lits: %d\n", chambre.type_lits)           ;
-    printf("Nouveau type de lits: %d\n", chambre.type_lits)          ;
+    printf("Type actuel de lits : %d\n", chambre.type_lits)           ;
+    printf("Nouveau type de lits :")          ;
     scanf("%d", &chambre.type_lits)                                  ;
 
     printf("Chambre avec vue : %d\n", chambre.vue)                   ;
-    printf("Chambre avec vue : %d\n", chambre.vue)                   ;
+    printf("Chambre avec vue :")                   ;
     scanf("%d", &chambre.vue)                                        ;
 
     printf("Douche ou baignoire : %d\n", chambre.bain)               ;
-    printf("Douche ou baignoire : %d\n", chambre.bain)               ;
+    printf("Douche ou baignoire : ")               ;
     scanf("%d", &chambre.bain)                                       ;
 
     printf("Fumeur ou non : %d\n", chambre.fumeur)                   ;
-    printf("Fumeur ou non : %d\n", chambre.fumeur)                   ;
+    printf("Fumeur ou non : ")                   ;
     scanf("%d", &chambre.fumeur)                                     ;
 
     printf("Animaux acceptés ou non : %d\n", chambre.animaux)        ;
-    printf("Animaux ou non : %d\n", chambre.animaux)                 ;
+    printf("Animaux ou non : ")                 ;
     scanf("%d", &chambre.animaux)                                    ;
 
     tab_chambres[res_chambre]=chambre                                ;
