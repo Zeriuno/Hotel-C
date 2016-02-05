@@ -142,7 +142,9 @@ main()
     printf("-------------------\n")                        ;
 
     printf("Faire un choix : ")                            ;
-    scanf("%d", &choix)                                    ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
+    scanf("%d", &choix)                                    ;
+    while((poubelle=getchar()) != '\n')                    ;
+     /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
 
     switch(choix)
     {
@@ -156,7 +158,7 @@ main()
         res_chambre=rech_chambre(chambre_cible)                                                           ;
         if(res_chambre == NON_TROUVE)
         {
-          printf("%d n'a pas été trouvé. \n", chambre_cible)                                              ;
+          printf("%d n'a pas été trouvé.\n", chambre_cible)                                               ;
         }
         else
         {
