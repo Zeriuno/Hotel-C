@@ -161,10 +161,8 @@ main()
           chambre=tab_chambres[res_chambre]                                                               ;
           affichage_chambre();
           printf("Voulez-vous modifier la chambre? (o/N)\n");
-          while ( getchar() =='\n' ){
-            poubelle = getchar();
-          }
-          scanf("%s", choix_modif);
+          while((poubelle=getchar()) != '\n');
+          scanf("%c", &choix_modif);
           if (choix_modif=='o')
           {
             modification_chambre();
