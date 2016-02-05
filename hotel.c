@@ -110,11 +110,11 @@ struct entree_service catalogue_services[MAX_CAT_SERV] ;  /* Tableau listant les
 
 main()
 {
-  int choix = 0 ; /* Déclaration de la variable et initialisation à une valeur qui permet de rentrer dans le 'while'. */
-  int res_chambre = 0; /*Résultat recherche chambres */
-  int chambre_cible = 0; /*Chambre recherchée*/
-  char choix_modif[100];
-  char poubelle;
+  int choix = 0         ; /* Déclaration de la variable et initialisation à une valeur qui permet de rentrer dans le 'while'. */
+  int res_chambre = 0   ; /*Résultat recherche chambres */
+  int chambre_cible = 0 ; /*Chambre recherchée*/
+  char choix_modif      ;
+  char poubelle         ;
 
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
   while(choix != 9) /* 9 est la valeur pour quitter. */
@@ -135,12 +135,12 @@ main()
     printf("6 - Catalogue des services.\n\n")              ;
     printf("------------------------------------------\n") ;
     printf("     QUITTER    \n\n")                         ;
-    printf("9 - Quitter l'application.\n")               ;
+    printf("9 - Quitter l'application.\n")                 ;
     /*printf("7 - Imprimer le programme d'aujourd'hui.\n") ; On ne l'a pas mis dans le planning, mais c'est une idée dont on avait parlé. On verra plus tard si et comment le faire.*/
-    printf("-------------------\n") ;
+    printf("-------------------\n")                        ;
 
-    printf("Faire un choix : ") ;
-    scanf("%d", &choix)         ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
+    printf("Faire un choix : ")                            ;
+    scanf("%d", &choix)                                    ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
 
     switch(choix)
     {
