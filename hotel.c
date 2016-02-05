@@ -516,7 +516,7 @@ void chargement_chambres()
 {
   FILE *f1                      ;
   struct cha chambre            ;
-  int i                         ;
+  int i = 0                     ;
 
   f1 = fopen("chambres.txt", "r") ;
   while(!feof(f1))
@@ -526,7 +526,6 @@ void chargement_chambres()
     i++                                                               ;
   }
   fclose(f1)                                                          ;
-  nb_services = i                                                     ;
 }
 
 
