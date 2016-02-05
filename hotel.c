@@ -509,8 +509,10 @@ void affichage_catalogue()
   }
 }
 
-
 /*############################################
+#                                            #
+#              PARTIE CHAMBRES               #
+#       #############################        #
 #                                            #
 #             chargement_chambres            #
 #                                            #
@@ -521,17 +523,17 @@ Lit le fichier chambres.txt et charge son contenu dans le tableau de chambres.
 */
 void chargement_chambres()
 {
-  FILE *f1                      ;
-  int i = 0                     ;
+  FILE *f1                        ;
+  int i = 0                       ;
 
   f1 = fopen("chambres.txt", "r") ;
   while(!feof(f1))
   {
     fscanf(f1, "%d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.type_lits, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
-    tab_chambres[i] = chambre                                         ;
-    i++                                                               ;
+    tab_chambres[i] = chambre ;
+    i++                       ;
   }
-  fclose(f1)                                                          ;
+  fclose(f1)                  ;
 }
 
 
@@ -550,16 +552,16 @@ int rech_chambre(int par_rech)
   int i =0, numcase_chambre=NON_TROUVE ;
   while ((i<MAX_NB_CHAMBRES)&&(numcase_chambre==NON_TROUVE))
   {
-    chambre=tab_chambres[i];
+    chambre=tab_chambres[i]            ;
     if (chambre.num_chambre==par_rech)
     {
-      numcase_chambre=i;
+      numcase_chambre=i                ;
     }
     else{
-      i++;
+      i++                              ;
     }
   }
-  return numcase_chambre;
+  return numcase_chambre               ;
 
 }
 
@@ -593,7 +595,7 @@ void modification_chambre()
 
     printf("Type actuel de lits: %d\n", chambre.type_lits)           ;
     printf("Nouveau type de lits: %d\n", chambre.type_lits)          ;
-    scanf("%d", &chambre.type_lits)                                    ;
+    scanf("%d", &chambre.type_lits)                                  ;
 
     printf("Chambre avec vue : %d\n", chambre.vue)                   ;
     printf("Chambre avec vue : %d\n", chambre.vue)                   ;
