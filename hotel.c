@@ -74,7 +74,8 @@ struct cha
 {  /* structure pour les chambres*/
   /*int code_chambre ;*/
   int num_chambre ; /* Numéro selon la codification de l'hôtel */
-  int type_lits   ;
+  int type_chambre; /* 0 chambre ; 1 suite */
+  int type_lits   ; /* 0 simple ; 1 deux lits simples; 2 double */
   int vue         ; /* 0 pas de vue; 1 avec vue */
   int bain        ; /* 0 baignoire; 1 douche */
   int fumeur      ; /* 0 non fumeur, 1 fumeur */
@@ -85,7 +86,7 @@ struct cha
 struct cha tab_chambres[MAX_NB_CHAMBRES]; /*Tableau listant les chambres*/
 struct cha chambre;
 
-int a_sauv_chambre=0                    ; /*pour la modification des chambres*/
+int a_sauv_chambre = 0                  ; /*pour la modification des chambres*/
 
   /* Variables globales concernant les frais*/
 struct frais
@@ -171,16 +172,16 @@ main()
         {
           chambre=tab_chambres[res_chambre]                     ;
           affichage_chambre()                                   ;
-          printf("Voulez-vous modifier la chambre (o/N) ? ") ;
-          while((poubelle=getchar()) != '\n')                ;
-          scanf("%c", &choix_modif)                          ;
+          printf("Voulez-vous modifier la chambre (o/N) ? ")    ;
+          while((poubelle=getchar()) != '\n')                   ;
+          scanf("%c", &choix_modif)                             ;
           if (choix_modif == 'o')
           {
             modification_chambre(res_chambre);
 
           }
           printf("Retour au menu.\n");
-          enreg_chambre();
+          enreg_chambre()            ;
 
         }
         break                                                                                             ;
@@ -191,7 +192,7 @@ main()
         catalogue_services_menu()                                                                         ;
         break                                                                                             ;
       case 9:
-        printf("Vous avez choisi de quitter l'application.\nMerci et au revoir.\n") ;
+        printf("Vous avez choisi de quitter l'application.\nMerci et au revoir.\n")                       ;
         break                                                                                             ;
       default:
         mauvais_choix(choix)                                                                              ;
@@ -207,7 +208,7 @@ main()
 #                                            #
 ##############################################
 
-Fonction appellée par les menus de choix.
+Fonction appelée par les menus de choix.
 Elle signale à l'utilisateur que le choix fait n'est pas disponible.
 Elle reçoit un paramètre pour signaler quel est le choix qui a été fait.
 
@@ -227,7 +228,7 @@ void mauvais_choix(int par_choix)
 #                                            #
 ##############################################
 
-Procédure pour créer un réservation.
+Procédure pour créer une réservation.
 
 
 *//*pour l'instant cela ne peut pas marcher
@@ -257,10 +258,10 @@ Procédure pour saisir une date.
 *//*ça ne peut pas marcher pour le moment
 void /*à voir: affecte des variables globales? saisie_date()
 {
-  printf("Saisir la date de début (jj/mm/aa) : ")           ;
-  scanf("%d/%d/%d\n", &jour_debut, &mois_debut, &an_debut)  ;
-  printf("Saisir la date de fin (jj/mm/aa) : ")             ;
-  scanf("%d/%d/%d\n", &jour_fin, &mois_fin, &an_fin)        ;
+  printf("Saisir la date de début (jj/mm/aaaa) : ")         ;
+  scanf("%d/%d/%d\n", &jour_debut, &mois_debut, &annee_debut)  ;
+  printf("Saisir la date de fin (jj/mm/aaaa) : ")           ;
+  scanf("%d/%d/%d\n", &jour_fin, &mois_fin, &annee_fin)        ;
 }*/
 
 /*############################################
@@ -274,8 +275,8 @@ Procédure pour déterminer quelle chambre recherche le client.
 *//*
 void cible_chambre()
 {
-  int cible_lits        ; 1 lit simple ; 2 deux lits simples ; 3 lit double
-  int cible_vue         ;
+  int cible_lits        ; 1 lit simple, 2 deux lits simples, 3 lit double
+  int cible_vue         ; 0 indifférent, 1 vue, 2 pas de vue
   int cible_bain        ; 0 indifférent, 1 douche, 2 baignoire
   int cible_fumeur      ; 0 indifférent, 1 fumeur, 2 non fumeur
   int cible_animaux     ; 0 indifférent, 1 animaux acceptés, 2 pas d'animaux
@@ -323,12 +324,33 @@ void cible_chambre()
 */
 /*
 void saisie_client(){
+  char nom_client[100], prenom_client[200], numero_telephone_client[20];
   printf("Nom du client ")           ;
   scan("%s", nom_client)             ;
   printf("Prénom du client ")        ;
   scan("%s", prenom_client)          ;
   printf("Numéro de téléphone ")     ;
   scan("%s", numero_telephone_client);
+}
+
+/*############################################
+#                                            #
+#             paiement_resa                  #
+#                                            #
+##############################################
+
+*/
+/*
+float montant_resa = 0 ;
+void paiement_resa(){
+  printf("Montant à payer : %f", &montant_resa) ;
+  printf("Choisir le mode de paiement: ") ;
+  printf(": ) ;
+  printf("Choisir le mode de paiement: ) ;
+  printf("Tapez '1' pour payer ") ;
+  scan("%s", &montant_paye)             ;
+  printf("Le paiement a bien été effectué. ");
+
 }
 
 */
@@ -585,7 +607,7 @@ void chargement_chambres()
   f1 = fopen("chambres.txt", "r") ;
   while(!feof(f1))
   {
-    fscanf(f1, "%d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.type_lits, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
+    fscanf(f1, "%d %d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.type_chambre, &chambre.type_lits, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
     tab_chambres[i] = chambre ;
     i++                       ;
   }
@@ -633,7 +655,7 @@ Modifier les chambres par la recherche de leur numéro.
 */
 void modification_chambre(int res_chambre)
 {
-  int chambre_rech=0                                    ;
+  int chambre_rech = 0                                    ;
   /*Résultat recherche chambres */
   /*printf("Entrez le numéro de la chambre à modifier : ");
   scanf("%d",&chambre_rech )                            ;
@@ -646,30 +668,34 @@ void modification_chambre(int res_chambre)
   {
     chambre=tab_chambres[res_chambre];*/
     printf("Numéro actuel de la chambre : %d\n", chambre.num_chambre) ;
-    printf("Nouveau numéro de la chambre : ")  ;
-    scanf("%d", &chambre.num_chambre)                                ;
+    printf("Nouveau numéro de la chambre : ")                         ;
+    scanf("%d", &chambre.num_chambre)                                 ;
+
+    printf("Type actuel de la chambre : %d\n", chambre.type_chambre)  ;
+    printf("Nouveau type de chambre : ")                              ;
+    scanf("%d", &chambre.type_chambre)                                ;
 
     printf("Type actuel de lits : %d\n", chambre.type_lits)           ;
-    printf("Nouveau type de lits : ")          ;
-    scanf("%d", &chambre.type_lits)                                  ;
+    printf("Nouveau type de lits : ")                                 ;
+    scanf("%d", &chambre.type_lits)                                   ;
 
-    printf("Chambre avec vue : %d\n", chambre.vue)                   ;
-    printf("Chambre avec vue : ")                   ;
-    scanf("%d", &chambre.vue)                                        ;
+    printf("Chambre avec vue : %d\n", chambre.vue)                    ;
+    printf("Chambre avec vue : ")                                     ;
+    scanf("%d", &chambre.vue)                                         ;
 
-    printf("Douche ou baignoire : %d\n", chambre.bain)               ;
-    printf("Douche ou baignoire : ")               ;
-    scanf("%d", &chambre.bain)                                       ;
+    printf("Douche ou baignoire : %d\n", chambre.bain)                ;
+    printf("Douche ou baignoire : ")                                  ;
+    scanf("%d", &chambre.bain)                                        ;
 
-    printf("Fumeur ou non : %d\n", chambre.fumeur)                   ;
-    printf("Fumeur ou non : ")                   ;
-    scanf("%d", &chambre.fumeur)                                     ;
+    printf("Fumeur ou non : %d\n", chambre.fumeur)                    ;
+    printf("Fumeur ou non : ")                                        ;
+    scanf("%d", &chambre.fumeur)                                      ;
 
-    printf("Animaux acceptés ou non : %d\n", chambre.animaux)        ;
-    printf("Animaux ou non : ")                 ;
-    scanf("%d", &chambre.animaux)                                    ;
-    tab_chambres[res_chambre] = chambre                              ;
-    /*a_sauv_chambre=1                                                 ; ça après*/
+    printf("Animaux acceptés ou non : %d\n", chambre.animaux)         ;
+    printf("Animaux ou non : ")                                       ;
+    scanf("%d", &chambre.animaux)                                     ;
+    tab_chambres[res_chambre] = chambre                               ;
+    /*a_sauv_chambre=1                                                ; ça après*/
   /*}*/
 }
 
@@ -692,7 +718,7 @@ void enreg_chambre()
   for(i = 0; i < MAX_NB_CHAMBRES ; i++)
   {
     chambre = tab_chambres[i]               ;
-    fprintf(f1, "%d %d %d %d %d %d\n", chambre.num_chambre, chambre.type_lits, chambre.vue, chambre.bain, chambre.fumeur, chambre.animaux) ;
+    fprintf(f1, "%d %d %d %d %d %d %d\n", chambre.num_chambre, chambre.type_chambre, chambre.type_lits, chambre.vue, chambre.bain, chambre.fumeur, chambre.animaux) ;
   }
   fclose(f1)                                                ;
   /*a_sauv_chambre = 0                                        ;*/
@@ -712,6 +738,7 @@ Affiche les données déjà chargées dans la liste des chambres.
 void affichage_chambre()
 {
     printf("Numéro de la chambre : %d\n", chambre.num_chambre)       ;
+    printf("Type de chambre: %d\n", chambre.type_lits)               ;
     printf("Type de lits: %d\n", chambre.type_lits)                  ;
     printf("Vue: %d\n", chambre.vue)                                 ;
     printf("Douche ou baignoire : %d\n", chambre.bain)               ;
