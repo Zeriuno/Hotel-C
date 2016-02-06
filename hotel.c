@@ -61,9 +61,24 @@ void modif_services()                ; /* Pour modifier les services déjà list
 
 char poubelle           ; /*pour vider le buffer des \n*/
 
+
+struct jour
+{
+  long int date ; /*date aaaammjj*/
+  short int saison    ; /*0 basse saison, 1 haute saison*/
+};
+
+struct jour calendrier[ANNEE];
+
+long int planning[MAX_NB_CHAMBRES][ANNEE]; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
+
+
+
+/*Réservations*/
+
 struct resa
 {
-  /*code de réservation, à déterminer comment il est construit*/
+  long int code_resa    ; /*long int, cela en garantit l'unicité sur une période assez longue.*/
   int datearrivee       ;
   int datedepart        ;
   char nomclient[50]    ;
