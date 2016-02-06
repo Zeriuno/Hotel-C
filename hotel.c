@@ -119,6 +119,8 @@ main()
   int chambre_cible = 0 ; /*Chambre recherchée*/
   char choix_modif      ;
 
+
+  chargement_chambres();
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
   while(choix != 9) /* 9 est la valeur pour quitter. */
   {
@@ -151,7 +153,6 @@ main()
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
         break                                                                                             ;
       case 4:
-        chargement_chambres()                                                                             ;
         printf("Entrez le numéro de la chambre à rechercher: ") ;
         scanf("%d", &chambre_cible)                             ;
         res_chambre=rech_chambre(chambre_cible)                 ;
