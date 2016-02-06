@@ -12,14 +12,7 @@
 * v 0.1.1 - 2016-02-04 On s'attaque aux chambres
 * v 0.1.1 - 2016-02-04 Ebauches pour la réservation
 * v 0.1.2 - 2016-02-05 Modification des chambres presque fonctionnelle
-* v 0.1.3 - 2016-02-06 Modification et enregistrement fonctionnels.
-
-Reste à faire:
-* optimiser enregistrement sur fichier et cycle de modification.
-* optimiser affichage et saisie des descripteurs des chambres
-* tests
-
-*/
+* v 0.1.3 - 2016-02-06 Modification et enregistrement fonctionnels. À optimiser.*/
 
 #include <stdio.h>
 #include <string.h>
@@ -125,6 +118,7 @@ main()
   int res_chambre = 0   ; /*Résultat recherche chambres */
   int chambre_cible = 0 ; /*Chambre recherchée*/
   char choix_modif      ;
+
 
   chargement_chambres();
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
@@ -236,6 +230,15 @@ void creer_reservation()
   cible_chambre() ;
   rech_période(date_debut, date_fin ) ;
 
+
+  printf("Nom du client ");
+  scan("%s", nom_client);
+  printf("Prénom du client ");
+  scan("%s", prenom_client);
+  printf("Numéro de téléphone ");
+  scan("%s", numero_telephone_client);
+
+
 }
 
 /*############################################
@@ -268,42 +271,42 @@ Procédure pour déterminer quelle chambre recherche le client.
 void cible_chambre()
 {
   int cible_lits        ; 1 lit simple ; 2 deux lits simples ; 3 lit double
-  int cible_vue
+  int cible_vue         ;
   int cible_bain        ; 0 indifférent, 1 douche, 2 baignoire
   int cible_fumeur      ; 0 indifférent, 1 fumeur, 2 non fumeur
   int cible_animaux     ; 0 indifférent, 1 animaux acceptés, 2 pas d'animaux
-  printf("Quel type de lits ?\n");
-  printf("1 - un lit simple\n")  ;
-  printf("2 - deux lits simples\n");
-  printf("3 - un lit double\n")    ;
-  printf("Saisir le type de lits :") ;
-  scanf("%d", &cible_lits)  ;
-  printf("Chambre avec vue ? ")                ;
+  printf("Quel type de lits ?\n")             ;
+  printf("1 - un lit simple\n")               ;
+  printf("2 - deux lits simples\n")           ;
+  printf("3 - un lit double\n")               ;
+  printf("Saisir le type de lits :")          ;
+  scanf("%d", &cible_lits)                    ;
+  printf("Chambre avec vue ? ")               ;
   scanf("%", &cible_vue)                      ;
-  printf("Quel type de salle de bain ?") ;
-  printf("0 - indifférent\n")  ;
-  printf("1 - douche\n");
-  printf("2 - baignoire\n") ;
+  printf("Quel type de salle de bain ?")      ;
+  printf("0 - indifférent\n")                 ;
+  printf("1 - douche\n")                      ;
+  printf("2 - baignoire\n")                   ;
   printf("Saisir le type de salle de bain :") ;
-  scanf("%", &cible_bain)      ;
-  printf("Chambre avec vue ? ")                ;
-  printf("0 - indifférent\n")  ;
-  printf("1 - vue\n");
-  printf("2 - pas de vue\n") ;
-  printf("Vue :") ;
-  scanf("%", &cible_vue)                       ;
-  printf("Chambre "fumeur" ? ")                ;
-  printf("0 - indifférent\n")  ;
-  printf("1 - fumeur\n");
-  printf("2 - non fumeur\n") ;
-  printf("Fumeur :") ;
-  scanf("%", &cible_fumeur)                       ;
-  printf("Chambre avec animaux autorisés? ")                ;
-  printf("0 - indifférent\n")  ;
-  printf("1 - animaux autorisés\n");
-  printf("2 - animaux non autorisés\n") ;
-  printf("Animaux autorisés :") ;
-  scanf("%", &cible_animaux)                       ;
+  scanf("%", &cible_bain)                     ;
+  printf("Chambre avec vue ? ")               ;
+  printf("0 - indifférent\n")                 ;
+  printf("1 - vue\n")                         ;
+  printf("2 - pas de vue\n")                  ;
+  printf("Vue :")                             ;
+  scanf("%", &cible_vue)                      ;
+  printf("Chambre "fumeur" ? ")               ;
+  printf("0 - indifférent\n")                 ;
+  printf("1 - fumeur\n")                      ;
+  printf("2 - non fumeur\n")                  ;
+  printf("Fumeur :")                          ;
+  scanf("%", &cible_fumeur)                   ;
+  printf("Chambre avec animaux autorisés? ")  ;
+  printf("0 - indifférent\n")                 ;
+  printf("1 - animaux autorisés\n")           ;
+  printf("2 - animaux non autorisés\n")       ;
+  printf("Animaux autorisés :")               ;
+  scanf("%", &cible_animaux)                  ;
 }*/
 /*############################################
 #                                            #
