@@ -56,11 +56,13 @@ D: Mhh, je ne vois pas vraiment de quoi tu parles, il faut que je regarde à nou
 V: quand un client va au restaurant, qu'il choisit le menu 1 et 3 par exemple, de quel champ s'agit-il ici? prix_services? ou alors c'est dans les frais?'
 */
 
-  type jour en enregistrement
-    champ date en entiers
-    champ code_réservation en /*en que sais-je! Chaîne ou bien entiers, à voir*/
-  fin d'enregistrement
+  variable planning en tableau [50][365] de long int entiers
+   /*Les cases ne contiennent que l'indicateur de l'état de la chambre (code de réservation).
+   La liaison avec la chambre se fait par le tableau de chambres qui référence les chambres avec les mêmes indices.
+   La liaison avec les jours se fait par le tableau de dates (calendrier).
+   */
+  variable calendrier en tableau d'entiers /*long int?
+Le calendrier contient les dates, l'indice permet de l'associer au planning, ils doivent impérativement être modifiés ensemble*/
 
-   variable planning en tableau [20][366] /*la taille est [chambres][jours], l'ordre des deux est à discuter*/
 
 fin déclarations
