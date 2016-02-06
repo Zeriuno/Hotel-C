@@ -20,7 +20,7 @@ Reste à faire:
 * optimiser affichage et saisie des descripteurs des chambres.
 * évaluer la possibilité de déclarer les variables de choix (vue/sans vue; fumeur/non fumeur; haute saison/basse saison) comme des short int;
 * tests.
-* void lecture_jours() à améliorer pour récomposer la date en format jj/mm/aaaa
+* void lecture_jours() à améliorer pour récomposer la date en format jj/mm/aaaa (cf numsecsoc de JM Léry)
 * maj_calendrier() ajouter: tests sur les valeurs saisies et conversion aaaammjj en jj/mm/aaaa
 
 */
