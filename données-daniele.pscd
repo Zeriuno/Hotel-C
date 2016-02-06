@@ -16,15 +16,15 @@ déclarations
   */
     champ code_réservation en /*variable globale qu'on incrémente à chaque fois de 1*/
     champ date_arrivee en chaîne de caractères
-    champ date_départ en chaîne de caractères
+    champ date_depart en chaîne de caractères
     champ nom_client en chaîne de caractères
     champ prenom_client en chaîne de caractères
-    champ numero_téléphone_client en chaîne de caractères /*+33 6 53332003*/
-    champ état en chaîne de caractères /*ou bien entiers ou bien un caractère... à voir → Pourquoi serait-il nécessaire? Inutile*/
+    champ numero_telephone_client en chaîne de caractères /*+33 6 53332003*/
+    champ etat en chaîne de caractères /*ou bien entiers ou bien un caractère... à voir → Pourquoi serait-il nécessaire? Inutile*/
     champ code_chambre en entiers /*un seul numéro de chambre pour réservation, en cas de plusieurs chambres, plusieurs réservations  (?)*/
     champ prix_chambre en réels /* pour une ou plusieurs chambres aussi*/
     champ prix_services en tableau de frais
-    champ montant_reglé en réels
+    champ montant_regle en réels
   fin d'enregistrement
 
   type chambre en enregistrement
