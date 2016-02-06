@@ -12,7 +12,14 @@
 * v 0.1.1 - 2016-02-04 On s'attaque aux chambres
 * v 0.1.1 - 2016-02-04 Ebauches pour la réservation
 * v 0.1.2 - 2016-02-05 Modification des chambres presque fonctionnelle
-* v 0.1.3 - 2016-02-06 Modification et enregistrement fonctionnels. À optimiser.*/
+* v 0.1.3 - 2016-02-06 Modification et enregistrement fonctionnels. À optimiser.
+
+Reste à faire:
+* optimiser enregistrement sur fichier et cycle de modification.
+* Traiter des chaînes de caractères avec espaces.
+* optimiser affichage et saisie des descripteurs des chambres
+* tests
+*/
 
 #include <stdio.h>
 #include <string.h>
