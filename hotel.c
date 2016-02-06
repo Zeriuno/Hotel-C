@@ -12,7 +12,7 @@
 * v 0.1.1 - 2016-02-04 On s'attaque aux chambres
 * v 0.1.1 - 2016-02-04 Ebauches pour la réservation
 * v 0.1.2 - 2016-02-05 Modification des chambres presque fonctionnelle
-*/
+* v 0.1.3 - 2016-02-06 Modification et enregistrement fonctionnels. À optimiser.*/
 
 #include <stdio.h>
 #include <string.h>
@@ -28,7 +28,7 @@
 /*Chambres*/
 int rech_chambre(int chambre_rech);
 void chargement_chambres()        ;
-void modification_chambre()       ;
+void modification_chambre(int res_chambre);
 void enreg_chambre()              ;
 void affichage_chambre()          ;
 
@@ -152,26 +152,28 @@ main()
         break                                                                                             ;
       case 4:
         chargement_chambres()                                                                             ;
-        printf("Entrez le numéro de la chambre à rechercher: ")                                           ;
-        scanf("%d", &chambre_cible)                                                                       ;
-        res_chambre=rech_chambre(chambre_cible)                                                           ;
+        printf("Entrez le numéro de la chambre à rechercher: ") ;
+        scanf("%d", &chambre_cible)                             ;
+        res_chambre=rech_chambre(chambre_cible)                 ;
         if(res_chambre == NON_TROUVE)
         {
-          printf("%d n'a pas été trouvé.\n", chambre_cible)                                               ;
+          printf("%d n'a pas été trouvé.\n", chambre_cible)     ;
         }
         else
         {
-          chambre=tab_chambres[res_chambre]                  ;
-          affichage_chambre()                                ;
+          chambre=tab_chambres[res_chambre]                     ;
+          affichage_chambre()                                   ;
           printf("Voulez-vous modifier la chambre (o/N) ? ") ;
           while((poubelle=getchar()) != '\n')                ;
           scanf("%c", &choix_modif)                          ;
           if (choix_modif == 'o')
           {
-            modification_chambre();
+            modification_chambre(res_chambre);
 
           }
           printf("Retour au menu.\n");
+          enreg_chambre();
+
         }
         break                                                                                             ;
       case 5: /*case 7:*/
@@ -575,10 +577,9 @@ Modifier les chambres par la recherche de leur numéro.
 
 
 */
-void modification_chambre()
+void modification_chambre(int res_chambre)
 {
   int chambre_rech=0                                    ;
-  int res_chambre = 0                                   ;
   /*Résultat recherche chambres */
   /*printf("Entrez le numéro de la chambre à modifier : ");
   scanf("%d",&chambre_rech )                            ;
@@ -595,11 +596,11 @@ void modification_chambre()
     scanf("%d", &chambre.num_chambre)                                ;
 
     printf("Type actuel de lits : %d\n", chambre.type_lits)           ;
-    printf("Nouveau type de lits :")          ;
+    printf("Nouveau type de lits : ")          ;
     scanf("%d", &chambre.type_lits)                                  ;
 
     printf("Chambre avec vue : %d\n", chambre.vue)                   ;
-    printf("Chambre avec vue :")                   ;
+    printf("Chambre avec vue : ")                   ;
     scanf("%d", &chambre.vue)                                        ;
 
     printf("Douche ou baignoire : %d\n", chambre.bain)               ;
@@ -613,8 +614,7 @@ void modification_chambre()
     printf("Animaux acceptés ou non : %d\n", chambre.animaux)        ;
     printf("Animaux ou non : ")                 ;
     scanf("%d", &chambre.animaux)                                    ;
-
-    tab_chambres[res_chambre]=chambre                                ;
+    tab_chambres[res_chambre] = chambre                                 ;
     /*a_sauv_chambre=1                                                 ; ça après*/
   /*}*/
 }
@@ -638,10 +638,10 @@ void enreg_chambre()
   for(i = 0; i < MAX_NB_CHAMBRES ; i++)
   {
     chambre = tab_chambres[i]               ;
-    fscanf(f1, "%d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.type_lits, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
+    fprintf(f1, "%d %d %d %d %d %d\n", chambre.num_chambre, chambre.type_lits, chambre.vue, chambre.bain, chambre.fumeur, chambre.animaux) ;
   }
   fclose(f1)                                                ;
-  a_sauv_chambre = 0                                        ;
+  /*a_sauv_chambre = 0                                        ;*/
   printf("La liste des chambres a bien été sauvegardée.\n") ;
 }
 
