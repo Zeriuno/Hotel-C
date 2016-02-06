@@ -87,8 +87,8 @@ struct resa
 };
 
 struct cha
-{  /* structure pour les chambres*/
-  /*int code_chambre ;*/
+{
+  /*l'idéntifiant unique de la chambre est son indice dans le tableau des chambres, qui correspond également à l'indice dans le planning, cela permet de relier les deux informations*/
   int num_chambre ; /* Numéro selon la codification de l'hôtel */
   int type_chambre; /* 0 chambre ; 1 suite */
   int type_lits   ; /* 0 simple ; 1 deux lits simples; 2 double */
