@@ -12,7 +12,14 @@
 * v 0.1.1 - 2016-02-04 On s'attaque aux chambres
 * v 0.1.1 - 2016-02-04 Ebauches pour la réservation
 * v 0.1.2 - 2016-02-05 Modification des chambres presque fonctionnelle
-* v 0.1.3 - 2016-02-06 Modification et enregistrement fonctionnels. À optimiser.*/
+* v 0.1.3 - 2016-02-06 Modification et enregistrement fonctionnels. À optimiser.
+
+Reste à faire:
+* optimiser enregistrement sur fichier et cycle de modification.
+* Traiter des chaînes de caractères avec espaces.
+* optimiser affichage et saisie des descripteurs des chambres.
+* tests.
+*/
 
 #include <stdio.h>
 #include <string.h>
@@ -24,6 +31,7 @@
 #define MAX_NOM_SERVICE 21 /* Taille maximale de la chaîne de caractères qui décrit les services complémentaires - Utilisé pour nom_service */
 #define MAX_NB_CHAMBRES 50 /*Utilisée dans tab_chambres[]*/
 #define NON_TROUVE -1 /*Pour tester si un résultat a été trouvé à la recherche*/
+#define ANNEE 365 /* Utilisée pour dimensionner le planning et le calendrier*/
 
 /*Chambres*/
 int rech_chambre(int chambre_rech);
@@ -53,9 +61,24 @@ void modif_services()                ; /* Pour modifier les services déjà list
 
 char poubelle           ; /*pour vider le buffer des \n*/
 
+
+struct jour
+{
+  long int date ; /*date aaaammjj*/
+  short int saison    ; /*0 basse saison, 1 haute saison*/
+};
+
+struct jour calendrier[ANNEE];
+
+long int planning[MAX_NB_CHAMBRES][ANNEE]; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
+
+
+
+/*Réservations*/
+
 struct resa
 {
-  /*code de réservation, à déterminer comment il est construit*/
+  long int code_resa    ; /*long int, cela en garantit l'unicité sur une période assez longue.*/
   int datearrivee       ;
   int datedepart        ;
   char nomclient[50]    ;
@@ -65,7 +88,7 @@ struct resa
 
 struct cha
 {  /* structure pour les chambres*/
-  /*int code_chambre ;*/
+   /*l'idéntifiant unique de la chambre est son indice dans le tableau des chambres, qui correspond également à l'indice dans le planning, cela permet de relier les deux informations*/
   int num_chambre         ; /* Numéro selon la codification de l'hôtel */
   int type_chambre        ; /* 0 simple ; 1 double */
   int categorie_chambre   ; /* 0 chambre ; 1 suite */
