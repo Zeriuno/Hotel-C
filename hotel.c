@@ -17,8 +17,8 @@
 Reste à faire:
 * optimiser enregistrement sur fichier et cycle de modification.
 * Traiter des chaînes de caractères avec espaces.
-* optimiser affichage et saisie des descripteurs des chambres
-* tests
+* optimiser affichage et saisie des descripteurs des chambres.
+* tests.
 */
 
 #include <stdio.h>
