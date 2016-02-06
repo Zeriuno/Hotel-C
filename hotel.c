@@ -18,7 +18,9 @@ Reste à faire:
 * optimiser enregistrement sur fichier et cycle de modification.
 * Traiter des chaînes de caractères avec espaces.
 * optimiser affichage et saisie des descripteurs des chambres.
+* évaluer la possibilité de déclarer les variables de choix (vue/sans vue; fumeur/non fumeur; haute saison/basse saison) comme des short int;
 * tests.
+* void lecture_jours() à améliorer pour récomposer la date en format jj/mm/aaaa
 */
 
 #include <stdio.h>
