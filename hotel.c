@@ -306,6 +306,15 @@ void cible_chambre()
   scanf("%", &cible_animaux)                  ;
 }
 
+
+/*############################################
+#                                            #
+#             saisie_client                  #
+#                                            #
+##############################################
+
+*/
+
 void saisie_client(){
   printf("Nom du client ")           ;
   scan("%s", nom_client)             ;
