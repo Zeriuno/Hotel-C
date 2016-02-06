@@ -66,18 +66,20 @@ struct resa
 struct cha
 {  /* structure pour les chambres*/
   /*int code_chambre ;*/
-  int num_chambre ; /* Numéro selon la codification de l'hôtel */
-  int type_chambre; /* 0 chambre ; 1 suite */
-  int type_lits   ; /* 0 simple ; 1 deux lits simples; 2 double */
-  int vue         ; /* 0 pas de vue; 1 avec vue */
-  int bain        ; /* 0 baignoire; 1 douche */
-  int fumeur      ; /* 0 non fumeur, 1 fumeur */
-  int animaux     ; /* 0 pas d'animaux, 1 animaux acceptés */
+  int num_chambre         ; /* Numéro selon la codification de l'hôtel */
+  int type_chambre        ; /* 0 simple ; 1 double */
+  int categorie_chambre   ; /* 0 chambre ; 1 suite */
+  int type_lits           ; /* 0 simple ; 1 deux lits simples; 2 double */
+  int balcon              ; /* 0 pas de balcon; 1 avec balcon */
+  int vue                 ; /* 0 pas de vue; 1 avec vue */
+  int bain                ; /* 0 baignoire; 1 douche */
+  int fumeur              ; /* 0 non fumeur, 1 fumeur */
+  int animaux             ; /* 0 pas d'animaux, 1 animaux acceptés */
   /*champ remarques en chaîne de caractères*/
 };
   /* Variables globales concernant les chambres*/
 struct cha tab_chambres[MAX_NB_CHAMBRES]; /*Tableau listant les chambres*/
-struct cha chambre;
+struct cha chambre                      ;
 
 int a_sauv_chambre = 0                  ; /*pour la modification des chambres*/
 
@@ -268,43 +270,59 @@ Procédure pour déterminer quelle chambre recherche le client.
 *//*
 void cible_chambre()
 {
-  int cible_lits        ; 1 lit simple, 2 deux lits simples, 3 lit double
+  int cible_type_chambre; 1 simple, 2 double, 3 triple
+  int cible_lits        ; 1 lit simple, 2 deux lits simples, 3 lit double, 4 trois lits simples, 5 lit simple et lit double
+  int cible_cat_chambre ; 0 chambre, 1 suite
+  int cible_balcon      ; 0 indifférent, 1 balcon, 2 pas de balcon
   int cible_vue         ; 0 indifférent, 1 vue, 2 pas de vue
   int cible_bain        ; 0 indifférent, 1 douche, 2 baignoire
   int cible_fumeur      ; 0 indifférent, 1 fumeur, 2 non fumeur
   int cible_animaux     ; 0 indifférent, 1 animaux acceptés, 2 pas d'animaux
-  printf("Quel type de lits ?\n")             ;
-  printf("1 - un lit simple\n")               ;
-  printf("2 - deux lits simples\n")           ;
-  printf("3 - un lit double\n")               ;
-  printf("Saisir le type de lits :")          ;
-  scanf("%d", &cible_lits)                    ;
-  printf("Chambre avec vue ? ")               ;
-  scanf("%", &cible_vue)                      ;
-  printf("Quel type de salle de bain ?")      ;
-  printf("0 - indifférent\n")                 ;
-  printf("1 - douche\n")                      ;
-  printf("2 - baignoire\n")                   ;
-  printf("Saisir le type de salle de bain :") ;
-  scanf("%", &cible_bain)                     ;
-  printf("Chambre avec vue ? ")               ;
-  printf("0 - indifférent\n")                 ;
-  printf("1 - vue\n")                         ;
-  printf("2 - pas de vue\n")                  ;
-  printf("Vue :")                             ;
-  scanf("%", &cible_vue)                      ;
-  printf("Chambre "fumeur" ? ")               ;
-  printf("0 - indifférent\n")                 ;
-  printf("1 - fumeur\n")                      ;
-  printf("2 - non fumeur\n")                  ;
-  printf("Fumeur :")                          ;
-  scanf("%", &cible_fumeur)                   ;
-  printf("Chambre avec animaux autorisés? ")  ;
-  printf("0 - indifférent\n")                 ;
-  printf("1 - animaux autorisés\n")           ;
-  printf("2 - animaux non autorisés\n")       ;
-  printf("Animaux autorisés :")               ;
-  scanf("%", &cible_animaux)                  ;
+  printf("Quel type de lits ?\n")               ;
+  printf("1 - un lit simple\n")                 ;
+  printf("2 - deux lits simples\n")             ;
+  printf("3 - un lit double\n")                 ;
+  printf("2 - trois lits simples\n")            ;
+  printf("3 - un lit double et un lit simple\n");
+  printf("Saisir le type de lits :")            ;
+  scanf("%d", &cible_lits)                      ;
+  printf("Quelle catégorie de chambre ? \n")    ;
+  printf("0 - chambre\n")                       ;
+  printf("1 - suite\n")                         ;
+  printf("Saisir la catégorie :")               ;
+  scanf("%d", &cible_cat_chambre)               ;
+  printf("Chambre avec balcon ? ")              ;
+  printf("0 - indifférent\n")                   ;
+  printf("1 - balcon\n")                        ;
+  printf("2 - pas de balcon\n")                 ;
+  printf("Balcon :")                            ;
+  scanf("%d", &cible_balcon)                    ;
+  printf("Chambre avec vue ? ")                 ;
+  scanf("%d", &cible_vue)                       ;
+  printf("Quel type de salle de bain ?")        ;
+  printf("0 - indifférent\n")                   ;
+  printf("1 - douche\n")                        ;
+  printf("2 - baignoire\n")                     ;
+  printf("Saisir le type de salle de bain :")   ;
+  scanf("%d", &cible_bain)                      ;
+  printf("Chambre avec vue ? ")                 ;
+  printf("0 - indifférent\n")                   ;
+  printf("1 - vue\n")                           ;
+  printf("2 - pas de vue\n")                    ;
+  printf("Vue :")                               ;
+  scanf("%d", &cible_vue)                       ;
+  printf("Chambre "fumeur" ? ")                 ;
+  printf("0 - indifférent\n")                   ;
+  printf("1 - fumeur\n")                        ;
+  printf("2 - non fumeur\n")                    ;
+  printf("Fumeur :")                            ;
+  scanf("%d", &cible_fumeur)                    ;
+  printf("Chambre avec animaux autorisés? ")    ;
+  printf("0 - indifférent\n")                   ;
+  printf("1 - animaux autorisés\n")             ;
+  printf("2 - animaux non autorisés\n")         ;
+  printf("Animaux autorisés :")                 ;
+  scanf("%d", &cible_animaux)                   ;
 }
 
 
@@ -600,7 +618,7 @@ void chargement_chambres()
   f1 = fopen("chambres.txt", "r") ;
   while(!feof(f1))
   {
-    fscanf(f1, "%d %d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.type_chambre, &chambre.type_lits, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
+    fscanf(f1, "%d %d %d %d %d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.type_chambre, &chambre.type_lits, &chambre.categorie_chambre, &chambre.type_lits, &chambre.balcon, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
     tab_chambres[i] = chambre ;
     i++                       ;
   }
@@ -672,6 +690,18 @@ void modification_chambre(int res_chambre)
     printf("Nouveau type de lits : ")                                 ;
     scanf("%d", &chambre.type_lits)                                   ;
 
+    printf("Catégorie actuelle de la chambre : %d\n", chambre.categorie_chambre);
+    printf("Nouvelle catégorie de chambre : ")                        ;
+    scanf("%d", &chambre.categorie_chambre)                           ;
+
+    printf("Type actuel de lits : %d\n", chambre.type_lits)           ;
+    printf("Nouveau type de lits : ")                                 ;
+    scanf("%d", &chambre.type_lits)                                   ;
+
+    printf("Chambre avec balcon : %d\n", chambre.balcon)              ;
+    printf("Chambre avec vue : ")                                     ;
+    scanf("%d", &chambre.balcon)                                      ;
+
     printf("Chambre avec vue : %d\n", chambre.vue)                    ;
     printf("Chambre avec vue : ")                                     ;
     scanf("%d", &chambre.vue)                                         ;
@@ -711,7 +741,7 @@ void enreg_chambre()
   for(i = 0; i < MAX_NB_CHAMBRES ; i++)
   {
     chambre = tab_chambres[i]               ;
-    fprintf(f1, "%d %d %d %d %d %d %d\n", chambre.num_chambre, chambre.type_chambre, chambre.type_lits, chambre.vue, chambre.bain, chambre.fumeur, chambre.animaux) ;
+    fprintf(f1, "%d %d %d %d %d %d %d %d %d %d\n", chambre.num_chambre, chambre.type_chambre, , chambre.type_lits, chambre.categorie_chambre, chambre.type_lits, chambre.balcon, chambre.vue, chambre.bain, chambre.fumeur, chambre.animaux) ;
   }
   fclose(f1)                                                ;
   /*a_sauv_chambre = 0                                        ;*/
@@ -731,10 +761,18 @@ Affiche les données déjà chargées dans la liste des chambres.
 void affichage_chambre()
 {
     printf("Numéro de la chambre : %d\n", chambre.num_chambre)       ;
-    printf("Type de chambre: %d\n", chambre.type_lits)               ;
-    printf("Type de lits: %d\n", chambre.type_lits)                  ;
-    printf("Vue: %d\n", chambre.vue)                                 ;
+    printf("Type de chambre : %d\n", chambre.type_chambre)           ;
+    printf("Type de lits : %d\n", chambre.type_lits)                 ;
+    printf("Catégorie de chambre: %d\n", chambre.categorie_chambre)  ;
+    printf("Balcon: %d\n", chambre.vue)                              ;
+    printf("Vue: %d\n", chambre.balcon)                              ;
     printf("Douche ou baignoire : %d\n", chambre.bain)               ;
     printf("Fumeurs ou non : %d\n", chambre.fumeur)                  ;
     printf("Animaux autorisés : %d\n\n", chambre.animaux)            ;
 }
+
+/* tableau prix chambre
+
+  int type_chambre        ; /* 0 simple ; 1 double ; 2 triple *//*
+  int categorie_chambre   ; /* 0 chambre ; 1 suite *//*
+  int prix_saison         ; /* 0 basse saison, 1 haute saison */

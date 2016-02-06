@@ -1,45 +1,45 @@
 #INTRODUCTION
 
-##Objet 
-Ce document a pour objet de définir les exigences liées au programme concernant la gestion d’un hôtel. 
+##Objet
+Ce document a pour objet de définir les exigences liées au programme concernant la gestion d’un hôtel.
 Il est destiné à la réservation de chambres dans un hôtel pour une période définie.
 
 ##Portée
-Le programme consiste en la gestion d’un hôtel : 
-*réservation 
-*consultation des réservations, des chambres 
+Le programme consiste en la gestion d’un hôtel :
+*réservation
+*consultation des réservations, des chambres
 *modification des prix, du statut des chambres
 
-L’hôtel est constitué d’un seul bâtiment à 5 étages, avec chacun 10 chambres. 
-La gestion du restaurant ne consiste qu’en la réservation de menus (choix entre 3 menus) au moment de la réservation de la/des chambres. Par exemple, le client peut réserver 2 menus 2 et 4 menus 3, qu’il paie lors de la réservation. 
+L’hôtel est constitué d’un seul bâtiment à 5 étages, avec chacun 10 chambres.
+La gestion du restaurant ne consiste qu’en la réservation de menus (choix entre 3 menus) au moment de la réservation de la/des chambres. Par exemple, le client peut réserver 2 menus 2 et 4 menus 3, qu’il paie lors de la réservation.
 
-###RÉSERVATION 
-La réservation d’une chambre s’effectue par le biais du programme. Chaque réservation a un numéro unique, concerne un client, peu importe le nombre de personnes occupant la chambre. Elle peut concerner plusieurs chambres : par conséquent, chaque chambre (numéro) liée à la réservation figure dans cette dernière. Les réservations comportent les éléments suivants : 
-La réservation peut s’effectuer jusqu’à un an à partir de la date du jour. 
-Chaque réservation a une date de début et une date de fin, a un coût. 
+###RÉSERVATION
+La réservation d’une chambre s’effectue par le biais du programme. Chaque réservation a un numéro unique, concerne un client, peu importe le nombre de personnes occupant la chambre. Elle peut concerner plusieurs chambres : par conséquent, chaque chambre (numéro) liée à la réservation figure dans cette dernière. Les réservations comportent les éléments suivants :
+La réservation peut s’effectuer jusqu’à un an à partir de la date du jour.
+Chaque réservation a une date de début et une date de fin, a un coût.
 
-Pour résumer, une réservation comprend les données suivantes : 
+Pour résumer, une réservation comprend les données suivantes :
 *numéro de réservation
 *nom du client
 *prénom du client
 *numéro de téléphone
-*date de début 
+*date de début
 *date de fin
 *numéro de chambre (une ou plusieurs)
 *prix fixe
 *coût supplémentaire
 *champ libre (ex : demande d’un lit d’appoint)
 
-###ORGANISATION 
-A chaque jour l’utilisateur a accès au statut de la chambre et au code correspondant au motif en cas d’indisponibilité de la chambre. 
-Motifs d’indisponibilité : 
+###ORGANISATION
+A chaque jour l’utilisateur a accès au statut de la chambre et au code correspondant au motif en cas d’indisponibilité de la chambre.
+Motifs d’indisponibilité :
 *réservé : A
 *entretien habituel : B
 *travaux exceptionnels : C
 
-###CHAMBRE 
-Chaque chambre a un numéro unique se décomposant ainsi : numéro de l’étage et de la position de la chambre (ex : 101 pour la première chambre du premier étage). 
-Chaque chambre a un état à un moment t. 
+###CHAMBRE
+Chaque chambre a un numéro unique se décomposant ainsi : numéro de l’étage et de la position de la chambre (ex : 101 pour la première chambre du premier étage).
+Chaque chambre a un état à un moment t.
 Pour une chambre, on a :
 *numéro de la chambre
 *type (simple/double)
@@ -50,57 +50,47 @@ Pour une chambre, on a :
 *fumeur ou non
 *animaux autorisés ou non
 
-###TARIF 
+###TARIF
 
 #####Prix fixe – prix variable
-Le montant total se décompose en un prix fixe (montant payé à la réservation par le client avant son arrivée à l’hôtel) et en un prix variable (montants supplémentaires durant le séjour, du type minibar, internet, etc.). Le prix variable a un objet et une date précise. 
+Le montant total se décompose en un prix fixe (montant payé à la réservation par le client avant son arrivée à l’hôtel) et en un prix variable (montants supplémentaires durant le séjour, du type minibar, internet, etc.). Le prix variable a un objet et une date précise.
 
 ####Prix chambre
-Le prix de la chambre est fixe à la réservation (payé à la réservation) mais varie en fonction de la chambre. Les variables à prendre en compte sont : 
+Le prix de la chambre est fixe à la réservation (payé à la réservation) mais varie en fonction de la chambre. Les variables à prendre en compte sont :
 *le type de chambre
 *chambre/suite
 *présence d’un balcon ou non
 *vue ou non
 
-Type 	Catégorie 	Balcon 	Vue 	Prix basse saison	Prix haute saison
-Simple	Chambre 	Non 	Non 	80	100
-Simple	Chambre 	Oui	Non 	85	110
-Simple	Chambre 	Non	Oui	85	110
-Simple	Chambre 	Oui	Oui 	90	130
-Simple	Suite 	Non 	Non 	100	120
-Simple	Suite 	Oui	Non 	105	130
-Simple	Suite 	Non	Oui	105	130
-Simple	Suite 	Oui	Oui 	110	150
-Double	Chambre 	Non 	Non 	120	140
-Double	Chambre 	Oui	Non 	125	150
-Double	Chambre 	Non	Oui	125	150
-Double	Chambre 	Oui	Oui 	130	160
-Double	Suite 	Non 	Non 	140	170
-Double	Suite 	Oui	Non 	150	185
-Double	Suite 	Non	Oui	150	185
-Double	Suite 	Oui	Oui 	160	200
+Type 	Catégorie	Prix basse saison	Prix haute saison
+Simple	Chambre 	 	80	100
+Simple	Suite 	 	100	120
+Double	Chambre 	 	120	140
+Double	Suite 	 	140	170
+Triple	Chambre 	 	170	190
+Triple	Suite 	 	190	230
 
 
-####Prix à la réservation : 
-Le prix de la réservation est celui que doit payer le client à la réservation. Il comprend : 
+####Prix à la réservation :
+Le prix de la réservation est celui que doit payer le client à la réservation. Il comprend :
 *le prix de la ou des chambres réservées
 *la réservation du restaurant (pour x nombre de repas):
 	*menu 1 : 15€
 	*menu 2 : 28€
 	*menu 3 : 36€
 
-####Prix supplémentaires : 
-Chaque coût supplémentaire comporte : 
+####Prix supplémentaires :
+Chaque coût supplémentaire comporte :
 *un objet
 *une date
 *un montant
-Les coûts supplémentaires, à payer au moment de quitter l’hôtel, peuvent être engendrés par : 
+Les coûts supplémentaires, à payer au moment de quitter l’hôtel, peuvent être engendrés par :
 *le minibar
 *internet
 *le room service
 
-####Annulation : 
-En cas d’annulation de la réservation, le montant total n’est pas remboursé au client. Ce dernier se voit rembourser 70% du montant de la réservation. Si l’annulation est effectuée entre une et deux semaines avant la date de début de séjour, un remboursement de 30% est effectué. Pour une annulation la dernière semaine, aucun remboursement n’est effectué. 
+####Annulation :
+En cas d’annulation de la réservation, le montant total n’est pas remboursé au client. Ce dernier se voit rembourser 70% du montant de la réservation. Si l’annulation est effectuée entre une et deux semaines avant la date de début de séjour, un remboursement de 30% est effectué. Pour une annulation la dernière semaine, aucun remboursement n’est effectué.
 
 
 
@@ -112,9 +102,9 @@ En cas d’annulation de la réservation, le montant total n’est pas rembours�
 
 
 ##Vue d’ensemble
-Le document est organisé de la manière suivante : 
+Le document est organisé de la manière suivante :
 *description générale
-*exigences 
+*exigences
 
 #DESCRIPTION GÉNÉRALE
 
@@ -123,12 +113,12 @@ Le document est organisé de la manière suivante :
 
 ##Fonctions
 
-Les fonctions disponibles sont : 
+Les fonctions disponibles sont :
 *Effectuer une réservation
 *Consulter une réservation
 *Modifier une réservation
 *Supprimer une réservation
-*Consulter une chambre 
+*Consulter une chambre
 *Consulter un jour
 *Modifier le statut d’une chambre
 *Modifier le prix d’une chambre
@@ -136,30 +126,30 @@ Les fonctions disponibles sont :
 *Modifier le prix des menus du restaurant
 
 ##Caractéristiques des utilisateurs
-Il existe deux types de profils : 
+Il existe deux types de profils :
 *Client
 *Personnel de l’hôtel
 
 ###Client
-Le client ne peut qu’effectuer une réservation, la modifier ou la supprimer. 
+Le client ne peut qu’effectuer une réservation, la modifier ou la supprimer.
 
 ###Personnel de l’hôtel
-Un membre du personnel de l’hôtel a accès à toutes les autres fonctions. Pour rappel, il s’agit de la: 
+Un membre du personnel de l’hôtel a accès à toutes les autres fonctions. Pour rappel, il s’agit de la:
 *Consultation d’une réservation, d’une chambre, d’un jour
 *Modification du statut d’une chambre, du prix d’une chambre, du prix des offres supplémentaires, du prix des menus du restaurant
 
 ##Contraintes
-Il faut prendre en compte la gestion du restaurant et les éventuels travaux de l’hôtel. 
+Il faut prendre en compte la gestion du restaurant et les éventuels travaux de l’hôtel.
 Hypothèses et dépendances
-On suppose que l’on fait confiance au client : lorsqu’on demande au client s’il est client ou membre du personnel, il répondra « client ». 
+On suppose que l’on fait confiance au client : lorsqu’on demande au client s’il est client ou membre du personnel, il répondra « client ».
 
-Si des prix sont modifiés après réservation des chambres, aucun frais supplémentaire ne peut être demandé au client. 
+Si des prix sont modifiés après réservation des chambres, aucun frais supplémentaire ne peut être demandé au client.
 
-Lorsqu’une chambre est réservée à une date donnée, son statut n’est plus modifiable sauf pour cause de travaux exceptionnels (code C), par exemple s’il y a une fuite d’eau ou tout autre type d’incidents empêchant au client d’accéder à sa chambre. 
+Lorsqu’une chambre est réservée à une date donnée, son statut n’est plus modifiable sauf pour cause de travaux exceptionnels (code C), par exemple s’il y a une fuite d’eau ou tout autre type d’incidents empêchant au client d’accéder à sa chambre.
 
-On suppose qu’une chambre ne peut pas être modifiée : le client ne peut pas modifier la chambre qu’on lui a attribuée. Il doit annuler sa réservation et en effectuer une autre ?? 
+On suppose qu’une chambre ne peut pas être modifiée : le client ne peut pas modifier la chambre qu’on lui a attribuée. Il doit annuler sa réservation et en effectuer une autre ??
 
-La gestion du restaurant doit prendre en compte le nombre de repas possibles durant le séjour, ainsi que le nombre de personnes dans la réservation de chambres (il faudrait donc demander le nombre de personnes lors de la réservation pour un contrôle de cohérence). 
+La gestion du restaurant doit prendre en compte le nombre de repas possibles durant le séjour, ainsi que le nombre de personnes dans la réservation de chambres (il faudrait donc demander le nombre de personnes lors de la réservation pour un contrôle de cohérence).
 
 #EXIGENCES SPECIFIQUES
 
@@ -167,5 +157,4 @@ La gestion du restaurant doit prendre en compte le nombre de repas possibles dur
 
 
 ##Exigences non fonctionnelles
-Le programme doit fonctionner avec Linux. 
-
+Le programme doit fonctionner avec Linux.
