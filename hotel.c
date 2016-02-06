@@ -314,7 +314,7 @@ void cible_chambre()
 ##############################################
 
 */
-
+/*
 void saisie_client(){
   printf("Nom du client ")           ;
   scan("%s", nom_client)             ;
