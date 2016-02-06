@@ -235,7 +235,13 @@ void creer_reservation()
   cible_date()    ;
   cible_chambre() ;
   rech_période(date_debut, date_fin ) ;
-
+  continue_resa = choix_chambre() ;
+  if(continue_resa)
+  {
+    saisie_client();
+    paiement_resa();
+    maj_planning   ;
+  }
 }
 
 /*############################################
