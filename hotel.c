@@ -12,7 +12,14 @@
 * v 0.1.1 - 2016-02-04 On s'attaque aux chambres
 * v 0.1.1 - 2016-02-04 Ebauches pour la réservation
 * v 0.1.2 - 2016-02-05 Modification des chambres presque fonctionnelle
-* v 0.1.3 - 2016-02-06 Modification et enregistrement fonctionnels. À optimiser.*/
+* v 0.1.3 - 2016-02-06 Modification et enregistrement fonctionnels.
+
+Reste à faire:
+* optimiser enregistrement sur fichier et cycle de modification.
+* optimiser affichage et saisie des descripteurs des chambres
+* tests
+
+*/
 
 #include <stdio.h>
 #include <string.h>
@@ -118,7 +125,6 @@ main()
   int res_chambre = 0   ; /*Résultat recherche chambres */
   int chambre_cible = 0 ; /*Chambre recherchée*/
   char choix_modif      ;
-
 
   chargement_chambres();
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
