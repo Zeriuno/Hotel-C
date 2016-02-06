@@ -228,14 +228,14 @@ void creer_reservation()
 {
   cible_date()    ;
   cible_chambre() ;
-  rech_période(date_debut, date_fin ) ;
+  rech_periode(date_debut, date_fin ) ;
 
 
-  printf("Nom du client ");
-  scan("%s", nom_client);
-  printf("Prénom du client ");
-  scan("%s", prenom_client);
-  printf("Numéro de téléphone ");
+  printf("Nom du client ")           ;
+  scan("%s", nom_client)             ;
+  printf("Prénom du client ")        ;
+  scan("%s", prenom_client)          ;
+  printf("Numéro de téléphone ")     ;
   scan("%s", numero_telephone_client);
 
 
