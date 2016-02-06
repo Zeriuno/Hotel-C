@@ -141,7 +141,7 @@ main()
     printf("3 - Déclarer des travaux dans une chambre.\n") ;
     printf("4 - Rechercher une chambre.\n\n")              ;
     printf("------------------------------------------\n") ;
-    printf("     PARAMÉTRES    \n\n")                      ;
+    printf("     PARAMÈTRES    \n\n")                      ;
     printf("5 - Mettre à jour la date du planning.\n")     ;
     printf("6 - Catalogue des services.\n\n")              ;
     printf("------------------------------------------\n") ;
@@ -277,13 +277,33 @@ void cible_chambre()
   printf("2 - deux lits simples\n");
   printf("3 - un lit double\n")    ;
   printf("Saisir le type de lits :") ;
-  scanf("%d", &cible_lits)       ;
-  printf("Chambre avec baignoire ou douche ?") ;
+  scanf("%d", &cible_lits)  ;
   printf("Chambre avec vue ? ")                ;
+  scanf("%", &cible_vue)                      ;
+  printf("Quel type de salle de bain ?") ;
+  printf("0 - indifférent\n")  ;
+  printf("1 - douche\n");
+  printf("2 - baignoire\n") ;
+  printf("Saisir le type de salle de bain :") ;
+  scanf("%", &cible_bain)      ;
+  printf("Chambre avec vue ? ")                ;
+  printf("0 - indifférent\n")  ;
+  printf("1 - vue\n");
+  printf("2 - pas de vue\n") ;
+  printf("Vue :") ;
   scanf("%", &cible_vue)                       ;
-  printf("");
-  printf("");
-  printf("");
+  printf("Chambre "fumeur" ? ")                ;
+  printf("0 - indifférent\n")  ;
+  printf("1 - fumeur\n");
+  printf("2 - non fumeur\n") ;
+  printf("Fumeur :") ;
+  scanf("%", &cible_fumeur)                       ;
+  printf("Chambre avec animaux autorisés? ")                ;
+  printf("0 - indifférent\n")  ;
+  printf("1 - animaux autorisés\n");
+  printf("2 - animaux non autorisés\n") ;
+  printf("Animaux autorisés :") ;
+  scanf("%", &cible_animaux)                       ;
 }*/
 /*############################################
 #                                            #
@@ -621,7 +641,7 @@ void modification_chambre(int res_chambre)
     printf("Animaux acceptés ou non : %d\n", chambre.animaux)        ;
     printf("Animaux ou non : ")                 ;
     scanf("%d", &chambre.animaux)                                    ;
-    tab_chambres[res_chambre] = chambre                                 ;
+    tab_chambres[res_chambre] = chambre                              ;
     /*a_sauv_chambre=1                                                 ; ça après*/
   /*}*/
 }
