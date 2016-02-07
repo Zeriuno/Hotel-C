@@ -248,7 +248,7 @@ void lecture_jours()
   f1 = fopen(CALENDRIER, "r");
   for(i=0 ; i < ANNEE ; i++)
   {
-    fscanf("%d %d", &calendrier[i].date, &calendrier[i].saison);
+    fscanf("%lu %d", &calendrier[i].date, &calendrier[i].saison);
   }
 }
 
