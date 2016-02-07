@@ -301,17 +301,33 @@ void maj_calendrier(int i)
 {
   FILE *f1                         ;
   int j                            ;
+  char choix_saison = 'a'          ;
+
   for(j = i; j < ANNEE; j++) /* déplacer les valeurs des jours dans le calendrier LE FUTUR C'EST MAINTENANT!*/
   {
     calendrier[j-i] = calendier[j] ;
   }
   for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent MORE FUTURE (slogan anti-punk)*/
   {
-    printf("Quel jour vient après le %d (format aaaammjj) ?", calendrier[j-1].date);
-    scanf("%d", &calendrier[j].date);
+    printf("Quel jour vient après le %lu (format aaaammjj) ?", calendrier[j-1].date);
+    scanf("%lu", &calendrier[j].date);
+    while((choix_saison != 'b') || (choix_saison != 'h'))
     printf("Quelle est sa saison (b/h) ?") ;
     while((poubelle=getchar()) != '\n');
-    scanf("%c", &calendrier[j].saison)
+    scanf("%c", &choix_saison) ;
+    if(choix_saison == 'b')
+    {
+      calendrier[j].saison = 0;
+    }
+    else
+    if(choix_saison == 'h')
+      {
+        calendrier[j].saison = 1;
+      }
+      else
+      {
+        printf("Le choix n'est pas valide") ;
+      }
   }
   f1 = fopen(CALENDRIER, "w");
   for(j = 0 ; j < ANNEE ; j++) /*jsuqu'à la fin du tableau*/
