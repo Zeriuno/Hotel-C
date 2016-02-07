@@ -12,10 +12,11 @@
 * v 0.1.1 - 2016-02-04 On s'attaque aux chambres
 * v 0.1.1 - 2016-02-04 Ebauches pour la réservation
 * v 0.1.2 - 2016-02-05 Modification des chambres presque fonctionnelle
-* v 0.1.3 - 2016-02-06 Modification et enregistrement fonctionnels. À optimiser.
+* v 0.1.3 - 2016-02-06 Modification et enregistrement fonctionnels. À optimiser
+* v 0.1.4 - 2016-02-07 Chargement et mise à jour du calendrier
 
 Reste à faire:
-* optimiser enregistrement sur fichier et cycle de modification.
+* optimiser enregistrement sur fichier et cycle de modification des chambres.
 * Traiter des chaînes de caractères avec espaces.
 * optimiser affichage et saisie des descripteurs des chambres.
 * évaluer la possibilité de déclarer les variables de choix (vue/sans vue; fumeur/non fumeur; haute saison/basse saison) comme des short int;
@@ -233,7 +234,10 @@ main()
 
 /*############################################
 #                                            #
-#             lecture_jours                  #
+#                PARTIE JOURS                #
+#        #############################       #
+#                                            #
+#               lecture_jours                #
 #                                            #
 ##############################################
 Prend les jours présents dans le fichier qui tient conte des jours (et saison) et les charge dans le tableau correspondant.
@@ -241,13 +245,13 @@ Prend les jours présents dans le fichier qui tient conte des jours (et saison) 
 
 void lecture_jours()
 {
-  FILE *f1 ;
-  int i    ;
+  FILE *f1                    ;
+  int i                       ;
 
-  f1 = fopen(CALENDRIER, "r");
+  f1 = fopen(CALENDRIER, "r") ;
   for(i=0 ; i < ANNEE ; i++)
   {
-    fscanf(f1, "%lu %hd", &calendrier[i].date, &calendrier[i].saison);
+    fscanf(f1, "%lu %hd", &calendrier[i].date, &calendrier[i].saison) ;
   }
 }
 
@@ -283,7 +287,7 @@ void test_date()
   }
   if (i != 0)
   {
-    maj_calendrier(i);
+    maj_calendrier(i) ;
   }
 }
 
@@ -308,33 +312,35 @@ void maj_calendrier(int i)
   }
   for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent MORE FUTURE (slogan anti-punk)*/
   {
-    printf("Quel jour vient après le %lu (format aaaammjj) ?", calendrier[j-1].date);
-    scanf("%lu", &calendrier[j].date);
+    printf("Quel jour vient après le %lu (format aaaammjj) ?", calendrier[j-1].date) ;
+    scanf("%lu", &calendrier[j].date)       ;
     while((choix_saison != 'b') || (choix_saison != 'h'))
-    printf("Quelle est sa saison (b/h) ?") ;
-    while((poubelle=getchar()) != '\n');
-    scanf("%c", &choix_saison) ;
+    printf("Quelle est sa saison (b/h) ?")  ;
+    while((poubelle=getchar()) != '\n')     ;
+    scanf("%c", &choix_saison)              ;
     if(choix_saison == 'b')
     {
-      calendrier[j].saison = 0;
+      calendrier[j].saison = 0              ;
     }
     else
     if(choix_saison == 'h')
       {
-        calendrier[j].saison = 1;
+        calendrier[j].saison = 1            ;
       }
       else
       {
         printf("Le choix n'est pas valide") ;
       }
   }
-  f1 = fopen(CALENDRIER, "w");
+  f1 = fopen(CALENDRIER, "w")               ;
   for(j = 0 ; j < ANNEE ; j++) /*jsuqu'à la fin du tableau*/
   {
-    fprintf(f1, "%lu %d\n", calendrier[j].date, calendrier[j].saison);
+    fprintf(f1, "%lu %d\n", calendrier[j].date, calendrier[j].saison) ;
   }
-  fclose(f1);
+  fclose(f1)                                ;
 }
+
+
 /*############################################
 #                                            #
 #             mauvais_choix                  #
