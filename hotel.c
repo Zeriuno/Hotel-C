@@ -91,7 +91,7 @@ long unsigned int planning[MAX_NB_CHAMBRES][ANNEE]; /*Les valeurs dans ce tablea
 
 struct resa
 {
-  long int code_resa    ; /*long int, cela en garantit l'unicité sur une période assez longue.*/
+  long unsigned int code_resa    ; /*long unsigned int, cela en garantit l'unicité sur une période assez longue.*/
   int datearrivee       ;
   int datedepart        ;
   char nomclient[50]    ;
