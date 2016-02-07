@@ -297,11 +297,11 @@ void maj_calendrier(int i)
 {
   FILE *f1                         ;
   int j                            ;
-  for(j = i; j < ANNEE; j++) /*déplacer les valeurs des jours dans le calendrier*/
+  for(j = i; j < ANNEE; j++) /* déplacer les valeurs des jours dans le calendrier LE FUTUR C'EST MAINTENANT!*/
   {
     calendrier[j-i] = calendier[j] ;
   }
-  for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent*/
+  for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent MORE FUTURE (slogan anti-punk)*/
   {
     printf("Quel jour vient après le %d (format aaaammjj) ?", calendrier[j-1].date);
     scanf("%d", &calendrier[j].date);
