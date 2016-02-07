@@ -41,6 +41,7 @@ Reste à faire:
 
 #define CALENDRIER "calendrier.txt" /*Nom du fichier contentant le calendrier (dates et saison)*/
 #define CHAMBRES  "chambres.txt" /*Nom du fichier contentant les chambres*/
+#define PLANNING "planning.txt" /*Nom du fichier contenant le planning*/
 
 
 /*Calendrier*/
