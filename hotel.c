@@ -156,8 +156,8 @@ main()
   int chambre_cible = 0 ; /*Chambre recherchée*/
   char choix_modif      ;
 
-  test_date();
   lecture_jours();
+  test_date();
   chargement_chambres();
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
   while(choix != 9) /* 9 est la valeur pour quitter. */
@@ -267,8 +267,8 @@ void test_date()
   while(choix_date != 'o')
   {
     printf("Test des paramètres\n") ;
-    printf("Aujourd'hui nous sommes le %lu (o/n) ?", calendrier[i].date) ;
-    scanf("%c", &choix_date) ;
+    printf("Aujourd'hui nous sommes le %lu (o/n) ? ", calendrier[i].date) ;
+    scanf("%c", &choix_date)        ;
     if(choix_date != 'o')
     {
       if(choix_date == 'n')
