@@ -77,7 +77,7 @@ void modif_services()                ; /* Pour modifier les services déjà list
 
 char poubelle           ; /*pour vider le buffer des \n*/
 
-
+/*Calendrier*/
 struct jour
 {
   long unsigned int date ; /*date aaaammjj*/
@@ -85,6 +85,8 @@ struct jour
 };
 
 struct jour calendrier[ANNEE];
+
+/*Planning*/
 
 long unsigned int planning[MAX_NB_CHAMBRES][ANNEE]; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
 
