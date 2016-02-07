@@ -37,6 +37,12 @@ Reste à faire:
 #define NON_TROUVE -1 /*Pour tester si un résultat a été trouvé à la recherche*/
 #define ANNEE 365 /* Utilisée pour dimensionner le planning et le calendrier*/
 
+
+/*Calendrier*/
+void lecture_jours() ; /* Prend les jours présents dans le fichier qui tient conte des jours (et saison) et les charge dans le tableau correspondant.*/
+void test_date()     ; /* Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tableau et dans le calendrier. Si la date a changé, déclanche la mise à jour dans les deux.*/
+void maj_calendrier(int i); /*mise à jour*/
+
 /*Chambres*/
 int rech_chambre(int chambre_rech);
 void chargement_chambres()        ;
@@ -75,8 +81,6 @@ struct jour
 struct jour calendrier[ANNEE];
 
 long int planning[MAX_NB_CHAMBRES][ANNEE]; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
-
-
 
 /*Réservations*/
 
@@ -147,7 +151,8 @@ main()
   int chambre_cible = 0 ; /*Chambre recherchée*/
   char choix_modif      ;
 
-
+  test_date();
+  lecture_jours();
   chargement_chambres();
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
   while(choix != 9) /* 9 est la valeur pour quitter. */
@@ -221,7 +226,94 @@ main()
   }
 }
 
+/*############################################
+#                                            #
+#             lecture_jours                  #
+#                                            #
+##############################################
+Prend les jours présents dans le fichier qui tient conte des jours (et saison) et les charge dans le tableau correspondant.
+*/
 
+void lecture_jours();
+{
+  FILE *f1 ;
+  int i    ;
+
+  f1 = fopen("calendrier.txt", "r");
+  for(i=0 ; i < ANNEE ; i++)
+  {
+    fscanf("%d %d", &calendrier[i].date; &calendrier[i].saison);
+  }
+}
+
+/*############################################
+#                                            #
+#                test_date                   #
+#                                            #
+##############################################
+Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tableau et dans le calendrier. Si la date a changé, déclanche la mise à jour dans les deux.
+*/
+
+void lecture_jours()
+{
+  char choix_date = 'f' ;
+  int i = 0             ;
+
+  while(choix_date != 'o')
+  {
+    printf("Test des paramètres\n") ;
+    printf("Aujourd'hui nous sommes le %d (o/n) ?", calendrier[i].date) ;
+    scanf("%c", &choix_date) ;
+    if(choix_date != 'o')
+    {
+      if(choix_date == "n")
+      {
+        i++ ;
+      }
+      else
+      {
+        printf("Choix non accepté. Les choix possibles sont 'o' pour 'oui' ou 'n' pour 'non'.\n") ;
+      }
+    }
+  }
+  if (i != 0)
+  {
+    maj_calendrier(i);
+  }
+}
+
+/*############################################
+#                                            #
+#             maj_calendrier                 #
+#                                            #
+##############################################
+
+Mise à jour du calendrier déclenchée par le test sur la date courante.
+
+*/
+void maj_calendrier(int i)
+{
+  FILE *f1                         ;
+  int j                            ;
+  for(j = i; j < ANNEE; j++) /*déplacer les valeurs des jours dans le calendrier*/
+  {
+    calendrier[j-i] = calendier[j] ;
+  }
+  for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent*/
+  {
+    printf("Quel jour vient après le %d (format aaaammjj) ?", calendrier[j-1].date);
+    scanf("%d", &calendrier[j].date);
+    printf("Quelle est sa saison (b/h) ?") ;
+    while((poubelle=getchar()) != '\n');
+    scanf("%c", &calendrier[j].saison)
+  }
+  f1 = fopen("calendrier.txt", "w");
+  for(j = 0 ; j < ANNEE ; j++) /*jsuqu'à la fin du tableau*/
+  {
+    fprintf(f1, "%d %d\n", calendrier[j].date, calendrier[j].saison);
+  }
+  fclose(f1);
+}
 /*############################################
 #                                            #
 #             mauvais_choix                  #
@@ -237,7 +329,6 @@ void mauvais_choix(int par_choix)
 {
   printf("Vous avez sélectionné %d : ce choix n'est pas disponible. Veuillez ressaisir.\n", par_choix);
 }
-
 
 /*############################################
 #                                            #
