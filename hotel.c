@@ -37,6 +37,10 @@ Reste à faire:
 #define NON_TROUVE -1 /*Pour tester si un résultat a été trouvé à la recherche*/
 #define ANNEE 365 /* Utilisée pour dimensionner le planning et le calendrier*/
 
+/*Fichiers*/
+
+#define CALENDRIER "calendrier.txt" /*Nom du fichier contentant le calendrier (dates et saison)*/
+
 
 /*Calendrier*/
 void lecture_jours() ; /* Prend les jours présents dans le fichier qui tient conte des jours (et saison) et les charge dans le tableau correspondant.*/
@@ -236,12 +240,12 @@ main()
 Prend les jours présents dans le fichier qui tient conte des jours (et saison) et les charge dans le tableau correspondant.
 */
 
-void lecture_jours();
+void lecture_jours()
 {
   FILE *f1 ;
   int i    ;
 
-  f1 = fopen("calendrier.txt", "r");
+  f1 = fopen(CALENDRIER, "r");
   for(i=0 ; i < ANNEE ; i++)
   {
     fscanf("%d %d", &calendrier[i].date; &calendrier[i].saison);
@@ -309,7 +313,7 @@ void maj_calendrier(int i)
     while((poubelle=getchar()) != '\n');
     scanf("%c", &calendrier[j].saison)
   }
-  f1 = fopen("calendrier.txt", "w");
+  f1 = fopen(CALENDRIER, "w");
   for(j = 0 ; j < ANNEE ; j++) /*jsuqu'à la fin du tableau*/
   {
     fprintf(f1, "%d %d\n", calendrier[j].date, calendrier[j].saison);
