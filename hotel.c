@@ -78,13 +78,13 @@ char poubelle           ; /*pour vider le buffer des \n*/
 
 struct jour
 {
-  long int date ; /*date aaaammjj*/
+  long unsigned int date ; /*date aaaammjj*/
   short int saison    ; /*0 basse saison, 1 haute saison*/
 };
 
 struct jour calendrier[ANNEE];
 
-long int planning[MAX_NB_CHAMBRES][ANNEE]; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
+long unsigned int planning[MAX_NB_CHAMBRES][ANNEE]; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
 
 /*Réservations*/
 
@@ -268,11 +268,11 @@ void lecture_jours()
   while(choix_date != 'o')
   {
     printf("Test des paramètres\n") ;
-    printf("Aujourd'hui nous sommes le %d (o/n) ?", calendrier[i].date) ;
+    printf("Aujourd'hui nous sommes le %lu (o/n) ?", calendrier[i].date) ;
     scanf("%c", &choix_date) ;
     if(choix_date != 'o')
     {
-      if(choix_date == "n")
+      if(choix_date == 'n')
       {
         i++ ;
       }
