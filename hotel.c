@@ -878,7 +878,7 @@ void enreg_chambre()
   for(i = 0; i < MAX_NB_CHAMBRES ; i++)
   {
     chambre = tab_chambres[i]               ;
-    fprintf(f1, "%d %d %d %d %d %d %d %d %d %d %d\n", chambre.num_chambre, chambre.type_chambre, , chambre.type_lits, chambre.categorie_chambre, chambre.type_lits, chambre.balcon, chambre.vue, chambre.bain, chambre.fumeur, chambre.animaux) ;
+    fprintf(f1, "%d %d %d %d %d %d %d %d %d %d\n", chambre.num_chambre, chambre.type_chambre, chambre.type_lits, chambre.categorie_chambre, chambre.type_lits, chambre.balcon, chambre.vue, chambre.bain, chambre.fumeur, chambre.animaux) ;
   }
   fclose(f1)                                                ;
   /*a_sauv_chambre = 0                                        ;*/
