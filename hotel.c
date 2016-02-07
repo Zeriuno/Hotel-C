@@ -305,7 +305,7 @@ void maj_calendrier(int i)
 
   for(j = i; j < ANNEE; j++) /* déplacer les valeurs des jours dans le calendrier LE FUTUR C'EST MAINTENANT!*/
   {
-    calendrier[j-i] = calendier[j] ;
+    calendrier[j-i] = calendrier[j] ;
   }
   for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent MORE FUTURE (slogan anti-punk)*/
   {
