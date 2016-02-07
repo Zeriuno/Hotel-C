@@ -40,6 +40,7 @@ Reste à faire:
 /*Fichiers*/
 
 #define CALENDRIER "calendrier.txt" /*Nom du fichier contentant le calendrier (dates et saison)*/
+#define CHAMBRES  "chambres.txt" /*Nom du fichier contentant les chambres*/
 
 
 /*Calendrier*/
@@ -750,7 +751,7 @@ void affichage_catalogue()
 #                                            #
 ##############################################
 
-Lit le fichier chambres.txt et charge son contenu dans le tableau de chambres.
+Lit le fichier CHAMBRES et charge son contenu dans le tableau de chambres.
 
 */
 void chargement_chambres()
@@ -758,7 +759,7 @@ void chargement_chambres()
   FILE *f1                        ;
   int i = 0                       ;
 
-  f1 = fopen("chambres.txt", "r") ;
+  f1 = fopen("CHAMBRES", "r") ;
   while(!feof(f1))
   {
     fscanf(f1, "%d %d %d %d %d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.type_chambre, &chambre.type_lits, &chambre.categorie_chambre, &chambre.type_lits, &chambre.balcon, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
@@ -878,7 +879,7 @@ Enregistrer automatique lors de la modification des chambres.
 void enreg_chambre()
 {
   FILE *f1                                  ;
-  f1 = fopen("chambres.txt", "w")           ;
+  f1 = fopen("CHAMBRES", "w")           ;
   int i                                     ;
 
   for(i = 0; i < MAX_NB_CHAMBRES ; i++)
