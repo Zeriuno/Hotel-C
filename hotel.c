@@ -331,7 +331,7 @@ void maj_calendrier(int i)
   f1 = fopen(CALENDRIER, "w");
   for(j = 0 ; j < ANNEE ; j++) /*jsuqu'à la fin du tableau*/
   {
-    fprintf(f1, "%d %d\n", calendrier[j].date, calendrier[j].saison);
+    fprintf(f1, "%lu %d\n", calendrier[j].date, calendrier[j].saison);
   }
   fclose(f1);
 }
