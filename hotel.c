@@ -260,7 +260,7 @@ void lecture_jours()
 Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tableau et dans le calendrier. Si la date a changé, déclanche la mise à jour dans les deux.
 */
 
-void lecture_jours()
+void test_date()
 {
   char choix_date = 'f' ;
   int i = 0             ;
