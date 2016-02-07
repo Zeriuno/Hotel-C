@@ -56,6 +56,8 @@ void modification_chambre(int res_chambre);
 void enreg_chambre()              ;
 void affichage_chambre()          ;
 
+/*Planning*/
+void chargement_planning();
 
 /*Déclarations préliminaires*/
 void mauvais_choix(int par_choisi)   ; /* Mauvais choix à l'intérieur des menus*/
@@ -361,6 +363,32 @@ void maj_calendrier(int i)
   fclose(f1)                                ;
 }
 
+
+/*############################################
+#                                            #
+#               PARTIE PLANNING              #
+#       #############################        #
+#                                            #
+#            chargement_planning             #
+#                                            #
+##############################################
+
+*/
+
+void chargement_planning()
+{
+  FILE *f1                              ;
+  int i, j                              ;
+  f1 = fopen(PLANNING, "r")             ;
+  for(i = 0 ; i < MAX_NB_CHAMBRES ; i++)
+  {
+    for(j = 0 ; j < ANNEE ; j++)
+    {
+      fscanf(f1, "%lu", planning[i][j]) ;
+    }
+  }
+  fclose(f1)                            ;
+}
 
 /*############################################
 #                                            #
