@@ -28,7 +28,6 @@ Reste à faire:
 #include <stdio.h>
 #include <string.h>
 
-
 /*Constantes*/
 
 #define MAX_CAT_SERV 20    /* Constante qui limite le catalogue des services -- ajouter un test concernant cette limite - Utilisé pour catalogue_services */
@@ -248,7 +247,7 @@ void lecture_jours()
   f1 = fopen(CALENDRIER, "r");
   for(i=0 ; i < ANNEE ; i++)
   {
-    fscanf("%lu %d", &calendrier[i].date, &calendrier[i].saison);
+    fscanf(f1, "%lu %d", &calendrier[i].date, &calendrier[i].saison);
   }
 }
 
