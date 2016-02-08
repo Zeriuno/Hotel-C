@@ -44,6 +44,13 @@ Reste à faire:
 #define PLANNING "planning.txt" /*Nom du fichier contenant le planning*/
 
 
+/*Déclarations préliminaires*/
+/*D'utilité générale*/
+
+void mauvais_choix(int par_choisi)   ; /* Mauvais choix à l'intérieur des menus*/
+long int jjmmaaaa_vers_aaaammjj(int j, int m, int a); /*Prendre une date saisie et la traduire en lonf int date*/
+
+
 /*Calendrier*/
 void lecture_jours() ; /* Prend les jours présents dans le fichier qui tient conte des jours (et saison) et les charge dans le tableau correspondant.*/
 void test_date()     ; /* Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tableau et dans le calendrier. Si la date a changé, déclanche la mise à jour dans les deux.*/
@@ -59,8 +66,6 @@ void affichage_chambre()          ;
 /*Planning*/
 void chargement_planning();
 
-/*Déclarations préliminaires*/
-void mauvais_choix(int par_choisi)   ; /* Mauvais choix à l'intérieur des menus*/
 
 /*Réservations*/
 void creer_reservation()             ;
@@ -253,6 +258,20 @@ Elle reçoit un paramètre pour signaler quel est le choix qui a été fait.
 void mauvais_choix(int par_choix)
 {
   printf("Vous avez sélectionné %d : ce choix n'est pas disponible. Veuillez ressaisir.\n", par_choix);
+}
+
+/*############################################
+#                                            #
+#          jjmmaaaa_vers_aaaammjj            #
+#                                            #
+##############################################
+
+Pour traduire ce qui est saisi dans le format convenable pour le stocker.
+*/
+
+long int jjmmaaaa_vers_aaaammjj(int j, int m, int a)
+{
+  return (a * 10000) + (m * 100) + j ;
 }
 
 
