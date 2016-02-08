@@ -44,7 +44,13 @@ Reste à faire:
 #define PLANNING "planning.txt" /*Nom du fichier contenant le planning*/
 
 
-/*Déclarations préliminaires*/
+/*----------------------
+
+Déclarations préliminaires
+
+----------------------*/
+
+
 /*D'utilité générale*/
 
 void mauvais_choix(int par_choisi)   ; /* Mauvais choix à l'intérieur des menus*/
