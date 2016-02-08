@@ -330,11 +330,11 @@ void maj_calendrier(int i)
   int j                            ;
   char choix_saison = 'a'          ;
 
-  for(j = i; j < ANNEE; j++) /* déplacer les valeurs des jours dans le calendrier LE FUTUR C'EST MAINTENANT!*/
+  for(j = i; j < ANNEE; j++) /* déplacer les valeurs des jours dans le calendrier: LE FUTUR C'EST MAINTENANT!*/
   {
     calendrier[j-i] = calendrier[j] ;
   }
-  for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent MORE FUTURE (slogan anti-punk)*/
+  for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent: MORE FUTURE (slogan anti-punk)*/
   {
     printf("Quel jour vient après le %lu (format aaaammjj) ?", calendrier[j-1].date) ;
     scanf("%lu", &calendrier[j].date)       ;
