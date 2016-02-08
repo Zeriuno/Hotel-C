@@ -42,6 +42,7 @@ Reste à faire:
 #define CALENDRIER "calendrier.txt" /*Nom du fichier contentant le calendrier (dates et saison)*/
 #define CHAMBRES  "chambres.txt" /*Nom du fichier contentant les chambres*/
 #define PLANNING "planning.txt" /*Nom du fichier contenant le planning*/
+#define PRIX_NUIT "prix_nuits.txt" /*Nom du fichier contenant le prix d'une nuitée*/
 
 
 /*----------------------
@@ -105,6 +106,22 @@ struct jour
 };
 
 struct jour calendrier[ANNEE] ;
+
+
+/*Prix nuitée*/
+struct prix_nuit
+{
+  int type_chambre        ; /* 0 simple ; 1 double ; 2 triple */
+  int categorie_chambre   ; /* 0 chambre ; 1 suite */
+  int saison              ; /* 0 basse saison, 1 haute saison  Je crois qu'au final ce n'est pas pertinent,
+  il faut plutôt se référer au calendrier pour la saison.. je vais y réfléchir plus tard: peut-être prix_hs et
+  prix_bs et si (saison=0) alors prix_nuitee=prix_bs ??? 
+  */
+};
+
+
+struct prix_nuit tab_prix_chambres[MAX_NB_CHAMBRES] ;
+
 
 /*Planning*/
 
@@ -594,16 +611,76 @@ void saisie_client(){
 
 */
 /*
-float montant_resa = 0 ;
 void paiement_resa(){
-  printf("Montant à payer : %f", &montant_resa) ;
-  printf("Choisir le mode de paiement: ") ;
-  printf(": ) ;
-  printf("Choisir le mode de paiement: ) ;
-  printf("Tapez '1' pour payer ") ;
-  scan("%s", &montant_paye)             ;
-  printf("Le paiement a bien été effectué. ");
-
+float prix_nuitee, prix_chambre ;
+int mode_paiment = 0, nb_nuitee ;
+if((type_chambre=0)&&(categorie_chambre=0)&&(saison=0))
+{
+  prix_nuiteeelse if (type_chambre=0)&&(categorie_chambre=1)&&(saison=0))
+  {
+   prix_nuitee=100;
+  }
+  else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=0))
+    {
+     prix_nuitee=100;
+    }
+    else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=1))
+      {
+       prix_nuitee=120;
+      }
+      else if (type_chambre=1)&&(categorie_chambre=0)&&(saison=0))
+        {
+         prix_nuitee=120;
+        }
+        else if (type_chambre=1)&&(categorie_chambre=0)&&(saison=1))
+          {
+           prix_nuitee=140;
+          }
+          else if (type_chambre=1)&&(categorie_chambre=1)&&(saison=0))
+            {
+             prix_nuitee=140;
+            }
+            else if (type_chambre=1)&&(categorie_chambre=1)&&(saison=1))
+              {
+               prix_nuitee=170;
+              }
+              else if (type_chambre=2)&&(categorie_chambre=0)&&(saison=0))
+                {
+                 prix_nuitee=170;
+                }
+                else if (type_chambre=2)&&(categorie_chambre=0)&&(saison=1))
+                  {
+                   prix_nuitee=190;
+                  }
+                  else if (type_chambre=2)&&(categorie_chambre=1)&&(saison=0))
+                    {
+                     prix_nuitee=190;
+                    }
+                    else if (type_chambre=2)&&(categorie_chambre=1)&&(saison=1))
+                      {
+                       prix_nuitee230;
+                      }
+  prix_chambre=prix_nuitee*nb_nuitee;
+  printf("Montant à payer : %f", &prix_chambre);
+  printf("Choisir le mode de paiement: ")      ;
+  printf("1- Espèces : )                       ;
+  printf("2- Chèque : )                        ;
+  printf("3- Carte bancaire : )                ;
+  printf("4- Virement : )                      ;
+  scanf("%d", &mode_paiment)                   ;
+  while (montant_paye != 1)
+  {
+    printf("Tapez '1' pour payer ") ;
+    scanf("%d", &montant_paye)      ;
+    if (montant_paye=1)
+    {
+      printf("Le paiement a bien été effectué. ");
+    }
+    else
+    {
+      printf("Attention, le paiement doit être effectué afin de valider la réservation. ");
+    }
+  }
 }
 
 */
@@ -1010,9 +1087,3 @@ void affichage_chambre()
     printf("Fumeurs ou non : %d\n", chambre.fumeur)                  ;
     printf("Animaux autorisés : %d\n\n", chambre.animaux)            ;
 }
-
-/* tableau prix chambre
-
-  int type_chambre        ; /* 0 simple ; 1 double ; 2 triple *//*
-  int categorie_chambre   ; /* 0 chambre ; 1 suite *//*
-  int prix_saison         ; /* 0 basse saison, 1 haute saison */

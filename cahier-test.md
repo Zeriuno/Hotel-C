@@ -1,5 +1,13 @@
 #Cahier de tests
 
+##Lancement du programme
+
+1. On demande à l'utilisateur si la date correspond bien à la date du jour. Si ce n'est pas le cas, l'utilisateur répond 'n' et on lui propose le jour d'après jusqu'à ce que la réponse soit positive.
+
+2. Ensuite, on lui demande de saisir la date du jour du calendrier au format aaaammjj.
+
+3. Enfin, l'utilisateur doit renseigner la saison: haute (h) ou basse (b). 
+
 ##Recherche chambres
 
 1. On demande la saisie du numéro de chambre à rechercher
@@ -9,7 +17,7 @@
 
 ##Menu services
 
-1. Accéder au menu des services → Les choix possibles sont affiché, une invite de saisie est affichée, on attend la saisie de l'utilisateur.
+1. Accéder au menu des services → Les choix possibles sont affichés, une invite de saisie est affichée, on attend la saisie de l'utilisateur.
 
 2. Choisir "1" ("Lire le catalogue des services") → Si existe, le fichier catalogue-services.txt est chargé en mémoire et affiché à l'écran. Si le fichier n'existe pas, un message d'erreur est affiché et le menu des services est affiché à nouveau.
 
