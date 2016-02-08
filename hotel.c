@@ -593,7 +593,8 @@ void cible_chambre()
 
 */
 /*
-void saisie_client(){
+void saisie_client()
+{
   char nom_client[100], prenom_client[200], numero_telephone_client[20];
   printf("Nom du client ")           ;
   scan("%s", nom_client)             ;
@@ -611,55 +612,59 @@ void saisie_client(){
 
 */
 /*
-void paiement_resa(){
-float prix_nuitee, prix_chambre ;
-int mode_paiment = 0, nb_nuitee ;
-if((type_chambre=0)&&(categorie_chambre=0)&&(saison=0))
+void paiement_resa()
 {
-  prix_nuiteeelse if (type_chambre=0)&&(categorie_chambre=1)&&(saison=0))
+  float prix_nuitee, prix_chambre ;
+  int mode_paiment = 0, nb_nuitee ;
+
+  if((type_chambre=0)&&(categorie_chambre=0)&&(saison=0))
+  {
+  prix_nuitee=80
+  }
+  else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=0))
   {
    prix_nuitee=100;
   }
   else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=0))
-    {
-     prix_nuitee=100;
-    }
-    else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=1))
-      {
-       prix_nuitee=120;
-      }
-      else if (type_chambre=1)&&(categorie_chambre=0)&&(saison=0))
-        {
-         prix_nuitee=120;
-        }
-        else if (type_chambre=1)&&(categorie_chambre=0)&&(saison=1))
-          {
-           prix_nuitee=140;
-          }
-          else if (type_chambre=1)&&(categorie_chambre=1)&&(saison=0))
-            {
-             prix_nuitee=140;
-            }
-            else if (type_chambre=1)&&(categorie_chambre=1)&&(saison=1))
-              {
-               prix_nuitee=170;
-              }
-              else if (type_chambre=2)&&(categorie_chambre=0)&&(saison=0))
-                {
-                 prix_nuitee=170;
-                }
-                else if (type_chambre=2)&&(categorie_chambre=0)&&(saison=1))
-                  {
-                   prix_nuitee=190;
-                  }
-                  else if (type_chambre=2)&&(categorie_chambre=1)&&(saison=0))
-                    {
-                     prix_nuitee=190;
-                    }
-                    else if (type_chambre=2)&&(categorie_chambre=1)&&(saison=1))
-                      {
-                       prix_nuitee230;
-                      }
+  {
+   prix_nuitee=100;
+  }
+  else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=1))
+  {
+   prix_nuitee=120;
+  }
+  else if (type_chambre=1)&&(categorie_chambre=0)&&(saison=0))
+  {
+    prix_nuitee=120;
+  }
+  else if (type_chambre=1)&&(categorie_chambre=0)&&(saison=1))
+  {
+    prix_nuitee=140;
+  }
+  else if (type_chambre=1)&&(categorie_chambre=1)&&(saison=0))
+  {
+    prix_nuitee=140;
+  }
+  else if (type_chambre=1)&&(categorie_chambre=1)&&(saison=1))
+  {
+    prix_nuitee=170;
+  }
+  else if (type_chambre=2)&&(categorie_chambre=0)&&(saison=0))
+  {
+    prix_nuitee=170;
+  }
+  else if (type_chambre=2)&&(categorie_chambre=0)&&(saison=1))
+  {
+    prix_nuitee=190;
+  }
+  else if (type_chambre=2)&&(categorie_chambre=1)&&(saison=0))
+  {
+    prix_nuitee=190;
+  }
+  else if (type_chambre=2)&&(categorie_chambre=1)&&(saison=1))
+  {
+    prix_nuitee230;
+  }
   prix_chambre=prix_nuitee*nb_nuitee;
   printf("Montant à payer : %f", &prix_chambre);
   printf("Choisir le mode de paiement: ")      ;
