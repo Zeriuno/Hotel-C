@@ -564,16 +564,77 @@ void saisie_client(){
 
 */
 /*
-float montant_resa = 0 ;
 void paiement_resa(){
-  printf("Montant à payer : %f", &montant_resa) ;
-  printf("Choisir le mode de paiement: ") ;
-  printf(": ) ;
-  printf("Choisir le mode de paiement: ) ;
-  printf("Tapez '1' pour payer ") ;
-  scan("%s", &montant_paye)             ;
-  printf("Le paiement a bien été effectué. ");
-
+float prix_chambre ;
+int mode_paiment = 0 ;
+if((type_chambre=0)&&(categorie_chambre=0)&&(saison=0))
+{
+  prix_chambre=80;
+}
+else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=0))
+  {
+   prix_chambre=100;
+  }
+  else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=0))
+    {
+     prix_chambre=100;
+    }
+    else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=1))
+      {
+       prix_chambre=120;
+      }
+      else if (type_chambre=1)&&(categorie_chambre=0)&&(saison=0))
+        {
+         prix_chambre=120;
+        }
+        else if (type_chambre=1)&&(categorie_chambre=0)&&(saison=1))
+          {
+           prix_chambre=140;
+          }
+          else if (type_chambre=1)&&(categorie_chambre=1)&&(saison=0))
+            {
+             prix_chambre=140;
+            }
+            else if (type_chambre=1)&&(categorie_chambre=1)&&(saison=1))
+              {
+               prix_chambre=170;
+              }
+              else if (type_chambre=2)&&(categorie_chambre=0)&&(saison=0))
+                {
+                 prix_chambre=170;
+                }
+                else if (type_chambre=2)&&(categorie_chambre=0)&&(saison=1))
+                  {
+                   prix_chambre=190;
+                  }
+                  else if (type_chambre=2)&&(categorie_chambre=1)&&(saison=0))
+                    {
+                     prix_chambre=190;
+                    }
+                    else if (type_chambre=2)&&(categorie_chambre=1)&&(saison=1))
+                      {
+                       prix_chambre=230;
+                      }
+  printf("Montant à payer : %f", &prix_chambre);
+  printf("Choisir le mode de paiement: ")      ;
+  printf("1- Espèces : )                       ;
+  printf("2- Chèque : )                        ;
+  printf("3- Carte bancaire : )                ;
+  printf("4- Virement : )                      ;
+  scanf("%d", &mode_paiment)                   ;
+  while (montant_paye != 1)
+  {
+    printf("Tapez '1' pour payer ") ;
+    scanf("%d", &montant_paye)      ;
+    if (montant_paye=1)
+    {
+      printf("Le paiement a bien été effectué. ");
+    }
+    else
+    {
+      printf("Attention, le paiement doit être effectué afin de valider la réservation. ");
+    }
+  }
 }
 
 */
@@ -985,4 +1046,5 @@ void affichage_chambre()
 
   int type_chambre        ; /* 0 simple ; 1 double ; 2 triple *//*
   int categorie_chambre   ; /* 0 chambre ; 1 suite *//*
-  int prix_saison         ; /* 0 basse saison, 1 haute saison */
+  int saison              ; /* 0 basse saison, 1 haute saison
+*/
