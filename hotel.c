@@ -42,6 +42,7 @@ Reste à faire:
 #define CALENDRIER "calendrier.txt" /*Nom du fichier contentant le calendrier (dates et saison)*/
 #define CHAMBRES  "chambres.txt" /*Nom du fichier contentant les chambres*/
 #define PLANNING "planning.txt" /*Nom du fichier contenant le planning*/
+#define PRIX_NUIT "prix_nuits.txt" /*Nom du fichier contenant le prix d'une nuitée*/
 
 
 /*----------------------
@@ -105,6 +106,18 @@ struct jour
 };
 
 struct jour calendrier[ANNEE] ;
+
+
+/*Prix nuitée*/
+struct prix_nuit
+{
+  int type_chambre        ; /* 0 simple ; 1 double ; 2 triple */
+  int categorie_chambre   ; /* 0 chambre ; 1 suite */
+  int saison              ; /* 0 basse saison, 1 haute saison*/
+};
+
+struct prix_nuit tab_prix_chambres[MAX_NB_CHAMBRES] ;
+
 
 /*Planning*/
 
@@ -565,56 +578,55 @@ void saisie_client(){
 */
 /*
 void paiement_resa(){
-float prix_chambre ;
-int mode_paiment = 0 ;
+float prix_nuitee, prix_chambre ;
+int mode_paiment = 0, nb_nuitee ;
 if((type_chambre=0)&&(categorie_chambre=0)&&(saison=0))
 {
-  prix_chambre=80;
-}
-else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=0))
+  prix_nuiteeelse if (type_chambre=0)&&(categorie_chambre=1)&&(saison=0))
   {
-   prix_chambre=100;
+   prix_nuitee=100;
   }
   else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=0))
     {
-     prix_chambre=100;
+     prix_nuitee=100;
     }
     else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=1))
       {
-       prix_chambre=120;
+       prix_nuitee=120;
       }
       else if (type_chambre=1)&&(categorie_chambre=0)&&(saison=0))
         {
-         prix_chambre=120;
+         prix_nuitee=120;
         }
         else if (type_chambre=1)&&(categorie_chambre=0)&&(saison=1))
           {
-           prix_chambre=140;
+           prix_nuitee=140;
           }
           else if (type_chambre=1)&&(categorie_chambre=1)&&(saison=0))
             {
-             prix_chambre=140;
+             prix_nuitee=140;
             }
             else if (type_chambre=1)&&(categorie_chambre=1)&&(saison=1))
               {
-               prix_chambre=170;
+               prix_nuitee=170;
               }
               else if (type_chambre=2)&&(categorie_chambre=0)&&(saison=0))
                 {
-                 prix_chambre=170;
+                 prix_nuitee=170;
                 }
                 else if (type_chambre=2)&&(categorie_chambre=0)&&(saison=1))
                   {
-                   prix_chambre=190;
+                   prix_nuitee=190;
                   }
                   else if (type_chambre=2)&&(categorie_chambre=1)&&(saison=0))
                     {
-                     prix_chambre=190;
+                     prix_nuitee=190;
                     }
                     else if (type_chambre=2)&&(categorie_chambre=1)&&(saison=1))
                       {
-                       prix_chambre=230;
+                       prix_nuitee230;
                       }
+  prix_chambre=prix_nuitee*nb_nuitee;
   printf("Montant à payer : %f", &prix_chambre);
   printf("Choisir le mode de paiement: ")      ;
   printf("1- Espèces : )                       ;
@@ -1041,10 +1053,3 @@ void affichage_chambre()
     printf("Fumeurs ou non : %d\n", chambre.fumeur)                  ;
     printf("Animaux autorisés : %d\n\n", chambre.animaux)            ;
 }
-
-/* tableau prix chambre
-
-  int type_chambre        ; /* 0 simple ; 1 double ; 2 triple *//*
-  int categorie_chambre   ; /* 0 chambre ; 1 suite *//*
-  int saison              ; /* 0 basse saison, 1 haute saison
-*/
