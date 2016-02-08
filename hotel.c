@@ -311,9 +311,9 @@ void test_date()
   char choix_date = 'f' ;
   int i = 0             ;
 
+  printf("Test des paramètres\n") ;
   while(choix_date != 'o')
   {
-    printf("Test des paramètres\n") ;
     printf("Aujourd'hui nous sommes le %lu (o/n) ? ", calendrier[i].date) ;
     scanf("%c", &choix_date)        ;
     if(choix_date != 'o')
