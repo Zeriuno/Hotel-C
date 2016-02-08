@@ -356,12 +356,13 @@ void maj_calendrier(int i)
   }
   for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent: MORE FUTURE (slogan anti-punk)*/
   {
-    printf("Quel jour vient après le %lu (format aaaammjj) ?", calendrier[j-1].date) ;
+    printf("Quel jour vient après le %lu (format aaaammjj) ? ", calendrier[j-1].date) ;
     scanf("%lu", &calendrier[j].date)       ;
-    while((choix_saison != 'b') || (choix_saison != 'h'))
-    printf("Quelle est sa saison (b/h) ?")  ;
-    while((poubelle=getchar()) != '\n')     ;
-    scanf("%c", &choix_saison)              ;
+    while((choix_saison != 'b') && (choix_saison != 'h'))
+    {
+      printf("Quelle est sa saison (b/h) ? ")  ;
+      while((poubelle=getchar()) != '\n')     ;
+      scanf("%c", &choix_saison)              ;
     if(choix_saison == 'b')
     {
       calendrier[j].saison = 0              ;
@@ -375,6 +376,7 @@ void maj_calendrier(int i)
       {
         printf("Le choix n'est pas valide") ;
       }
+    }
   }
   f1 = fopen(CALENDRIER, "w")               ;
   for(j = 0 ; j < ANNEE ; j++) /*jsuqu'à la fin du tableau*/
