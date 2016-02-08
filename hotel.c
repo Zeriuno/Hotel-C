@@ -113,8 +113,12 @@ struct prix_nuit
 {
   int type_chambre        ; /* 0 simple ; 1 double ; 2 triple */
   int categorie_chambre   ; /* 0 chambre ; 1 suite */
-  int saison              ; /* 0 basse saison, 1 haute saison*/
+  int saison              ; /* 0 basse saison, 1 haute saison  Je crois qu'au final ce n'est pas pertinent,
+  il faut plutôt se référer au calendrier pour la saison.. je vais y réfléchir plus tard: peut-être prix_hs et
+  prix_bs et si (saison=0) alors prix_nuitee=prix_bs ??? 
+  */
 };
+
 
 struct prix_nuit tab_prix_chambres[MAX_NB_CHAMBRES] ;
 
