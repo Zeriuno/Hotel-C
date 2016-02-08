@@ -823,8 +823,8 @@ void chargement_chambres()
   f1 = fopen("CHAMBRES", "r") ;
   for(i = 0; i < 50 ; i++)
   {
-    printf("Je boucle %d\n", i);
-    fscanf(f1, "%d %d %d %d %d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.type_chambre, &chambre.type_lits, &chambre.categorie_chambre, &chambre.type_lits, &chambre.balcon, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
+    printf("Je boucle %d\n", i); /*debug*/
+    fscanf(f1, "%d %d %d %d %d %d %d %d %d %d", &chambre.num_chambre, &chambre.type_chambre, &chambre.type_lits, &chambre.categorie_chambre, &chambre.type_lits, &chambre.balcon, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
     printf("%d fait\n", i);
     tab_chambres[i] = chambre ;
     printf("J'ai rangé la chambre\n");
