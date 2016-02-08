@@ -290,6 +290,36 @@ long int jjmmaaaa_vers_aaaammjj(int j, int m, int a)
 
 /*############################################
 #                                            #
+#          aaaammjj_vers_jjmmaaaa            #
+#                                            #
+##############################################
+
+Retourne en chaine de caractères jj/mm/aaaa la date fournie en format aaaa/mm/jj
+
+*/
+
+char aaaammjj_vers_jjmmaaaa(long int date)
+{
+  int annee, mois, jour                         ;
+  char temporaire[5];
+  char date_chaine[11]                          ;
+  annee = date/10000                            ;
+  mois = (date - (annee * 10000)) /100          ;
+  jour = (date - (annee *10000) - (mois * 100)) ;
+  sprintf(temporaire, "%d", annee);
+  strcat(date_chaine, temporaire);
+  strcat(date_chaine, "/");
+  sprintf(temporaire, "%d", mois);
+  strcat(date_chaine, temporaire);
+  strcat(date_chaine, "/");
+  sprintf(temporaire, "%d", jour);
+  strcat(date_chaine, temporaire);
+  return *date_chaine;
+}
+
+
+/*############################################
+#                                            #
 #                PARTIE JOURS                #
 #        #############################       #
 #                                            #
