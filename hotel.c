@@ -163,9 +163,10 @@ main()
   int chambre_cible = 0 ; /*Chambre recherchée*/
   char choix_modif      ;
 
-  lecture_jours();
-  test_date();
-  chargement_chambres();
+  lecture_jours()       ;
+  test_date()           ;
+  chargement_chambres() ;
+  chargement_planning() ;
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
   while(choix != 9) /* 9 est la valeur pour quitter. */
   {
@@ -384,7 +385,7 @@ void chargement_planning()
   {
     for(j = 0 ; j < ANNEE ; j++)
     {
-      fscanf(f1, "%lu", planning[i][j]) ;
+      fscanf(f1, "%lu", &planning[i][j]) ;
     }
   }
   fclose(f1)                            ;
