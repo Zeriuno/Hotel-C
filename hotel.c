@@ -617,6 +617,39 @@ void paiement_resa()
   float prix_nuitee, prix_chambre ;
   int mode_paiment = 0, nb_nuitee ;
 
+/*Je voyais ça plutôt comme ça:
+
+  if(type_chambre == 0)
+  {
+    if(categorie_chambre == 0)
+    {
+      if(saison == 0)
+      {
+        prix_nuitee = 80;
+      }
+      else /*c'est forcément saison ==1
+        prix_nuitee = 100;
+    }
+    else /* ici aussi ce sera forcément 1
+    {
+      if(saison == 0)
+      …
+      else
+    }
+    else /* ici plusieurs possibilités
+    {
+      if(type_chambre == 1)
+      {
+      if /* et ici on teste tout le reste
+      }
+      if(type_chambre == 2)
+      {
+      …
+      }
+    }
+  }
+
+/*
   if((type_chambre=0)&&(categorie_chambre=0)&&(saison=0))
   {
   prix_nuitee=80
