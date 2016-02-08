@@ -321,6 +321,7 @@ void test_date()
       if(choix_date == 'n')
       {
         i++ ;
+        while((poubelle=getchar()) != '\n') ;
       }
       else
       {
@@ -809,14 +810,16 @@ Lit le fichier CHAMBRES et charge son contenu dans le tableau de chambres.
 void chargement_chambres()
 {
   FILE *f1                        ;
-  int i = 0                       ;
+  int i                           ;
 
   f1 = fopen("CHAMBRES", "r") ;
-  while(!feof(f1))
+  for(i = 0; i < 50 ; i++)
   {
+    printf("Je boucle %d\n", i);
     fscanf(f1, "%d %d %d %d %d %d %d %d %d %d\n", &chambre.num_chambre, &chambre.type_chambre, &chambre.type_lits, &chambre.categorie_chambre, &chambre.type_lits, &chambre.balcon, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
+    printf("%d fait\n", i);
     tab_chambres[i] = chambre ;
-    i++                       ;
+    printf("J'ai rangé la chambre\n");
   }
   fclose(f1)                  ;
 }
