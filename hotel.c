@@ -53,66 +53,73 @@ Déclarations préliminaires
 
 /*D'utilité générale*/
 
-void mauvais_choix(int par_choisi)   ; /* Mauvais choix à l'intérieur des menus*/
-long int jjmmaaaa_vers_aaaammjj(int j, int m, int a); /*Prendre une date saisie et la traduire en lonf int date*/
+void mauvais_choix(int par_choisi)                   ; /* Mauvais choix à l'intérieur des menus*/
+long int jjmmaaaa_vers_aaaammjj(int j, int m, int a) ; /*Prendre une date saisie et la traduire en lonf int date*/
 
 
 /*Calendrier*/
-void lecture_jours() ; /* Prend les jours présents dans le fichier qui tient conte des jours (et saison) et les charge dans le tableau correspondant.*/
-void test_date()     ; /* Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tableau et dans le calendrier. Si la date a changé, déclanche la mise à jour dans les deux.*/
-void maj_calendrier(int i); /*mise à jour*/
+void lecture_jours()       ; /* Prend les jours présents dans le fichier qui tient conte des jours (et saison) et les charge dans le tableau correspondant.*/
+void test_date()           ; /* Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tableau et dans le calendrier. Si la date a changé, déclanche la mise à jour dans les deux.*/
+void maj_calendrier(int i) ; /*mise à jour*/
 
 /*Chambres*/
-int rech_chambre(int chambre_rech);
-void chargement_chambres()        ;
-void modification_chambre(int res_chambre);
-void enreg_chambre()              ;
-void affichage_chambre()          ;
+int rech_chambre(int chambre_rech)         ;
+void chargement_chambres()                 ;
+void modification_chambre(int res_chambre) ;
+void enreg_chambre()                       ;
+void affichage_chambre()                   ;
 
 /*Planning*/
-void chargement_planning();
+void chargement_planning()                 ;
 
 
 /*Réservations*/
-void creer_reservation()             ;
-void cible_date()                    ;
-void cible_chambre()                 ;
+void creer_reservation()                   ;
+void cible_date()                          ;
+void cible_chambre()                       ;
 
 /*Gestion des services complémentaires*/
-void catalogue_services_menu()       ; /* Menu qui montre les choix possibles pour le catalogue de services*/
-void chargement_catalogue_services() ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente*/
-void affichage_catalogue()           ; /* Montre le tableau de services*/
-void saisie_services()               ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés*/
-void enreg_catalogue_services()      ; /* Sauvegarde le tableau chargé en mémoire dans un fichier*/
-void modif_services()                ; /* Pour modifier les services déjà listés*/
+void catalogue_services_menu()             ; /* Menu qui montre les choix possibles pour le catalogue de services*/
+void chargement_catalogue_services()       ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente*/
+void affichage_catalogue()                 ; /* Montre le tableau de services*/
+void saisie_services()                     ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés*/
+void enreg_catalogue_services()            ; /* Sauvegarde le tableau chargé en mémoire dans un fichier*/
+void modif_services()                      ; /* Pour modifier les services déjà listés*/
+
+
+/*----------------------
+
+Structures et variables
+
+----------------------*/
 
 /*Variables globales*/
 
-char poubelle           ; /*pour vider le buffer des \n*/
+char poubelle            ; /*pour vider le buffer des \n*/
 
 /*Calendrier*/
 struct jour
 {
   long unsigned int date ; /*date aaaammjj*/
-  short int saison    ; /*0 basse saison, 1 haute saison*/
+  short int saison       ; /*0 basse saison, 1 haute saison*/
 };
 
-struct jour calendrier[ANNEE];
+struct jour calendrier[ANNEE] ;
 
 /*Planning*/
 
-long unsigned int planning[MAX_NB_CHAMBRES][ANNEE]; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
+long unsigned int planning[MAX_NB_CHAMBRES][ANNEE] ; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
 
 /*Réservations*/
 
 struct resa
 {
   long unsigned int code_resa    ; /*long unsigned int, cela en garantit l'unicité sur une période assez longue.*/
-  int datearrivee       ;
-  int datedepart        ;
-  char nomclient[50]    ;
-  char prenomclient[50] ;
-  char telclient[13]    ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
+  int datearrivee                ;
+  int datedepart                 ;
+  char nomclient[50]             ;
+  char prenomclient[50]          ;
+  char telclient[13]             ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
 };
 
 struct cha
@@ -130,10 +137,10 @@ struct cha
   /*champ remarques en chaîne de caractères*/
 };
   /* Variables globales concernant les chambres*/
-struct cha tab_chambres[MAX_NB_CHAMBRES]; /*Tableau listant les chambres*/
-struct cha chambre                      ;
+struct cha tab_chambres[MAX_NB_CHAMBRES] ; /*Tableau listant les chambres*/
+struct cha chambre                       ;
 
-int a_sauv_chambre = 0                  ; /*pour la modification des chambres*/
+int a_sauv_chambre = 0                   ; /*pour la modification des chambres*/
 
   /* Variables globales concernant les frais*/
 struct frais
@@ -314,14 +321,14 @@ Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tab
 
 void test_date()
 {
-  char choix_date = 'f' ;
-  int i = 0             ;
+  char choix_date = 'f'                     ;
+  int i = 0                                 ;
 
-  printf("Test des paramètres\n") ;
+  printf("Test des paramètres\n")           ;
   while(choix_date != 'o')
   {
     printf("Aujourd'hui nous sommes le %lu (o/n) ? ", calendrier[i].date) ;
-    scanf("%c", &choix_date)        ;
+    scanf("%c", &choix_date)                ;
     if(choix_date != 'o')
     {
       if(choix_date == 'n')
@@ -337,7 +344,7 @@ void test_date()
   }
   if (i != 0)
   {
-    maj_calendrier(i) ;
+    maj_calendrier(i)                        ;
   }
 }
 
@@ -363,33 +370,33 @@ void maj_calendrier(int i)
   for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent: MORE FUTURE (slogan anti-punk)*/
   {
     printf("Quel jour vient après le %lu (format aaaammjj) ? ", calendrier[j-1].date) ;
-    scanf("%lu", &calendrier[j].date)       ;
+    scanf("%lu", &calendrier[j].date)         ;
     while((choix_saison != 'b') && (choix_saison != 'h'))
     {
-      printf("Quelle est sa saison (b/h) ? ")  ;
+      printf("Quelle est sa saison (b/h) ? ") ;
       while((poubelle=getchar()) != '\n')     ;
       scanf("%c", &choix_saison)              ;
     if(choix_saison == 'b')
     {
-      calendrier[j].saison = 0              ;
+      calendrier[j].saison = 0                ;
     }
     else
     if(choix_saison == 'h')
       {
-        calendrier[j].saison = 1            ;
+        calendrier[j].saison = 1              ;
       }
       else
       {
-        printf("Le choix n'est pas valide") ;
+        printf("Le choix n'est pas valide")   ;
       }
     }
   }
-  f1 = fopen(CALENDRIER, "w")               ;
+  f1 = fopen(CALENDRIER, "w")                 ;
   for(j = 0 ; j < ANNEE ; j++) /*jsuqu'à la fin du tableau*/
   {
     fprintf(f1, "%lu %d\n", calendrier[j].date, calendrier[j].saison) ;
   }
-  fclose(f1)                                ;
+  fclose(f1)                                  ;
 }
 
 
@@ -406,9 +413,9 @@ void maj_calendrier(int i)
 
 void chargement_planning()
 {
-  FILE *f1                              ;
-  int i, j                              ;
-  f1 = fopen(PLANNING, "r")             ;
+  FILE *f1                               ;
+  int i, j                               ;
+  f1 = fopen(PLANNING, "r")              ;
   for(i = 0 ; i < MAX_NB_CHAMBRES ; i++)
   {
     for(j = 0 ; j < ANNEE ; j++)
@@ -416,7 +423,7 @@ void chargement_planning()
       fscanf(f1, "%lu", &planning[i][j]) ;
     }
   }
-  fclose(f1)                            ;
+  fclose(f1)                             ;
 }
 
 /*############################################
@@ -636,7 +643,7 @@ void modif_services()
   int i = 0                      ;
   if (nb_services== 0)
   {
-    printf("Il n'y a actuellement aucun service dans le catalogue pour la modification.\n");
+    printf("Il n'y a actuellement aucun service dans le catalogue pour la modification.\n") ;
   }
   else
   {
@@ -654,15 +661,15 @@ void modif_services()
       }
       else
       {
-        strcpy(service.nom_service, nom_serv)                          ;
-        printf("Prix actuel du service : %.2f\n", service.prix_service);
-        printf("Nouveau prix : ")                                      ;
-        scanf("%f", &service.prix_service)                             ;
-        catalogue_services[i]=service                                  ;
-        i++                                                            ;
+        strcpy(service.nom_service, nom_serv)                           ;
+        printf("Prix actuel du service : %.2f\n", service.prix_service) ;
+        printf("Nouveau prix : ")                                       ;
+        scanf("%f", &service.prix_service)                              ;
+        catalogue_services[i]=service                                   ;
+        i++                                                             ;
       }
     }
-    sauv_catalogue_services=1                                          ;
+    sauv_catalogue_services=1                                           ;
   }
 }
 
@@ -787,17 +794,17 @@ Affiche les données déjà chargées dans le tableau de services.
 */
 void affichage_catalogue()
 {
-  struct entree_service service                                        ;
-  int i                                                                ;
+  struct entree_service service                                           ;
+  int i                                                                   ;
   if(nb_services == 0)
   {
-    printf("Le catalogue des services est vide.\n")                    ;
+    printf("Le catalogue des services est vide.\n")                       ;
   }
   else
   {
     for(i=0; i < nb_services; i++)
     {
-      service = catalogue_services[i]                                  ;
+      service = catalogue_services[i]                                     ;
       printf("%s : %.2f € \n", service.nom_service, service.prix_service) ;
     }
   }
@@ -817,19 +824,15 @@ Lit le fichier CHAMBRES et charge son contenu dans le tableau de chambres.
 */
 void chargement_chambres()
 {
-  FILE *f1                        ;
-  int i                           ;
+  FILE *f1                  ;
+  int i                     ;
 
-  f1 = fopen("CHAMBRES", "r") ;
+  f1 = fopen(CHAMBRES, "r") ;
   for(i = 0; i < 50 ; i++)
   {
-    printf("Je boucle %d\n", i); /*debug*/
-    fscanf(f1, "%d %d %d %d %d %d %d %d %d %d", &chambre.num_chambre, &chambre.type_chambre, &chambre.type_lits, &chambre.categorie_chambre, &chambre.type_lits, &chambre.balcon, &chambre.vue, &chambre.bain, &chambre.fumeur, &chambre.animaux) ;
-    printf("%d fait\n", i);
-    tab_chambres[i] = chambre ;
-    printf("J'ai rangé la chambre\n");
+    fscanf(f1, "%d %d %d %d %d %d %d %d %d", &tab_chambres[i].num_chambre, &tab_chambres[i].type_chambre, &tab_chambres[i].categorie_chambre, &tab_chambres[i].type_lits, &tab_chambres[i].balcon, &tab_chambres[i].vue, &tab_chambres[i].bain, &tab_chambres[i].fumeur, &tab_chambres[i].animaux) ;
   }
-  fclose(f1)                  ;
+  fclose(f1)                ;
 }
 
 
@@ -941,13 +944,13 @@ Enregistrer automatique lors de la modification des chambres.
 */
 void enreg_chambre()
 {
-  FILE *f1                                  ;
-  f1 = fopen("CHAMBRES", "w")           ;
-  int i                                     ;
+  FILE *f1                                                  ;
+  f1 = fopen("CHAMBRES", "w")                               ;
+  int i                                                     ;
 
   for(i = 0; i < MAX_NB_CHAMBRES ; i++)
   {
-    chambre = tab_chambres[i]               ;
+    chambre = tab_chambres[i]                               ;
     fprintf(f1, "%d %d %d %d %d %d %d %d %d %d\n", chambre.num_chambre, chambre.type_chambre, chambre.type_lits, chambre.categorie_chambre, chambre.type_lits, chambre.balcon, chambre.vue, chambre.bain, chambre.fumeur, chambre.animaux) ;
   }
   fclose(f1)                                                ;
