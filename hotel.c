@@ -890,7 +890,14 @@ Si la note n'existe pas, elle sera créée.
 
 void ajout_note(char num_note[])
 {
+  char date[11];
   FILE *f1;
+
+
+  /* ici une recherche dans le tableau des services
+  printf("");
+  f1 = fopen(num_note, ""); /* il n'y aurait pas de 'append'?
+  fclose(f1);
 }
 
 
