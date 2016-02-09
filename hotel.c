@@ -877,7 +877,42 @@ void affichage_note(char num_note[])
        }
      }
 }
+
+/*############################################
+#                                            #
+#                ajout_note                  #
+#                                            #
+##############################################
+Ajoute une entrée depuis le catalogue des services.
+Prend en paramètre l'identifiant d'une note.
+Si la note n'existe pas, elle sera créée.
+
+
+void ajout_note(char num_note[])
+{
+  FILE *f1;
+}
+
+
+/*############################################
+#                                            #
+#              paiement_note                 #
+#                                            #
+##############################################
+Prend en paramètre le nom d'une note.
+Teste si la note existe. Si non, renvoie un message d'erreur.
+Autrement elle récupère le total, demande les moyens de paiement et des informations.
+Le paiement est simulé et sauvegardé.
+
+void paiement_note(char num_note[])
+{
+  FILE *f1;
+
+}
+
 */
+
+
 
 /*############################################
 #                                            #
