@@ -37,6 +37,7 @@ Reste à faire:
 #define MAX_NB_CHAMBRES 50 /*Utilisée dans tab_chambres[]*/
 #define NON_TROUVE -1 /*Pour tester si un résultat a été trouvé à la recherche*/
 #define ANNEE 365 /* Utilisée pour dimensionner le planning et le calendrier*/
+#define NB_CHAMBRES_PRIX 6 /* nb de chambres différentes dans les prix*/
 
 /*Fichiers*/
 
@@ -115,14 +116,12 @@ struct prix_nuit
 {
   int type_chambre        ; /* 0 simple ; 1 double ; 2 triple */
   int categorie_chambre   ; /* 0 chambre ; 1 suite */
-  int saison              ; /* 0 basse saison, 1 haute saison  Je crois qu'au final ce n'est pas pertinent,
-  il faut plutôt se référer au calendrier pour la saison.. je vais y réfléchir plus tard: peut-être prix_hs et
-  prix_bs et si (saison=0) alors prix_nuitee=prix_bs ???
-  */
+  float prix_hs             ; /* prix haute saison */
+  float prix_bs             ; /* prix basse saison */
 };
 
 
-struct prix_nuit tab_prix_chambres[MAX_NB_CHAMBRES] ;
+struct prix_nuit tab_prix_chambres[NB_CHAMBRES_PRIX] ;
 
 
 /*Planning*/
@@ -642,113 +641,42 @@ void saisie_client()
 
 */
 /*
-void paiement_resa()
+void paiement_resa(int nb_nuitee_hs, int nb_nuitee_bs, int type_chambre, int categorie_chambre)
 {
-  float prix_nuitee, prix_chambre ;
-  int mode_paiment = 0, nb_nuitee ;
+  float total_resa ;
+  int mode_paiment = 0, nb_nuitee, i, test ;
+  struct prix_nuit nuit ;
+  FILE *f1;
 
-/*Je voyais ça plutôt comme ça:
-
-  if(type_chambre == 0)
+  nuit.type_chambre=type_chambre;
+  nuit.categorie_chambre=categorie_chambre;
+  f1=fopen(FICHIER_PRIX_CHAMBRES, "w");
+  for (i=0; i<NB_CHAMBRES_PRIX; i++)
   {
-    if(categorie_chambre == 0)
+  fscanf(f1, "%d %d %f %f", &tab_prix_chambres[i].type_chambre, &tab_prix_chambres[i].categorie_chambre, &tab_prix_chambres[i].prix_hs, &tab_prix_chambres[i].prix_bs);
+  }
+    i=0;
+    while (test<0)
     {
-      if(saison == 0)
+      if (tab_prix_chambres[i].type_chambre==nuit.type_chambre)
       {
-        prix_nuitee = 80;
-      }
-      else /*c'est forcément saison ==1
-        prix_nuitee = 100;
-    }
-    else /* ici aussi ce sera forcément 1
-    {
-      if(saison == 0)
-      …
-      else
-    }
-    else /* ici plusieurs possibilités
-    {
-      if(type_chambre == 1)
-      {
-      if /* et ici on teste tout le reste
-      }
-      if(type_chambre == 2)
-      {
-      …
+        if (tab_prix_chambres[i].categorie_chambre==nuit.categorie_chambre)
+        {
+          nuit=tab_prix_chambres[i];
+        }
       }
     }
-  }
+  total_resa=(nb_nuitee_hs*nuit.prix_hs)+(nb_nuitee_bs*nuit.prix_bs);
 
-/*
-  if((type_chambre=0)&&(categorie_chambre=0)&&(saison=0))
-  {
-  prix_nuitee=80
-  }
-  else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=0))
-  {
-   prix_nuitee=100;
-  }
-  else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=0))
-  {
-   prix_nuitee=100;
-  }
-  else if (type_chambre=0)&&(categorie_chambre=1)&&(saison=1))
-  {
-   prix_nuitee=120;
-  }
-  else if (type_chambre=1)&&(categorie_chambre=0)&&(saison=0))
-  {
-    prix_nuitee=120;
-  }
-  else if (type_chambre=1)&&(categorie_chambre=0)&&(saison=1))
-  {
-    prix_nuitee=140;
-  }
-  else if (type_chambre=1)&&(categorie_chambre=1)&&(saison=0))
-  {
-    prix_nuitee=140;
-  }
-  else if (type_chambre=1)&&(categorie_chambre=1)&&(saison=1))
-  {
-    prix_nuitee=170;
-  }
-  else if (type_chambre=2)&&(categorie_chambre=0)&&(saison=0))
-  {
-    prix_nuitee=170;
-  }
-  else if (type_chambre=2)&&(categorie_chambre=0)&&(saison=1))
-  {
-    prix_nuitee=190;
-  }
-  else if (type_chambre=2)&&(categorie_chambre=1)&&(saison=0))
-  {
-    prix_nuitee=190;
-  }
-  else if (type_chambre=2)&&(categorie_chambre=1)&&(saison=1))
-  {
-    prix_nuitee230;
-  }
-  prix_chambre=prix_nuitee*nb_nuitee;
-  printf("Montant à payer : %f", &prix_chambre);
+  printf("Montant à payer : %f", &total_resa);
   printf("Choisir le mode de paiement: ")      ;
   printf("1- Espèces : )                       ;
   printf("2- Chèque : )                        ;
   printf("3- Carte bancaire : )                ;
   printf("4- Virement : )                      ;
   scanf("%d", &mode_paiment)                   ;
-  while (montant_paye != 1)
-  {
-    printf("Tapez '1' pour payer ") ;
-    scanf("%d", &montant_paye)      ;
-    if (montant_paye=1)
-    {
-      printf("Le paiement a bien été effectué. ");
-    }
-    else
-    {
-      printf("Attention, le paiement doit être effectué afin de valider la réservation. ");
-    }
-  }
+  printf("Le paiement a bien été effectué. ");
+  /*à ce moment on imprime toutes les données de la réservation et du moyen de paiement dans un fichier numero_reservation_paiement_resa.txt
 }
 
 */
