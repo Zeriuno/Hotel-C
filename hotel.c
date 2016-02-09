@@ -764,23 +764,62 @@ On demande la saisie du numéro de réservation, on récupère la note correspon
 void recherche_note()
 {
   char num_note[15] ;
+  int choix_note ;
   long unsigned int num_resa ;
 
   printf("Saisir le numéro de réservation : ") ;
   scanf("%lu", num_resa) ;
   sprintf(num_note, "%lu", num_resa) ;
-  strcat(num_note, "_note.txt")
-  printf(""); /*menu de choix
-  scanf("%d",); /*récupère le choix
-  switch  /* passe num_note au programme suivant, selon le choix
+  strcat(num_note, "_note.txt") ;
+  printf(" 1 - Afficher la note\n"); /*menu de choix
+  printf(" 2 - Ajouter une entrée sur la note\n");
+  printf(" 3 - Régler la note\n");
+  printf(" 9 - Quitter et revenir au menu principal\n");
+  printf("Faire un choix : ");
+  scanf("%d", &choix_note);
+  switch(choix_note)  /* passe num_note au programme suivant, selon le choix
   {
-
+    case 1:
+      affichage_note(num_note);
+      break;
+    case 2:
+      ajout_note(num_note);
+      break;
+    case 3:
+      paiement_note(num_note);
+      break;
+    case 9:
+      printf("Retour au menu principal\n");
+      break;
   }
 }
 
+/*############################################
+#                                            #
+#              affichage_note                #
+#                                            #
+##############################################
 
+Appelée par recherche_note, prend en argument le nom du fichier de la note (num_note). Elle vérifie si le fichier existe. Si oui, l'affiche, sinon renvoie un message d'erreur.
+
+
+void affichage_note(char num_note[])
+{
+  FILE *f1;
+  float total_commande = 0, prix_commande ;
+  /*il faut utiliser stat, apparemment, qui a besoin d'une structure
+
+  f1 = fopen(num_note);
+  while(!feof(f1))
+  {
+    fscanf(f1, ""); /*déterminer la structure de la note: jj/mm/aaaa commande prix?
+    printf(""); affichage de chaque entrée de la note
+    total_note += prix_commande ;
+  }
+  printf("___________________________________________\n");
+  printf("Total de la note : %f euros\n\n", total_note) ; /* et €, ça passerait?
+}
 */
-
 
 /*############################################
 #                                            #
