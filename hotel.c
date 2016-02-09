@@ -752,6 +752,36 @@ void paiement_resa()
 }
 
 */
+
+/*############################################
+#                                            #
+#            recherche_note                 #
+#                                            #
+##############################################
+
+On demande la saisie du numéro de réservation, on récupère la note correspondante. Elle sera passée au programme d'affichage, de paiement ou bien d'ajout.
+
+void recherche_note()
+{
+  char num_note[15] ;
+  long unsigned int num_resa ;
+
+  printf("Saisir le numéro de réservation : ") ;
+  scanf("%lu", num_resa) ;
+  sprintf(num_note, "%lu", num_resa) ;
+  strcat(num_note, "_note.txt")
+  printf(""); /*menu de choix
+  scanf("%d",); /*récupère le choix
+  switch  /* passe num_note au programme suivant, selon le choix
+  {
+
+  }
+}
+
+
+*/
+
+
 /*############################################
 #                                            #
 #              PARTIE SERVICES               #
