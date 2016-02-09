@@ -644,7 +644,7 @@ void saisie_client()
 void paiement_resa(int nb_nuitee_hs, int nb_nuitee_bs, int type_chambre, int categorie_chambre)
 {
   float total_resa ;
-  int mode_paiment = 0, nb_nuitee, i, test ;
+  int mode_paiment = 0, nb_nuitee, i, test = 0 ;
   struct prix_nuit nuit ;
   FILE *f1;
 
@@ -655,14 +655,16 @@ void paiement_resa(int nb_nuitee_hs, int nb_nuitee_bs, int type_chambre, int cat
   {
   fscanf(f1, "%d %d %f %f", &tab_prix_chambres[i].type_chambre, &tab_prix_chambres[i].categorie_chambre, &tab_prix_chambres[i].prix_hs, &tab_prix_chambres[i].prix_bs);
   }
-    i=0;
-    while (test<0)
+    i= -1;
+    while (test == 0)
     {
+      i++ ;
       if (tab_prix_chambres[i].type_chambre==nuit.type_chambre)
       {
         if (tab_prix_chambres[i].categorie_chambre==nuit.categorie_chambre)
         {
           nuit=tab_prix_chambres[i];
+          test = 1 ;
         }
       }
     }
