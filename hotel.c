@@ -14,6 +14,7 @@
 * v 0.1.2 - 2016-02-05 Modification des chambres presque fonctionnelle
 * v 0.1.3 - 2016-02-06 Modification et enregistrement fonctionnels. À optimiser
 * v 0.1.4 - 2016-02-07 Chargement et mise à jour du calendrier
+* v 0.1.5 - 2016-02-09 Affichage et saisie date jj/mm/aaaa
 
 Reste à faire:
 * optimiser enregistrement sur fichier et cycle de modification des chambres.
