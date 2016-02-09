@@ -872,7 +872,7 @@ void affichage_note(char num_note[])
            printf("Retour au menu principal\n");
            break;
        }
-      }
+     }
 }
 */
 
