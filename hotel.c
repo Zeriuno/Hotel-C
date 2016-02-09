@@ -55,7 +55,7 @@ Déclarations préliminaires
 /*D'utilité générale*/
 
 void mauvais_choix(int par_choisi)                   ; /* Mauvais choix à l'intérieur des menus*/
-long int jjmmaaaa_vers_aaaammjj(int j, int m, int a) ; /*Prendre une date saisie et la traduire en lonf int date*/
+long unsigned int jjmmaaaa_vers_aaaammjj(int j, int m, int a) ; /*Prendre une date saisie et la traduire en lonf int date*/
 
 
 /*Calendrier*/
@@ -299,7 +299,7 @@ void mauvais_choix(int par_choix)
 Pour traduire ce qui est saisi dans le format convenable pour le stocker.
 */
 
-long int jjmmaaaa_vers_aaaammjj(int j, int m, int a)
+long unsigned int jjmmaaaa_vers_aaaammjj(int j, int m, int a)
 {
   return (a * 10000) + (m * 100) + j ;
 }
@@ -311,11 +311,11 @@ long int jjmmaaaa_vers_aaaammjj(int j, int m, int a)
 #                                            #
 ##############################################
 
-Retourne en chaine de caractères jj/mm/aaaa la date fournie en format aaaa/mm/jj
+Retourne en chaine de caractères jj/mm/aaaa la date fournie en format aaaammjj
 
 */
 
-char aaaammjj_vers_jjmmaaaa(long int date)
+char aaaammjj_vers_jjmmaaaa(long unsigned int date)
 {
   int annee, mois, jour                         ;
   char temporaire[5];
