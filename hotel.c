@@ -368,20 +368,33 @@ Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tab
 
 void test_date()
 {
-  char choix_date = 'f'                     ;
-  int i = 0                                 ;
+  char choix_date = 'f'               ;
+  char date_chaine[11], temporaire[5] ;
+  int i = 0, a, m, j                  ;
 
-  printf("Test des paramètres\n")           ;
+  printf("Test des paramètres\n")     ;
   while(choix_date != 'o')
   {
-    printf("Aujourd'hui nous sommes le %lu (o/n) ? ", calendrier[i].date) ;
-    scanf("%c", &choix_date)                ;
+    date_chaine[0] = '\0'; /*cette ligne et les onze suivantes étaient dans une fonction à part entière, mais retourner une chaîne de caractères et l'affecter à une variable, je ne sais pas faire*/
+    a = calendrier[i].date/10000                       ;
+    m = (calendrier[i].date - (a * 10000)) / 100       ;
+    j = (calendrier[i].date - (a * 10000) - (m * 100)) ;
+    sprintf(temporaire, "%d", j)                       ;
+    strcat(date_chaine, temporaire)                    ;
+    strcat(date_chaine, "/")                           ;
+    sprintf(temporaire, "%d", m)                       ;
+    strcat(date_chaine, temporaire)                    ;
+    strcat(date_chaine, "/")                           ;
+    sprintf(temporaire, "%d", a)                       ;
+    strcat(date_chaine, temporaire)                    ;
+    printf("Aujourd'hui nous sommes le %s (o/n) ? ", date_chaine) ;
+    scanf("%c", &choix_date)                           ;
     if(choix_date != 'o')
     {
       if(choix_date == 'n')
       {
-        i++ ;
-        while((poubelle=getchar()) != '\n') ;
+        while((poubelle=getchar()) != '\n')            ;
+        i++                                            ;
       }
       else
       {
@@ -389,7 +402,7 @@ void test_date()
       }
     }
   }
-  if (i != 0)
+  if(i != 0)
   {
     maj_calendrier(i)                        ;
   }
