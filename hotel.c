@@ -419,18 +419,33 @@ Mise à jour du calendrier déclenchée par le test sur la date courante.
 */
 void maj_calendrier(int i)
 {
-  FILE *f1                         ;
-  int j                            ;
-  char choix_saison = 'a'          ;
+  FILE *f1                            ;
+  int j, a, m, d                      ;
+  char date_chaine[11], temporaire[5] ;
+  char choix_saison = 'a'             ;
 
   for(j = i; j < ANNEE; j++) /* déplacer les valeurs des jours dans le calendrier: LE FUTUR C'EST MAINTENANT!*/
   {
-    calendrier[j-i] = calendrier[j] ;
+    calendrier[j-i] = calendrier[j]   ;
   }
   for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent: MORE FUTURE (slogan anti-punk)*/
   {
-    printf("Quel jour vient après le %lu (format aaaammjj) ? ", calendrier[j-1].date) ;
-    scanf("%lu", &calendrier[j].date)         ;
+    date_chaine[0] = '\0'; /*cette ligne et les onze suivantes étaient dans une fonction à part entière, mais retourner une chaîne de caractères et l'affecter à une variable, je ne sais pas faire*/
+    a = calendrier[j-1].date/10000                       ;
+    m = (calendrier[j-1].date - (a * 10000)) / 100       ;
+    d = (calendrier[j-1].date - (a * 10000) - (m * 100)) ;
+    sprintf(temporaire, "%d", d)                         ;
+    strcat(date_chaine, temporaire)                      ;
+    strcat(date_chaine, "/")                             ;
+    sprintf(temporaire, "%d", m)                         ;
+    strcat(date_chaine, temporaire)                      ;
+    strcat(date_chaine, "/")                             ;
+    sprintf(temporaire, "%d", a)                         ;
+    strcat(date_chaine, temporaire)                      ;
+
+    printf("Quel jour vient après le %s (format jj/mm/aaaa) ? ", date_chaine) ;
+    scanf("%d/%d/%d", &d, &m, &a)                        ;
+    calendrier[j].date = jjmmaaaa_vers_aaaammjj(d, m, a) ;
     while((choix_saison != 'b') && (choix_saison != 'h'))
     {
       printf("Quelle est sa saison (b/h) ? ") ;
