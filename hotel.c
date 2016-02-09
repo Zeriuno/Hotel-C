@@ -800,7 +800,8 @@ void recherche_note()
 #                                            #
 ##############################################
 
-Appelée par recherche_note, prend en argument le nom du fichier de la note (num_note). Elle vérifie si le fichier existe. Si oui, l'affiche, sinon renvoie un message d'erreur.
+Appelée par recherche_note, prend en argument le nom du fichier de la note (num_note). Elle vérifie si le fichier existe. Si oui, l'affiche, sinon elle previent l'utilisateur.
+Sortie par un menu de choix.
 
 
 void affichage_note(char num_note[])
@@ -810,37 +811,68 @@ void affichage_note(char num_note[])
   int choix_note ;
   /*il faut utiliser stat, apparemment, qui a besoin d'une structure
 
-  f1 = fopen(num_note);
-  while(!feof(f1))
+
+  /*vérification de l'existence du fichier
+  if()/* si le fichier n'existe pas
   {
-    fscanf(f1, ""); /*déterminer la structure de la note: jj/mm/aaaa commande prix?
-    printf(""); affichage de chaque entrée de la note
-    total_note += prix_commande ;
-  }
-  printf("___________________________________________\n");
-  printf("Total de la note : %f euros\n\n", total_note) ; /* et €, ça passerait?
-  printf("Choix possibles\n\n")
-  printf("1 - Rechercher une autre note\n");
-  printf("2 - Ajouter une entrée à cette note\n");
-  printf("3 - Régler cette note\n");
-  printf("9 - Revenir au menu principal\n");
-  printf("Faire un choix : ");
-  scanf("%d", choix_note) ;
-  switch(choix_note)
-  {
-    case 1:
-      recherche_note();
-      break;
-    case 2:
-      ajout_note(num_note);
-      break;
-    case 3:
-      paiement_note(num_note);
-      break;
-    case 9:
-      printf("Retour au menu principal\n");
-      break;
-  }
+    printf("Il n'existe pas de note pour cette réservation. Pour en créer une, ajouter une entrée.\n\n") ;
+    printf("Choix possibles :\n\n");
+    printf("1 - Rechercher une autre note\n");
+    printf("2 - Ajouter une entrée à cette note\n");
+    printf("9 - Revenir au menu principal\n");
+    printf("Faire un choix : ");
+    scanf("%d", choix_note) ;
+    switch(choix_note)
+    {
+      case 1:
+        recherche_note();
+        break;
+      case 2:
+        ajout_note(num_note);
+        break;
+      case 3:
+        paiement_note(num_note);
+        break;
+      case 9:
+        printf("Retour au menu principal\n");
+        break;
+     }
+/*toute la suite va dans un else: si le fichier existe
+     else
+     {
+       f1 = fopen(num_note);
+
+       while(!feof(f1))
+       {
+         fscanf(f1, ""); /*déterminer la structure de la note: jj/mm/aaaa commande prix?
+         printf(""); affichage de chaque entrée de la note
+         total_note += prix_commande ;
+       }
+       printf("___________________________________________\n");
+       printf("Total de la note : %f euros\n\n", total_note) ; /* et €, ça passerait?
+       printf("Choix possibles :\n\n")
+       printf("1 - Rechercher une autre note\n");
+       printf("2 - Ajouter une entrée à cette note\n");
+       printf("3 - Régler cette note\n");
+       printf("9 - Revenir au menu principal\n");
+       printf("Faire un choix : ");
+       scanf("%d", choix_note) ;
+       switch(choix_note)
+       {
+         case 1:
+           recherche_note();
+           break;
+         case 2:
+           ajout_note(num_note);
+           break;
+         case 3:
+           paiement_note(num_note);
+           break;
+         case 9:
+           printf("Retour au menu principal\n");
+           break;
+       }
+      }
 }
 */
 
