@@ -17,8 +17,8 @@
 * v 0.1.5 - 2016-02-09 Affichage et saisie date jj/mm/aaaa
 
 Reste à faire:
-* optimiser enregistrement sur fichier et cycle de modification des chambres.
 * Traiter des chaînes de caractères avec espaces.
+* optimiser enregistrement sur fichier et cycle de modification des chambres.
 * optimiser affichage et saisie des descripteurs des chambres.
 * évaluer la possibilité de déclarer les variables de choix (vue/sans vue; fumeur/non fumeur; haute saison/basse saison) comme des short int;
 * tests.
