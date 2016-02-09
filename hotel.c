@@ -807,6 +807,7 @@ void affichage_note(char num_note[])
 {
   FILE *f1;
   float total_commande = 0, prix_commande ;
+  int choix_note ;
   /*il faut utiliser stat, apparemment, qui a besoin d'une structure
 
   f1 = fopen(num_note);
@@ -818,6 +819,28 @@ void affichage_note(char num_note[])
   }
   printf("___________________________________________\n");
   printf("Total de la note : %f euros\n\n", total_note) ; /* et €, ça passerait?
+  printf("Choix possibles\n\n")
+  printf("1 - Rechercher une autre note\n");
+  printf("2 - Ajouter une entrée à cette note\n");
+  printf("3 - Régler cette note\n");
+  printf("9 - Revenir au menu principal\n");
+  printf("Faire un choix : ");
+  scanf("%d", choix_note) ;
+  switch(choix_note)
+  {
+    case 1:
+      recherche_note();
+      break;
+    case 2:
+      ajout_note(num_note);
+      break;
+    case 3:
+      paiement_note(num_note);
+      break;
+    case 9:
+      printf("Retour au menu principal\n");
+      break;
+  }
 }
 */
 
