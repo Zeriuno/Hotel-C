@@ -41,6 +41,7 @@ Reste à faire:
 /*Fichiers*/
 
 #define CALENDRIER "calendrier.txt" /*Nom du fichier contentant le calendrier (dates et saison)*/
+#define CAT_SERVICES "catalogue-services.txt" /* Nom du fichier qui contient le catalogue des services*/
 #define CHAMBRES  "chambres.txt" /*Nom du fichier contentant les chambres*/
 #define PLANNING "planning.txt" /*Nom du fichier contenant le planning*/
 #define PRIX_NUIT "prix_nuits.txt" /*Nom du fichier contenant le prix d'une nuitée*/
@@ -894,14 +895,14 @@ void saisie_services()
 #                                            #
 ##############################################
 
-Enregistre le tableau dans le fichier catalogue-services.txt.
+Enregistre le tableau dans le fichier CAT_SERVICES.
 Affiche un message de confirmation.
 
 */
 
 void enreg_catalogue_services(){
   FILE *f1                                  ;
-  f1 = fopen("catalogue-services.txt", "w") ;
+  f1 = fopen(CAT_SERVICES, "w") ;
   int i                                     ;
   struct entree_service service             ;
 
@@ -922,7 +923,7 @@ void enreg_catalogue_services(){
 #                                            #
 ##############################################
 
-Lit le fichier catalogue-services.txt et charge son contenu dans le tableau de services.
+Lit le fichier CAT_SERVICES et charge son contenu dans le tableau de services.
 
 */
 void chargement_catalogue_services()
@@ -944,7 +945,7 @@ void chargement_catalogue_services()
       enreg_catalogue_services()            ;
     }
   }*/
-  f1 = fopen("catalogue-services.txt", "r") ;
+  f1 = fopen(CAT_SERVICES, "r") ;
   while(!feof(f1))
   {
     fscanf(f1, "%s %f\n", service.nom_service, &service.prix_service) ;
