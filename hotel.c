@@ -541,12 +541,14 @@ Procédure pour saisir une date.
 
 
 *//*ça ne peut pas marcher pour le moment
-void /*à voir: affecte des variables globales? saisie_date()
+void saisie_date()
 {
   printf("Saisir la date de début (jj/mm/aaaa) : ")         ;
   scanf("%d/%d/%d\n", &jour_debut, &mois_debut, &annee_debut)  ;
-  printf("Saisir la date de fin (jj/mm/aaaa) : ")           ;
+  demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut);
+  printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")           ;
   scanf("%d/%d/%d\n", &jour_fin, &mois_fin, &annee_fin)        ;
+  demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin) ;
 }*/
 
 /*############################################
