@@ -140,11 +140,13 @@ struct resa
   char telclient[13]             ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
 };
 
+struct resa demande;
+
 struct cha
 {  /* structure pour les chambres*/
    /*l'idéntifiant unique de la chambre est son indice dans le tableau des chambres, qui correspond également à l'indice dans le planning, cela permet de relier les deux informations*/
   int num_chambre         ; /* Numéro selon la codification de l'hôtel */
-  int type_chambre        ; /* 0 simple ; 1 double */
+  int type_chambre        ; /* 1 lit simple, 2 deux lits simples, 3 lit double, 4 trois lits simples, 5 lit simple et lit double */
   int categorie_chambre   ; /* 0 chambre ; 1 suite */
   int type_lits           ; /* 0 simple ; 1 deux lits simples; 2 double */
   int balcon              ; /* 0 pas de balcon; 1 avec balcon */
