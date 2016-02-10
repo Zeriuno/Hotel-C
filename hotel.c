@@ -558,26 +558,25 @@ void saisie_date()
 ##############################################
 
 Procédure pour déterminer quelle chambre recherche le client.
-
+Les données sont chargées dans la struct cha chambre.
 *//*
 void cible_chambre()
 {
   int cible_type_chambre; 1 simple, 2 double, 3 triple
-  int cible_lits        ; 1 lit simple, 2 deux lits simples, 3 lit double, 4 trois lits simples, 5 lit simple et lit double
   int cible_cat_chambre ; 0 chambre, 1 suite
-  int cible_balcon      ; 0 indifférent, 1 balcon, 2 pas de balcon
-  int cible_vue         ; 0 indifférent, 1 vue, 2 pas de vue
-  int cible_bain        ; 0 indifférent, 1 douche, 2 baignoire
-  int cible_fumeur      ; 0 indifférent, 1 fumeur, 2 non fumeur
-  int cible_animaux     ; 0 indifférent, 1 animaux acceptés, 2 pas d'animaux
+  int cible_balcon      ; 0 pas, 1 balcon, 2 indifférent
+  int cible_vue         ; 0 pas, 1 vue, 2 indifférent
+  int cible_bain        ; 0 pas, 1 douche, 2 indifférent
+  int cible_fumeur      ; 0 pas, 1 fumeur, 2 indifférent
+  int cible_animaux     ; 0 pas, 1 animaux acceptés, 2 indifférent
   printf("Quel type de lits ?\n")               ;
   printf("1 - un lit simple\n")                 ;
   printf("2 - deux lits simples\n")             ;
   printf("3 - un lit double\n")                 ;
-  printf("2 - trois lits simples\n")            ;
-  printf("3 - un lit double et un lit simple\n");
+  printf("4 - trois lits simples\n")            ;
+  printf("5 - un lit double et un lit simple\n");
   printf("Saisir le type de lits :")            ;
-  scanf("%d", &cible_lits)                      ;
+  scanf("%d", &chambre.type_lits)                      ;
   printf("Quelle catégorie de chambre ? \n")    ;
   printf("0 - chambre\n")                       ;
   printf("1 - suite\n")                         ;
