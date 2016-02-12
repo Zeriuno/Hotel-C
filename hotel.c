@@ -148,8 +148,8 @@ struct cha
   int num_chambre         ; /* Numéro selon la codification de l'hôtel */
   int type_chambre        ; /* 1 lit simple, 2 deux lits simples, 3 lit double, 4 trois lits simples, 5 lit simple et lit double */
   int categorie_chambre   ; /* 0 chambre ; 1 suite */
-  int type_lits           ; /* 0 simple ; 1 deux lits simples; 2 double */
-  int balcon              ; /* 0 pas de balcon; 1 avec balcon */
+  int type_lits           ; /* 0 simple ; 1 deux lits simples; 2 double  QUELLE DIFFERENCE ENTRE TYPE CHAMBRE ET TYPE LITS?*/
+  int balcon              ; /* 0 pas de balcon; 1 avec balcon  PAS INDIFFERENT ?*/
   int vue                 ; /* 0 pas de vue; 1 avec vue */
   int bain                ; /* 0 baignoire; 1 douche */
   int fumeur              ; /* 0 non fumeur, 1 fumeur */
@@ -562,7 +562,7 @@ Les données sont chargées dans la struct cha chambre.
 *//*
 void cible_chambre()
 {
-  int cible_type_chambre; 1 simple, 2 double, 3 triple
+  int cible_type_chambre; 1 lit simple, 2 double, 3 triple
   int cible_cat_chambre ; 0 chambre, 1 suite
   int cible_balcon      ; 0 pas, 1 balcon, 2 indifférent
   int cible_vue         ; 0 pas, 1 vue, 2 indifférent
@@ -576,42 +576,42 @@ void cible_chambre()
   printf("4 - trois lits simples\n")            ;
   printf("5 - un lit double et un lit simple\n");
   printf("Saisir le type de lits :")            ;
-  scanf("%d", &chambre.type_lits)                      ;
+  scanf("%d", &chambre.type_lits)               ;
   printf("Quelle catégorie de chambre ? \n")    ;
   printf("0 - chambre\n")                       ;
   printf("1 - suite\n")                         ;
   printf("Saisir la catégorie :")               ;
   scanf("%d", &cible_cat_chambre)               ;
   printf("Chambre avec balcon ? ")              ;
-  printf("0 - indifférent\n")                   ;
+  printf("0 - pas de balcon\n")                 ;
   printf("1 - balcon\n")                        ;
-  printf("2 - pas de balcon\n")                 ;
+  printf("2 -indifférent\n")                    ;
   printf("Balcon :")                            ;
   scanf("%d", &cible_balcon)                    ;
   printf("Chambre avec vue ? ")                 ;
   scanf("%d", &cible_vue)                       ;
   printf("Quel type de salle de bain ?")        ;
-  printf("0 - indifférent\n")                   ;
+  printf("0 - baignoire\n")                     ;
   printf("1 - douche\n")                        ;
-  printf("2 - baignoire\n")                     ;
+  printf("2 - indifférent\n")                   ;
   printf("Saisir le type de salle de bain :")   ;
   scanf("%d", &cible_bain)                      ;
   printf("Chambre avec vue ? ")                 ;
-  printf("0 - indifférent\n")                   ;
+  printf("0 - pas de vue\n")                    ;
   printf("1 - vue\n")                           ;
-  printf("2 - pas de vue\n")                    ;
+  printf("2 - indifférent\n")                   ;
   printf("Vue :")                               ;
   scanf("%d", &cible_vue)                       ;
   printf("Chambre "fumeur" ? ")                 ;
-  printf("0 - indifférent\n")                   ;
+  printf("0 - non fumeur\n")                    ;
   printf("1 - fumeur\n")                        ;
-  printf("2 - non fumeur\n")                    ;
+  printf("2 - indifférent\n")                   ;
   printf("Fumeur :")                            ;
   scanf("%d", &cible_fumeur)                    ;
   printf("Chambre avec animaux autorisés? ")    ;
-  printf("0 - indifférent\n")                   ;
+  printf("0 - animaux non autorisés\n")         ;
   printf("1 - animaux autorisés\n")             ;
-  printf("2 - animaux non autorisés\n")         ;
+  printf("2 - indifférent\n")                   ;
   printf("Animaux autorisés :")                 ;
   scanf("%d", &cible_animaux)                   ;
 }
@@ -785,7 +785,7 @@ void affichage_note(char num_note[])
          total_note += prix_commande ;
        }
        printf("___________________________________________\n");
-       printf("Total de la note : %f euros\n\n", total_note) ; /* et €, ça passerait?
+       printf("Total de la note : %f euros\n\n", total_note) ; /* et €, ça passerait? -> ça fonctionne dans affichage_catalogue()
        printf("Choix possibles :\n\n")
        printf("1 - Rechercher une autre note\n");
        printf("2 - Ajouter une entrée à cette note\n");
