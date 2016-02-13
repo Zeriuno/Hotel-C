@@ -620,7 +620,7 @@ void cible_chambre()
   printf("Choix : ")                             ;
   scanf("%d", &cible_cat_chambre)                ;
   chambre.categorie_chambre = cible_cat_chambre  ;
-  printf("Chambre avec balcon ?\n")               ;
+  printf("Chambre avec balcon ?\n")              ;
   printf("0 - sans balcon\n")                    ;
   printf("1 - avec balcon\n")                    ;
 /*  printf("2 -indifférent\n")                    ;*/
@@ -640,7 +640,7 @@ void cible_chambre()
   printf("Choix :")                              ;
   scanf("%d", &cible_bain)                       ;
   chambre.bain = cible_bain                      ;
-  printf("Chambre pour fumeur ?\n")               ;
+  printf("Chambre pour fumeur ?\n")              ;
   printf("0 - non fumeur\n")                     ;
   printf("1 - fumeur\n")                         ;
 /*  printf("2 - indifférent\n")                   ;*/
