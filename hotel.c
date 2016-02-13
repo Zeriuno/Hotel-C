@@ -15,6 +15,7 @@
 * v 0.1.3 - 2016-02-06 Modification et enregistrement fonctionnels. À optimiser
 * v 0.1.4 - 2016-02-07 Chargement et mise à jour du calendrier
 * v 0.1.5 - 2016-02-09 Affichage et saisie date jj/mm/aaaa
+* v 0.1.6 - 2016-02-13 Début de création de réservation, cible_date marche
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
@@ -233,7 +234,11 @@ main()
 
     switch(choix)
     {
-      case 1: case 2: case 3:
+      case 1:
+        creer_reservation();
+        break ;
+
+      case 2: case 3:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
         break                                                                                             ;
       case 4:
@@ -518,10 +523,11 @@ void chargement_planning()
 Procédure pour créer une réservation.
 
 
-*//*pour l'instant cela ne peut pas marcher
+*/
 void creer_reservation()
 {
   cible_date()    ;
+  /*
   cible_chambre() ;
   rech_periode(date_debut, date_fin ) ;
   continue_resa = choix_chambre() ; /*À voir si choix chambre récupère des arguments ou bien si rech_periode affecte des variables globales*//*
@@ -530,7 +536,7 @@ void creer_reservation()
     saisie_client();
     paiement_resa();
     maj_planning   ;
-  }
+  }*/
 }
 
 /*############################################
@@ -542,16 +548,18 @@ void creer_reservation()
 Procédure pour saisir une date.
 
 
-*//*ça ne peut pas marcher pour le moment
-void saisie_date()
+*/
+void cible_date()
 {
+  int jour_debut, mois_debut, annee_debut;
+  int jour_fin, mois_fin, annee_fin;
   printf("Saisir la date de début (jj/mm/aaaa) : ")         ;
-  scanf("%d/%d/%d\n", &jour_debut, &mois_debut, &annee_debut)  ;
+  scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)  ;
   demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut);
   printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")           ;
-  scanf("%d/%d/%d\n", &jour_fin, &mois_fin, &annee_fin)        ;
+  scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)        ;
   demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin) ;
-}*/
+}
 
 /*############################################
 #                                            #
