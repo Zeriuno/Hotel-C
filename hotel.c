@@ -573,7 +573,7 @@ Dans un premier temps on contraint à spécifier tout choix, on ne permet pas de
 */
 void cible_chambre()
 {
-  int cible_type_chambre ; /* 1 lit simple, 2 double, 3 triple*/
+  /*ce n'est pas nécessaire, on le déduit d cible_type_lits int cible_type_chambre ; /* 1 lit simple, 2 double, 3 triple*/
   int cible_cat_chambre  ; /* 0 chambre, 1 suite*/
   int cible_type_lits    ; /* 1 lit simple, 2 deux lits simples, 3 lit double, 4 trois lits simples, 5 lit simple et lit double */
   int cible_balcon       ; /* 0 pas, 1 balcon, 2 indifférent*/
@@ -590,6 +590,11 @@ void cible_chambre()
   printf("Saisir le type de lits :")             ;
   scanf("%d", &cible_type_lits)                  ;
   chambre.type_lits = cible_type_lits            ;
+  switch(cible_type_lits)
+    case 1 :
+
+      break;
+  }
   printf("Quelle catégorie de chambre ? \n")     ;
   printf("0 - chambre\n")                        ;
   printf("1 - suite\n")                          ;
