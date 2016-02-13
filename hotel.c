@@ -729,17 +729,37 @@ On désigne une liste des chambres possibles.
 On demande d'en choisir une ou bien de renoncer.
 
 */
-tab_chambres[MAX_NB_CHAMBRES]
 int choix_chambre()
 {
-  int chambres_dispo[50];
+  int chambres_dispo[50] ;
+  int i, j = 0           ;
 
-  /*on teste les chambres qui correspondent à ce que l'on veut et on les mets dans le tableau*/
+  for(i=0 ; i < MAX_NB_CHAMBRES ; i++)
+  {
+    if
+    (
+      (chambre.type_chambre == tab_chambres[i]) ||
+      (chambre.type_lits == tab_chambres[i]) ||
+      (chambre.categorie_chambre == tab_chambres[i]) ||
+      (chambre.balcon == tab_chambres[i]) ||
+      (chambre.bain == tab_chambres[i]) ||
+      (chambre.vue == tab_chambres[i]) ||
+      (chambre.fumeur == tab_chambres[i]) ||
+      (chambre.animaux == tab_chambres[i])
+    )
+    {
+    chambres_dispo[j] = i ;
+    j++                   ;
+    }
+  }
 
 /*on teste leur disponibilité. Si le code de disponibilité n'est pas bon, on élimine la ligne → tab[i] = tab[i+1]. Il faut savoir jusqu'où on peut aller.*/
-  for(i = 0 ; i < MAX_NB_CHAMBRES ; i++)
+/*tab_chambres[MAX_NB_CHAMBRES]*/
+  for(i = 0 ; i < j ; i++)
   {
-    planning[i][demande_ind_deb]
+    k = chambres_dispo[i] ;
+    if(planning[k][demande_ind_deb] != 0)
+
   }
   demande_ind_deb
   for(i)
