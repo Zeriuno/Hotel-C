@@ -16,12 +16,10 @@
 * v 0.1.4 - 2016-02-07 Chargement et mise à jour du calendrier
 * v 0.1.5 - 2016-02-09 Affichage et saisie date jj/mm/aaaa
 * v 0.1.6 - 2016-02-13 Début de création de réservation, cible_date marche
-<<<<<<< HEAD
-
-=======
 * v 0.1.7 - 2016-02-13 Début de création de réservation, cible_chambre marche
 * v 0.1.8 - 2016-02-13 Correction de la mise à jour du calendrier dans la saisie des saisons
->>>>>>> origin/master
+
+
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
 * optimiser enregistrement sur fichier et cycle de modification des chambres.
