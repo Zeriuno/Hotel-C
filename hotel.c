@@ -598,9 +598,18 @@ void cible_chambre()
   scanf("%d", &cible_type_lits)                  ;
   chambre.type_lits = cible_type_lits            ;
   switch(cible_type_lits)
+  {
     case 1 :
-
-      break;
+      chambre.type_chambre = 1                   ;
+      break                                      ;
+    case 2 :
+    case 3 :
+      chambre.type_chambre = 2                   ;
+      break                                      ;
+    case 4 :
+    case 5 :
+      chambre.type_chambre = 3                   ;
+      break                                      ;
   }
   printf("Quelle catégorie de chambre ? \n")     ;
   printf("0 - chambre\n")                        ;
