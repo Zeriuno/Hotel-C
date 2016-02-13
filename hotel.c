@@ -346,7 +346,9 @@ char aaaammjj_vers_jjmmaaaa(long unsigned int date)
 #               lecture_jours                #
 #                                            #
 ##############################################
+
 Prend les jours présents dans le fichier qui tient conte des jours (et saison) et les charge dans le tableau correspondant.
+
 */
 
 void lecture_jours()
