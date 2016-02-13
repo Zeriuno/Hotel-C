@@ -529,15 +529,16 @@ void creer_reservation()
 {
   cible_date()    ;
   cible_chambre() ;
-  /*
   rech_periode(date_debut, date_fin ) ;
+  /*
   continue_resa = choix_chambre() ; /*À voir si choix chambre récupère des arguments ou bien si rech_periode affecte des variables globales*//*
   if(continue_resa)
   {
     saisie_client();
     paiement_resa();
     maj_planning   ;
-  }*/
+  }
+  */
 }
 
 /*############################################
