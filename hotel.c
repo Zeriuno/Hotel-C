@@ -85,7 +85,7 @@ void chargement_planning()                 ;
 void creer_reservation()                   ;
 void cible_date()                          ;
 void cible_chambre()                       ;
-int rech_periode(int demande.datearrivee, int demande.datedepart);
+int rech_periode(int datearrivee, int datedepart);
 
 
 /*Gestion des services complémentaires*/
@@ -597,6 +597,7 @@ void cible_chambre()
   printf("Saisir le type de lits :")             ;
   scanf("%d", &cible_type_lits)                  ;
   chambre.type_lits = cible_type_lits            ;
+
   switch(cible_type_lits)
   {
     case 1 :
@@ -668,12 +669,12 @@ int rech_periode(int datearrivee, int datedepart)
 /*demande.date arrivee parcourir le tableau pour trouver la même valeur: indice
 de la case de la date et boucler à partir de la date vers la suivante pour avoir les deux indices*/
 
-  int i=0 ;
+  int i=0, calcul_nuitee ;
   demande_ind_deb=NON_TROUVE;
   demande_ind_fin=NON_TROUVE;
-  while ((i<ANNEE)&&(demande_ind_deb==NON_TROUVE))
+  while((i<ANNEE)&&(demande_ind_deb==NON_TROUVE))
   {
-    if(datearrivee==calendrier[i])
+    if(datearrivee==calendrier[i].date)
     {
       demande_ind_deb=i                ;
     }
@@ -686,7 +687,7 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
   {
     while ((i<ANNEE)&&(demande_ind_fin==NON_TROUVE))
     {
-      if(datedepart==calendrier[i])
+      if(datedepart==calendrier[i].date)
       {
         demande_ind_fin=i               ;
       }
@@ -702,7 +703,7 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
   }
   if (demande_ind_fin!=NON_TROUVE)
   {
-    calcul_nuitee = indice_date_depart - (indice_date_arrivee - 1);
+    calcul_nuitee = demande_ind_fin - (demande_ind_deb - 1);
     return calcul_nuitee                                         ;
   }
   else
@@ -710,7 +711,7 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
       printf("Date de départ non trouvée\n");
   }
 }
-}
+
 
 
 /*############################################
