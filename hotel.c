@@ -533,10 +533,12 @@ Procédure pour créer une réservation.
 */
 void creer_reservation()
 {
-  cible_date()    ;
-  cible_chambre() ;
+  int calcul_nuitees ;
+  cible_date()       ;
+  cible_chambre()    ;
+
+  calcul_nuitees = rech_periode(demande.datearrivee, demande.datedepart ) ;
   /*
-  rech_periode(date_debut, date_fin ) ;
   continue_resa = choix_chambre() ; /*À voir si choix chambre récupère des arguments ou bien si rech_periode affecte des variables globales*//*
   if(continue_resa)
   {
@@ -612,7 +614,7 @@ void cible_chambre()
       chambre.type_chambre = 3                   ;
       break                                      ;
   }
-  printf("Quelle catégorie de chambre ? \n")     ;
+  printf("Quelle catégorie de chambre ?\n")     ;
   printf("0 - chambre\n")                        ;
   printf("1 - suite\n")                          ;
   printf("Saisir la catégorie :")                ;
