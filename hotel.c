@@ -722,11 +722,24 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
 ##############################################
 
 Dans les bornes du planning données par rech_periode, recherche de chambres avec code de réservation qui indique qu'elles sont libres.
-*/
+On désigne une liste des chambres possibles.
+On demande d'en choisir une ou bien de renoncer.
 
+*/
+tab_chambres[MAX_NB_CHAMBRES]
 int choix_chambre()
 {
-  j
+  int chambres_dispo[50];
+
+  /*on teste les chambres qui correspondent à ce que l'on veut et on les mets dans le tableau*/
+
+/*on teste leur disponibilité. Si le code de disponibilité n'est pas bon, on élimine la ligne → tab[i] = tab[i+1]. Il faut savoir jusqu'où on peut aller.*/
+  for(i = 0 ; i < MAX_NB_CHAMBRES ; i++)
+  {
+    planning[i][demande_ind_deb]
+  }
+  demande_ind_deb
+  for(i)
 }
 
 /*############################################
