@@ -599,23 +599,23 @@ void cible_chambre()
   switch(cible_type_lits)
   {
     case 1 :
-      chambre.type_chambre = 1;
-      break;
+      chambre.type_chambre = 1                   ;
+      break                                      ;
     case 2 :
     case 3 :
-      chambre.type_chambre = 2;
-      break;
+      chambre.type_chambre = 2                   ;
+      break                                      ;
     case 4 :
     case 5 :
-      chambre.type_chambre = 3;
-      break;
+      chambre.type_chambre = 3                   ;
+      break                                      ;
   }
-  printf("Quelle catégorie de chambre ?\n")     ;
+  printf("Quelle catégorie de chambre ?\n")      ;
   printf("0 - chambre\n")                        ;
   printf("1 - suite\n")                          ;
   printf("Choix : ")                             ;
   scanf("%d", &cible_cat_chambre)                ;
-  chambre.categorie_chambre = cible_cat_chambre   ;
+  chambre.categorie_chambre = cible_cat_chambre  ;
   printf("Chambre avec balcon ?\n")               ;
   printf("0 - sans balcon\n")                    ;
   printf("1 - avec balcon\n")                    ;
@@ -623,13 +623,13 @@ void cible_chambre()
   printf("Choix : ")                             ;
   scanf("%d", &cible_balcon)                     ;
   chambre.balcon = cible_balcon                  ;
-  printf("Chambre avec vue ?\n")                  ;
+  printf("Chambre avec vue ?\n")                 ;
   printf("0 - sans vue\n")                       ;
   printf("1 - avec vue\n")                       ;
   printf("Choix :")                              ;
   scanf("%d", &cible_vue)                        ;
   chambre.vue = cible_vue                        ;
-  printf("Quel type de salle de bain ?\n")         ;
+  printf("Quel type de salle de bain ?\n")       ;
   printf("0 - baignoire\n")                      ;
   printf("1 - douche\n")                         ;
 /*  printf("2 - indifférent\n")                   ;*/
