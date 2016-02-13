@@ -16,12 +16,10 @@
 * v 0.1.4 - 2016-02-07 Chargement et mise à jour du calendrier
 * v 0.1.5 - 2016-02-09 Affichage et saisie date jj/mm/aaaa
 * v 0.1.6 - 2016-02-13 Début de création de réservation, cible_date marche
-<<<<<<< HEAD
-
-=======
 * v 0.1.7 - 2016-02-13 Début de création de réservation, cible_chambre marche
 * v 0.1.8 - 2016-02-13 Correction de la mise à jour du calendrier dans la saisie des saisons
->>>>>>> origin/master
+
+
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
 * optimiser enregistrement sur fichier et cycle de modification des chambres.
@@ -87,7 +85,7 @@ void chargement_planning()                 ;
 void creer_reservation()                   ;
 void cible_date()                          ;
 void cible_chambre()                       ;
-int rech_periode(int demande.datearrivee, int demande.datedepart);
+int rech_periode(int datearrivee, int datedepart);
 
 
 /*Gestion des services complémentaires*/
@@ -599,7 +597,8 @@ void cible_chambre()
   printf("Saisir le type de lits :")             ;
   scanf("%d", &cible_type_lits)                  ;
   chambre.type_lits = cible_type_lits            ;
-  switch(cible_type_lits)
+  switch(cible_type_lits
+  {
     case 1 :
 
       break;
@@ -661,12 +660,12 @@ int rech_periode(int datearrivee, int datedepart)
 /*demande.date arrivee parcourir le tableau pour trouver la même valeur: indice
 de la case de la date et boucler à partir de la date vers la suivante pour avoir les deux indices*/
 
-  int i=0 ;
+  int i=0, calcul_nuitee ;
   demande_ind_deb=NON_TROUVE;
   demande_ind_fin=NON_TROUVE;
   while ((i<ANNEE)&&(demande_ind_deb==NON_TROUVE))
   {
-    if(datearrivee==calendrier[i])
+    if(datearrivee==calendrier[i].date)
     {
       demande_ind_deb=i                ;
     }
@@ -679,7 +678,7 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
   {
     while ((i<ANNEE)&&(demande_ind_fin==NON_TROUVE))
     {
-      if(datedepart==calendrier[i])
+      if(datedepart==calendrier[i].date)
       {
         demande_ind_fin=i               ;
       }
@@ -703,7 +702,7 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
       printf("Date de départ non trouvée\n");
   }
 }
-}
+
 
 
 /*############################################
