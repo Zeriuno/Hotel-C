@@ -86,6 +86,7 @@ void creer_reservation()                   ;
 void cible_date()                          ;
 void cible_chambre()                       ;
 int rech_periode(int datearrivee, int datedepart);
+int choix_chambre()                        ;
 
 
 /*Gestion des services complémentaires*/
@@ -533,13 +534,13 @@ Procédure pour créer une réservation.
 */
 void creer_reservation()
 {
-  int calcul_nuitees ;
+  int calcul_nuitees, continue_resa ;
   cible_date()       ;
   cible_chambre()    ;
 
   calcul_nuitees = rech_periode(demande.datearrivee, demande.datedepart ) ;
+  continue_resa = choix_chambre() ;
   /*
-  continue_resa = choix_chambre() ; /*À voir si choix chambre récupère des arguments ou bien si rech_periode affecte des variables globales*//*
   if(continue_resa)
   {
     saisie_client();
@@ -714,7 +715,19 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
   }
 }
 
+/*############################################
+#                                            #
+#             choix_chambre                  #
+#                                            #
+##############################################
 
+Dans les bornes du planning données par rech_periode, recherche de chambres avec code de réservation qui indique qu'elles sont libres.
+*/
+
+int choix_chambre()
+{
+  j
+}
 
 /*############################################
 #                                            #
