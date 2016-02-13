@@ -620,39 +620,42 @@ void cible_chambre()
   printf("1 - suite\n")                          ;
   printf("Saisir la catégorie :")                ;
   scanf("%d", &cible_cat_chambre)                ;
+  chambre.categorie_chambre = cible_cat_chambre  ;
   printf("Chambre avec balcon ? ")               ;
   printf("0 - pas de balcon\n")                  ;
   printf("1 - balcon\n")                         ;
 /*  printf("2 -indifférent\n")                    ;*/
   printf("Balcon :")                             ;
   scanf("%d", &cible_balcon)                     ;
-  printf("Chambre avec vue ? ")                  ;
-  scanf("%d", &cible_vue)                        ;
+  chambre.balcon = cible_balcon                  ;
   printf("Quel type de salle de bain ?")         ;
   printf("0 - baignoire\n")                      ;
   printf("1 - douche\n")                         ;
 /*  printf("2 - indifférent\n")                   ;*/
   printf("Saisir le type de salle de bain :")    ;
   scanf("%d", &cible_bain)                       ;
+  chambre.bain = cible_bain                      ;
   printf("Chambre avec vue ? ")                  ;
   printf("0 - pas de vue\n")                     ;
   printf("1 - vue\n")                            ;
 /*  printf("2 - indifférent\n")                   ;*/
   printf("Vue :")                                ;
   scanf("%d", &cible_vue)                        ;
+  chambre.vue = cible_vue                        ;
   printf("Chambre pour fumeur ? ")               ;
   printf("0 - non fumeur\n")                     ;
   printf("1 - fumeur\n")                         ;
 /*  printf("2 - indifférent\n")                   ;*/
   printf("Fumeur :")                             ;
   scanf("%d", &cible_fumeur)                     ;
+  chambre.fumeur = cible_fumeur                  ;
   printf("Chambre avec animaux autorisés? ")     ;
   printf("0 - animaux non autorisés\n")          ;
   printf("1 - animaux autorisés\n")              ;
 /*  printf("2 - indifférent\n")                   ;*/
   printf("Animaux autorisés :")                  ;
   scanf("%d", &cible_animaux)                    ;
-
+  chambre.animaux = cible_animaux                ;
 }
 
 
