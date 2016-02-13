@@ -16,6 +16,7 @@
 * v 0.1.4 - 2016-02-07 Chargement et mise à jour du calendrier
 * v 0.1.5 - 2016-02-09 Affichage et saisie date jj/mm/aaaa
 * v 0.1.6 - 2016-02-13 Début de création de réservation, cible_date marche
+* v 0.1.7 - 2016-02-13 Début de création de réservation, cible_chambre marche
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
@@ -575,6 +576,8 @@ void cible_date()
 Procédure pour déterminer quelle chambre recherche le client.
 Les données sont chargées dans la struct cha chambre.
 Dans un premier temps on contraint à spécifier tout choix, on ne permet pas de déclarer un critère comme indifférent (ceci est une évolution envisageable).
+
+Tests à ajouter= valeurs fausses (boucle while).
 */
 void cible_chambre()
 {
