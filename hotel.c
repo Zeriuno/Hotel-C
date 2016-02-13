@@ -16,7 +16,12 @@
 * v 0.1.4 - 2016-02-07 Chargement et mise à jour du calendrier
 * v 0.1.5 - 2016-02-09 Affichage et saisie date jj/mm/aaaa
 * v 0.1.6 - 2016-02-13 Début de création de réservation, cible_date marche
+<<<<<<< HEAD
 
+=======
+* v 0.1.7 - 2016-02-13 Début de création de réservation, cible_chambre marche
+* v 0.1.8 - 2016-02-13 Correction de la mise à jour du calendrier dans la saisie des saisons
+>>>>>>> origin/master
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
 * optimiser enregistrement sur fichier et cycle de modification des chambres.
@@ -436,7 +441,7 @@ void maj_calendrier(int i)
   FILE *f1                            ;
   int j, a, m, d                      ;
   char date_chaine[11], temporaire[5] ;
-  char choix_saison = 'a'             ;
+  char choix_saison = 'z'             ;
 
   for(j = i; j < ANNEE; j++) /* déplacer les valeurs des jours dans le calendrier: LE FUTUR C'EST MAINTENANT!*/
   {
@@ -465,20 +470,20 @@ void maj_calendrier(int i)
       printf("Quelle est sa saison (b/h) ? ") ;
       while((poubelle=getchar()) != '\n')     ;
       scanf("%c", &choix_saison)              ;
+      if((choix_saison != 'b') && (choix_saison != 'h'))
+      {
+        printf("Le choix n'est pas valide")   ;
+      }
+    }
     if(choix_saison == 'b')
     {
       calendrier[j].saison = 0                ;
     }
     else
-    if(choix_saison == 'h')
-      {
-        calendrier[j].saison = 1              ;
-      }
-      else
-      {
-        printf("Le choix n'est pas valide")   ;
-      }
+    {
+      calendrier[j].saison = 1                ;
     }
+    choix_saison = 'z'                        ; /*réinitialisation de la variable*/
   }
   f1 = fopen(CALENDRIER, "w")                 ;
   for(j = 0 ; j < ANNEE ; j++) /*jsuqu'à la fin du tableau*/
