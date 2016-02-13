@@ -6,7 +6,7 @@
 
 2. Ensuite, on lui demande de saisir la date du jour du calendrier au format aaaammjj.
 
-3. Enfin, l'utilisateur doit renseigner la saison: haute (h) ou basse (b). 
+3. Enfin, l'utilisateur doit renseigner la saison: haute (h) ou basse (b).
 
 ##Recherche chambres
 
@@ -28,3 +28,40 @@
 5. Choisir "9" → On sort du menu services pour revenir au menu principal.
 
 6. Choisir un chiffre non prévu →  Message d'erreur affiché.
+
+##Annulation d'une réservation // enlever origine hotel
+
+1. Comparer la date de début du séjour (déterminée grâce à la recherche de réservation) et la date du jour.
+
+2. "1" (Différence > 14 jours): L'annulation a bien été prise en compte. Remboursement de 70%.
+   "2" (Différence > 7 jours): L'annulation a bien été prise en compte. Remboursement de 30%.
+   "3" (Différence <= 7 jours): L'annulation a bien été prise en compte. Pas de remboursement.
+
+3. Retour au menu principal.
+
+##Modification d'une réservation
+Choisir entre non, oui et annulation (voir Annulation d'une réservation)
+
+1. Choisir "oui" pour modifier les données de la réservation. // choix 1?
+
+2. Choisir "1": L'utilisateur peut modifier la date et la chambre de la réservation. D'abord la période, puis le type de chambre.
+   On recherche si une autre chambre ou période est disponible en fonction de la modification et on affiche les résultats.
+   Choix entre abandon, choix d'une chambre parmi la liste des chambres s'il y en a plusieurs, sinon possibilité de saisir directement la chambre.
+   S'il y a différence négative entre le prix de la chambre initiale et celui de la nouvelle chambre, alors on demande le paiement du supplément. Sinon, il y a directement demande de confirmation avant le retour au menu principal.
+
+##Déclaration de travaux
+
+1. Saisie de la chambre.
+
+2. Saisie de la période.
+   Si la chambre est réservée alors un message d'erreur d'affiche: "Attention, la chambre est réservée durant la péridoe indiquée." et retour au menu principal.
+
+3. Modification du statut de la chambre.
+
+4. Ajout de commentaires.
+
+5. Modification du planning.
+
+6. Confirmation et retour au menu principal.
+
+##Recherche disponibilité des chambres disponibles à une période donnée
