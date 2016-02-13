@@ -545,8 +545,13 @@ void creer_reservation()
 #                                            #
 ##############################################
 
-Procédure pour saisir une date.
+Procédure pour saisir une période pour réservation.
 
+Tests à ajouter:
+
+* si la date est dans le passé
+* si la date est hors de la période d'ouverture des réservations
+* si la deuxième date est antérieure à la première
 
 */
 void cible_date()
