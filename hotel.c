@@ -679,11 +679,11 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
   {
     if(datearrivee==calendrier[i].date)
     {
-      demande_ind_deb=i                ;
+      demande_ind_deb=i ;
     }
     else
     {
-      i++                                  ;
+      i++               ;
     }
   }
   if (demande_ind_deb!=NON_TROUVE)
@@ -692,17 +692,17 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
     {
       if(datedepart==calendrier[i].date)
       {
-        demande_ind_fin=i               ;
+        demande_ind_fin=i ;
       }
       else
       {
-        i++                                 ;
+        i++               ;
       }
     }
   }
   else
   {
-      printf("Date d'arrivée non trouvée\n");
+      printf("Date d'arrivée non trouvée\n") ;
   }
   if (demande_ind_fin!=NON_TROUVE)
   {
@@ -711,7 +711,7 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
   }
   else
   {
-      printf("Date de départ non trouvée\n");
+      printf("Date de départ non trouvée\n") ;
   }
 }
 
