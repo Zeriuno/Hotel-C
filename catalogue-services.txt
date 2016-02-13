@@ -3,3 +3,5 @@ cocktail 8.00
 excursion 28.00
 roomservice 15.00
 repas_menu1 13.00
+repas_menu2 25.00
+repas_menu3 38.00
