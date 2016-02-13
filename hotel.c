@@ -800,6 +800,57 @@ void paiement_resa(int nb_nuitee_hs, int nb_nuitee_bs, int type_chambre, int cat
 
 /*############################################
 #                                            #
+#             rech_resa                      #
+#                                            #
+##############################################
+
+Rechercher une réservation par son numéro dans planning[MAX_NB_CHAMBRES][ANNEE]
+pour chaque jour, je parcours toutes les chambres et on s'arrete quand on trouve un num égal à
+
+*/
+/*
+int rech_resa(int p_num_resa)
+{
+  int i=0, j=0, numcase_resa_date_debut=NON_TROUVE,
+  numcase_resa_date_fin=NON_TROUVE, numcase_resa_chambre=NON_TROUVE;
+  while (j<ANNEE)
+  {
+    while ((i<MAX_NB_CHAMBRES)&&(numcase_resa_date_debut==NON_TROUVE))
+    {
+     if(p_num_resa==planning[i][j])
+     {
+      numcase_resa_date_debut=j;
+      numcase_resa_chambre=i;
+     }
+     else
+     {
+      i++;
+     }
+    }
+    j++;
+    if(numcase_resa_date_debut!=NON_TROUVE)
+    {
+      k=numcase_resa_date_debut+1;
+      while (k<ANNEE)
+      {
+        if (planning[numcase_resa_chambre][k]==p_num_resa)
+        {
+          numcase_resa_date_fin=k;
+        }
+        else
+        {
+          k++;
+        }
+      }
+    }
+  }
+  return numcase_resa;
+}
+
+*/
+
+/*############################################
+#                                            #
 #              PARTIE NOTES                  #
 #       #############################        #
 #                                            #
