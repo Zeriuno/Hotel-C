@@ -527,9 +527,10 @@ Procédure pour créer une réservation.
 */
 void creer_reservation()
 {
+  int calcul_nuitees                  ;
   cible_date()                        ;
   cible_chambre()                     ;
-  rech_periode(date_debut, date_fin ) ;
+  calcul_nuitees = rech_periode(demande.datearrivee, demande.datedepart) ;
   /*
   continue_resa = choix_chambre() ; /*À voir si choix chambre récupère des arguments ou bien si rech_periode affecte des variables globales*//*
   if(continue_resa)
