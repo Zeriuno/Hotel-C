@@ -29,7 +29,55 @@
 
 6. Choisir un chiffre non prévu →  Message d'erreur affiché.
 
-##Annulation d'une réservation // enlever origine hotel
+##Effectuer une réservation
+
+1. Saisir la période. Le calcul du nombre de nuitées est automatique.
+
+2. Saisir le type de chambre.
+
+3. Affichage des chambres disponibles.
+
+4. L'utilisateur peut choisir une chambre correspondant aux critères renseignés.
+   Choix "0": L'utilisateur ne souhaite pas choisir une chambre parmi la sélection proposée. Retour au menu principal.
+   Choix "1": L'utilisateur souhaite réserver une chambre dans la liste. Il saisit le numéro de la chambre choisie.
+
+5. Saisir le nom.
+
+6. Saisir le prénom.
+
+7. Saisir le téléphone.
+
+8. Modification du planning.
+
+9. Paiement de la réservation: l'utilisateur renseigne le type de paiement et effectue le paiement. Un message lui confirme que le            paiement a bien été effectué.
+
+10. Retour au menu principal.  
+
+##Recherche d'une réservation
+
+1. Saisir le numéro de réservation.
+
+2. Affichage du résultat.
+
+3. Choix "0": ne pas afficher la réservation en entier et retour au menu principal.
+   Choix "1": afficher la réservation en entier.
+
+##Modification d'une réservation
+Choisir entre "non", "oui" et "annulation" (voir Annulation d'une réservation)
+
+1. Choisir "oui" pour modifier les données de la réservation. // choix 1?
+
+2. Choisir "1": L'utilisateur peut modifier la date et la chambre de la réservation. D'abord la période, puis le type de chambre.
+   On recherche si une autre chambre ou période est disponible en fonction de la modification et on affiche les résultats.
+   Choix entre abandon, choix d'une chambre parmi la liste des chambres s'il y en a plusieurs, sinon possibilité de saisir directement la chambre.
+   S'il y a différence négative entre le prix de la chambre initiale et celui de la nouvelle chambre, alors on demande le paiement du supplément. Sinon, il y a directement demande de confirmation avant le retour au menu principal.
+
+3. Choisir "2": L'utilisateur peut modifier les données du client, son nom, son prénom, son numéro de téléphone.
+   Retour au menu principal.
+
+##Annulation d'une réservation
+
+###demandée par le client
 
 1. Comparer la date de début du séjour (déterminée grâce à la recherche de réservation) et la date du jour.
 
@@ -39,15 +87,13 @@
 
 3. Retour au menu principal.
 
-##Modification d'une réservation
-Choisir entre non, oui et annulation (voir Annulation d'une réservation)
+###demandée par l'hôtel
 
-1. Choisir "oui" pour modifier les données de la réservation. // choix 1?
+1. L'hôtel doit entièrement rembourser le client: remboursement du montant payé à la réservation.
 
-2. Choisir "1": L'utilisateur peut modifier la date et la chambre de la réservation. D'abord la période, puis le type de chambre.
-   On recherche si une autre chambre ou période est disponible en fonction de la modification et on affiche les résultats.
-   Choix entre abandon, choix d'une chambre parmi la liste des chambres s'il y en a plusieurs, sinon possibilité de saisir directement la chambre.
-   S'il y a différence négative entre le prix de la chambre initiale et celui de la nouvelle chambre, alors on demande le paiement du supplément. Sinon, il y a directement demande de confirmation avant le retour au menu principal.
+2. Confirmation et modification du planning.
+
+3. Retour au menu principal.
 
 ##Déclaration de travaux
 
@@ -64,4 +110,6 @@ Choisir entre non, oui et annulation (voir Annulation d'une réservation)
 
 6. Confirmation et retour au menu principal.
 
-##Recherche disponibilité des chambres disponibles à une période donnée
+##Quitter le programme
+
+1. Choix "0" dans le menu principal: "Au revoir".
