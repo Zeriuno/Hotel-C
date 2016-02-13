@@ -527,8 +527,8 @@ Procédure pour créer une réservation.
 void creer_reservation()
 {
   cible_date()    ;
-  /*
   cible_chambre() ;
+  /*
   rech_periode(date_debut, date_fin ) ;
   continue_resa = choix_chambre() ; /*À voir si choix chambre récupère des arguments ou bien si rech_periode affecte des variables globales*//*
   if(continue_resa)
@@ -569,16 +569,17 @@ void cible_date()
 
 Procédure pour déterminer quelle chambre recherche le client.
 Les données sont chargées dans la struct cha chambre.
-*//*
+Dans un premier temps on contraint à spécifier tout choix, on ne permet pas de déclarer un critère comme indifférent (ceci est une évolution envisageable).
+*/
 void cible_chambre()
 {
-  int cible_type_chambre; 1 lit simple, 2 double, 3 triple
-  int cible_cat_chambre ; 0 chambre, 1 suite
-  int cible_balcon      ; 0 pas, 1 balcon, 2 indifférent
-  int cible_vue         ; 0 pas, 1 vue, 2 indifférent
-  int cible_bain        ; 0 pas, 1 douche, 2 indifférent
-  int cible_fumeur      ; 0 pas, 1 fumeur, 2 indifférent
-  int cible_animaux     ; 0 pas, 1 animaux acceptés, 2 indifférent
+  int cible_type_chambre;/* 1 lit simple, 2 double, 3 triple*/
+  int cible_cat_chambre ;/* 0 chambre, 1 suite*/
+  int cible_balcon      ;/* 0 pas, 1 balcon, 2 indifférent*/
+  int cible_vue         ;/* 0 pas, 1 vue, 2 indifférent*/
+  int cible_bain        ;/* 0 pas, 1 douche, 2 indifférent*/
+  int cible_fumeur      ;/* 0 pas, 1 fumeur, 2 indifférent*/
+  int cible_animaux     ;/* 0 pas, 1 animaux acceptés, 2 indifférent*/
   printf("Quel type de lits ?\n")               ;
   printf("1 - un lit simple\n")                 ;
   printf("2 - deux lits simples\n")             ;
@@ -595,7 +596,7 @@ void cible_chambre()
   printf("Chambre avec balcon ? ")              ;
   printf("0 - pas de balcon\n")                 ;
   printf("1 - balcon\n")                        ;
-  printf("2 -indifférent\n")                    ;
+/*  printf("2 -indifférent\n")                    ;*/
   printf("Balcon :")                            ;
   scanf("%d", &cible_balcon)                    ;
   printf("Chambre avec vue ? ")                 ;
@@ -603,25 +604,25 @@ void cible_chambre()
   printf("Quel type de salle de bain ?")        ;
   printf("0 - baignoire\n")                     ;
   printf("1 - douche\n")                        ;
-  printf("2 - indifférent\n")                   ;
+/*  printf("2 - indifférent\n")                   ;*/
   printf("Saisir le type de salle de bain :")   ;
   scanf("%d", &cible_bain)                      ;
   printf("Chambre avec vue ? ")                 ;
   printf("0 - pas de vue\n")                    ;
   printf("1 - vue\n")                           ;
-  printf("2 - indifférent\n")                   ;
+/*  printf("2 - indifférent\n")                   ;*/
   printf("Vue :")                               ;
   scanf("%d", &cible_vue)                       ;
-  printf("Chambre "fumeur" ? ")                 ;
+  printf("Chambre pour fumeur ? ")              ;
   printf("0 - non fumeur\n")                    ;
   printf("1 - fumeur\n")                        ;
-  printf("2 - indifférent\n")                   ;
+/*  printf("2 - indifférent\n")                   ;*/
   printf("Fumeur :")                            ;
   scanf("%d", &cible_fumeur)                    ;
   printf("Chambre avec animaux autorisés? ")    ;
   printf("0 - animaux non autorisés\n")         ;
   printf("1 - animaux autorisés\n")             ;
-  printf("2 - indifférent\n")                   ;
+/*  printf("2 - indifférent\n")                   ;*/
   printf("Animaux autorisés :")                 ;
   scanf("%d", &cible_animaux)                   ;
 }
