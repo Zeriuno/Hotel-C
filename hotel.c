@@ -16,7 +16,6 @@
 * v 0.1.4 - 2016-02-07 Chargement et mise à jour du calendrier
 * v 0.1.5 - 2016-02-09 Affichage et saisie date jj/mm/aaaa
 * v 0.1.6 - 2016-02-13 Début de création de réservation, cible_date marche
-* v 0.1.7 - 2016-02-13 Début de création de réservation, cible_chambre marche
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
@@ -64,7 +63,7 @@ long unsigned int jjmmaaaa_vers_aaaammjj(int j, int m, int a) ; /*Prendre une da
 
 
 /*Calendrier*/
-void lecture_jours()       ; /* Prend les jours présents dans le fichier qui tient conte des jours (et saison) et les charge dans le tableau correspondant.*/
+void lecture_jours()       ; /* Prend les jours présents dans le fichier qui tient compte des jours (et saison) et les charge dans le tableau correspondant.*/
 void test_date()           ; /* Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tableau et dans le calendrier. Si la date a changé, déclanche la mise à jour dans les deux.*/
 void maj_calendrier(int i) ; /*mise à jour*/
 
@@ -83,6 +82,8 @@ void chargement_planning()                 ;
 void creer_reservation()                   ;
 void cible_date()                          ;
 void cible_chambre()                       ;
+int rech_periode(int demande.datearrivee, int demande.datedepart);
+
 
 /*Gestion des services complémentaires*/
 void catalogue_services_menu()             ; /* Menu qui montre les choix possibles pour le catalogue de services*/
@@ -122,7 +123,6 @@ struct prix_nuit
   float prix_bs             ; /* prix basse saison */
 };
 
-
 struct prix_nuit tab_prix_chambres[NB_CHAMBRES_PRIX] ;
 
 
@@ -151,13 +151,16 @@ struct cha
   int type_chambre        ; /* 1 simple, 2 double, 3 triple */
   int categorie_chambre   ; /* 0 chambre ; 1 suite */
   int type_lits           ; /* 1 lit simple, 2 deux lits simples, 3 lit double, 4 trois lits simples, 5 lit simple et lit double */
-  int balcon              ; /* 0 pas de balcon; 1 avec balcon  PAS INDIFFERENT ?*/
+  int balcon              ; /* 0 pas de balcon; 1 avec balcon */
   int vue                 ; /* 0 pas de vue; 1 avec vue */
   int bain                ; /* 0 baignoire; 1 douche */
   int fumeur              ; /* 0 non fumeur, 1 fumeur */
   int animaux             ; /* 0 pas d'animaux, 1 animaux acceptés */
   /*champ remarques en chaîne de caractères*/
 };
+
+int demande_ind_deb, demande_ind_fin ;
+
   /* Variables globales concernant les chambres*/
 struct cha tab_chambres[MAX_NB_CHAMBRES] ; /*Tableau listant les chambres*/
 struct cha chambre                       ;
@@ -353,7 +356,7 @@ char aaaammjj_vers_jjmmaaaa(long unsigned int date)
 #                                            #
 ##############################################
 
-Prend les jours présents dans le fichier qui tient conte des jours (et saison) et les charge dans le tableau correspondant.
+Prend les jours présents dans le fichier qui tient compte des jours (et saison) et les charge dans le tableau correspondant.
 
 */
 
@@ -441,7 +444,7 @@ void maj_calendrier(int i)
   }
   for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent: MORE FUTURE (slogan anti-punk)*/
   {
-    date_chaine[0] = '\0'; /*cette ligne et les onze suivantes étaient dans une fonction à part entière, mais retourner une chaîne de caractères et l'affecter à une variable, je ne sais pas faire*/
+    date_chaine[0] = '\0'; /*cette ligne et les onze suivantes étaient dans une fonction à part entière, mais retournaient une chaîne de caractères et l'affectaient à une variable, je ne sais pas faire*/
     a = calendrier[j-1].date/10000                       ;
     m = (calendrier[j-1].date - (a * 10000)) / 100       ;
     d = (calendrier[j-1].date - (a * 10000) - (m * 100)) ;
@@ -527,19 +530,17 @@ Procédure pour créer une réservation.
 */
 void creer_reservation()
 {
-  int calcul_nuitees                  ;
-  cible_date()                        ;
-  cible_chambre()                     ;
-  calcul_nuitees = rech_periode(demande.datearrivee, demande.datedepart) ;
+  cible_date()    ;
+  cible_chambre() ;
   /*
+  rech_periode(date_debut, date_fin ) ;
   continue_resa = choix_chambre() ; /*À voir si choix chambre récupère des arguments ou bien si rech_periode affecte des variables globales*//*
   if(continue_resa)
   {
     saisie_client();
     paiement_resa();
     maj_planning   ;
-  }
-  */
+  }*/
 }
 
 /*############################################
@@ -548,25 +549,20 @@ void creer_reservation()
 #                                            #
 ##############################################
 
-Procédure pour saisir une période pour réservation.
+Procédure pour saisir une date.
 
-Tests à ajouter:
-
-* si la date est dans le passé
-* si la date est hors de la période d'ouverture des réservations
-* si la deuxième date est antérieure à la première
 
 */
 void cible_date()
 {
-  int jour_debut, mois_debut, annee_debut;
-  int jour_fin, mois_fin, annee_fin;
-  printf("Saisir la date de début (jj/mm/aaaa) : ")         ;
-  scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)  ;
+  int jour_debut, mois_debut, annee_debut ;
+  int jour_fin, mois_fin, annee_fin       ;
+  printf("Saisir la date de début (jj/mm/aaaa) : ")                                ;
+  scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)                        ;
   demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut);
-  printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")           ;
-  scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)        ;
-  demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin) ;
+  printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                   ;
+  scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                              ;
+  demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)       ;
 }
 
 /*############################################
@@ -578,8 +574,6 @@ void cible_date()
 Procédure pour déterminer quelle chambre recherche le client.
 Les données sont chargées dans la struct cha chambre.
 Dans un premier temps on contraint à spécifier tout choix, on ne permet pas de déclarer un critère comme indifférent (ceci est une évolution envisageable).
-
-Tests à ajouter= valeurs fausses (boucle while).
 */
 void cible_chambre()
 {
@@ -591,7 +585,6 @@ void cible_chambre()
   int cible_bain         ; /* 0 pas, 1 douche, 2 indifférent*/
   int cible_fumeur       ; /* 0 pas, 1 fumeur, 2 indifférent*/
   int cible_animaux      ; /* 0 pas, 1 animaux acceptés, 2 indifférent*/
-
   printf("Quel type de lits ?\n")                ;
   printf("1 - un lit simple\n")                  ;
   printf("2 - deux lits simples\n")              ;
@@ -602,59 +595,109 @@ void cible_chambre()
   scanf("%d", &cible_type_lits)                  ;
   chambre.type_lits = cible_type_lits            ;
   switch(cible_type_lits)
-  {
     case 1 :
-      chambre.type_chambre = 1                   ;
-      break                                      ;
-    case 2 :
-    case 3 :
-      chambre.type_chambre = 2                   ;
-      break                                      ;
-    case 4 :
-    case 5 :
-      chambre.type_chambre = 3                   ;
-      break                                      ;
+
+      break;
   }
-  printf("Quelle catégorie de chambre ?\n")      ;
+  printf("Quelle catégorie de chambre ? \n")     ;
   printf("0 - chambre\n")                        ;
   printf("1 - suite\n")                          ;
-  printf("Choix : ")                             ;
+  printf("Saisir la catégorie :")                ;
   scanf("%d", &cible_cat_chambre)                ;
-  chambre.categorie_chambre = cible_cat_chambre  ;
-  printf("Chambre avec balcon ?\n")              ;
-  printf("0 - sans balcon\n")                    ;
-  printf("1 - avec balcon\n")                    ;
+  printf("Chambre avec balcon ? ")               ;
+  printf("0 - pas de balcon\n")                  ;
+  printf("1 - balcon\n")                         ;
 /*  printf("2 -indifférent\n")                    ;*/
-  printf("Choix : ")                             ;
+  printf("Balcon :")                             ;
   scanf("%d", &cible_balcon)                     ;
-  chambre.balcon = cible_balcon                  ;
-  printf("Chambre avec vue ?\n")                 ;
-  printf("0 - sans vue\n")                       ;
-  printf("1 - avec vue\n")                       ;
-  printf("Choix :")                              ;
+  printf("Chambre avec vue ? ")                  ;
   scanf("%d", &cible_vue)                        ;
-  chambre.vue = cible_vue                        ;
-  printf("Quel type de salle de bain ?\n")       ;
+  printf("Quel type de salle de bain ?")         ;
   printf("0 - baignoire\n")                      ;
   printf("1 - douche\n")                         ;
 /*  printf("2 - indifférent\n")                   ;*/
-  printf("Choix :")                              ;
+  printf("Saisir le type de salle de bain :")    ;
   scanf("%d", &cible_bain)                       ;
-  chambre.bain = cible_bain                      ;
-  printf("Chambre pour fumeur ?\n")              ;
+  printf("Chambre avec vue ? ")                  ;
+  printf("0 - pas de vue\n")                     ;
+  printf("1 - vue\n")                            ;
+/*  printf("2 - indifférent\n")                   ;*/
+  printf("Vue :")                                ;
+  scanf("%d", &cible_vue)                        ;
+  printf("Chambre pour fumeur ? ")               ;
   printf("0 - non fumeur\n")                     ;
   printf("1 - fumeur\n")                         ;
 /*  printf("2 - indifférent\n")                   ;*/
-  printf("Choix :")                              ;
+  printf("Fumeur :")                             ;
   scanf("%d", &cible_fumeur)                     ;
-  chambre.fumeur = cible_fumeur                  ;
-  printf("Chambre avec animaux autorisés?\n")    ;
+  printf("Chambre avec animaux autorisés? ")     ;
   printf("0 - animaux non autorisés\n")          ;
   printf("1 - animaux autorisés\n")              ;
 /*  printf("2 - indifférent\n")                   ;*/
-  printf("Choix : ")                             ;
+  printf("Animaux autorisés :")                  ;
   scanf("%d", &cible_animaux)                    ;
-  chambre.animaux = cible_animaux                ;
+
+}
+
+
+
+
+/*############################################
+#                                            #
+#             rech_periode                   #
+#                                            #
+##############################################
+
+*/
+
+int rech_periode(int datearrivee, int datedepart)
+{
+
+/*demande.date arrivee parcourir le tableau pour trouver la même valeur: indice
+de la case de la date et boucler à partir de la date vers la suivante pour avoir les deux indices*/
+
+  int i=0 ;
+  demande_ind_deb=NON_TROUVE;
+  demande_ind_fin=NON_TROUVE;
+  while ((i<ANNEE)&&(demande_ind_deb==NON_TROUVE))
+  {
+    if(datearrivee==calendrier[i])
+    {
+      demande_ind_deb=i                ;
+    }
+    else
+    {
+      i++                                  ;
+    }
+  }
+  if (demande_ind_deb!=NON_TROUVE)
+  {
+    while ((i<ANNEE)&&(demande_ind_fin==NON_TROUVE))
+    {
+      if(datedepart==calendrier[i])
+      {
+        demande_ind_fin=i               ;
+      }
+      else
+      {
+        i++                                 ;
+      }
+    }
+  }
+  else
+  {
+      printf("Date d'arrivée non trouvée\n");
+  }
+  if (demande_ind_fin!=NON_TROUVE)
+  {
+    calcul_nuitee = indice_date_depart - (indice_date_arrivee - 1);
+    return calcul_nuitee                                         ;
+  }
+  else
+  {
+      printf("Date de départ non trouvée\n");
+  }
+}
 }
 
 
@@ -721,7 +764,7 @@ void paiement_resa(int nb_nuitee_hs, int nb_nuitee_bs, int type_chambre, int cat
   printf("3- Carte bancaire : )                ;
   printf("4- Virement : )                      ;
   scanf("%d", &mode_paiment)                   ;
-  printf("Le paiement a bien été effectué. ");
+  printf("Le paiement a bien été effectué. ")  ;
   /*à ce moment on imprime toutes les données de la réservation et du moyen de paiement dans un fichier numero_reservation_paiement_resa.txt
 }
 
