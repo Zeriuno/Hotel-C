@@ -104,7 +104,7 @@ Structures et variables
 
 ----------------------*/
 
-/*Variables globales*/
+/*Utilitaires*/
 
 char poubelle            ; /*pour vider le buffer des \n*/
 
@@ -130,10 +130,6 @@ struct prix_nuit
 struct prix_nuit tab_prix_chambres[NB_CHAMBRES_PRIX] ;
 
 
-/*Planning*/
-
-long unsigned int planning[MAX_NB_CHAMBRES][ANNEE] ; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
-
 /*Réservations*/
 
 struct resa
@@ -146,7 +142,13 @@ struct resa
   char telclient[13]             ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
 };
 
-struct resa demande;
+struct resa demande ;
+long int nb_resa    ; /*dernière réservation*/
+long unsigned int planning[MAX_NB_CHAMBRES][ANNEE] ; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
+
+int demande_ind_deb, demande_ind_fin ;
+
+/* Variables globales concernant les chambres*/
 
 struct cha
 {  /* structure pour les chambres*/
@@ -163,13 +165,12 @@ struct cha
   /*champ remarques en chaîne de caractères*/
 };
 
-int demande_ind_deb, demande_ind_fin ;
-
-  /* Variables globales concernant les chambres*/
 struct cha tab_chambres[MAX_NB_CHAMBRES] ; /*Tableau listant les chambres*/
 struct cha chambre                       ;
 
 int a_sauv_chambre = 0                   ; /*pour la modification des chambres*/
+
+
 
   /* Variables globales concernant les frais*/
 struct frais
