@@ -693,13 +693,7 @@ void rech_periode(int datearrivee, int datedepart)
 /*demande.date arrivee parcourir le tableau pour trouver la même valeur: indice
 de la case de la date et boucler à partir de la date vers la suivante pour avoir les deux indices*/
 
-  int i                        ;
-
-  for(i = 0 ; i < 2 ; i++)
-  {
-    nuitees_demande[i] = 0 ;
-  }
-  i = 0                    ;
+  int i=0                      ;
 
   numcase_resa_date_debut=NON_TROUVE   ;
   numcase_resa_date_fin=NON_TROUVE   ;
@@ -709,14 +703,6 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
     if(datearrivee==calendrier[i].date)
     {
       numcase_resa_date_debut=i ;
-      if(calendrier[i].saison == 0)
-      {
-        nuitees_demande[0]++  ;
-      }
-      else
-      {
-        nuitees_demande[1]++ ;
-      }
     }
     else
     {
@@ -741,13 +727,9 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
   {
       printf("Date d'arrivée non trouvée\n") ;
   }
-  if (numcase_resa_date_fin!=NON_TROUVE)
+  if (numcase_resa_date_fin==NON_TROUVE)
   {
-    return nuitees_demande                           ;
-  }
-  else
-  {
-      printf("Date de départ non trouvée\n") ;
+    printf("Date de départ non trouvée\n") ;
   }
 }
 
