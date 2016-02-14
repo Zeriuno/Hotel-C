@@ -87,6 +87,12 @@ void cible_date()                          ;
 void cible_chambre()                       ;
 int rech_periode(int datearrivee, int datedepart);
 int choix_chambre()                        ;
+int rech_resa(int p_num_resa)              ;
+void modif_resa_dates_client()             ;
+void modif_resa_cha()                      ;
+void annulation_resa()                     ;
+void annul_dates_client()                  ;
+// void annul_chambre()                       ;
 
 
 /*Gestion des services complémentaires*/
@@ -123,8 +129,8 @@ struct prix_nuit
 {
   int type_chambre        ; /* 0 simple ; 1 double ; 2 triple */
   int categorie_chambre   ; /* 0 chambre ; 1 suite */
-  float prix_hs             ; /* prix haute saison */
-  float prix_bs             ; /* prix basse saison */
+  float prix_hs           ; /* prix haute saison */
+  float prix_bs           ; /* prix basse saison */
 };
 
 struct prix_nuit tab_prix_chambres[NB_CHAMBRES_PRIX] ;
@@ -143,6 +149,7 @@ struct resa
   char telclient[13]             ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
 };
 
+<<<<<<< Updated upstream
 struct resa demande ;
 long int nb_resa    ; /*dernière réservation*/
 long unsigned int planning[MAX_NB_CHAMBRES][ANNEE] ; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
@@ -150,6 +157,12 @@ long unsigned int planning[MAX_NB_CHAMBRES][ANNEE] ; /*Les valeurs dans ce table
 int demande_ind_deb, demande_ind_fin ;
 
 /* Variables globales concernant les chambres*/
+=======
+struct resa demande              ;
+struct resa tab_modif_resa[ANNEE]; //ANNEE??
+
+int numcase_resa_date_debut, numcase_resa_date_fin, numcase_resa_chambre;
+>>>>>>> Stashed changes
 
 struct cha
 {  /* structure pour les chambres*/
@@ -166,6 +179,12 @@ struct cha
   /*champ remarques en chaîne de caractères*/
 };
 
+<<<<<<< Updated upstream
+=======
+int demande_ind_deb, demande_ind_fin     ;
+
+  /* Variables globales concernant les chambres*/
+>>>>>>> Stashed changes
 struct cha tab_chambres[MAX_NB_CHAMBRES] ; /*Tableau listant les chambres*/
 struct cha chambre                       ;
 
@@ -487,7 +506,7 @@ void maj_calendrier(int i)
     choix_saison = 'z'                        ; /*réinitialisation de la variable*/
   }
   f1 = fopen(CALENDRIER, "w")                 ;
-  for(j = 0 ; j < ANNEE ; j++) /*jsuqu'à la fin du tableau*/
+  for(j = 0 ; j < ANNEE ; j++) /*jusqu'à la fin du tableau*/
   {
     fprintf(f1, "%lu %d\n", calendrier[j].date, calendrier[j].saison) ;
   }
@@ -599,7 +618,7 @@ void cible_chambre()
   printf("3 - un lit double\n")                  ;
   printf("4 - trois lits simples\n")             ;
   printf("5 - un lit double et un lit simple\n") ;
-  printf("Choix : ")                  ;
+  printf("Saisir le type de lits :")             ;
   scanf("%d", &cible_type_lits)                  ;
   chambre.type_lits = cible_type_lits            ;
 
@@ -620,42 +639,42 @@ void cible_chambre()
   printf("Quelle catégorie de chambre ?\n")     ;
   printf("0 - chambre\n")                        ;
   printf("1 - suite\n")                          ;
-  printf("Choix : ")                  ;
+  printf("Saisir la catégorie :")                ;
   scanf("%d", &cible_cat_chambre)                ;
   chambre.categorie_chambre = cible_cat_chambre  ;
-  printf("Chambre avec balcon ?\n")               ;
+  printf("Chambre avec balcon ? ")               ;
   printf("0 - pas de balcon\n")                  ;
   printf("1 - balcon\n")                         ;
 /*  printf("2 -indifférent\n")                    ;*/
-  printf("Choix : ")                  ;
+  printf("Balcon :")                             ;
   scanf("%d", &cible_balcon)                     ;
   chambre.balcon = cible_balcon                  ;
-  printf("Quel type de salle de bain ?\n")         ;
+  printf("Quel type de salle de bain ?")         ;
   printf("0 - baignoire\n")                      ;
   printf("1 - douche\n")                         ;
 /*  printf("2 - indifférent\n")                   ;*/
-  printf("Choix : ")                  ;
+  printf("Saisir le type de salle de bain :")    ;
   scanf("%d", &cible_bain)                       ;
   chambre.bain = cible_bain                      ;
-  printf("Chambre avec vue ?\n")                  ;
+  printf("Chambre avec vue ? ")                  ;
   printf("0 - pas de vue\n")                     ;
   printf("1 - vue\n")                            ;
 /*  printf("2 - indifférent\n")                   ;*/
-  printf("Choix : ")                  ;
+  printf("Vue :")                                ;
   scanf("%d", &cible_vue)                        ;
   chambre.vue = cible_vue                        ;
-  printf("Chambre pour fumeur ?\n")               ;
+  printf("Chambre pour fumeur ? ")               ;
   printf("0 - non fumeur\n")                     ;
   printf("1 - fumeur\n")                         ;
 /*  printf("2 - indifférent\n")                   ;*/
-  printf("Choix : ")                  ;
+  printf("Fumeur :")                             ;
   scanf("%d", &cible_fumeur)                     ;
   chambre.fumeur = cible_fumeur                  ;
-  printf("Chambre avec animaux autorisés?\n")    ;
+  printf("Chambre avec animaux autorisés? ")     ;
   printf("0 - animaux non autorisés\n")          ;
   printf("1 - animaux autorisés\n")              ;
 /*  printf("2 - indifférent\n")                   ;*/
-  printf("Choix : ")                  ;
+  printf("Animaux autorisés :")                  ;
   scanf("%d", &cible_animaux)                    ;
   chambre.animaux = cible_animaux                ;
 }
@@ -725,11 +744,9 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
 #             choix_chambre                  #
 #                                            #
 ##############################################
-
 Dans les bornes du planning données par rech_periode, recherche de chambres avec code de réservation qui indique qu'elles sont libres.
 On désigne une liste des chambres possibles.
 On demande d'en choisir une ou bien de renoncer.
-
 */
 int choix_chambre()
 {
@@ -763,8 +780,8 @@ int choix_chambre()
   printf("Chambres correspondant à la demande : %d\n", j) ;
 
   /*On teste leur disponibilité sur la période demandée*/
-  l = 0 ;
-  if(j < 0)
+  l = 0 ; /*décompte des chambres disponibles*/
+  if(j > 0)
   {
     for(i = 0 ; i < j ; i++)
     {
@@ -778,7 +795,10 @@ int choix_chambre()
           {
             test = 0 ;
           }
-        m++ ;
+          else
+          {
+            m++ ;
+          }
       }
       if(test == 1)
       {
@@ -911,10 +931,10 @@ Rechercher une réservation par son numéro dans planning[MAX_NB_CHAMBRES][ANNEE
 pour chaque jour, je parcours toutes les chambres et on s'arrete quand on trouve un num égal à
 
 */
-/*
+
 int rech_resa(int p_num_resa)
 {
-  int i=0, j=0, numcase_resa_date_debut=NON_TROUVE,
+  int i=0, j=0, k, numcase_resa_date_debut=NON_TROUVE,
   numcase_resa_date_fin=NON_TROUVE, numcase_resa_chambre=NON_TROUVE;
   while (j<ANNEE)
   {
@@ -922,8 +942,8 @@ int rech_resa(int p_num_resa)
     {
      if(p_num_resa==planning[i][j])
      {
-      numcase_resa_date_debut=j;
-      numcase_resa_chambre=i;
+      numcase_resa_date_debut = j;
+      numcase_resa_chambre = i   ;
      }
      else
      {
@@ -933,12 +953,12 @@ int rech_resa(int p_num_resa)
     j++;
     if(numcase_resa_date_debut!=NON_TROUVE)
     {
-      k=numcase_resa_date_debut+1;
+      k = numcase_resa_date_debut+1;
       while (k<ANNEE)
       {
         if (planning[numcase_resa_chambre][k]==p_num_resa)
         {
-          numcase_resa_date_fin=k;
+          numcase_resa_date_fin = k ;
         }
         else
         {
@@ -947,10 +967,253 @@ int rech_resa(int p_num_resa)
       }
     }
   }
-  return numcase_resa;
+  return numcase_resa ;
 }
 
+
+/*############################################
+#                                            #
+#             modif_resa_dates_client        #
+#                                            #
+##############################################
+
+Modification d'une réservation : partie dates et client
+
 */
+void modif_resa_dates_client()
+{
+  char nom_client[100], prenom_client[200], numero_telephone_client[20];
+  int jour_debut, mois_debut, annee_debut ;
+  int jour_fin, mois_fin, annee_fin       ;
+  int numero, numresa                     ;
+  struct resa modif                       ;
+  numero=rech_resa(numresa)               ;
+  if (numero==NON_TROUVE)
+  {
+    printf("Modification impossible: le numéro de réservation %d n'a pas été trouvé. \n", numresa) ;
+  }
+  else
+  {
+    modif=tab_modif_resa[numero]                                                        ;
+    printf("Date actuelle de début  : %d/%d/%d \n", jour_debut, mois_debut, annee_debut);
+    printf("Saisir la nouvelle date de début (jj/mm/aaaa) : ")                          ;
+    scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)                           ;
+    demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut)   ;
+    printf("Date actuelle de fin  : %d/%d/%d \n", jour_fin, mois_fin, annee_fin)        ;
+    printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                      ;
+    scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                                 ;
+    demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)          ;
+    modif_resa_cha()                                                                    ;
+    if (modif_chambre_OK)  //SI DES CHAMBRES SONT DISPO DURANT LA PÉRIODE
+    {
+      printf("Nom actuel du client : \n", nom_client)                                     ;
+      printf("Nouveau nom du client : ")                                                  ;
+      scanf("%s", nom_client)                                                             ;
+      printf("Prénom actuel du client : \n", prenom_client)                               ;
+      printf("Nouveau prénom du client : ")                                               ;
+      scanf("%s", prenom_client)                                                          ;
+      printf("Numéro de téléphone actuel : \n", numero_telephone_client)                  ;
+      printf("Nouveau numéro de téléphone : ")                                            ;
+      scanf("%s", numero_telephone_client)                                                ;
+      tab_modif_resa[numero]=modif                                                        ;
+    }
+  }
+}
+
+/*############################################
+#                                            #
+#              modif_cha_origine             #
+#                                            #
+##############################################
+
+Origine de la modification d'une chambre
+*//*
+void modif_cha_origine()
+{
+  printf("Quelle est la raison de la modification ? ");
+  printf("1 - Travaux \n")                            ;
+  printf("2 - Décision du client \n")                 ;
+  printf("3 - Décision de l'hôtel \n")                ;
+  scanf("%d", &raison_modif)                          ;
+  switch (raison_modif)
+{
+    case 1:
+      travaux();
+    break;
+    case 2:
+      modif_resa_cha();
+    break;
+    case 3:
+      annulation_resa();
+    break;
+    default:
+      printf("Erreur de saisie. \n");
+    break;
+ }
+}
+*/
+
+/*############################################
+#                                            #
+#              modif_resa_cha                #
+#                                            #
+##############################################
+
+Modification de la réservation : partie chambres
+Saisie d'une nouvelles chambre
+Cherche si dispo durant période
+*/
+void modif_resa_cha()
+{
+  int cible_cat_chambre             ; /* 0 chambre, 1 suite*/
+  int cible_type_lits               ; /* 1 lit simple, 2 deux lits simples, 3 lit double, 4 trois lits simples, 5 lit simple et lit double */
+  int cible_balcon                  ; /* 0 pas, 1 balcon, 2 indifférent*/
+  int cible_vue                     ; /* 0 pas, 1 vue, 2 indifférent*/
+  int cible_bain                    ; /* 0 pas, 1 douche, 2 indifférent*/
+  int cible_fumeur                  ; /* 0 pas, 1 fumeur, 2 indifférent*/
+  int cible_animaux                 ; /* 0 pas, 1 animaux acceptés, 2 indifférent*/
+  int numero, numresa, raison_modif ;
+  struct cha modif                  ;
+  printf("Saisir les critères de la chambre souhaitée :   ");
+  modif=rech_resa(numresa)  ;
+  printf("Type actuel de chambre : %d \n", chambre.type_lits);
+  printf("Nouveau type de chambre : ")           ;
+  printf("1 - un lit simple\n")                  ;
+  printf("2 - deux lits simples\n")              ;
+  printf("3 - un lit double\n")                  ;
+  printf("4 - trois lits simples\n")             ;
+  printf("5 - un lit double et un lit simple\n") ;
+  scanf("%d", &cible_type_lits)                  ;
+  chambre.type_lits = cible_type_lits            ;
+  switch(cible_type_lits)
+  {
+    case 1 :
+      chambre.type_chambre = 1                   ;
+      break                                      ;
+    case 2 :
+    case 3 :
+      chambre.type_chambre = 2                   ;
+      break                                      ;
+    case 4 :
+    case 5 :
+      chambre.type_chambre = 3                   ;
+      break                                      ;
+  }
+  printf("Catégorie actuelle de la chambre : %d \n", chambre.categorie_chambre);
+  printf("Nouvelle catégorie :")                 ;
+  printf("0 - chambre\n")                        ;
+  printf("1 - suite\n")                          ;
+  scanf("%d", &cible_cat_chambre)                ;
+  chambre.categorie_chambre = cible_cat_chambre  ;
+  printf("Présence d'un balcon ou non actuellement : %d \n", chambre.balcon);
+  printf("Balcon :")                             ;
+  printf("0 - pas de balcon\n")                  ;
+  printf("1 - balcon\n")                         ;
+  scanf("%d", &cible_balcon)                     ;
+  chambre.balcon = cible_balcon                  ;
+  printf("Type actuel de salle de bain : %d \n", chambre.bain);
+  printf("Saisir le type de salle de bain : ")   ;
+  printf("0 - baignoire\n")                      ;
+  printf("1 - douche\n")                         ;
+  scanf("%d", &cible_bain)                       ;
+  chambre.bain = cible_bain                      ;
+  printf("Chambre avec vue actuellement : %d\n", chambre.vue);
+  printf("Vue :")                                ;
+  printf("0 - pas de vue\n")                     ;
+  printf("1 - vue\n")                            ;
+  scanf("%d", &cible_vue)                        ;
+  chambre.vue = cible_vue                        ;
+  printf("Fumeurs autorisés actuellement \n", chambre.fumeur);
+  printf("Fumeur : %d ", chambre.fumeur)         ;
+  printf("0 - non fumeur\n")                     ;
+  printf("1 - fumeur\n")                         ;
+  scanf("%d", &cible_fumeur)                     ;
+  chambre.fumeur = cible_fumeur                  ;
+  printf("Chambre avec animaux autorisés actuellement : %d \n", chambre.animaux);
+  printf("Animaux autorisés :")                  ;
+  printf("0 - animaux non autorisés\n")          ;
+  printf("1 - animaux autorisés\n")              ;
+  scanf("%d", &cible_animaux)                    ;
+  chambre.animaux = cible_animaux                ;
+  tab_modif_resa[numero]=modif                   ;
+}
+
+/*############################################
+#                                            #
+#             annulation_resa                #
+#                                            #
+##############################################
+
+*/
+/*
+void annulation_resa()
+{
+  int ecart_jour, j, m, a, datedujour                  ;
+  float total_resa                                     ;
+  calendrier[0].date = jjmmaaaa_vers_aaaammjj(j, m, a) ;
+  datedujour=calendrier[0].date                        ;
+  void annul_dates_client()                            ;
+  void annul_chambre()                                 ;
+  printf("L'annulation a bien été effectuée. \n")      ;
+  ecart_jour=jour_debut-datedujour                    ;
+  if (ecart_jour>14)
+  {
+    printf("Remboursement de 70%, soit %f \n", 0.7*total_resa);
+  }
+  else
+  {
+   if (ecart_jour>7)
+   {
+    printf("Remboursement de 30%, soit %f \n", 0.3*total_resa);
+   }
+   else
+   {
+    printf("Pas de remboursement.");
+   }
+  }
+}
+
+/*############################################
+#                                            #
+#             annul_dates_client             #
+#                                            #
+##############################################
+
+*/
+/*
+void annul_dates_client()
+{
+  int numero, numresa, i                    ;
+  struct resa modif                         ;
+  numero=rech_resa(numresa)                 ;
+  if (numero==NON_TROUVE)
+  {
+    printf("Annulation impossible: le numéro de réservation %d n'a pas été trouvé. \n", numresa);
+  }
+  else
+  {
+    tab_modif_resa[numero]=modif              ;
+    modif=tab_modif_resa[numero]              ;
+    for (i=numero; i<ANNEE; i++)
+    {
+      tab_modif_resa[i]=tab_modif_resa[i+1]   ;
+    }
+  }
+}
+
+
+/*############################################
+#                                            #
+#             annul_chambre                  #
+#                                            #
+##############################################
+
+*/
+/*
+void annul_chambre()
+{
+
+}
 
 /*############################################
 #                                            #
