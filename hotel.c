@@ -734,7 +734,7 @@ int choix_chambre()
 {
   int chambres_ok[MAX_NB_CHAMBRES]    ;
   int chambres_dispo[MAX_NB_CHAMBRES] ;
-  int i, j , k, l, m, test            ;
+  int i, j , k, l, m, test, chambre_choisie ;
   j = 0                               ;
 
 
@@ -742,19 +742,6 @@ int choix_chambre()
 
   for(i=0 ; i < MAX_NB_CHAMBRES ; i++)
   {
-    printf("i = %d\n", i) ; /*debug*/
-    /*debug*/
-    printf("chambre.type_chambre = %d\n", chambre.type_chambre);
-    printf("tab_chambres[i].type_chambre = %d\n", tab_chambres[i].type_chambre);
-    printf("chambre.type_lits = %d\n", chambre.type_lits) ;
-    printf("tab_chambres[i].type_lits = %d\n", tab_chambres[i].type_lits);
-    printf("chambre.categorie_chambre = %d\n", chambre.categorie_chambre) ;    printf("tab_chambres[i].categorie_chambre = %d\n", tab_chambres[i].categorie_chambre);
-    printf("chambre.balcon = %d\n", chambre.balcon) ;    printf("tab_chambres[i].balcon = %d\n", tab_chambres[i].balcon);
-    printf("chambre.bain = %d\n", chambre.bain) ;    printf("tab_chambres[i].bain = %d\n", tab_chambres[i].bain);
-    printf("chambre.fumeur = %d\n", chambre.fumeur) ;    printf("tab_chambres[i].fumeur = %d\n", tab_chambres[i].fumeur);
-    printf("chambre.vue = %d\n", chambre.vue) ;    printf("tab_chambres[i].type_lits = %d\n", tab_chambres[i].type_lits);
-    printf("chambre.animaux = %d\n", chambre.animaux) ;    printf("tab_chambres[i].animaux = %d\n", tab_chambres[i].animaux);
-
     if
     (
       (chambre.type_chambre == tab_chambres[i].type_chambre) &&
@@ -769,16 +756,15 @@ int choix_chambre()
     {
     chambres_ok[j] = i ;
     j++                ;
-    printf("Test OK\n") ; /*debug*/
     }
   }
 
   printf("Chambres correspondant à la demande : %d\n", j) ;
 
   /*On teste leur disponibilité sur la période demandée*/
+  l = 0 ;
   if(j < 0)
   {
-    l = 0 ;
     for(i = 0 ; i < j ; i++)
     {
       k = chambres_ok[i]  ;
@@ -803,11 +789,13 @@ int choix_chambre()
   else
   {
     printf("Pas de réservation possibe.\n") ;
+    /*Offrir la possibilité de modifier les critères de chambre*/
   }
   /*Si l == 0, pas de choix disponibles dans la période, avec les critères donnés*/
   if(l==0)
   {
     printf("Il n'y a pas de chambres disponibles dans la période définie selon les critères donnés\n") ;
+    /*Offir la possibilité de modifier les critères de date*/
   }
   else
   {
@@ -818,7 +806,8 @@ int choix_chambre()
       printf("Chambre n.%d\n", tab_chambres[j].num_chambre);
     }
   }
-  /*ensuite choix*/
+  printf("Choisir la chambre à réserver : ");
+  scanf("%d", &chambre_choisie);
 }
 
 /*############################################
