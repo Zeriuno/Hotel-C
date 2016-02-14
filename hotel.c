@@ -140,9 +140,10 @@ struct resa
   int chambre_resa               ;
   int datearrivee                ;
   int datedepart                 ;
+  int nuitees_resa[1]            ; /*case 0 basse saison, case 1 haute saison*/
   char nomclient[50]             ;
   char prenomclient[50]          ;
-  char telclient[13]             ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
+  char telclient[12]             ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
 };
 
 struct resa demande ;
