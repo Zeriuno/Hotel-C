@@ -970,13 +970,13 @@ void paiement_resa()
         if (tab_prix_chambres[i].categorie_chambre==nuit.categorie_chambre)
         {
           nuit=tab_prix_chambres[i];
-          test = 1 ;
+          test = 1                 ;
         }
       }
     }
   total_resa=(nb_nuitee_hs*nuit.prix_hs)+(nb_nuitee_bs*nuit.prix_bs);
 
-  printf("Montant à payer : %f", &total_resa);
+  printf("Montant à payer : %f", &total_resa)  ;
   printf("Choisir le mode de paiement: ")      ;
   printf("1- Espèces : )                       ;
   printf("2- Chèque : )                        ;
@@ -1038,55 +1038,55 @@ void modif_resa()
   int jour_debut, mois_debut, annee_debut                              ;
   int jour_fin, mois_fin, annee_fin                                    ;
   char datearriveeavant[10], datedepartavant[10], choix_modif_chambre  ;
-  int continu_modif;
+  int continu_modif                                                    ;
 
-  datearriveeavant=aaaammjj_vers_jjmmaaaa(demande.datearrivee);
-  printf("Date actuelle de début  : %s \n", datearriveeavant);
+  datearriveeavant=aaaammjj_vers_jjmmaaaa(demande.datearrivee)                        ;
+  printf("Date actuelle de début  : %s \n", datearriveeavant)                         ;
   printf("Saisir la nouvelle date de début (jj/mm/aaaa) : ")                          ;
   scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)                           ;
   demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut)   ;
-  datedepartavant=aaaammjj_vers_jjmmaaaa(demande.datedepart);
-  printf("Date actuelle de fin  : %s \n", datedepartavant)        ;
+  datedepartavant=aaaammjj_vers_jjmmaaaa(demande.datedepart)                          ;
+  printf("Date actuelle de fin  : %s \n", datedepartavant)                            ;
   printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                      ;
   scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                                 ;
   demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)          ;
-  choix_modif_chambre='a';
+  choix_modif_chambre='a'                                                             ;
   while ((choix_modif_chambre!='o')||(choix_modif_chambre!='n'))
   {
     printf("Voulez-vous modifier la chambre (o/n)?\n");
-    scanf("%c", &choix_modif_chambre);
+    scanf("%c", &choix_modif_chambre)                 ;
     if((choix_modif_chambre!='o')&&(choix_modif_chambre!='n'))
     {
-      prinft("Choix non valide\n");
+      prinft("Choix non valide\n") ;
     }
   }
   if (choix_modif_chambre=='o')
   {
     modif_resa_cha();
   }
-  rech_periode(demande.datearrivee, demande.datedepart);
+  rech_periode(demande.datearrivee, demande.datedepart) ;
   if ((numcase_resa_date_debut != NON_TROUVE) && (numcase_resa_date_fin != NON_TROUVE))
   {
-    continu_modif=choix_chambre();
+    continu_modif=choix_chambre() ;
   }
                                                      ;
-  if (continu_modif==1)  //SI DES CHAMBRES SONT DISPO DURANT LA PÉRIODE
+  if (continu_modif==1)
   {
-    printf("Nom actuel du client : \n", demande.nomclient)                                   ;
-    printf("Nouveau nom du client : ")                                                ;
-    scanf("%s", demande.nomclient)                                                           ;
-    printf("Prénom actuel du client : \n", demande.prenomclient)                             ;
-    printf("Nouveau prénom du client : ")                                             ;
-    scanf("%s", demande.prenomclient)                                                        ;
-    printf("Numéro de téléphone actuel : \n", demande.telclient)                ;
-    printf("Nouveau numéro de téléphone : ")                                          ;
-    scanf("%s", demande.telclient)                                              ;
+    printf("Nom actuel du client : %s\n", demande.nomclient)      ;
+    printf("Nouveau nom du client : ")                          ;
+    scanf("%s", demande.nomclient)                              ;
+    printf("Prénom actuel du client : %s\n", demande.prenomclient);
+    printf("Nouveau prénom du client : ")                       ;
+    scanf("%s", demande.prenomclient)                           ;
+    printf("Numéro de téléphone actuel : %s\n", demande.telclient);
+    printf("Nouveau numéro de téléphone : ")                    ;
+    scanf("%s", demande.telclient)                              ;
 
       // AJOUTER PAIEMENT
   }
   else
   {
-    printf("Abandon de la procédure de modification\n");
+    printf("Abandon de la procédure de modification\n") ;
   }
 }
 
@@ -1183,13 +1183,13 @@ Origine de l'annulation d'une réservation
 void annul_origine()
 {
   printf("Qui est à l'origine de la demande d'annulation ' ? ");
-  printf("1 - Décision du client \n")                 ;
-  printf("2 - Décision de l'hôtel \n")                ;
-  scanf("%d", &raison_annul)                          ;
+  printf("1 - Décision du client \n")                          ;
+  printf("2 - Décision de l'hôtel \n")                         ;
+  scanf("%d", &raison_annul)                                   ;
   switch (raison_annul)
   {
     case 1:
-      annulation_resa();
+      annulation_resa() ;
     break;
     case 2:
       annul_dates_client()                                               ;
@@ -1222,7 +1222,7 @@ void annulation_resa()
   void annul_dates_client()                            ;
   void annul_chambre()                                 ;
   printf("L'annulation a bien été effectuée. \n")      ;
-  ecart_jour=jour_debut-datedujour                    ;
+  ecart_jour=jour_debut-datedujour                     ;
   if (ecart_jour>14)
   {
     printf("Remboursement de 70%, soit %f \n", 0.7*total_resa);
@@ -1235,7 +1235,7 @@ void annulation_resa()
    }
    else
    {
-    printf("Pas de remboursement.");
+    printf("Pas de remboursement.") ;
    }
   }
 }
@@ -1282,20 +1282,20 @@ On demande la saisie du numéro de réservation, on récupère la note correspon
 
 void recherche_note()
 {
-  char num_note[15] ;
-  int choix_note ;
+  char num_note[15]          ;
+  int choix_note             ;
   long unsigned int num_resa ;
 
-  printf("Saisir le numéro de réservation : ") ;
-  scanf("%lu", num_resa) ;
-  sprintf(num_note, "%lu", num_resa) ;
-  strcat(num_note, "_note.txt") ;
-  printf(" 1 - Afficher la note\n"); /*menu de choix
+  printf("Saisir le numéro de réservation : ")   ;
+  scanf("%lu", num_resa)                         ;
+  sprintf(num_note, "%lu", num_resa)             ;
+  strcat(num_note, "_note.txt")                  ;
+  printf(" 1 - Afficher la note\n")              ; /*menu de choix
   printf(" 2 - Ajouter une entrée sur la note\n");
-  printf(" 3 - Régler la note\n");
+  printf(" 3 - Régler la note\n")                ;
   printf(" 9 - Quitter et revenir au menu principal\n");
-  printf("Faire un choix : ");
-  scanf("%d", &choix_note);
+  printf("Faire un choix : ")                          ;
+  scanf("%d", &choix_note)                             ;
   switch(choix_note)  /* passe num_note au programme suivant, selon le choix
   {
     case 1:
