@@ -93,7 +93,7 @@ int choix_chambre()                        ;
 void saisie_client()                       ;
 void paiement_resa()                       ;
 void sauvegarde_resa()                     ;
-void chargement_resa(long int p_code_resa) ;
+void chargement_resa(long unsigned int p_code_resa) ;
 void modif_resa()                          ;
 void modif_resa_cha()                      ;
 void annulation_resa()                     ;
