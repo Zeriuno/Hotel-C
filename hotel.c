@@ -890,16 +890,15 @@ int choix_chambre()
 ##############################################
 
 */
-/*
 void saisie_client()
 {
   char nom_client[100], prenom_client[200], numero_telephone_client[20];
-  printf("Nom du client ")            ;
-  scanf("%s", nom_client)             ;
-  printf("Prénom du client ")         ;
-  scanf("%s", prenom_client)          ;
-  printf("Numéro de téléphone ")      ;
-  scanf("%s", numero_telephone_client);
+  printf("Nom du client ")          ;
+  scanf("%s", demande.nomclient)    ;
+  printf("Prénom du client ")       ;
+  scanf("%s", demande.prenomclient) ;
+  printf("Numéro de téléphone ")    ;
+  scanf("%s", demande.telclient)    ;
 }
 
 /*############################################
