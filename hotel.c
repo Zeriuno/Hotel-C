@@ -634,6 +634,10 @@ void cible_date()
       {
         printf("Date fausse.\n")                                                      ;
       }
+      else
+      {
+        test = 1                                                                      ;
+      }
     }
   }
 }
