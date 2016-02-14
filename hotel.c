@@ -239,26 +239,25 @@ main()
   while(choix != 9) /* 9 est la valeur pour quitter. */
   {
 
-    printf("Voici les actions possibles:\n")               ;
-    printf("------------------------------------------\n") ;
-    printf("   RÉSERVATIONS    \n\n")                      ;
-    printf("1 - Effectuer une réservation\n")              ;
-    printf("2 - Rechercher une réservation\n\n")           ;
-    printf("------------------------------------------\n") ;
-    printf("     CHAMBRES      \n\n")                      ;
-    printf("3 - Déclarer des travaux dans une chambre.\n") ;
-    printf("4 - Rechercher une chambre.\n\n")              ;
-    printf("------------------------------------------\n") ;
-    printf("     PARAMÈTRES    \n\n")                      ;
-    printf("5 - Mettre à jour la date du planning.\n")     ;
-    printf("6 - Catalogue des services.\n\n")              ;
-    printf("------------------------------------------\n") ;
-    printf("     QUITTER    \n\n")                         ;
-    printf("9 - Quitter l'application.\n")                 ;
+    printf("Voici les actions possibles:\n\n")               ;
+    printf("   RÉSERVATIONS      \n")                        ;
+    printf("__________________________________________\n\n") ;
+    printf("-1- Effectuer une réservation\n")                ;
+    printf("-2- Rechercher une réservation\n\n\n")           ;
+    printf("     CHAMBRES      \n")                          ;
+    printf("__________________________________________\n\n") ;
+    printf("-3- Déclarer des travaux dans une chambre.\n")   ;
+    printf("-4- Rechercher une chambre.\n\n\n")              ;
+    printf("     PARAMÈTRES    \n")                          ;
+    printf("__________________________________________\n\n") ;
+    printf("-5- Mettre à jour la date du planning.\n")       ;
+    printf("-6- Catalogue des services.\n\n\n")              ;
+    printf("     QUITTER    \n")                             ;
+    printf("__________________________________________\n\n") ;
+    printf("-9- Quitter l'application.\n\n")                 ;
     /*printf("7 - Imprimer le programme d'aujourd'hui.\n") ; On ne l'a pas mis dans le planning, mais c'est une idée dont on avait parlé. On verra plus tard si et comment le faire.*/
-    printf("-------------------\n")                        ;
 
-    printf("Faire un choix : ")                            ;
+    printf("Choix : ")                                     ;
     scanf("%d", &choix)                                    ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
 
     switch(choix)
