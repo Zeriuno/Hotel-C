@@ -707,6 +707,8 @@ void cible_chambre()
 #                                            #
 ##############################################
 
+Trouve les indices des cases dans le planning pour les dates données.
+
 */
 
 void rech_periode(long unsigned int datearrivee, long unsigned int datedepart)
@@ -841,20 +843,20 @@ int choix_chambre()
   {
     for(i = 0 ; i < j ; i++)
     {
+      test = 1            ;
       k = chambres_ok[i]  ;
       m = numcase_resa_date_debut ;
       while((test==1)&&(m <= numcase_resa_date_fin))
        /*disponibilité sur le premier jour*/
       {
-        test = 1 ;
-          if(planning[k][m] != 0)
-          {
-            test = 0 ;
-          }
-          else
-          {
-            m++ ;
-          }
+        if(planning[k][m] != 0)
+        {
+          test = 0 ;
+        }
+        else
+        {
+          m++ ;
+        }
       }
       if(test == 1)
       {
@@ -998,7 +1000,7 @@ void sauvegarde_resa()
 {
   FILE *f1;
   f1=fopen(demande.code_resa, "w");
-  fprinf("%lu %d %lu %lu %d %s %s %s", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa, demande.nomclient, demande.prenomclient, demande.telclient);
+  fprinf(f1, "%lu %d %lu %lu %d %s %s %s", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa, demande.nomclient, demande.prenomclient, demande.telclient);
   fclose(f1);
 }
 
@@ -1014,7 +1016,7 @@ void chargement_resa(long int p_code_resa)
 {
   FILE *f1;
   f1=fopen(p_code_resa, "r");
-  fscanf("%lu %d %lu %lu %d %s %s %s", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa, demande.nomclient, demande.prenomclient, demande.telclient);
+  fscanf(f1, "%lu %d %lu %lu %d %s %s %s", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa, demande.nomclient, demande.prenomclient, demande.telclient);
   fclose(f1);
 }
 
@@ -1034,40 +1036,59 @@ void modif_resa()
   char nom_client[100], prenom_client[200], numero_telephone_client[20];
   int jour_debut, mois_debut, annee_debut                              ;
   int jour_fin, mois_fin, annee_fin                                    ;
-  char datearriveeavant[10], datedepartavant[10];
-
+  char datearriveeavant[10], datedepartavant[10], choix_modif_chambre  ;
+  int continu_modif;
 
   datearriveeavant=aaaammjj_vers_jjmmaaaa(demande.datearrivee);
-    printf("Date actuelle de début  : %s \n", datearriveeavant);
-    printf("Saisir la nouvelle date de début (jj/mm/aaaa) : ")                          ;
-    scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)                           ;
-    demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut)   ;
-    datedepartavant=aaaammjj_vers_jjmmaaaa(demande.datedepart);
-    printf("Date actuelle de fin  : %s \n", datedepartavant)        ;
-    printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                      ;
-    scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                                 ;
-    demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)          ;
-    modif_resa_cha()                                                                    ;
-    if (modif_chambre_OK)  //SI DES CHAMBRES SONT DISPO DURANT LA PÉRIODE
+  printf("Date actuelle de début  : %s \n", datearriveeavant);
+  printf("Saisir la nouvelle date de début (jj/mm/aaaa) : ")                          ;
+  scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)                           ;
+  demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut)   ;
+  datedepartavant=aaaammjj_vers_jjmmaaaa(demande.datedepart);
+  printf("Date actuelle de fin  : %s \n", datedepartavant)        ;
+  printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                      ;
+  scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                                 ;
+  demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)          ;
+  choix_modif_chambre='a';
+  while ((choix_modif_chambre!='o')||(choix_modif_chambre!='n'))
+  {
+    printf("Voulez-vous modifier la chambre (o/n)?\n");
+    scanf("%c", &choix_modif_chambre);
+    if((choix_modif_chambre!='o')&&(choix_modif_chambre!='n'))
     {
-      printf("Nom actuel du client : \n", demande.nomclient)                                   ;
-      printf("Nouveau nom du client : ")                                                ;
-      scanf("%s", demande.nomclient)                                                           ;
-      printf("Prénom actuel du client : \n", demande.prenomclient)                             ;
-      printf("Nouveau prénom du client : ")                                             ;
-      scanf("%s", demande.prenomclient)                                                        ;
-      printf("Numéro de téléphone actuel : \n", demande.telclient)                ;
-      printf("Nouveau numéro de téléphone : ")                                          ;
-      scanf("%s", demande.telclient)                                              ;
-
-      // AJOUTER PAIEMENT
-    }
-    else
-    {
-      printf("Modification impossible: il n'y a plus de chambres disponibles répondant à la période demandée.\n");
+      prinft("Choix non valide\n");
     }
   }
+  if (choix_modif_chambre=='o')
+  {
+    modif_resa_cha();
+  }
+  rech_periode(demande.datearrivee, demande.datedepart);
+  if ((numcase_resa_date_debut != NON_TROUVE) && (numcase_resa_date_fin != NON_TROUVE))
+  {
+    continu_modif=choix_chambre();
+  }
+                                                     ;
+  if (continu_modif==1)  //SI DES CHAMBRES SONT DISPO DURANT LA PÉRIODE
+  {
+    printf("Nom actuel du client : \n", demande.nomclient)                                   ;
+    printf("Nouveau nom du client : ")                                                ;
+    scanf("%s", demande.nomclient)                                                           ;
+    printf("Prénom actuel du client : \n", demande.prenomclient)                             ;
+    printf("Nouveau prénom du client : ")                                             ;
+    scanf("%s", demande.prenomclient)                                                        ;
+    printf("Numéro de téléphone actuel : \n", demande.telclient)                ;
+    printf("Nouveau numéro de téléphone : ")                                          ;
+    scanf("%s", demande.telclient)                                              ;
+
+      // AJOUTER PAIEMENT
+  }
+  else
+  {
+    printf("Abandon de la procédure de modification\n");
+  }
 }
+
 
 
 /*############################################
@@ -1077,8 +1098,6 @@ void modif_resa()
 ##############################################
 
 Modification de la réservation : partie chambres
-Saisie d'une nouvelle chambre
-Cherche si dispo durant période
 */
 void modif_resa_cha()
 {
@@ -1089,8 +1108,7 @@ void modif_resa_cha()
   int cible_bain                    ; /* 0 pas, 1 douche, 2 indifférent*/
   int cible_fumeur                  ; /* 0 pas, 1 fumeur, 2 indifférent*/
   int cible_animaux                 ; /* 0 pas, 1 animaux acceptés, 2 indifférent*/
-  int numero, numresa, raison_modif ;
-  struct cha modif                  ;
+
   printf("Saisir les critères de la chambre souhaitée :   ");
   printf("Type actuel de chambre : %d \n", chambre.type_lits);
   printf("Nouveau type de chambre : ")           ;
@@ -1231,22 +1249,7 @@ void annulation_resa()
 /*
 void annul_dates_client()
 {
-  int numero, numresa, i                    ;
-  struct resa modif                         ;
-  numero=rech_resa(numresa)                 ;
-  if (numero==NON_TROUVE)
-  {
-    printf("Annulation impossible: le numéro de réservation %d n'a pas été trouvé. \n", numresa);
-  }
-  else
-  {
-    tab_modif_resa[numero]=modif              ;
-    modif=tab_modif_resa[numero]              ;
-    for (i=numero; i<ANNEE; i++)
-    {
-      tab_modif_resa[i]=tab_modif_resa[i+1]   ;
-    }
-  }
+
 }
 
 
