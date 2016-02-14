@@ -91,11 +91,12 @@ int choix_chambre()                        ;
 void saisie_client()                       ;
 void paiement_resa()                       ;
 int rech_resa(int p_num_resa)              ;
-void modif_resa_dates_client()             ;
+void modif_resa()                          ;
 void modif_resa_cha()                      ;
 void annulation_resa()                     ;
 void annul_dates_client()                  ;
 // void annul_chambre()                       ;
+// void annul_origine()                       ;
 
 
 /*Gestion des services complémentaires*/
@@ -166,7 +167,7 @@ int numcase_resa_date_debut, numcase_resa_date_fin ; /*identifient la position d
 
 struct cha
 {  /* structure pour les chambres*/
-   /*l'idéntifiant unique de la chambre est son indice dans le tableau des chambres, qui correspond également à l'indice dans le planning, cela permet de relier les deux informations*/
+   /*l'identifiant unique de la chambre est son indice dans le tableau des chambres, qui correspond également à l'indice dans le planning, cela permet de relier les deux informations*/
   int num_chambre         ; /* Numéro selon la codification de l'hôtel */
   int type_chambre        ; /* 1 simple, 2 double, 3 triple */
   int categorie_chambre   ; /* 0 chambre ; 1 suite */
@@ -970,8 +971,7 @@ void paiement_resa()
 #                                            #
 ##############################################
 
-Rechercher une réservation par son numéro dans planning[MAX_NB_CHAMBRES][ANNEE]
-pour chaque jour, je parcours toutes les chambres et on s'arrete quand on trouve un num égal à
+Rechercher une réservation par son numéro
 
 */
 
@@ -1016,21 +1016,21 @@ int rech_resa(int p_num_resa)
 
 /*############################################
 #                                            #
-#             modif_resa_dates_client        #
+#             modif_resa                     #
 #                                            #
 ##############################################
 
 Modification d'une réservation : partie dates et client
 
 */
-void modif_resa_dates_client()
+void modif_resa()
 {
   char nom_client[100], prenom_client[200], numero_telephone_client[20];
-  int jour_debut, mois_debut, annee_debut ;
-  int jour_fin, mois_fin, annee_fin       ;
-  int numero, numresa                     ;
-  struct resa modif                       ;
-  numero=rech_resa(numresa)               ;
+  int jour_debut, mois_debut, annee_debut                              ;
+  int jour_fin, mois_fin, annee_fin                                    ;
+  int numero, numresa                                                  ;
+  struct resa modif                                                    ;
+  numero=rech_resa(numresa)                                            ;
   if (numero==NON_TROUVE)
   {
     printf("Modification impossible: le numéro de réservation %d n'a pas été trouvé. \n", numresa) ;
@@ -1049,52 +1049,25 @@ void modif_resa_dates_client()
     modif_resa_cha()                                                                    ;
     if (modif_chambre_OK)  //SI DES CHAMBRES SONT DISPO DURANT LA PÉRIODE
     {
-      printf("Nom actuel du client : \n", nom_client)                                     ;
-      printf("Nouveau nom du client : ")                                                  ;
-      scanf("%s", nom_client)                                                             ;
-      printf("Prénom actuel du client : \n", prenom_client)                               ;
-      printf("Nouveau prénom du client : ")                                               ;
-      scanf("%s", prenom_client)                                                          ;
-      printf("Numéro de téléphone actuel : \n", numero_telephone_client)                  ;
-      printf("Nouveau numéro de téléphone : ")                                            ;
-      scanf("%s", numero_telephone_client)                                                ;
-      tab_modif_resa[numero]=modif                                                        ;
+      printf("Nom actuel du client : \n", nom_client)                                   ;
+      printf("Nouveau nom du client : ")                                                ;
+      scanf("%s", nom_client)                                                           ;
+      printf("Prénom actuel du client : \n", prenom_client)                             ;
+      printf("Nouveau prénom du client : ")                                             ;
+      scanf("%s", prenom_client)                                                        ;
+      printf("Numéro de téléphone actuel : \n", numero_telephone_client)                ;
+      printf("Nouveau numéro de téléphone : ")                                          ;
+      scanf("%s", numero_telephone_client)                                              ;
+      tab_modif_resa[numero]=modif
+      // AJOUTER PAIEMENT                                                    ;
+    }
+    else
+    {
+      printf("Modification impossible: il n'y a plus de chambres disponibles répondant à la période demandée.\n");
     }
   }
 }
 
-/*############################################
-#                                            #
-#              modif_cha_origine             #
-#                                            #
-##############################################
-
-Origine de la modification d'une chambre
-*//*
-void modif_cha_origine()
-{
-  printf("Quelle est la raison de la modification ? ");
-  printf("1 - Travaux \n")                            ;
-  printf("2 - Décision du client \n")                 ;
-  printf("3 - Décision de l'hôtel \n")                ;
-  scanf("%d", &raison_modif)                          ;
-  switch (raison_modif)
-{
-    case 1:
-      travaux();
-    break;
-    case 2:
-      modif_resa_cha();
-    break;
-    case 3:
-      annulation_resa();
-    break;
-    default:
-      printf("Erreur de saisie. \n");
-    break;
- }
-}
-*/
 
 /*############################################
 #                                            #
@@ -1103,7 +1076,7 @@ void modif_cha_origine()
 ##############################################
 
 Modification de la réservation : partie chambres
-Saisie d'une nouvelles chambre
+Saisie d'une nouvelle chambre
 Cherche si dispo durant période
 */
 void modif_resa_cha()
@@ -1183,6 +1156,39 @@ void modif_resa_cha()
 
 /*############################################
 #                                            #
+#              annul_origine                 #
+#                                            #
+##############################################
+
+Origine de l'annulation d'une réservation
+*//*
+void annul_origine()
+{
+  printf("Qui est à l'origine de la demande d'annulation ' ? ");
+  printf("1 - Décision du client \n")                 ;
+  printf("2 - Décision de l'hôtel \n")                ;
+  scanf("%d", &raison_annul)                          ;
+  switch (raison_annul)
+  {
+    case 1:
+      annulation_resa();
+    break;
+    case 2:
+      annul_dates_client()                                               ;
+      annul_chambre()                                                    ;
+      printf("Le remboursement total de la réservation a été effectué\n");
+    break;
+    default:
+      printf("Erreur de saisie. \n");
+    break;
+  }
+  >>>>>> MODIFICATION DU PLANNING
+}
+*/
+
+
+/*############################################
+#                                            #
 #             annulation_resa                #
 #                                            #
 ##############################################
@@ -1257,6 +1263,8 @@ void annul_chambre()
 {
 
 }
+
+
 
 /*############################################
 #                                            #
