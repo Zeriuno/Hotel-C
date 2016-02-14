@@ -1105,7 +1105,7 @@ void modif_resa()
   {
     continu_modif=choix_chambre() ;
   }
-                                                     ;
+
   if (continu_modif==1)
   {
     printf("Nom actuel du client : %s\n", demande.nomclient)      ;
