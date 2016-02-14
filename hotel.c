@@ -405,11 +405,11 @@ Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tab
 
 void test_date()
 {
-  char choix_date = 'f'               ;
-  char date_chaine[11], temporaire[5] ;
-  int i = 0, a, m, j                  ;
+  char choix_date = 'f'                ;
+  char date_chaine[11], temporaire[10] ;
+  int i = 0, a, m, j                   ;
 
-  printf("Test des paramètres\n")     ;
+  printf("Test des paramètres\n")      ;
   while(choix_date != 'o')
   {
     date_chaine[0] = '\0'; /*cette ligne et les onze suivantes étaient dans une fonction à part entière, mais retourner une chaîne de caractères et l'affecter à une variable, je ne sais pas faire*/
@@ -1005,7 +1005,7 @@ void sauvegarde_resa()
   sprintf(temporaire, "%lu", demande.code_resa) ;
   strcat(entree_resa, temporaire)              ;
   f1=fopen(entree_resa, "w")                   ;
-  fprinf(f1, "%lu %d %lu %lu %d %d %s %s %s", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa[0], demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient);
+  fprintf(f1, "%lu %d %lu %lu %d %d %s %s %s", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa[0], demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient);
   fclose(f1) ;
 }
 
@@ -1045,16 +1045,43 @@ void modif_resa()
   char nom_client[100], prenom_client[200], numero_telephone_client[20];
   int jour_debut, mois_debut, annee_debut                              ;
   int jour_fin, mois_fin, annee_fin                                    ;
-  char datearriveeavant[10], datedepartavant[10], choix_modif_chambre  ;
+  int a, m, j ;
+  char datearriveeavant[10], datedepartavant[10], temporaire[10], choix_modif_chambre  ;
   int continu_modif                                                    ;
 
-  strcat(datearriveeavant, aaaammjj_vers_jjmmaaaa(demande.datearrivee))                        ;
-  printf("Date actuelle de début  : %s \n", datearriveeavant)                         ;
+  datearriveeavant[0] = '\0' ;
+  a = demande.datearrivee / 10000 ;
+  m = (demande.datearrivee - (a * 10000)) / 100       ;
+  j = (demande.datearrivee - (a * 10000) - (m * 100)) ;
+  sprintf(temporaire, "%d", j)                       ;
+  strcat(datearriveeavant, temporaire)                    ;
+  strcat(datearriveeavant, "/")                           ;
+  sprintf(temporaire, "%d", m)                       ;
+  strcat(datearriveeavant, temporaire)                    ;
+  strcat(datearriveeavant, "/")                           ;
+  sprintf(temporaire, "%d", a)                       ;
+  strcat(datearriveeavant, temporaire)                    ;
+
+
+  printf("Date actuelle de début  : %s\n", datearriveeavant)                         ;
   printf("Saisir la nouvelle date de début (jj/mm/aaaa) : ")                          ;
   scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)                           ;
   demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut)   ;
-  datedepartavant=aaaammjj_vers_jjmmaaaa(demande.datedepart)                          ;
-  printf("Date actuelle de fin  : %s \n", datedepartavant)                            ;
+
+  datedepartavant[0] = '\0' ;
+  temporaire[0] = '\0'      ;
+  a = demande.datedepart / 10000 ;
+  m = (demande.datedepart - (a * 10000)) / 100       ;
+  j = (demande.datedepart - (a * 10000) - (m * 100)) ;
+  sprintf(temporaire, "%d", j)                       ;
+  strcat(datedepartavant, temporaire)                    ;
+  strcat(datedepartavant, "/")                           ;
+  sprintf(temporaire, "%d", m)                       ;
+  strcat(datedepartavant, temporaire)                    ;
+  strcat(datedepartavant, "/")                           ;
+  sprintf(temporaire, "%d", a)                       ;
+  strcat(datedepartavant, temporaire)                    ;
+  printf("Date actuelle de fin  : %s\n", datedepartavant)                            ;
   printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                      ;
   scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                                 ;
   demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)          ;
@@ -1065,7 +1092,7 @@ void modif_resa()
     scanf("%c", &choix_modif_chambre)                 ;
     if((choix_modif_chambre!='o')&&(choix_modif_chambre!='n'))
     {
-      prinft("Choix non valide\n") ;
+      printf("Choix non valide\n") ;
     }
   }
   if (choix_modif_chambre=='o')
