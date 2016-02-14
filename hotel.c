@@ -732,8 +732,7 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
   }
   if (demande_ind_fin!=NON_TROUVE)
   {
-    calcul_nuitee = demande_ind_fin - (demande_ind_deb - 1);
-    return calcul_nuitee                                         ;
+    return nuitees_demande                           ;
   }
   else
   {
