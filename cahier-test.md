@@ -47,11 +47,10 @@
 
 7. Saisir le téléphone.
 
-8. Modification du planning.
+8. Paiement de la réservation: l'utilisateur renseigne le type de paiement et effectue le paiement. Un message lui confirme que le paiement a bien été effectué.
 
-9. Paiement de la réservation: l'utilisateur renseigne le type de paiement et effectue le paiement. Un message lui confirme que le            paiement a bien été effectué.
+9. Modification du planning.
 
-10. Retour au menu principal.  
 
 ##Recherche d'une réservation
 
