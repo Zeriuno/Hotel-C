@@ -597,7 +597,7 @@ void cible_chambre()
   printf("3 - un lit double\n")                  ;
   printf("4 - trois lits simples\n")             ;
   printf("5 - un lit double et un lit simple\n") ;
-  printf("Saisir le type de lits :")             ;
+  printf("Choix : ")                  ;
   scanf("%d", &cible_type_lits)                  ;
   chambre.type_lits = cible_type_lits            ;
 
@@ -618,42 +618,42 @@ void cible_chambre()
   printf("Quelle catégorie de chambre ?\n")     ;
   printf("0 - chambre\n")                        ;
   printf("1 - suite\n")                          ;
-  printf("Saisir la catégorie :")                ;
+  printf("Choix : ")                  ;
   scanf("%d", &cible_cat_chambre)                ;
   chambre.categorie_chambre = cible_cat_chambre  ;
-  printf("Chambre avec balcon ? ")               ;
+  printf("Chambre avec balcon ?\n")               ;
   printf("0 - pas de balcon\n")                  ;
   printf("1 - balcon\n")                         ;
 /*  printf("2 -indifférent\n")                    ;*/
-  printf("Balcon :")                             ;
+  printf("Choix : ")                  ;
   scanf("%d", &cible_balcon)                     ;
   chambre.balcon = cible_balcon                  ;
-  printf("Quel type de salle de bain ?")         ;
+  printf("Quel type de salle de bain ?\n")         ;
   printf("0 - baignoire\n")                      ;
   printf("1 - douche\n")                         ;
 /*  printf("2 - indifférent\n")                   ;*/
-  printf("Saisir le type de salle de bain :")    ;
+  printf("Choix : ")                  ;
   scanf("%d", &cible_bain)                       ;
   chambre.bain = cible_bain                      ;
-  printf("Chambre avec vue ? ")                  ;
+  printf("Chambre avec vue ?\n")                  ;
   printf("0 - pas de vue\n")                     ;
   printf("1 - vue\n")                            ;
 /*  printf("2 - indifférent\n")                   ;*/
-  printf("Vue :")                                ;
+  printf("Choix : ")                  ;
   scanf("%d", &cible_vue)                        ;
   chambre.vue = cible_vue                        ;
-  printf("Chambre pour fumeur ? ")               ;
+  printf("Chambre pour fumeur ?\n")               ;
   printf("0 - non fumeur\n")                     ;
   printf("1 - fumeur\n")                         ;
 /*  printf("2 - indifférent\n")                   ;*/
-  printf("Fumeur :")                             ;
+  printf("Choix : ")                  ;
   scanf("%d", &cible_fumeur)                     ;
   chambre.fumeur = cible_fumeur                  ;
-  printf("Chambre avec animaux autorisés? ")     ;
+  printf("Chambre avec animaux autorisés?\n")    ;
   printf("0 - animaux non autorisés\n")          ;
   printf("1 - animaux autorisés\n")              ;
 /*  printf("2 - indifférent\n")                   ;*/
-  printf("Animaux autorisés :")                  ;
+  printf("Choix : ")                  ;
   scanf("%d", &cible_animaux)                    ;
   chambre.animaux = cible_animaux                ;
 }
