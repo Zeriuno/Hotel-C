@@ -950,13 +950,13 @@ void saisie_client()
 void paiement_resa()
 {
   float total_resa ;
-  int mode_paiment = 0, nb_nuitee, i, test = 0 ;
+  int mode_paiement = 0, nb_nuitee, i, test = 0 ;
   struct prix_nuit nuit ;
   FILE *f1;
 
-  nuit.type_chambre=type_chambre;
-  nuit.categorie_chambre=categorie_chambre;
-  f1=fopen(FICHIER_PRIX_CHAMBRES, "w");
+  nuit.type_chambre=chambre.type_chambre;
+  nuit.categorie_chambre=chambre.categorie_chambre;
+  f1=fopen(PRIX_NUIT, "r");
   for (i=0; i<NB_CHAMBRES_PRIX; i++)
   {
   fscanf(f1, "%d %d %f %f", &tab_prix_chambres[i].type_chambre, &tab_prix_chambres[i].categorie_chambre, &tab_prix_chambres[i].prix_hs, &tab_prix_chambres[i].prix_bs);
@@ -976,14 +976,14 @@ void paiement_resa()
     }
   total_resa=(demande.nuitees_resa[0]*nuit.prix_hs)+(demande.nuitees_resa[1]*nuit.prix_bs);
 
-  printf("Montant à payer : %f\n", &total_resa)  ;
+  printf("Montant à payer : %f\n", total_resa)  ;
   printf("Choisir le mode de paiement: \n")      ;
   printf("1- Espèces\n")                         ;
   printf("2- Chèque\n")                          ;
   printf("3- Carte bancaire\n")                  ;
   printf("4- Virement\n")                        ;
   printf("Choix : ")                           ;
-  scanf("%d", &mode_paiment)                   ;
+  scanf("%d", &mode_paiement)                   ;
   printf("Le paiement a bien été effectué.\n")  ;
   /*à ce moment on imprime toutes les données de la réservation et du moyen de paiement dans un fichier numero_reservation_paiement_resa.txt
   */
