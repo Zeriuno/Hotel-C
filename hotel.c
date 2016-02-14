@@ -161,7 +161,7 @@ struct resa tab_modif_resa[ANNEE];
 
 
 int  numcase_resa_chambre; /*Identifie la case dans le tableau planning ou dans tab_chambres qui correspond à la chambre demandée/reservée*/
-int numcase_resa_date_debut, numcase_resa_date_fin; /*identifient la position dans le planning/calendrier de la case où débute et finit la réservation*/
+int numcase_resa_date_debut, numcase_resa_date_fin ; /*identifient la position dans le planning/calendrier de la case où débute et finit la réservation*/
 /* Variables globales concernant les chambres*/
 
 struct cha
