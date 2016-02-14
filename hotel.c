@@ -62,7 +62,7 @@ Déclarations préliminaires
 
 /*D'utilité générale*/
 
-void mauvais_choix(int par_choisi)                   ; /* Mauvais choix à l'intérieur des menus*/
+void mauvais_choix(int par_choisi)                            ; /* Mauvais choix à l'intérieur des menus*/
 long unsigned int jjmmaaaa_vers_aaaammjj(int j, int m, int a) ; /*Prendre une date saisie et la traduire en lonf int date*/
 
 
@@ -1000,13 +1000,13 @@ void paiement_resa()
 void sauvegarde_resa()
 {
   char entree_resa[15], temporaire[11] ;
-  FILE *f1             ;
+  FILE *f1                             ;
 
   sprintf(temporaire, "%lu", demande.code_resa) ;
-  strcat(entree_resa, temporaire)              ;
-  f1=fopen(entree_resa, "w")                   ;
-  fprintf(f1, "%lu %d %lu %lu %d %d %s %s %s", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa[0], demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient);
-  fclose(f1) ;
+  strcat(entree_resa, temporaire)               ;
+  f1=fopen(entree_resa, "w")                    ;
+  fprinf(f1, "%lu %d %lu %lu %d %d %s %s %s", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa[0], demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient);
+  fclose(f1)                                    ;
 }
 
 /*############################################
@@ -1026,7 +1026,7 @@ void chargement_resa(long unsigned int p_code_resa)
   strcat(entree_resa, temporaire)         ;
   f1=fopen(entree_resa, "r")              ;
   fscanf(f1, "%lu %d %lu %lu %d %d %s %s %s", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa[0], &demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient);
-  fclose(f1);
+  fclose(f1)                              ;
 }
 
 
@@ -1205,7 +1205,7 @@ void modif_resa_cha()
   printf("Choix : ")                             ;
   scanf("%d", &cible_fumeur)                     ;
   chambre.fumeur = cible_fumeur                  ;
-  printf("Animaux :")                  ;
+  printf("Animaux :")                            ;
   printf("0 - animaux non autorisés\n")          ;
   printf("1 - animaux autorisés\n")              ;
   printf("Actuellement : %d \n", chambre.animaux);
@@ -1236,7 +1236,7 @@ void annul_origine()
     case 2:
       annul_dates_client()                                               ;
       annul_chambre()                                                    ;
-      printf("Le remboursement total de la réservation a été effectué\n");
+      printf("Le remboursement total de la réservation a été effectué, soit %f\n", total_resa);
     break;
     default:
       printf("Erreur de saisie. \n");
