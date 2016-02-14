@@ -158,7 +158,7 @@ struct resa
   char telclient[12]             ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
 };
 
-struct resa demande ;
+struct resa demande          ;
 long unsigned int nb_resa    ; /*dernière réservation faite, la suivante devra prendre nb_resa+1*/
 long unsigned int planning[MAX_NB_CHAMBRES][ANNEE] ; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
 
@@ -1005,7 +1005,7 @@ void sauvegarde_resa()
   sprintf(temporaire, "%lu", demande.code_resa) ;
   strcat(entree_resa, temporaire)              ;
   f1=fopen(entree_resa, "w")                   ;
-  fprinf(f1, "%lu %d %lu %lu %d %s %s %s", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa, demande.nomclient, demande.prenomclient, demande.telclient);
+  fprinf(f1, "%lu %d %lu %lu %d %d %s %s %s", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa[0], demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient);
   fclose(f1) ;
 }
 
@@ -1025,7 +1025,7 @@ void chargement_resa(long unsigned int p_code_resa)
   sprintf(temporaire, "%lu", p_code_resa) ;
   strcat(entree_resa, temporaire)         ;
   f1=fopen(entree_resa, "r")              ;
-  fscanf(f1, "%lu %d %lu %lu %d %s %s %s", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa, demande.nomclient, demande.prenomclient, demande.telclient);
+  fscanf(f1, "%lu %d %lu %lu %d %d %s %s %s", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa[0], &demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient);
   fclose(f1);
 }
 
@@ -1073,6 +1073,7 @@ void modif_resa()
     modif_resa_cha();
   }
   rech_periode(demande.datearrivee, demande.datedepart) ;
+  calcul_nuitees()                                      ;
   if ((numcase_resa_date_debut != NON_TROUVE) && (numcase_resa_date_fin != NON_TROUVE))
   {
     continu_modif=choix_chambre() ;
