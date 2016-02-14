@@ -741,20 +741,34 @@ int choix_chambre()
 
   for(i=0 ; i < MAX_NB_CHAMBRES ; i++)
   {
+    printf("i = %d\n", i) ; /*debug*/
+    /*debug*/
+    printf("chambre.type_chambre = %d\n", chambre.type_chambre);
+    printf("tab_chambres[i].type_chambre = %d\n", tab_chambres[i].type_chambre);
+    printf("chambre.type_lits = %d\n", chambre.type_lits) ;
+    printf("tab_chambres[i].type_lits = %d\n", tab_chambres[i].type_lits);
+    printf("chambre.categorie_chambre = %d\n", chambre.categorie_chambre) ;    printf("tab_chambres[i].categorie_chambre = %d\n", tab_chambres[i].categorie_chambre);
+    printf("chambre.balcon = %d\n", chambre.balcon) ;    printf("tab_chambres[i].balcon = %d\n", tab_chambres[i].balcon);
+    printf("chambre.bain = %d\n", chambre.bain) ;    printf("tab_chambres[i].bain = %d\n", tab_chambres[i].bain);
+    printf("chambre.fumeur = %d\n", chambre.fumeur) ;    printf("tab_chambres[i].fumeur = %d\n", tab_chambres[i].fumeur);
+    printf("chambre.vue = %d\n", chambre.vue) ;    printf("tab_chambres[i].type_lits = %d\n", tab_chambres[i].type_lits);
+    printf("chambre.animaux = %d\n", chambre.animaux) ;    printf("tab_chambres[i].animaux = %d\n", tab_chambres[i].animaux);
+
     if
     (
-      (chambre.type_chambre == tab_chambres[i].type_chambre) ||
-      (chambre.type_lits == tab_chambres[i].type_lits) ||
-      (chambre.categorie_chambre == tab_chambres[i].categorie_chambre) ||
-      (chambre.balcon == tab_chambres[i].balcon) ||
-      (chambre.bain == tab_chambres[i].bain) ||
-      (chambre.vue == tab_chambres[i].vue) ||
-      (chambre.fumeur == tab_chambres[i].fumeur) ||
+      (chambre.type_chambre == tab_chambres[i].type_chambre) &&
+      (chambre.type_lits == tab_chambres[i].type_lits) &&
+      (chambre.categorie_chambre == tab_chambres[i].categorie_chambre) &&
+      (chambre.balcon == tab_chambres[i].balcon) &&
+      (chambre.bain == tab_chambres[i].bain) &&
+      (chambre.vue == tab_chambres[i].vue) &&
+      (chambre.fumeur == tab_chambres[i].fumeur) &&
       (chambre.animaux == tab_chambres[i].animaux)
     )
     {
     chambres_ok[j] = i ;
     j++                ;
+    printf("Test OK\n") ; /*debug*/
     }
   }
 
@@ -768,7 +782,7 @@ int choix_chambre()
     {
       k = chambres_ok[i]  ;
       m = demande_ind_deb ;
-      while((test==1)||(m <= demande_ind_fin))
+      while((test==1)&&(m <= demande_ind_fin))
        /*disponibilité sur le premier jour*/
       {
         test = 1 ;
