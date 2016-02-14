@@ -1048,7 +1048,7 @@ void modif_resa()
   char datearriveeavant[10], datedepartavant[10], choix_modif_chambre  ;
   int continu_modif                                                    ;
 
-  datearriveeavant=aaaammjj_vers_jjmmaaaa(demande.datearrivee)                        ;
+  strcat(datearriveeavant, aaaammjj_vers_jjmmaaaa(demande.datearrivee))                        ;
   printf("Date actuelle de début  : %s \n", datearriveeavant)                         ;
   printf("Saisir la nouvelle date de début (jj/mm/aaaa) : ")                          ;
   scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)                           ;
