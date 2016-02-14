@@ -153,17 +153,15 @@ struct resa
   char telclient[12]             ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
 };
 
-<<<<<<< Updated upstream
 struct resa demande ;
 long int nb_resa    ; /*dernière réservation*/
 long unsigned int planning[MAX_NB_CHAMBRES][ANNEE] ; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
 
-int demande_ind_deb, demande_ind_fin ;
-
 struct resa tab_modif_resa[ANNEE];
 
-int numcase_resa_date_debut, numcase_resa_date_fin, numcase_resa_chambre; /*Variables qu'on affecte lors de la recherche de réservation*/
 
+int  numcase_resa_chambre; /*Identifie la case dans le tableau planning ou dans tab_chambres qui correspond à la chambre demandée/reservée*/
+int numcase_resa_date_debut, numcase_resa_date_fin; /*identifient la position dans le planning/calendrier de la case où débute et finit la réservation*/
 /* Variables globales concernant les chambres*/
 
 struct cha
@@ -703,14 +701,14 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
   }
   i = 0                    ;
 
-  demande_ind_deb=NON_TROUVE   ;
-  demande_ind_fin=NON_TROUVE   ;
+  numcase_resa_date_debut=NON_TROUVE   ;
+  numcase_resa_date_fin=NON_TROUVE   ;
 
-  while((i<ANNEE)&&(demande_ind_deb==NON_TROUVE))
+  while((i<ANNEE)&&(numcase_resa_date_debut==NON_TROUVE))
   {
     if(datearrivee==calendrier[i].date)
     {
-      demande_ind_deb=i ;
+      numcase_resa_date_debut=i ;
       if(calendrier[i].saison == 0)
       {
         nuitees_demande[0]++  ;
@@ -725,13 +723,13 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
       i++               ;
     }
   }
-  if (demande_ind_deb!=NON_TROUVE)
+  if (numcase_resa_date_debut!=NON_TROUVE)
   {
-    while ((i<ANNEE)&&(demande_ind_fin==NON_TROUVE))
+    while ((i<ANNEE)&&(numcase_resa_date_fin==NON_TROUVE))
     {
       if(datedepart==calendrier[i].date)
       {
-        demande_ind_fin=i ;
+        numcase_resa_date_fin=i ;
       }
       else
       {
@@ -743,7 +741,7 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
   {
       printf("Date d'arrivée non trouvée\n") ;
   }
-  if (demande_ind_fin!=NON_TROUVE)
+  if (numcase_resa_date_fin!=NON_TROUVE)
   {
     return nuitees_demande                           ;
   }
