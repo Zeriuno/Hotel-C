@@ -536,14 +536,14 @@ Procédure pour créer une réservation.
 */
 void creer_reservation()
 {
-  int calcul_nuitees, continue_resa ;
+  int calcul_nuitees, continue_resa ; /* continue resa permet de savoir si on poursuit ou bien on abandonne le processus. 0 pour abandonner, 1 pour continuer */
   cible_date()       ;
   cible_chambre()    ;
 
   calcul_nuitees = rech_periode(demande.datearrivee, demande.datedepart ) ;
   continue_resa = choix_chambre() ;
   /*
-  if(continue_resa)
+  if(continue_resa == 1)
   {
     saisie_client();
     paiement_resa();
