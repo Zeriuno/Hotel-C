@@ -135,6 +135,7 @@ struct prix_nuit tab_prix_chambres[NB_CHAMBRES_PRIX] ;
 struct resa
 {
   long unsigned int code_resa    ; /*long unsigned int, cela en garantit l'unicité sur une période assez longue.*/
+  int chambre_resa               ;
   int datearrivee                ;
   int datedepart                 ;
   char nomclient[50]             ;
