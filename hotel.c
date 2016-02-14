@@ -1017,7 +1017,7 @@ void sauvegarde_resa()
 Ajouter test si p_code_resa non valide
 */
 
-void chargement_resa(long int p_code_resa)
+void chargement_resa(long unsigned int p_code_resa)
 {
   char entree_resa[15], temporaire[11]    ;
   FILE *f1;
@@ -1081,14 +1081,14 @@ void modif_resa()
   if (continu_modif==1)
   {
     printf("Nom actuel du client : %s\n", demande.nomclient)      ;
-    printf("Nouveau nom du client : ")                          ;
-    scanf("%s", demande.nomclient)                              ;
+    printf("Nouveau nom du client : ")                            ;
+    scanf("%s", demande.nomclient)                                ;
     printf("Prénom actuel du client : %s\n", demande.prenomclient);
-    printf("Nouveau prénom du client : ")                       ;
-    scanf("%s", demande.prenomclient)                           ;
+    printf("Nouveau prénom du client : ")                         ;
+    scanf("%s", demande.prenomclient)                             ;
     printf("Numéro de téléphone actuel : %s\n", demande.telclient);
-    printf("Nouveau numéro de téléphone : ")                    ;
-    scanf("%s", demande.telclient)                              ;
+    printf("Nouveau numéro de téléphone : ")                      ;
+    scanf("%s", demande.telclient)                                ;
 
       // AJOUTER PAIEMENT
   }
@@ -1278,6 +1278,12 @@ void annul_dates_client()
 /*
 void annul_chambre()
 {
+  code de résa dans planning
+  int i;
+  for (i = numero ; i < MAX_NB_CHAMBRES-1 ; i++)
+    {
+      planning[i] = planning[i+1] ;
+    }
 
 }
 
