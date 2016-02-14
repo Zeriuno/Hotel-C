@@ -1006,7 +1006,7 @@ void sauvegarde_resa()
   sprintf(temporaire, "%lu", demande.code_resa) ;
   strcat(entree_resa, temporaire)               ;
   f1=fopen(entree_resa, "w")                    ;
-  fprinf(f1, "%lu %d %lu %lu %d %d %s %s %s", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa[0], demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient);
+  fprintf(f1, "%lu %d %lu %lu %d %d %s %s %s", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa[0], demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient);
   fclose(f1)                                    ;
 }
 
