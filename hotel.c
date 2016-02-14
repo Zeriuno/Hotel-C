@@ -50,7 +50,8 @@ Reste à faire:
 #define CHAMBRES  "chambres.txt" /*Nom du fichier contentant les chambres*/
 #define PLANNING "planning.txt" /*Nom du fichier contenant le planning*/
 #define PRIX_NUIT "prix_nuits.txt" /*Nom du fichier contenant le prix d'une nuitée*/
-#define RESA_CODE "resa-code.txt" /*Nom du fichier qui contient le numéro de la dernière réservation faite. À charger au démarrage via long unsigned int dernier_code_resa(). Le code 0 indique que la chambre est libre, le code 1 est réservé pour la déclaration de travaux.*/
+#define RESA_CODE "resa-code.txt" /*Nom du fichier qui contient le numéro de la dernière réservation faite. À charger au démarrage via long unsigned int dernier_code_resa() qui affecte nb_resa.
+Le code 0 indique que la chambre est libre, le code 1 est réservé pour la déclaration de travaux.*/
 
 /*----------------------
 
