@@ -750,7 +750,27 @@ saison = 1 : haute saison
 
 void calcul_nuitees()
 {
-  d
+  int i ;
+
+  i = numcase_resa_date_debut ;
+  demande.nuitees_resa[0] = 0 ;
+  demande.nuitees_resa[1] = 0 ;
+
+  while(i < (numcase_resa_date_fin + 1))
+  {
+    if(calendrier[i].saison == 0)
+    {
+      demande.nuitees_resa[0]++ ;
+    }
+    else
+    {
+      demande.nuitees_resa[1]++ ;
+    }
+  }
+  if((demande.nuitees_resa[0] == 0) && (demande.nuitees_resa[1] == 0))
+  {
+    printf("Erreur dans le calcul des nuitées.") ;
+  }
 }
 
 /*############################################
