@@ -999,10 +999,14 @@ void paiement_resa()
 
 void sauvegarde_resa()
 {
-  FILE *f1;
-  f1=fopen(demande.code_resa, "w");
+  char entree_resa[15], temporaire[11] ;
+  FILE *f1             ;
+
+  sprintf(temporaire, "%lu", demande.code_resa) ;
+  strcat(entree_resa, temporaire)              ;
+  f1=fopen(entree_resa, "w")                   ;
   fprinf(f1, "%lu %d %lu %lu %d %s %s %s", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa, demande.nomclient, demande.prenomclient, demande.telclient);
-  fclose(f1);
+  fclose(f1) ;
 }
 
 /*############################################
@@ -1015,8 +1019,12 @@ Ajouter test si p_code_resa non valide
 
 void chargement_resa(long int p_code_resa)
 {
+  char entree_resa[15], temporaire[11]    ;
   FILE *f1;
-  f1=fopen(p_code_resa, "r");
+
+  sprintf(temporaire, "%lu", p_code_resa) ;
+  strcat(entree_resa, temporaire)         ;
+  f1=fopen(entree_resa, "r")              ;
   fscanf(f1, "%lu %d %lu %lu %d %s %s %s", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa, demande.nomclient, demande.prenomclient, demande.telclient);
   fclose(f1);
 }
