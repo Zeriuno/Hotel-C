@@ -50,7 +50,7 @@ Reste à faire:
 #define CHAMBRES  "chambres.txt" /*Nom du fichier contentant les chambres*/
 #define PLANNING "planning.txt" /*Nom du fichier contenant le planning*/
 #define PRIX_NUIT "prix_nuits.txt" /*Nom du fichier contenant le prix d'une nuitée*/
-
+#define RESA_CODE "resa-code.txt" /*Nom du fichier qui contient le numéro de la dernière réservation faite. À charger au démarrage via long unsigned int dernier_code_resa(). Le code 0 indique que la chambre est libre, le code 1 est réservé pour la déclaration de travaux.*/
 
 /*----------------------
 
@@ -82,6 +82,7 @@ void chargement_planning()                 ;
 
 
 /*Réservations*/
+void dernier_code_resa()                   ;
 void creer_reservation()                   ;
 void cible_date()                          ;
 void cible_chambre()                       ;
@@ -157,11 +158,8 @@ struct resa
 };
 
 struct resa demande ;
-long int nb_resa    ; /*dernière réservation*/
+long unsigned int nb_resa    ; /*dernière réservation faite, la suivante devra prendre nb_resa+1*/
 long unsigned int planning[MAX_NB_CHAMBRES][ANNEE] ; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
-
-struct resa tab_modif_resa[ANNEE];
-
 
 int  numcase_resa_chambre; /*Identifie la case dans le tableau planning ou dans tab_chambres qui correspond à la chambre demandée/reservée*/
 int numcase_resa_date_debut, numcase_resa_date_fin ; /*identifient la position dans le planning/calendrier de la case où débute et finit la réservation*/
@@ -229,6 +227,7 @@ main()
   int chambre_cible = 0 ; /*Chambre recherchée*/
   char choix_modif      ;
 
+  dernier_code_resa()   ;
   lecture_jours()       ;
   test_date()           ;
   chargement_chambres() ;
@@ -542,6 +541,25 @@ void chargement_planning()
 #                                            #
 #             PARTIE RESERVATIONS            #
 #       #############################        #
+#                                            #
+#             dernier_code_resa              #
+#                                            #
+##############################################
+
+Cherche dans le fichier qui contient le numéro de la dernière réservation faite.
+Lancée au démarrage.
+Le code 0 indique que la chambre est libre, le code 1 est réservé pour la déclaration de travaux.
+
+*/
+
+void dernier_code_resa()
+{
+  FILE *f1                    ;
+  f1 = fopen(RESA_CODE, "r")  ;
+  fscanf(f1, "%lu", &nb_resa) ;
+
+}
+/*############################################
 #                                            #
 #             creer_reservation              #
 #                                            #
