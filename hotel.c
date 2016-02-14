@@ -731,38 +731,79 @@ On demande d'en choisir une ou bien de renoncer.
 */
 int choix_chambre()
 {
-  int chambres_dispo[50] ;
-  int i, j = 0           ;
+  int chambres_ok[MAX_NB_CHAMBRES]    ;
+  int chambres_dispo[MAX_NB_CHAMBRES] ;
+  int i, j , k, l, m, test            ;
+  j = 0                               ;
+
+
+  /* On trouve les chambres qui correspondent à la chambre souhaitée */
 
   for(i=0 ; i < MAX_NB_CHAMBRES ; i++)
   {
     if
     (
-      (chambre.type_chambre == tab_chambres[i]) ||
-      (chambre.type_lits == tab_chambres[i]) ||
-      (chambre.categorie_chambre == tab_chambres[i]) ||
-      (chambre.balcon == tab_chambres[i]) ||
-      (chambre.bain == tab_chambres[i]) ||
-      (chambre.vue == tab_chambres[i]) ||
-      (chambre.fumeur == tab_chambres[i]) ||
-      (chambre.animaux == tab_chambres[i])
+      (chambre.type_chambre == tab_chambres[i].type_chambre) ||
+      (chambre.type_lits == tab_chambres[i].type_lits) ||
+      (chambre.categorie_chambre == tab_chambres[i].categorie_chambre) ||
+      (chambre.balcon == tab_chambres[i].balcon) ||
+      (chambre.bain == tab_chambres[i].bain) ||
+      (chambre.vue == tab_chambres[i].vue) ||
+      (chambre.fumeur == tab_chambres[i].fumeur) ||
+      (chambre.animaux == tab_chambres[i].animaux)
     )
     {
-    chambres_dispo[j] = i ;
-    j++                   ;
+    chambres_ok[j] = i ;
+    j++                ;
     }
   }
 
-/*on teste leur disponibilité. Si le code de disponibilité n'est pas bon, on élimine la ligne → tab[i] = tab[i+1]. Il faut savoir jusqu'où on peut aller.*/
-/*tab_chambres[MAX_NB_CHAMBRES]*/
-  for(i = 0 ; i < j ; i++)
-  {
-    k = chambres_dispo[i] ;
-    if(planning[k][demande_ind_deb] != 0)
+  printf("Chambres correspondant à la demande : %d\n", j) ;
 
+  /*On teste leur disponibilité sur la période demandée*/
+  if(j < 0)
+  {
+    l = 0 ;
+    for(i = 0 ; i < j ; i++)
+    {
+      k = chambres_ok[i]  ;
+      m = demande_ind_deb ;
+      while((test==1)||(m <= demande_ind_fin))
+       /*disponibilité sur le premier jour*/
+      {
+        test = 1 ;
+          if(planning[k][m] != 0)
+          {
+            test = 0 ;
+          }
+        m++ ;
+      }
+      if(test == 1)
+      {
+        chambres_dispo[l] = chambres_ok[i] ;
+        l++                                ;
+      }
+    }
   }
-  demande_ind_deb
-  for(i)
+  else
+  {
+    printf("Pas de réservation possibe.\n") ;
+  }
+  /*Si l == 0, pas de choix disponibles dans la période, avec les critères donnés*/
+  if(l==0)
+  {
+    printf("Il n'y a pas de chambres disponibles dans la période définie selon les critères donnés\n") ;
+  }
+  else
+  {
+    printf("Chambres disponibles : %d\n", l) ;
+    for(i=0; i < l; i++)
+    {
+      j = chambres_dispo[i] ;
+      printf("Chambre n.%d\n", tab_chambres[j].num_chambre);
+    }
+  }
+  /*ensuite choix*/
 }
 
 /*############################################
