@@ -19,6 +19,8 @@
 * v 0.1.7 - 2016-02-13 Début de création de réservation, cible_chambre marche
 * v 0.1.8 - 2016-02-13 Correction de la mise à jour du calendrier dans la saisie des saisons
 * v 0.1.9 - 2016-02-13 rech_periode fonctionnelle
+* v 0.1.19 - 2016-02-14 tests sur cible_date, rech_periode problématique
+
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
