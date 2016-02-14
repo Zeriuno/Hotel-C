@@ -807,8 +807,29 @@ int choix_chambre()
       printf("Chambre n.%d\n", tab_chambres[j].num_chambre);
     }
   }
-  printf("Choisir la chambre à réserver : ");
-  scanf("%d", &chambre_choisie);
+  test = NON_TROUVE ;
+  while(test == NON_TROUVE)
+  {
+    printf("Choisir la chambre à réserver : ") ;
+    scanf("%d", &chambre_choisie)              ;
+    i = 0 ;
+    while((test == NON_TROUVE) || (i < l))
+    {
+      if(chambre_choisie == chambres_dispo[i].num_chambre)
+      {
+        test = 1 ;
+      }
+      else
+      {
+        i++
+      }
+    }
+    if(test == NON_TROUVE)
+    {
+      printf("Le choix n'est pas valide. Choisir une des chambres disponibles affichées.\n");
+    }
+    return(1) ;
+  }
 }
 
 /*############################################
