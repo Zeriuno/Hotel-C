@@ -908,9 +908,8 @@ void saisie_client()
 ##############################################
 
 */
-/*
-void paiement_resa(int nb_nuitee_hs, int nb_nuitee_bs, int type_chambre, int categorie_chambre)
-{
+void paiement_resa()
+{/*
   float total_resa ;
   int mode_paiment = 0, nb_nuitee, i, test = 0 ;
   struct prix_nuit nuit ;
@@ -947,9 +946,9 @@ void paiement_resa(int nb_nuitee_hs, int nb_nuitee_bs, int type_chambre, int cat
   scanf("%d", &mode_paiment)                   ;
   printf("Le paiement a bien été effectué. ")  ;
   /*à ce moment on imprime toutes les données de la réservation et du moyen de paiement dans un fichier numero_reservation_paiement_resa.txt
+  */
 }
 
-*/
 
 /*############################################
 #                                            #
