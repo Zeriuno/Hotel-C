@@ -820,8 +820,8 @@ int choix_chambre()
     for(i = 0 ; i < j ; i++)
     {
       k = chambres_ok[i]  ;
-      m = demande_ind_deb ;
-      while((test==1)&&(m <= demande_ind_fin))
+      m = numcase_resa_date_debut ;
+      while((test==1)&&(m <= numcase_resa_date_fin))
        /*disponibilité sur le premier jour*/
       {
         test = 1 ;
