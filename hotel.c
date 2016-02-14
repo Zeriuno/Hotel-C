@@ -948,7 +948,7 @@ void saisie_client()
 
 */
 void paiement_resa()
-{/*
+{
   float total_resa ;
   int mode_paiment = 0, nb_nuitee, i, test = 0 ;
   struct prix_nuit nuit ;
@@ -974,16 +974,17 @@ void paiement_resa()
         }
       }
     }
-  total_resa=(nb_nuitee_hs*nuit.prix_hs)+(nb_nuitee_bs*nuit.prix_bs);
+  total_resa=(demande.nuitees_resa[0]*nuit.prix_hs)+(demande.nuitees_resa[1]*nuit.prix_bs);
 
-  printf("Montant à payer : %f", &total_resa)  ;
-  printf("Choisir le mode de paiement: ")      ;
-  printf("1- Espèces : )                       ;
-  printf("2- Chèque : )                        ;
-  printf("3- Carte bancaire : )                ;
-  printf("4- Virement : )                      ;
+  printf("Montant à payer : %f\n", &total_resa)  ;
+  printf("Choisir le mode de paiement: \n")      ;
+  printf("1- Espèces\n")                         ;
+  printf("2- Chèque\n")                          ;
+  printf("3- Carte bancaire\n")                  ;
+  printf("4- Virement\n")                        ;
+  printf("Choix : ")                           ;
   scanf("%d", &mode_paiment)                   ;
-  printf("Le paiement a bien été effectué. ")  ;
+  printf("Le paiement a bien été effectué.\n")  ;
   /*à ce moment on imprime toutes les données de la réservation et du moyen de paiement dans un fichier numero_reservation_paiement_resa.txt
   */
 }
