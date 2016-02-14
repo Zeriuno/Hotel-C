@@ -1304,13 +1304,14 @@ void annul_dates_client()
 /*
 void annul_chambre()
 {
-  code de résa dans planning
-  int i;
+  int i, j;
   for (i = numero ; i < MAX_NB_CHAMBRES-1 ; i++)
+  {
+    for (j = numero ; i < ANNEE-1 ; j++)
     {
-      planning[i] = planning[i+1] ;
+      planning[i][j] = planning[i+1][j+1];
     }
-
+  }
 }
 
 
