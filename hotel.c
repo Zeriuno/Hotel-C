@@ -699,9 +699,6 @@ void cible_chambre()
   chambre.animaux = cible_animaux                ;
 }
 
-
-
-
 /*############################################
 #                                            #
 #             rech_periode                   #
