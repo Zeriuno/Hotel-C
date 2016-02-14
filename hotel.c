@@ -604,12 +604,29 @@ void cible_date()
 {
   int jour_debut, mois_debut, annee_debut ;
   int jour_fin, mois_fin, annee_fin       ;
-  printf("Saisir la date de début (jj/mm/aaaa) : ")                                ;
-  scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)                        ;
-  demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut);
-  printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                   ;
-  scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                              ;
-  demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)       ;
+  short int  test                         ; /*test 0: FAUX; test 1: VRAI*/
+
+
+  while(test == 0)
+  {
+    printf("Saisir la date de début (jj/mm/aaaa) : ")                                 ;
+    scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)                         ;
+    demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut) ;
+    if((demande.datearrivee < calendrier[0].date)|| (demande.datearrivee > calendrier[ANNEE].date))
+    {
+      printf("Date de début fausse.\n")                                               ;
+    }
+    else
+    {
+      printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                  ;
+      scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                             ;
+      demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)      ;
+      if((demande.datedepart > demande.datearrivee)||(demande.datedepart > calendrier[ANNEE].date))
+      {
+        printf("Date fausse.\n")                                                      ;
+      }
+    }
+  }
 }
 
 /*############################################
