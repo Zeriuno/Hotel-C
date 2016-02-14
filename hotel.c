@@ -45,12 +45,12 @@ Reste à faire:
 
 /*Fichiers*/
 
-#define CALENDRIER "calendrier.txt" /*Nom du fichier contentant le calendrier (dates et saison)*/
-#define CAT_SERVICES "catalogue-services.txt" /* Nom du fichier qui contient le catalogue des services*/
-#define CHAMBRES  "chambres.txt" /*Nom du fichier contentant les chambres*/
-#define PLANNING "planning.txt" /*Nom du fichier contenant le planning*/
-#define PRIX_NUIT "prix_nuits.txt" /*Nom du fichier contenant le prix d'une nuitée*/
-#define RESA_CODE "resa-code.txt" /*Nom du fichier qui contient le numéro de la dernière réservation faite. À charger au démarrage via long unsigned int dernier_code_resa() qui affecte nb_resa.
+#define CALENDRIER "1-Parametres/calendrier.txt" /*Nom du fichier contentant le calendrier (dates et saison)*/
+#define CAT_SERVICES "1-Parametres/catalogue-services.txt" /* Nom du fichier qui contient le catalogue des services*/
+#define CHAMBRES  "1-Parametres/chambres.txt" /*Nom du fichier contentant les chambres*/
+#define PLANNING "1-Parametres/planning.txt" /*Nom du fichier contenant le planning*/
+#define PRIX_NUIT "1-Parametres/prix_nuits.txt" /*Nom du fichier contenant le prix d'une nuitée*/
+#define RESA_CODE "1-Parametres/resa-code.txt" /*Nom du fichier qui contient le numéro de la dernière réservation faite. À charger au démarrage via long unsigned int dernier_code_resa() qui affecte nb_resa.
 Le code 0 indique que la chambre est libre, le code 1 est réservé pour la déclaration de travaux.*/
 
 /*----------------------
