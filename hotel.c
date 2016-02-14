@@ -85,9 +85,11 @@ void chargement_planning()                 ;
 void creer_reservation()                   ;
 void cible_date()                          ;
 void cible_chambre()                       ;
-int rech_periode(int datearrivee, int datedepart);
+void rech_periode(int datearrivee, int datedepart);
+void calcul_nuitees()                      ;
 int choix_chambre()                        ;
-
+void saisie_client()                       ;
+void paiement_resa()                       ;
 
 /*Gestion des services complémentaires*/
 void catalogue_services_menu()             ; /* Menu qui montre les choix possibles pour le catalogue de services*/
@@ -536,19 +538,21 @@ Procédure pour créer une réservation.
 */
 void creer_reservation()
 {
-  int calcul_nuitees, continue_resa ; /* continue resa permet de savoir si on poursuit ou bien on abandonne le processus. 0 pour abandonner, 1 pour continuer */
+  int continue_resa ; /* continue resa permet de savoir si on poursuit ou bien on abandonne le processus. 0 pour abandonner, 1 pour continuer */
   cible_date()       ;
   cible_chambre()    ;
 
-  calcul_nuitees = rech_periode(demande.datearrivee, demande.datedepart ) ;
+  rech_periode(demande.datearrivee, demande.datedepart) ;
+  calcul_nuitees()   ;
   continue_resa = choix_chambre() ;
-  /*
   if(continue_resa == 1)
   {
     saisie_client();
-    paiement_resa();
+    paiement_resa() ;
+    /*
     maj_planning   ;
-  }*/
+    */
+  }
 }
 
 /*############################################
@@ -671,20 +675,36 @@ void cible_chambre()
 
 */
 
-int rech_periode(int datearrivee, int datedepart)
+void rech_periode(int datearrivee, int datedepart)
 {
 
 /*demande.date arrivee parcourir le tableau pour trouver la même valeur: indice
 de la case de la date et boucler à partir de la date vers la suivante pour avoir les deux indices*/
 
-  int i=0, calcul_nuitee ;
-  demande_ind_deb=NON_TROUVE;
-  demande_ind_fin=NON_TROUVE;
+  int i                        ;
+
+  for(i = 0 ; i < 2 ; i++)
+  {
+    nuitees_demande[i] = 0 ;
+  }
+  i = 0                    ;
+
+  demande_ind_deb=NON_TROUVE   ;
+  demande_ind_fin=NON_TROUVE   ;
+
   while((i<ANNEE)&&(demande_ind_deb==NON_TROUVE))
   {
     if(datearrivee==calendrier[i].date)
     {
       demande_ind_deb=i ;
+      if(calendrier[i].saison == 0)
+      {
+        nuitees_demande[0]++  ;
+      }
+      else
+      {
+        nuitees_demande[1]++ ;
+      }
     }
     else
     {
@@ -722,6 +742,26 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
 
 /*############################################
 #                                            #
+#             calcul_nuitees                 #
+#                                            #
+##############################################
+
+Renseigne les deux cases du tableau demande.nuitees_resa en regardant dans le calendrier[].saison
+saison = 0 : basse saison
+saison = 1 : haute saison
+
+[0] = basse saison
+[1] = haute saison
+
+*/
+
+void calcul_nuitees()
+{
+  d
+}
+
+/*############################################
+#                                            #
 #             choix_chambre                  #
 #                                            #
 ##############################################
@@ -735,7 +775,7 @@ int choix_chambre()
 {
   int chambres_ok[MAX_NB_CHAMBRES]    ;
   int chambres_dispo[MAX_NB_CHAMBRES] ;
-  int i, j , k, l, m, test, chambre_choisie ;
+  int i, j, k, l, m, test, chambre_choisie ;
   j = 0                               ;
 
 
@@ -789,13 +829,15 @@ int choix_chambre()
   }
   else
   {
-    printf("Pas de réservation possibe.\n") ;
+    printf("Pas de réservation possible.\n") ;
+    return(0)                               ;
     /*Offrir la possibilité de modifier les critères de chambre*/
   }
   /*Si l == 0, pas de choix disponibles dans la période, avec les critères donnés*/
   if(l==0)
   {
     printf("Il n'y a pas de chambres disponibles dans la période définie selon les critères donnés\n") ;
+    return(0) ;
     /*Offir la possibilité de modifier les critères de date*/
   }
   else
@@ -810,25 +852,34 @@ int choix_chambre()
   test = NON_TROUVE ;
   while(test == NON_TROUVE)
   {
-    printf("Choisir la chambre à réserver : ") ;
+    printf("Choisir la chambre à réserver (0 pour quitter) : ") ;
     scanf("%d", &chambre_choisie)              ;
-    i = 0 ;
-    while((test == NON_TROUVE) || (i < l))
+    if(chambre_choisie = 0)
     {
-      if(chambre_choisie == chambres_dispo[i].num_chambre)
-      {
-        test = 1 ;
-      }
-      else
-      {
-        i++
-      }
+      return(0) ;
     }
-    if(test == NON_TROUVE)
+    else
     {
-      printf("Le choix n'est pas valide. Choisir une des chambres disponibles affichées.\n");
+
+      i = 0 ;
+      while((test == NON_TROUVE) || (i < l)) /*test pour vérifier que le choix fait est parmi les choix possibles*/
+      {
+        j = chambres_dispo[i] ;
+        if(chambre_choisie == tab_chambres[j].num_chambre)
+        {
+          test = 1 ;
+        }
+        else
+        {
+          i++ ;
+        }
+      }
+      if(test == NON_TROUVE)
+      {
+        printf("Le choix n'est pas valide. Choisir une des chambres disponibles affichées.\n");
+      }
+      return(1) ;
     }
-    return(1) ;
   }
 }
 
