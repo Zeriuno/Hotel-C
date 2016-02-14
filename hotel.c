@@ -651,14 +651,24 @@ void cible_chambre()
   int cible_bain         ; /* 0 pas, 1 douche, 2 indifférent*/
   int cible_fumeur       ; /* 0 pas, 1 fumeur, 2 indifférent*/
   int cible_animaux      ; /* 0 pas, 1 animaux acceptés, 2 indifférent*/
-  printf("Quel type de lits ?\n")                ;
-  printf("1 - un lit simple\n")                  ;
-  printf("2 - deux lits simples\n")              ;
-  printf("3 - un lit double\n")                  ;
-  printf("4 - trois lits simples\n")             ;
-  printf("5 - un lit double et un lit simple\n") ;
-  printf("Saisir le type de lits :")             ;
-  scanf("%d", &cible_type_lits)                  ;
+
+  cible_type_lits = 999  ;
+  while((cible_type_lits < 1) || (cible_type_lits > 5))
+  {
+    printf("Quel type de lits ?\n")                ;
+    printf("1 - un lit simple\n")                  ;
+    printf("2 - deux lits simples\n")              ;
+    printf("3 - un lit double\n")                  ;
+    printf("4 - trois lits simples\n")             ;
+    printf("5 - un lit double et un lit simple\n") ;
+    printf("Saisir le type de lits :")             ;
+    scanf("%d", &cible_type_lits)                  ;
+    if((cible_type_lits < 1) || (cible_type_lits > 5))
+    {
+      printf("Choix non valide.\n")                ;
+    }
+
+  }
   chambre.type_lits = cible_type_lits            ;
 
   switch(cible_type_lits)
@@ -675,46 +685,100 @@ void cible_chambre()
       chambre.type_chambre = 3                   ;
       break                                      ;
   }
-  printf("Quelle catégorie de chambre ?\n")     ;
-  printf("0 - chambre\n")                        ;
-  printf("1 - suite\n")                          ;
-  printf("Saisir la catégorie : ")                ;
-  scanf("%d", &cible_cat_chambre)                ;
+
+  cible_cat_chambre = 999                        ;
+  while((cible_cat_chambre < 0) || (cible_cat_chambre > 1))
+  {
+    printf("Quelle catégorie de chambre ?\n")    ;
+    printf("0 - chambre\n")                      ;
+    printf("1 - suite\n")                        ;
+    printf("Saisir la catégorie : ")             ;
+    scanf("%d", &cible_cat_chambre)              ;
+    if((cible_cat_chambre < 0) || (cible_cat_chambre > 1))
+    {
+      printf("Choix non valide.\n")              ;
+    }
+  }
   chambre.categorie_chambre = cible_cat_chambre  ;
-  printf("Chambre avec balcon ?\n")               ;
-  printf("0 - pas de balcon\n")                  ;
-  printf("1 - balcon\n")                         ;
-/*  printf("2 -indifférent\n")                    ;*/
-  printf("Balcon : ")                             ;
-  scanf("%d", &cible_balcon)                     ;
+
+  cible_balcon = 999                             ;
+  while((cible_balcon < 0) || (cible_balcon > 1))
+  {
+    printf("Chambre avec balcon ?\n")            ;
+    printf("0 - pas de balcon\n")                ;
+    printf("1 - balcon\n")                       ;
+    /*  printf("2 -indifférent\n")                  ;*/
+    printf("Choix : ")                           ;
+    scanf("%d", &cible_balcon)                   ;
+    if((cible_balcon < 0) || (cible_balcon > 1))
+    {
+      printf("Choix non valide.\n")              ;
+    }
+  }
   chambre.balcon = cible_balcon                  ;
-  printf("Quel type de salle de bain ?\n")         ;
-  printf("0 - baignoire\n")                      ;
-  printf("1 - douche\n")                         ;
-/*  printf("2 - indifférent\n")                   ;*/
-  printf("Saisir le type de salle de bain : ")    ;
-  scanf("%d", &cible_bain)                       ;
+
+  cible_bain = 999                               ;
+  while((cible_bain < 0) || (cible_bain > 1))
+  {
+    printf("Quel type de salle de bain ?\n")     ;
+    printf("0 - baignoire\n")                    ;
+    printf("1 - douche\n")                       ;
+    /*  printf("2 - indifférent\n")                 ;*/
+    printf("Choix : ")    ;
+    scanf("%d", &cible_bain)                     ;
+    if((cible_bain < 0) || (cible_bain > 1))
+    {
+      printf("Choix non valide.\n")              ;
+    }
+  }
   chambre.bain = cible_bain                      ;
-  printf("Chambre avec vue ?\n")                  ;
-  printf("0 - pas de vue\n")                     ;
-  printf("1 - vue\n")                            ;
-/*  printf("2 - indifférent\n")                   ;*/
-  printf("Vue : ")                                ;
-  scanf("%d", &cible_vue)                        ;
+
+  cible_vue = 999                                ;
+  while((cible_vue < 0) || (cible_vue > 1))
+  {
+    printf("Chambre avec vue ?\n")               ;
+    printf("0 - pas de vue\n")                   ;
+    printf("1 - vue\n")                          ;
+    /*  printf("2 - indifférent\n")                 ;*/
+    printf("Choix : ")                           ;
+    scanf("%d", &cible_vue)                      ;
+    if((cible_vue < 0) || (cible_vue > 1))
+    {
+      printf("Choix non valide.\n")              ;
+    }
+  }
   chambre.vue = cible_vue                        ;
-  printf("Chambre pour fumeur ?\n")               ;
-  printf("0 - non fumeur\n")                     ;
-  printf("1 - fumeur\n")                         ;
-/*  printf("2 - indifférent\n")                   ;*/
-  printf("Fumeur : ")                             ;
-  scanf("%d", &cible_fumeur)                     ;
+
+  cible_fumeur = 999                             ;
+  while((cible_fumeur < 0) || (cible_fumeur > 1))
+  {
+    printf("Chambre pour fumeur ?\n")            ;
+    printf("0 - non fumeur\n")                   ;
+    printf("1 - fumeur\n")                       ;
+    /*  printf("2 - indifférent\n")                ;*/
+    printf("Choix : ")                           ;
+    scanf("%d", &cible_fumeur)                   ;
+    if((cible_fumeur < 0) || (cible_fumeur > 1))
+    {
+      printf("Choix non valide.\n")              ;
+    }
+  }
   chambre.fumeur = cible_fumeur                  ;
-  printf("Chambre avec animaux autorisés?\n")     ;
-  printf("0 - animaux non autorisés\n")          ;
-  printf("1 - animaux autorisés\n")              ;
-/*  printf("2 - indifférent\n")                   ;*/
-  printf("Animaux autorisés : ")                  ;
-  scanf("%d", &cible_animaux)                    ;
+
+  cible_animaux = 999                            ;
+  while((cible_fumeur < 0) || (cible_fumeur > 1))
+  {
+    printf("Chambre avec animaux autorisés?\n")  ;
+    printf("0 - animaux non autorisés\n")        ;
+    printf("1 - animaux autorisés\n")            ;
+    /*  printf("2 - indifférent\n")                   ;*/
+    printf("Choix : ")                           ;
+    scanf("%d", &cible_animaux)                  ;
+    if((cible_fumeur < 0) || (cible_fumeur > 1))
+    {
+      printf("Choix non valide.\n")              ;
+    }
+  }
   chambre.animaux = cible_animaux                ;
 }
 
