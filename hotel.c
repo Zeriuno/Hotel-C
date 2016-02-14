@@ -616,7 +616,14 @@ void cible_date()
     demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut) ;
     if((demande.datearrivee < calendrier[0].date)|| (demande.datearrivee > calendrier[ANNEE].date))
     {
-      printf("Date de début fausse.\n")                                               ;
+      printf("Date fausse.\n")                                                        ;
+      /*debug*/
+      printf("demande.datearrivee = %lu\n", demande.datearrivee) ;
+      printf("calendrier[0].date = %lu\n", calendrier[0].date) ;
+      if(demande.datearrivee < calendrier[0].date)
+      printf("ante 0\n");
+      if(demande.datearrivee > calendrier[ANNEE].date)
+      printf("Post future : %lu\n", calendrier[ANNEE].date);
     }
     else
     {
