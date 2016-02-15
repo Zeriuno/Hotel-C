@@ -253,7 +253,7 @@ main()
       if(test == 0)
       {
         printf("Choix invalide.\n")                            ;
-        while((poubelle=getchar()) != '\n')                   ;
+        while((poubelle=getchar()) != '\n')                    ;
       }
     }
 
