@@ -1,4 +1,5 @@
 .DS_Store
 hotel
+hotel.o
 test.c
 test
