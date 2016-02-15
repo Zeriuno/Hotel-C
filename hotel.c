@@ -992,13 +992,12 @@ int choix_chambre()
   {
     printf("Choisir la chambre à réserver (0 pour quitter) : ") ;
     scanf("%d", &chambre_choisie)              ;
-    if(chambre_choisie = 0)
+    if(chambre_choisie == 0)
     {
       return(0) ;
     }
     else
     {
-
       i = 0 ;
       while((test == NON_TROUVE) || (i < l)) /*test pour vérifier que le choix fait est parmi les choix possibles*/
       {
