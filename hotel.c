@@ -574,16 +574,18 @@ Procédure pour créer une réservation.
 void creer_reservation()
 {
   int continue_resa ; /* continue resa permet de savoir si on poursuit ou bien on abandonne le processus. 0 pour abandonner, 1 pour continuer */
-  cible_date()       ;
-  cible_chambre()    ;
+
+  printf("Création de réservation.\n")                  ;
+  cible_date()                                          ;
+  cible_chambre()                                       ;
 
   rech_periode(demande.datearrivee, demande.datedepart) ;
-  calcul_nuitees()   ;
-  continue_resa = choix_chambre() ;
+  calcul_nuitees()                                      ;
+  continue_resa = choix_chambre()                       ;
   if(continue_resa == 1)
   {
-    saisie_client();
-    paiement_resa() ;
+    saisie_client()                                     ;
+    paiement_resa()                                     ;
     /*
     sauvegarde_resa();
     maj_planning   ;
@@ -613,7 +615,7 @@ void cible_date()
     printf("Saisir la date de début (jj/mm/aaaa) : ")                                 ;
     scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)                         ;
     demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut) ;
-    if((demande.datearrivee < calendrier[0].date)|| (demande.datearrivee > calendrier[ANNEE].date))
+    if((demande.datearrivee < calendrier[0].date)|| (demande.datearrivee > calendrier[ANNEE-1].date))
     {
       printf("Date fausse.\n")                                                        ;
       /*debug*/
@@ -621,15 +623,15 @@ void cible_date()
       printf("calendrier[0].date = %lu\n", calendrier[0].date) ;
       if(demande.datearrivee < calendrier[0].date)
       printf("ante 0\n");
-      if(demande.datearrivee > calendrier[ANNEE].date)
-      printf("Post future : %lu\n", calendrier[ANNEE].date);
+      if(demande.datearrivee > calendrier[ANNEE-1].date)
+      printf("Post future : %lu\n", calendrier[ANNEE-1].date);
     }
     else
     {
       printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                  ;
       scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                             ;
       demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)      ;
-      if((demande.datedepart > demande.datearrivee)||(demande.datedepart > calendrier[ANNEE].date))
+      if((demande.datedepart > demande.datearrivee)||(demande.datedepart > calendrier[ANNEE-1].date))
       {
         printf("Date fausse.\n")                                                      ;
       }
