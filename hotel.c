@@ -1029,13 +1029,29 @@ int choix_chambre()
 */
 void saisie_client()
 {
-  char nom_client[100], prenom_client[200], numero_telephone_client[20];
-  printf("Nom du client ")          ;
-  scanf("%s", demande.nomclient)    ;
-  printf("Prénom du client ")       ;
-  scanf("%s", demande.prenomclient) ;
-  printf("Numéro de téléphone ")    ;
-  scanf("%s", demande.telclient)    ;
+  char nom_client[100], prenom_client[200], numero_telephone_client[20] ;
+  int test                                   ;
+
+  test = 0                                   ;
+  while(test == 0)
+  {
+    printf("Nom du client : ")               ;
+    test = scanf("%s", demande.nomclient)    ;
+  }
+
+  test = 0                                   ;
+  while(test == 0)
+  {
+    printf("Prénom du client : ")            ;
+    test = scanf("%s", demande.prenomclient) ;
+  }
+
+  test = 0                                   ;
+  while(test == 0)
+  {
+    printf("Numéro de téléphone : ")         ;
+    test = scanf("%s", demande.telclient)    ;
+  }
 }
 
 /*############################################
