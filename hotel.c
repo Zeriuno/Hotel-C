@@ -1114,7 +1114,7 @@ void paiement_resa()
   while (test == 0)
   {
     i++ ;
-    if (tab_prix_chambres[i].type_chambre==nuit.type_chambre) && (tab_prix_chambres[i].categorie_chambre==nuit.categorie_chambre)
+    if ((tab_prix_chambres[i].type_chambre==nuit.type_chambre) && (tab_prix_chambres[i].categorie_chambre==nuit.categorie_chambre))
     {
       nuit=tab_prix_chambres[i];
       test = 1                 ;
