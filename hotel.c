@@ -609,7 +609,7 @@ void cible_date()
   int jour_fin, mois_fin, annee_fin       ;
   short int  test                         ; /*test 0: FAUX; test 1: VRAI*/
 
-
+  test = 0                                ;
   while(test == 0)
   {
     printf("Saisir la date de début (jj/mm/aaaa) : ")                                 ;
@@ -618,27 +618,26 @@ void cible_date()
     if((demande.datearrivee < calendrier[0].date)|| (demande.datearrivee > calendrier[ANNEE-1].date))
     {
       printf("Date fausse.\n")                                                        ;
-      /*debug*/
-      printf("demande.datearrivee = %lu\n", demande.datearrivee) ;
-      printf("calendrier[0].date = %lu\n", calendrier[0].date) ;
-      if(demande.datearrivee < calendrier[0].date)
-      printf("ante 0\n");
-      if(demande.datearrivee > calendrier[ANNEE-1].date)
-      printf("Post future : %lu\n", calendrier[ANNEE-1].date);
     }
     else
     {
-      printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                  ;
-      scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                             ;
-      demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)      ;
-      if((demande.datedepart > demande.datearrivee)||(demande.datedepart > calendrier[ANNEE-1].date))
-      {
-        printf("Date fausse.\n")                                                      ;
-      }
-      else
-      {
-        test = 1                                                                      ;
-      }
+      test = 1                                                                        ;
+    }
+  }
+
+  test = 0                                                                            ;
+  while(test == 0)
+  {
+    printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                    ;
+    scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                               ;
+    demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)        ;
+    if((demande.datedepart > demande.datearrivee)||(demande.datedepart > calendrier[ANNEE-1].date))
+    {
+      printf("Date fausse.\n")                                                        ;
+    }
+    else
+    {
+      test = 1                                                                        ;
     }
   }
 }
