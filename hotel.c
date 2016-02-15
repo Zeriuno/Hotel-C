@@ -393,6 +393,7 @@ void lecture_jours()
   for(i=0 ; i < ANNEE ; i++)
   {
     fscanf(f1, "%lu %hd", &calendrier[i].date, &calendrier[i].saison) ;
+    printf("i = %d\ncalendrier[%d].date = %lu\n", i, i, calendrier[i].date);
   }
 }
 
