@@ -73,7 +73,7 @@ void chargement_prix()                     ;
 void creer_reservation()                   ;
 void cible_date()                          ;
 void cible_chambre()                       ;
-void rech_periode(long unsigned int datearrivee, long unsigned int datedepart);
+void rech_periode(long unsigned int datearrivee, long unsigned int datedepart) ;
 void calcul_nuitees()                      ;
 int choix_chambre()                        ;
 void saisie_client()                       ;
