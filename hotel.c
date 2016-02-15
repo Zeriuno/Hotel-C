@@ -69,7 +69,7 @@ void chargement_planning()                 ;
 
 /*Réservations*/
 void dernier_code_resa()                   ;
-void chargement_prix_nuits()               ;
+void chargement_prix()                     ;
 void creer_reservation()                   ;
 void cible_date()                          ;
 void cible_chambre()                       ;
@@ -78,15 +78,15 @@ void calcul_nuitees()                      ;
 int choix_chambre()                        ;
 void saisie_client()                       ;
 void paiement_resa()                       ;
-int paiement_cb()                          ;
 void sauvegarde_resa()                     ;
 void chargement_resa(long unsigned int p_code_resa) ;
+void choix_modif_resa()                    ;
 void modif_resa()                          ;
 void modif_resa_cha()                      ;
 void annulation_resa()                     ;
-void annul_dates_client()                  ;
-// void annul_chambre()                       ;
-// void annul_origine()                       ;
+void annul_origine()                       ;
+
+
 
 
 
@@ -223,7 +223,7 @@ main()
   test_date()           ;
   chargement_chambres() ;
   chargement_planning() ;
-  chargement_prix_nuits() ;
+  chargement_prix()     ;
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
   while(choix != 9) /* 9 est la valeur pour quitter. */
   {
@@ -571,7 +571,7 @@ void dernier_code_resa()
 
 /*############################################
 #                                            #
-#           chargement_prix_nuits            #
+#              chargement_prix               #
 #                                            #
 ##############################################
 
@@ -579,17 +579,16 @@ Au démarrage, récupère les prix des nuitées et les charge dans un tableau, v
 
 */
 
-void chargement_prix_nuits()
+void chargement_prix()
 {
   FILE *f1 ;
   int i    ;
 
-  f1=fopen(PRIX_NUIT, "r") ;
+  f1=fopen(PRIX_NUIT, "r");
   for (i=0; i<NB_CHAMBRES_PRIX; i++)
   {
     fscanf(f1, "%d %d %f %f", &tab_prix_chambres[i].type_chambre, &tab_prix_chambres[i].categorie_chambre, &tab_prix_chambres[i].prix_hs, &tab_prix_chambres[i].prix_bs);
   }
-  fclose(f1) ;
 }
 
 /*############################################
@@ -798,8 +797,8 @@ void cible_chambre()
   while((cible_fumeur < 0) || (cible_fumeur > 1))
   {
     printf("Chambre pour fumeur ?\n")            ;
-    printf("-0- non fumeur\n")                   ;
-    printf("-1- fumeur\n")                       ;
+    printf("0 - non fumeur\n")                   ;
+    printf("1 - fumeur\n")                       ;
     /*  printf("2 - indifférent\n")                ;*/
     printf("Choix : ")                           ;
     scanf("%d", &cible_fumeur)                   ;
@@ -815,8 +814,8 @@ void cible_chambre()
   while((cible_animaux < 0) || (cible_animaux > 1))
   {
     printf("Chambre avec animaux autorisés?\n")  ;
-    printf("-0- animaux non autorisés\n")        ;
-    printf("-1- animaux autorisés\n")            ;
+    printf("0 - animaux non autorisés\n")        ;
+    printf("1 - animaux autorisés\n")            ;
     /*  printf("2 - indifférent\n")                   ;*/
     printf("Choix : ")                           ;
     scanf("%d", &cible_animaux)                  ;
@@ -844,9 +843,9 @@ void rech_periode(long unsigned int datearrivee, long unsigned int datedepart)
 /*demande.date arrivee parcourir le tableau pour trouver la même valeur: indice
 de la case de la date et boucler à partir de la date vers la suivante pour avoir les deux indices*/
 
-  int i=0                            ;
+  int i=0                      ;
 
-  numcase_resa_date_debut=NON_TROUVE ;
+  numcase_resa_date_debut=NON_TROUVE   ;
   numcase_resa_date_fin=NON_TROUVE   ;
 
 
@@ -1108,14 +1107,17 @@ void paiement_resa()
 {
   int i, test = 0 ;
   struct prix_nuit nuit ;
+  FILE *f1;
 
   nuit.type_chambre=chambre.type_chambre;
   nuit.categorie_chambre=chambre.categorie_chambre;
+
   i= -1;
   while (test == 0)
   {
     i++ ;
     if ((tab_prix_chambres[i].type_chambre==nuit.type_chambre) && (tab_prix_chambres[i].categorie_chambre==nuit.categorie_chambre))
+
     {
       nuit=tab_prix_chambres[i];
       test = 1                 ;
@@ -1123,61 +1125,20 @@ void paiement_resa()
   }
   demande.total_resa=(demande.nuitees_resa[0]*nuit.prix_bs)+(demande.nuitees_resa[1]*nuit.prix_hs);
 
-  test = 0;
-  while(test == 0)
-  {
-    printf("Montant à payer : %f\n", demande.total_resa)  ;
-
-    printf("Choisir le mode de paiement: \n")      ;
-    printf("-1- Espèces\n")                         ;
-    printf("-2- Chèque\n")                          ;
-    printf("-3- Carte bancaire\n")                  ;
-    printf("-4- Virement\n")                        ;
-    printf("Choix : ")                             ;
-    test = scanf("%d", &demande.mode_paiement)            ;
-    if(test == 0)
-    {
-      printf("Choix non valide.\n");
-    }
-  }/*à la sortie test vaudra forcément 1*/
-
-  if(demande.mode_paiement == 3)
-  {
-    paiement_cb();
-  }
-  if(test != 1)
-  {
-    printf("Erreur dans le paiement.\n")   ;
-  }
-  else
-  {
-    printf("Le paiement a bien été effectué.\n")   ;
-  }
+  printf("Montant à payer : %f\n", demande.total_resa)  ;
+  printf("Choisir le mode de paiement: \n")             ;
+  printf("-1- Espèces\n")                               ;
+  printf("-2- Chèque\n")                                ;
+  printf("-3- Carte bancaire\n")                        ;
+  printf("-4- Virement\n")                              ;
+  printf("Choix : ")                                    ;
+  scanf("%d", &demande.mode_paiement)                   ;
+  printf("Le paiement a bien été effectué.\n")          ;
   /*à ce moment on imprime toutes les données de la réservation et du moyen de paiement dans un fichier numero_reservation_paiement_resa.txt
   */
 }
 
 
-/*############################################
-#                                            #
-#              paiement_cb                   #
-#                                            #
-##############################################
-
-Si dans paiement_resa le choix de paiement saisi (demande.mode_paiment) est 3, formulaire de saisie des données de la carte bleue.
-*/
-
-
-void paiement_cb()
-{
-  char numero_cb[16]           ;
-  char titulaire_cb_nom[20]    ;
-  char titulaire_cb_prenom[20] ;
-
-  printf("")
-  scanf("%s", );
-  printf("\n", );
-}
 /*############################################
 #                                            #
 #           sauvegarde_resa                  #
@@ -1219,6 +1180,42 @@ void chargement_resa(long unsigned int p_code_resa)
 }
 
 
+/*############################################
+#                                            #
+#           choix_modif_resa                 #
+#                                            #
+##############################################
+Après affichage de la réservation (suite à la recherche) choisir entre modification, annulation ou retour au menu principal
+*//*
+
+void choix_modif_resa()
+{
+  int choix_mod;
+  printf("Que voulez-vous faire? \n");
+  printf("1 - Modifier la réservation \n");
+  printf("2 - Annuler la réservation \n");
+  printf("2 - Retourner au menu principal \n");
+  scanf("%d", &choix_mod);
+  switch (choix_mod)
+  {
+    case 1:
+    {
+      modif_resa();
+    }
+    break;
+    case 2:
+    {
+      annul_origine();
+    }
+    break;
+    case 3:
+    break;
+    default:
+    {
+      printf("Erreur de saisie\n", );
+    }
+  }
+}
 
 /*############################################
 #                                            #
@@ -1308,6 +1305,8 @@ void modif_resa()
     scanf("%s", demande.telclient)                                ;
 
       // AJOUTER PAIEMENT
+    // si
+
   }
   else
   {
@@ -1413,10 +1412,10 @@ Origine de l'annulation d'une réservation
 *//*
 void annul_origine()
 {
-  int raison_annul = 0 ;
+  int raison_annul = 0, i=0;
   printf("Qui est à l'origine de la demande d'annulation ' ? ");
-  printf("1 - Décision du client \n")                          ;
-  printf("2 - Décision de l'hôtel \n")                         ;
+  printf("1 - Décision de l'hôtel \n")                         ;
+  printf("2 - Décision du client \n")                          ;
   scanf("%d", &raison_annul)                                   ;
   switch (raison_annul)
   {
@@ -1424,9 +1423,30 @@ void annul_origine()
       annulation_resa() ;
     break;
     case 2:
-      annul_dates_client()                                               ;
-      annul_chambre()                                                    ;
+
+    //  printf("Saisir la date de demande d'annulation"); /*Au cas où l'annulation aurait été demandée un autre jour qu'à la date du jour. Par exemple, aucun membre du personnel*//*
+      while (calendrier[i].date != demande.datearrivee)
+      {
+        i++;
+      }
+      /*  i = ecart de jours entre la date du jour et la date de début du séjour*//*
+      if (i>14)
+      {
+        printf("Remboursement de 70%, soit %.2f \n", 0.7*demande.total_resa);
+      }
+      else
+      {
+       if (i>7)
+       {
+        printf("Remboursement de 30%, soit %.2f \n", 0.3*demande.total_resa);
+       }
+       else
+       {
+        printf("Pas de remboursement.") ;
+       }
+      }                                              ;
       printf("Le remboursement total de la réservation a été effectué, soit %.2f\n", demande.total_resa);
+      annulation_resa();
     break;
     default:
       printf("Erreur de saisie. \n");
@@ -1443,67 +1463,31 @@ void annul_origine()
 #                                            #
 ##############################################
 
+à partir du code_resa, on supprime la case dans le planning: on remet à 0
+
 */
-/*
+
 void annulation_resa()
 {
-  int ecart_jour, j, m, a, datedujour                  ;
-  calendrier[0].date = jjmmaaaa_vers_aaaammjj(j, m, a) ;
-  datedujour=calendrier[0].date                        ;
-  void annul_dates_client()                            ;
-  void annul_chambre()                                 ;
-  printf("L'annulation a bien été effectuée. \n")      ;
-  ecart_jour=jour_debut-datedujour                     ;
-  if (ecart_jour>14)
-  {
-    printf("Remboursement de 70%, soit %.2f \n", 0.7*demande.total_resa);
-  }
-  else
-  {
-   if (ecart_jour>7)
-   {
-    printf("Remboursement de 30%, soit %.2f \n", 0.3*demande.total_resa);
-   }
-   else
-   {
-    printf("Pas de remboursement.") ;
-   }
-  }
+ int i=0, j=0;
+
+ while (demande.chambre_resa!=tab_chambres[i].num_chambre) /*on trouve l'indice de la chambre*/
+ {
+  i++;
+ }
+ while (demande.datearrivee!=calendrier[j].date) /*on trouve l'indice du premier jour du séjour*/
+ {
+  j++;
+ }
+
+ while(planning[i][j] == demande.code_resa)
+ {
+  planning[i][j] = 0;
+  j++;
+ }
+  printf("L'annulation a bien été effectuée. \n")  ;
 }
 
-/*############################################
-#                                            #
-#             annul_dates_client             #
-#                                            #
-##############################################
-
-*/
-/*
-void annul_dates_client()
-{
-
-}
-
-
-/*############################################
-#                                            #
-#             annul_chambre                  #
-#                                            #
-##############################################
-
-*/
-/*
-void annul_chambre()
-{
-  int i, j;
-  for (i = numero ; i < MAX_NB_CHAMBRES-1 ; i++)
-  {
-    for (j = numero ; i < ANNEE-1 ; j++)
-    {
-      planning[i][j] = planning[i+1][j+1];
-    }
-  }
-}
 
 
 
@@ -2077,4 +2061,43 @@ void affichage_chambre()
     printf("Douche ou baignoire : %d\n", chambre.bain)               ;
     printf("Fumeurs ou non : %d\n", chambre.fumeur)                  ;
     printf("Animaux autorisés : %d\n\n", chambre.animaux)            ;
+}
+
+/*############################################
+#                                            #
+#             travaux                        #
+#                                            #
+##############################################
+
+Procédure pour déclarer des travaux
+
+
+*/
+void travaux()
+{
+  int cible_num_chambre                                ;
+  printf("Déclaration de travaux.\n")                  ;
+  cible_date()                                         ;
+  printf("Saisir le numéro de la chambre : ")          ;
+  scanf("%d", &cible_num_chambre)                      ;
+  cha.num_chambre=cible_num_chambre                    ;
+  rech_periode(demande.datearrivee, demande.datedepart);
+  // on teste si les cases du tableau ont un code de résa 0 ou pas
+  // si oui on continue, sinon on imprime le code de résa et la jour et on renvoie au menu principal
+
+    if (demande.code_resa==O)
+    {
+
+    }
+
+
+
+
+
+ //affecter le numéro de résa à 1
+    /*
+    sauvegarde_resa();
+    maj_planning   ;
+    */
+  }
 }

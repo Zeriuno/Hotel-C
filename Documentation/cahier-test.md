@@ -30,8 +30,9 @@
 6. Choisir un chiffre non prévu →  Message d'erreur affiché.
 
 ##Effectuer une réservation
+(Lorsque l'utilisateur choisit d'effectuer une réservation, on charge automatiquement le fichier contenant le pris des nuitées dans un tableau.)
 
-1. Saisir la période. Le calcul du nombre de nuitées est automatique.
+1. Saisir la période. Le calcul du nombre de nuitées est automatique.  
 
 2. Saisir le type de chambre.
 
@@ -41,19 +42,17 @@
    Choix "0": L'utilisateur ne souhaite pas choisir une chambre parmi la sélection proposée. Retour au menu principal.
    Choix "1": L'utilisateur souhaite réserver une chambre dans la liste. Il saisit le numéro de la chambre choisie.
 
-5. Saisir le nom.
+5. Saisir des données du client: nom, prénom, numéro de téléphone.
 
-6. Saisir le prénom.
+6. Paiement de la réservation: l'utilisateur renseigne le mode de paiement et effectue le paiement. Un message lui confirme que le paiement a bien été effectué.
 
-7. Saisir le téléphone.
+7. Sauvegarde de la résaervation.
 
-8. Paiement de la réservation: l'utilisateur renseigne le type de paiement et effectue le paiement. Un message lui confirme que le paiement a bien été effectué.
-
-9. Modification du planning.
+8. Modification du planning.
 
 
 ##Recherche d'une réservation
-
+A-T-ON FAIT LA RECHERCHE D'UNE RESERVATION??
 1. Saisir le numéro de réservation.
 
 2. Affichage du résultat.
@@ -62,6 +61,7 @@
    Choix "1": afficher la réservation en entier.
 
 ##Modification d'une réservation
+Lorsque l'utilisateur choisiT de modifier une réservation, le chargement du fichier entree_resa se fait automatiquement. 
 Choisir entre "non", "oui" et "annulation" (voir Annulation d'une réservation)
 
 1. Choisir "oui" pour modifier les données de la réservation. // choix 1?
