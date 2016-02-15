@@ -22,6 +22,8 @@
 * v 0.1.10 - 2016-02-14 tests sur cible_date, rech_periode problématique
 * v 0.1.11 - 2016-02-14 cible_date OK, problèmes sur cible_chambre
 * v 0.1.12 - 2016-02-15 cible_date OK avec tests. Problèmes sur cible_chambre
+* v 0.1.13 - 2016-02-15 Réservation OK jusqu'au paiement
+
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
