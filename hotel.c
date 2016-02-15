@@ -961,7 +961,7 @@ int choix_chambre()
       if(test == 1)
       {
         chambres_dispo[l] = chambres_ok[i] ;
-        l++                                ;
+        l++                                ; /*par la suite l permettra de compter les chambres_dispo*/
       }
     }
   }
