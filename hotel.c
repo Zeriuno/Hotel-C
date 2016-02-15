@@ -784,8 +784,6 @@ void cible_chambre()
   cible_animaux = 999                            ;
   while((cible_animaux < 0) || (cible_animaux > 1))
   {
-    /*debug*/
-    printf("Dans animaux\n") ;
     printf("Chambre avec animaux autorisés?\n")  ;
     printf("0 - animaux non autorisés\n")        ;
     printf("1 - animaux autorisés\n")            ;
@@ -821,9 +819,10 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
   numcase_resa_date_debut=NON_TROUVE   ;
   numcase_resa_date_fin=NON_TROUVE   ;
 
+
   while((i<ANNEE)&&(numcase_resa_date_debut==NON_TROUVE))
   {
-    if(datearrivee==calendrier[i].date)
+    if(demande.datearrivee==calendrier[i].date)
     {
       numcase_resa_date_debut=i ;
     }
@@ -836,7 +835,7 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
   {
     while ((i<ANNEE)&&(numcase_resa_date_fin==NON_TROUVE))
     {
-      if(datedepart==calendrier[i].date)
+      if(demande.datedepart==calendrier[i].date)
       {
         numcase_resa_date_fin=i ;
       }
@@ -879,6 +878,7 @@ void calcul_nuitees()
   demande.nuitees_resa[0] = 0 ;
   demande.nuitees_resa[1] = 0 ;
 
+
   while(i < (numcase_resa_date_fin + 1))
   {
     if(calendrier[i].saison == 0)
@@ -889,6 +889,7 @@ void calcul_nuitees()
     {
       demande.nuitees_resa[1]++ ;
     }
+    i++                         ;
   }
   if((demande.nuitees_resa[0] == 0) && (demande.nuitees_resa[1] == 0))
   {
