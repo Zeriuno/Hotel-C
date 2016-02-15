@@ -1089,6 +1089,34 @@ void paiement_resa()
 
 /*############################################
 #                                            #
+#              paiement_cb                   #
+#                                            #
+##############################################
+
+Si dans paiement_resa le choix de paiement saisi (demande.mode_paiment) est 3, formulaire de saisie des données de la carte bleue.
+*/
+
+
+void paiement_cb()
+{
+  char numero_cb[16]           ;
+  char titulaire_cb_nom[20]    ;
+  char titulaire_cb_prenom[20] ;
+  int test = 0                 ;
+
+//nom, prénom, numéro, code 3 chiffres, validité
+  while(test == 0)
+  {
+    printf("")
+    scanf("%s", );
+    if(test == 0)
+    {
+      printf("Erreur de saisie.\n") ;
+    }
+  }
+}
+/*############################################
+#                                            #
 #           sauvegarde_resa                  #
 #                                            #
 ##############################################
