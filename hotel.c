@@ -69,7 +69,7 @@ void chargement_planning()                 ;
 
 /*Réservations*/
 void dernier_code_resa()                   ;
-void chargement_prix()                     ;
+void chargement_prix_nuits()               ;
 void creer_reservation()                   ;
 void cible_date()                          ;
 void cible_chambre()                       ;
@@ -222,7 +222,7 @@ main()
   test_date()           ;
   chargement_chambres() ;
   chargement_planning() ;
-  chargement_prix()     ;
+  chargement_prix_nuits() ;
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
   while(choix != 9) /* 9 est la valeur pour quitter. */
   {
@@ -570,7 +570,7 @@ void dernier_code_resa()
 
 /*############################################
 #                                            #
-#              chargement_prix               #
+#           chargement_prix_nuits            #
 #                                            #
 ##############################################
 
@@ -578,7 +578,7 @@ Au démarrage, récupère les prix des nuitées et les charge dans un tableau, v
 
 */
 
-void chargement_prix()
+void chargement_prix_nuits()
 {
   FILE *f1 ;
   int i    ;
