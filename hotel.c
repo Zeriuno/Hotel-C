@@ -999,7 +999,7 @@ int choix_chambre()
     else
     {
       i = 0 ;
-      while((test == NON_TROUVE) || (i < l)) /*test pour vérifier que le choix fait est parmi les choix possibles*/
+      while((test == NON_TROUVE) && (i < l)) /*test pour vérifier que le choix fait est parmi les choix possibles*/
       {
         j = chambres_dispo[i] ;
         if(chambre_choisie == tab_chambres[j].num_chambre)
