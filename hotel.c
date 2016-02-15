@@ -2092,7 +2092,8 @@ void travaux()
 
 
 
-
+// si pas de nouvelles chambres trouvées alors annulation_resa()
+// printf("Remboursement total de la réservation, soit %.2f", demande.total_resa);
 
  //affecter le numéro de résa à 1
     /*

@@ -61,24 +61,30 @@ A-T-ON FAIT LA RECHERCHE D'UNE RESERVATION??
    Choix "1": afficher la réservation en entier.
 
 ##Modification d'une réservation
-Lorsque l'utilisateur choisiT de modifier une réservation, le chargement du fichier entree_resa se fait automatiquement. 
-Choisir entre "non", "oui" et "annulation" (voir Annulation d'une réservation)
+Lorsque l'utilisateur choisit de modifier une réservation, le chargement du fichier entree_resa se fait automatiquement.
+Suite à l'affichage de la réservation, on demande à l'utilisateur s'il souhaite modifier la réservation, l'annuler ou retourner au menu principal.
 
-1. Choisir "oui" pour modifier les données de la réservation. // choix 1?
+1. Choisir "1" pour modifier la réservation. L'utilisateur peut modifier la date et la chambre de la réservation.
+On recherche si une autre chambre ou période est disponible en fonction de la modification et on affiche les résultats.
+Choix entre abandon, choix d'une chambre parmi la liste des chambres s'il y en a plusieurs, sinon possibilité de saisir directement la chambre.
+L'utilisateur peut modifier les données du client, son nom, son prénom, son numéro de téléphone.
 
-2. Choisir "1": L'utilisateur peut modifier la date et la chambre de la réservation. D'abord la période, puis le type de chambre.
-   On recherche si une autre chambre ou période est disponible en fonction de la modification et on affiche les résultats.
-   Choix entre abandon, choix d'une chambre parmi la liste des chambres s'il y en a plusieurs, sinon possibilité de saisir directement la chambre.
-   S'il y a différence négative entre le prix de la chambre initiale et celui de la nouvelle chambre, alors on demande le paiement du supplément. Sinon, il y a directement demande de confirmation avant le retour au menu principal.
+2. S'il y a différence négative entre le prix de la chambre initiale et celui de la nouvelle chambre, alors on demande le paiement du supplément.
+Si la modification entraine une augmentation du prix, alors le client doit payer un supplément.
+Si au contraire, la modification entraine une diminution du prix, dans le cas d'une réduction du nombre de jours, le client peut se voir rembourser une partie de la différence:
+  * remboursement de 70% si l'écart entre la date du jour et la date de début de séjour est supérieur à 14 jours.
+  * remboursement de 30% si l'écart entre la date du jour et la date de début de séjour est supérieur à 7 jours.
+  * pas de remboursement.
+Sinon, on lui demande directement confirmation de la réservation avant le retour au menu principal.
 
-3. Choisir "2": L'utilisateur peut modifier les données du client, son nom, son prénom, son numéro de téléphone.
-   Retour au menu principal.
+3. Modification du planning.
+
 
 ##Annulation d'une réservation
 
 ###demandée par le client
 
-1. Comparer la date de début du séjour (déterminée grâce à la recherche de réservation) et la date du jour.
+1. Comparer la date de début du séjour (déterminée grâce à la   recherche de réservation) et la date du jour.
 
 2. "1" (Différence > 14 jours): L'annulation a bien été prise en compte. Remboursement de 70%.
    "2" (Différence > 7 jours): L'annulation a bien été prise en compte. Remboursement de 30%.
