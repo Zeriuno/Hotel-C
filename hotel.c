@@ -1374,6 +1374,7 @@ Origine de l'annulation d'une réservation
 *//*
 void annul_origine()
 {
+  int raison_annul = 0 ;
   printf("Qui est à l'origine de la demande d'annulation ' ? ");
   printf("1 - Décision du client \n")                          ;
   printf("2 - Décision de l'hôtel \n")                         ;
