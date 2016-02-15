@@ -450,10 +450,10 @@ Mise à jour du calendrier déclenchée par le test sur la date courante.
 */
 void maj_calendrier(int i)
 {
-  FILE *f1                            ;
-  int j, a, m, d                      ;
   char date_chaine[11], temporaire[5] ;
   char choix_saison = 'z'             ;
+  FILE *f1                            ;
+  int j, a, m, d, test                ;
 
   for(j = i; j < ANNEE; j++) /* déplacer les valeurs des jours dans le calendrier: LE FUTUR C'EST MAINTENANT!*/
   {
@@ -473,9 +473,17 @@ void maj_calendrier(int i)
     strcat(date_chaine, "/")                             ;
     sprintf(temporaire, "%d", a)                         ;
     strcat(date_chaine, temporaire)                      ;
-
-    printf("Quel jour vient après le %s (format jj/mm/aaaa) ? ", date_chaine) ;
-    scanf("%d/%d/%d", &d, &m, &a)                        ;
+    test = 0 ;
+    while(test == 0)
+    {
+      printf("Quel jour vient après le %s (format jj/mm/aaaa) ? ", date_chaine) ;
+      test = scanf("%d/%d/%d", &d, &m, &a)                        ;
+      if(test == 0)
+      {
+        printf("Erreur de saisie.\n") ;
+        while((poubelle=getchar()) != '\n')                   ;
+      }
+    }
     calendrier[j].date = jjmmaaaa_vers_aaaammjj(d, m, a) ;
     while((choix_saison != 'b') && (choix_saison != 'h'))
     {
