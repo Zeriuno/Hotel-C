@@ -23,7 +23,7 @@
 * v 0.1.11 - 2016-02-14 cible_date OK, problèmes sur cible_chambre
 * v 0.1.12 - 2016-02-15 cible_date OK avec tests. Problèmes sur cible_chambre
 * v 0.1.13 - 2016-02-15 Réservation OK jusqu'au paiement
-
+* v 0.1.14 - 2016-02-16 Séparation du code: utilitaires sortis dans fichier consacré. Makefile
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
@@ -45,13 +45,21 @@ Déclarations préliminaires
 ----------------------*/
 
 
-/*D'utilité générale*/
+/*----------------------
+
+D'utilité générale
+
+Programmes réunis dans utilitaires.c
+----------------------*/
 
 void mauvais_choix(int par_choisi)                            ; /* Mauvais choix à l'intérieur des menus*/
 long unsigned int jjmmaaaa_vers_aaaammjj(int j, int m, int a) ; /*Prendre une date saisie et la traduire en lonf int date*/
 
 
-/*Calendrier*/
+/*----------------------
+
+Calendrier
+----------------------*/
 void lecture_jours()       ; /* Prend les jours présents dans le fichier qui tient compte des jours (et saison) et les charge dans le tableau correspondant.*/
 void test_date()           ; /* Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tableau et dans le calendrier. Si la date a changé, déclanche la mise à jour dans les deux.*/
 void maj_calendrier(int i) ; /*mise à jour*/
