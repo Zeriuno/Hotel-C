@@ -1119,14 +1119,15 @@ void paiement_resa()
       nuit=tab_prix_chambres[i];
       test = 1                 ;
     }
-  demande.total_resa=(demande.nuitees_resa[0]*nuit.prix_hs)+(demande.nuitees_resa[1]*nuit.prix_bs);
+  }
+  demande.total_resa=(demande.nuitees_resa[0]*nuit.prix_bs)+(demande.nuitees_resa[1]*nuit.prix_hs);
 
   printf("Montant à payer : %f\n", demande.total_resa)  ;
   printf("Choisir le mode de paiement: \n")      ;
-  printf("1- Espèces\n")                         ;
-  printf("2- Chèque\n")                          ;
-  printf("3- Carte bancaire\n")                  ;
-  printf("4- Virement\n")                        ;
+  printf("-1- Espèces\n")                         ;
+  printf("-2- Chèque\n")                          ;
+  printf("-3- Carte bancaire\n")                  ;
+  printf("-4- Virement\n")                        ;
   printf("Choix : ")                             ;
   scanf("%d", &demande.mode_paiement)            ;
   printf("Le paiement a bien été effectué.\n")   ;
