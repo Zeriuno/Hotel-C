@@ -1173,10 +1173,18 @@ void paiement_cb()
   char numero_cb[16]           ;
   char titulaire_cb_nom[20]    ;
   char titulaire_cb_prenom[20] ;
+  int test = 0                 ;
 
-  printf("")
-  scanf("%s", );
-  printf("\n", );
+//nom, prénom, numéro, code 3 chiffres, validité
+  while(test == 0)
+  {
+    printf("")
+    scanf("%s", );
+    if(test == 0)
+    {
+      printf("Erreur de saisie.\n") ;
+    }
+  }
 }
 /*############################################
 #                                            #
