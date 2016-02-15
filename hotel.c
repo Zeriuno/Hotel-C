@@ -2015,13 +2015,13 @@ Procédure pour déclarer des travaux
 */
 void travaux()
 {
-  int cible_num_chambre                                ;
-  printf("Déclaration de travaux.\n")                  ;
-  cible_date()                                         ;
-  printf("Saisir le numéro de la chambre : ")          ;
-  scanf("%d", &cible_num_chambre)                      ;
-  cha.num_chambre=cible_num_chambre                    ;
-  rech_periode(demande.datearrivee, demande.datedepart);
+  int cible_num_chambre                                 ;
+  printf("Déclaration de travaux.\n")                   ;
+  cible_date()                                          ;
+  printf("Saisir le numéro de la chambre : ")           ;
+  scanf("%d", &cible_num_chambre)                       ;
+  chambre.num_chambre=cible_num_chambre                 ;
+  rech_periode(demande.datearrivee, demande.datedepart) ;
   // on teste si les cases du tableau ont un code de résa 0 ou pas
   // si oui on continue, sinon on imprime le code de résa et la jour et on renvoie au menu principal
 
