@@ -147,8 +147,8 @@ struct resa
   int mode_paiement              ; /*mode de paiement au moment de la réservation*/
 };
 
-struct resa demande          ;
-long unsigned int nb_resa    ; /*dernière réservation faite, la suivante devra prendre nb_resa+1*/
+struct resa demande              ;
+long unsigned int nb_resa        ; /*dernière réservation faite, la suivante devra prendre nb_resa+1*/
 long unsigned int planning[MAX_NB_CHAMBRES][ANNEE] ; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
 
 int numcase_resa_chambre; /*Identifie la case dans le tableau planning ou dans tab_chambres qui correspond à la chambre demandée/reservée*/
