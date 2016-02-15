@@ -583,11 +583,12 @@ void chargement_prix_nuits()
   FILE *f1 ;
   int i    ;
 
-  f1=fopen(PRIX_NUIT, "r");
+  f1=fopen(PRIX_NUIT, "r") ;
   for (i=0; i<NB_CHAMBRES_PRIX; i++)
   {
     fscanf(f1, "%d %d %f %f", &tab_prix_chambres[i].type_chambre, &tab_prix_chambres[i].categorie_chambre, &tab_prix_chambres[i].prix_hs, &tab_prix_chambres[i].prix_bs);
   }
+  fclose(f1) ;
 }
 
 /*############################################
