@@ -1107,15 +1107,9 @@ void paiement_resa()
 {
   int i, test = 0 ;
   struct prix_nuit nuit ;
-  FILE *f1;
 
   nuit.type_chambre=chambre.type_chambre;
   nuit.categorie_chambre=chambre.categorie_chambre;
-  f1=fopen(PRIX_NUIT, "r");
-  for (i=0; i<NB_CHAMBRES_PRIX; i++)
-  {
-  fscanf(f1, "%d %d %f %f", &tab_prix_chambres[i].type_chambre, &tab_prix_chambres[i].categorie_chambre, &tab_prix_chambres[i].prix_hs, &tab_prix_chambres[i].prix_bs);
-  }
     i= -1;
     while (test == 0)
     {
