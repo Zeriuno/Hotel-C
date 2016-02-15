@@ -139,13 +139,15 @@ struct resa
   char nomclient[50]             ;
   char prenomclient[50]          ;
   char telclient[12]             ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
+  float total_resa               ; /*montant total de la chambre en fonction des nuitées et de la saison*/
+  int mode_paiement              ; /*mode de paiement au moment de la réservation*/
 };
 
 struct resa demande          ;
 long unsigned int nb_resa    ; /*dernière réservation faite, la suivante devra prendre nb_resa+1*/
 long unsigned int planning[MAX_NB_CHAMBRES][ANNEE] ; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
 
-int  numcase_resa_chambre; /*Identifie la case dans le tableau planning ou dans tab_chambres qui correspond à la chambre demandée/reservée*/
+int numcase_resa_chambre; /*Identifie la case dans le tableau planning ou dans tab_chambres qui correspond à la chambre demandée/reservée*/
 int numcase_resa_date_debut, numcase_resa_date_fin ; /*identifient la position dans le planning/calendrier de la case où débute et finit la réservation*/
 /* Variables globales concernant les chambres*/
 
@@ -961,7 +963,7 @@ int choix_chambre()
       if(test == 1)
       {
         chambres_dispo[l] = chambres_ok[i] ;
-        l++                                ; /*par la suite l permettra de compter les chambres_dispo*/
+        l++                                ;
       }
     }
   }
@@ -976,7 +978,7 @@ int choix_chambre()
   {
     printf("Il n'y a pas de chambres disponibles dans la période définie selon les critères donnés\n") ;
     return(0) ;
-    /*Offir la possibilité de modifier les critères de date*/
+    /*Offrir la possibilité de modifier les critères de date*/
   }
   else
   {
@@ -992,14 +994,15 @@ int choix_chambre()
   {
     printf("Choisir la chambre à réserver (0 pour quitter) : ") ;
     scanf("%d", &chambre_choisie)              ;
-    if(chambre_choisie == 0)
+    if(chambre_choisie = 0)
     {
       return(0) ;
     }
     else
     {
+
       i = 0 ;
-      while((test == NON_TROUVE) && (i < l)) /*test pour vérifier que le choix fait est parmi les choix possibles*/
+      while((test == NON_TROUVE) || (i < l)) /*test pour vérifier que le choix fait est parmi les choix possibles*/
       {
         j = chambres_dispo[i] ;
         if(chambre_choisie == tab_chambres[j].num_chambre)
@@ -1075,8 +1078,7 @@ void saisie_client()
 */
 void paiement_resa()
 {
-  float total_resa ;
-  int mode_paiement = 0, nb_nuitee, i, test = 0 ;
+  int i, test = 0 ;
   struct prix_nuit nuit ;
   FILE *f1;
 
@@ -1100,17 +1102,17 @@ void paiement_resa()
         }
       }
     }
-  total_resa=(demande.nuitees_resa[0]*nuit.prix_hs)+(demande.nuitees_resa[1]*nuit.prix_bs);
+  demande.total_resa=(demande.nuitees_resa[0]*nuit.prix_hs)+(demande.nuitees_resa[1]*nuit.prix_bs);
 
-  printf("Montant à payer : %f\n", total_resa)  ;
+  printf("Montant à payer : %f\n", demande.total_resa)  ;
   printf("Choisir le mode de paiement: \n")      ;
   printf("1- Espèces\n")                         ;
   printf("2- Chèque\n")                          ;
   printf("3- Carte bancaire\n")                  ;
   printf("4- Virement\n")                        ;
-  printf("Choix : ")                           ;
-  scanf("%d", &mode_paiement)                   ;
-  printf("Le paiement a bien été effectué.\n")  ;
+  printf("Choix : ")                             ;
+  scanf("%d", &demande.mode_paiement)            ;
+  printf("Le paiement a bien été effectué.\n")   ;
   /*à ce moment on imprime toutes les données de la réservation et du moyen de paiement dans un fichier numero_reservation_paiement_resa.txt
   */
 }
@@ -1132,7 +1134,7 @@ void sauvegarde_resa()
   sprintf(temporaire, "%lu", demande.code_resa) ;
   strcat(entree_resa, temporaire)               ;
   f1=fopen(entree_resa, "w")                    ;
-  fprintf(f1, "%lu %d %lu %lu %d %d %s %s %s", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa[0], demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient);
+  fprintf(f1, "%lu %d %lu %lu %d %d %s %s %s %.2f %d", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa[0], demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient, demande.total_resa, demande.mode_paiement);
   fclose(f1)                                    ;
 }
 
@@ -1152,7 +1154,7 @@ void chargement_resa(long unsigned int p_code_resa)
   sprintf(temporaire, "%lu", p_code_resa) ;
   strcat(entree_resa, temporaire)         ;
   f1=fopen(entree_resa, "r")              ;
-  fscanf(f1, "%lu %d %lu %lu %d %d %s %s %s", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa[0], &demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient);
+  fscanf(f1, "%lu %d %lu %lu %d %d %s %s %s %f %d", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa[0], &demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient, &demande.total_resa, &demande.mode_paiement);
   fclose(f1)                              ;
 }
 
@@ -1363,7 +1365,7 @@ void annul_origine()
     case 2:
       annul_dates_client()                                               ;
       annul_chambre()                                                    ;
-      printf("Le remboursement total de la réservation a été effectué, soit %f\n", total_resa);
+      printf("Le remboursement total de la réservation a été effectué, soit %.2f\n", demande.total_resa);
     break;
     default:
       printf("Erreur de saisie. \n");
@@ -1385,7 +1387,6 @@ void annul_origine()
 void annulation_resa()
 {
   int ecart_jour, j, m, a, datedujour                  ;
-  float total_resa                                     ;
   calendrier[0].date = jjmmaaaa_vers_aaaammjj(j, m, a) ;
   datedujour=calendrier[0].date                        ;
   void annul_dates_client()                            ;
@@ -1394,13 +1395,13 @@ void annulation_resa()
   ecart_jour=jour_debut-datedujour                     ;
   if (ecart_jour>14)
   {
-    printf("Remboursement de 70%, soit %f \n", 0.7*total_resa);
+    printf("Remboursement de 70%, soit %.2f \n", 0.7*demande.total_resa);
   }
   else
   {
    if (ecart_jour>7)
    {
-    printf("Remboursement de 30%, soit %f \n", 0.3*total_resa);
+    printf("Remboursement de 30%, soit %.2f \n", 0.3*demande.total_resa);
    }
    else
    {
