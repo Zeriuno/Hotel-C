@@ -442,7 +442,7 @@ void test_date()
   }
   if(i != 0)
   {
-    maj_calendrier(i)                        ;
+    maj_calendrier(i) ;
   }
 }
 
