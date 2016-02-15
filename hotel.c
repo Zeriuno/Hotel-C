@@ -1037,6 +1037,10 @@ void saisie_client()
   {
     printf("Nom du client : ")               ;
     test = scanf("%s", demande.nomclient)    ;
+    if(test == 0)
+    {
+      printf("Saisie non valide.\n")         ;
+    }
   }
 
   test = 0                                   ;
@@ -1044,6 +1048,10 @@ void saisie_client()
   {
     printf("Prénom du client : ")            ;
     test = scanf("%s", demande.prenomclient) ;
+    if(test == 0)
+    {
+      printf("Saisie non valide.\n")         ;
+    }
   }
 
   test = 0                                   ;
@@ -1051,6 +1059,10 @@ void saisie_client()
   {
     printf("Numéro de téléphone : ")         ;
     test = scanf("%s", demande.telclient)    ;
+    if(test == 0)
+    {
+      printf("Saisie non valide.\n")         ;
+    }
   }
 }
 
