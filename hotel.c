@@ -780,16 +780,19 @@ void cible_chambre()
   }
   chambre.fumeur = cible_fumeur                  ;
 
+
   cible_animaux = 999                            ;
-  while((cible_fumeur < 0) || (cible_fumeur > 1))
+  while((cible_animaux < 0) || (cible_animaux > 1))
   {
+    /*debug*/
+    printf("Dans animaux\n") ;
     printf("Chambre avec animaux autorisés?\n")  ;
     printf("0 - animaux non autorisés\n")        ;
     printf("1 - animaux autorisés\n")            ;
     /*  printf("2 - indifférent\n")                   ;*/
     printf("Choix : ")                           ;
     scanf("%d", &cible_animaux)                  ;
-    if((cible_fumeur < 0) || (cible_fumeur > 1))
+    if((cible_animaux < 0) || (cible_animaux > 1))
     {
       printf("Choix non valide.\n")              ;
     }
