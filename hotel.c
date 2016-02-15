@@ -323,7 +323,7 @@ Elle reçoit un paramètre pour signaler quel est le choix qui a été fait.
 */
 void mauvais_choix(int par_choix)
 {
-  printf("Vous avez sélectionné %d : ce choix n'est pas disponible. Veuillez ressaisir.\n", par_choix);
+  printf("Vous avez sélectionné %d : ce choix n'est pas disponible. Veuillez ressaisir.\n", par_choix) ;
 }
 
 /*############################################
@@ -359,15 +359,15 @@ char aaaammjj_vers_jjmmaaaa(long unsigned int date)
   annee = date/10000                            ;
   mois = (date - (annee * 10000)) /100          ;
   jour = (date - (annee *10000) - (mois * 100)) ;
-  sprintf(temporaire, "%d", annee);
-  strcat(date_chaine, temporaire);
-  strcat(date_chaine, "/");
-  sprintf(temporaire, "%d", mois);
-  strcat(date_chaine, temporaire);
-  strcat(date_chaine, "/");
-  sprintf(temporaire, "%d", jour);
-  strcat(date_chaine, temporaire);
-  return *date_chaine;
+  sprintf(temporaire, "%d", annee)              ;
+  strcat(date_chaine, temporaire)               ;
+  strcat(date_chaine, "/")                      ;
+  sprintf(temporaire, "%d", mois)               ;
+  strcat(date_chaine, temporaire)               ;
+  strcat(date_chaine, "/")                      ;
+  sprintf(temporaire, "%d", jour)               ;
+  strcat(date_chaine, temporaire)               ;
+  return *date_chaine                           ;
 }
 
 
