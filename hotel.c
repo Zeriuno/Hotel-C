@@ -286,11 +286,11 @@ main()
           scanf("%c", &choix_modif)                             ;
           if (choix_modif == 'o')
           {
-            modification_chambre(res_chambre);
+            modification_chambre(res_chambre)                   ;
 
           }
-          printf("Retour au menu.\n");
-          enreg_chambre()            ;
+          printf("Retour au menu.\n")                           ;
+          enreg_chambre()                                       ;
 
         }
         break                                                                                             ;
