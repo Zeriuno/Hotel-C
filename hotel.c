@@ -1122,15 +1122,36 @@ void paiement_resa()
   }
   demande.total_resa=(demande.nuitees_resa[0]*nuit.prix_bs)+(demande.nuitees_resa[1]*nuit.prix_hs);
 
-  printf("Montant à payer : %f\n", demande.total_resa)  ;
-  printf("Choisir le mode de paiement: \n")      ;
-  printf("-1- Espèces\n")                         ;
-  printf("-2- Chèque\n")                          ;
-  printf("-3- Carte bancaire\n")                  ;
-  printf("-4- Virement\n")                        ;
-  printf("Choix : ")                             ;
-  scanf("%d", &demande.mode_paiement)            ;
-  printf("Le paiement a bien été effectué.\n")   ;
+  test = 0;
+  while(test == 0)
+  {
+    printf("Montant à payer : %f\n", demande.total_resa)  ;
+
+    printf("Choisir le mode de paiement: \n")      ;
+    printf("-1- Espèces\n")                         ;
+    printf("-2- Chèque\n")                          ;
+    printf("-3- Carte bancaire\n")                  ;
+    printf("-4- Virement\n")                        ;
+    printf("Choix : ")                             ;
+    test = scanf("%d", &demande.mode_paiement)            ;
+    if(test == 0)
+    {
+      printf("Choix non valide.\n");
+    }
+  }/*à la sortie test vaudra forcément 1*/
+
+  if(demande.mode_paiement == 3)
+  {
+    test = paiement_cb();
+  }
+  if(test != 1)
+  {
+    printf("Erreur dans le paiement.\n")   ;
+  }
+  else
+  {
+    printf("Le paiement a bien été effectué.\n")   ;
+  }
   /*à ce moment on imprime toutes les données de la réservation et du moyen de paiement dans un fichier numero_reservation_paiement_resa.txt
   */
 }
