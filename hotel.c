@@ -672,7 +672,7 @@ void cible_chambre()
     printf("3 - un lit double\n")                  ;
     printf("4 - trois lits simples\n")             ;
     printf("5 - un lit double et un lit simple\n") ;
-    printf("Saisir le type de lits :")             ;
+    printf("Saisir le type de lits : ")            ;
     scanf("%d", &cible_type_lits)                  ;
     if((cible_type_lits < 1) || (cible_type_lits > 5))
     {
