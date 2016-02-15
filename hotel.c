@@ -843,9 +843,9 @@ void rech_periode(long unsigned int datearrivee, long unsigned int datedepart)
 /*demande.date arrivee parcourir le tableau pour trouver la même valeur: indice
 de la case de la date et boucler à partir de la date vers la suivante pour avoir les deux indices*/
 
-  int i=0                      ;
+  int i=0                            ;
 
-  numcase_resa_date_debut=NON_TROUVE   ;
+  numcase_resa_date_debut=NON_TROUVE ;
   numcase_resa_date_fin=NON_TROUVE   ;
 
 
