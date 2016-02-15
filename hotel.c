@@ -797,8 +797,8 @@ void cible_chambre()
   while((cible_fumeur < 0) || (cible_fumeur > 1))
   {
     printf("Chambre pour fumeur ?\n")            ;
-    printf("0 - non fumeur\n")                   ;
-    printf("1 - fumeur\n")                       ;
+    printf("-0- non fumeur\n")                   ;
+    printf("-1- fumeur\n")                       ;
     /*  printf("2 - indifférent\n")                ;*/
     printf("Choix : ")                           ;
     scanf("%d", &cible_fumeur)                   ;
@@ -814,8 +814,8 @@ void cible_chambre()
   while((cible_animaux < 0) || (cible_animaux > 1))
   {
     printf("Chambre avec animaux autorisés?\n")  ;
-    printf("0 - animaux non autorisés\n")        ;
-    printf("1 - animaux autorisés\n")            ;
+    printf("-0- animaux non autorisés\n")        ;
+    printf("-1- animaux autorisés\n")            ;
     /*  printf("2 - indifférent\n")                   ;*/
     printf("Choix : ")                           ;
     scanf("%d", &cible_animaux)                  ;
