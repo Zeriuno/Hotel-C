@@ -21,7 +21,7 @@
 * v 0.1.9 - 2016-02-13 rech_periode fonctionnelle
 * v 0.1.10 - 2016-02-14 tests sur cible_date, rech_periode problématique
 * v 0.1.11 - 2016-02-14 cible_date OK, problèmes sur cible_chambre
-
+* v 0.1.12 - 2016-02-15 cible_date OK avec tests. Problèmes sur cible_chambre
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
@@ -619,6 +619,7 @@ void cible_date()
     if((demande.datearrivee < calendrier[0].date)|| (demande.datearrivee > calendrier[ANNEE-1].date))
     {
       printf("Date fausse.\n")                                                        ;
+      while((poubelle=getchar()) != '\n')                   ;
     }
     else
     {
@@ -632,9 +633,11 @@ void cible_date()
     printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                    ;
     scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                               ;
     demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)        ;
-    if((demande.datedepart > demande.datearrivee)||(demande.datedepart > calendrier[ANNEE-1].date))
+    if((demande.datedepart < demande.datearrivee)||(demande.datedepart > calendrier[ANNEE-1].date))
     {
       printf("Date fausse.\n")                                                        ;
+      while((poubelle=getchar()) != '\n')                   ;
+
     }
     else
     {
