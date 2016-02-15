@@ -1015,9 +1015,9 @@ int choix_chambre()
       {
         printf("Le choix n'est pas valide. Choisir une des chambres disponibles affichées.\n");
       }
-      return(1) ;
     }
   }
+  return(1) ;
 }
 
 /*############################################
