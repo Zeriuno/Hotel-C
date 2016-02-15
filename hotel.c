@@ -574,7 +574,7 @@ void dernier_code_resa()
 #                                            #
 ##############################################
 
-Au démarrage, récupère le tableau des prix des nuitées.
+Au démarrage, récupère les prix des nuitées et les charge dans un tableau, variable globale.
 
 */
 
