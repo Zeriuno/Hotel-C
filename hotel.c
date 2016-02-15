@@ -69,6 +69,7 @@ void chargement_planning()                 ;
 
 /*Réservations*/
 void dernier_code_resa()                   ;
+void chargement_prix()                     ;
 void creer_reservation()                   ;
 void cible_date()                          ;
 void cible_chambre()                       ;
@@ -221,6 +222,7 @@ main()
   test_date()           ;
   chargement_chambres() ;
   chargement_planning() ;
+  chargement_prix()     ;
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
   while(choix != 9) /* 9 est la valeur pour quitter. */
   {
@@ -564,6 +566,28 @@ void dernier_code_resa()
   FILE *f1                    ;
   f1 = fopen(RESA_CODE, "r")  ;
   fscanf(f1, "%lu", &nb_resa) ;
+}
+
+/*############################################
+#                                            #
+#              chargement_prix               #
+#                                            #
+##############################################
+
+Au démarrage, récupère le tableau des prix des nuitées.
+
+*/
+
+void chargement_prix()
+{
+  FILE *f1 ;
+  int i    ;
+
+  f1=fopen(PRIX_NUIT, "r");
+  for (i=0; i<NB_CHAMBRES_PRIX; i++)
+  {
+    fscanf(f1, "%d %d %f %f", &tab_prix_chambres[i].type_chambre, &tab_prix_chambres[i].categorie_chambre, &tab_prix_chambres[i].prix_hs, &tab_prix_chambres[i].prix_bs);
+  }
 }
 
 /*############################################
