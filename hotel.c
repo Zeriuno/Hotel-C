@@ -671,11 +671,11 @@ void cible_chambre()
   while((cible_type_lits < 1) || (cible_type_lits > 5))
   {
     printf("Quel type de lits ?\n")                ;
-    printf("1 - un lit simple\n")                  ;
-    printf("2 - deux lits simples\n")              ;
-    printf("3 - un lit double\n")                  ;
-    printf("4 - trois lits simples\n")             ;
-    printf("5 - un lit double et un lit simple\n") ;
+    printf("-1- un lit simple\n")                  ;
+    printf("-2- deux lits simples\n")              ;
+    printf("-3- un lit double\n")                  ;
+    printf("-4- trois lits simples\n")             ;
+    printf("-5- un lit double et un lit simple\n") ;
     printf("Saisir le type de lits : ")            ;
     scanf("%d", &cible_type_lits)                  ;
     if((cible_type_lits < 1) || (cible_type_lits > 5))
@@ -705,8 +705,8 @@ void cible_chambre()
   while((cible_cat_chambre < 0) || (cible_cat_chambre > 1))
   {
     printf("Quelle catégorie de chambre ?\n")    ;
-    printf("0 - chambre\n")                      ;
-    printf("1 - suite\n")                        ;
+    printf("-0- chambre\n")                      ;
+    printf("-1- suite\n")                        ;
     printf("Saisir la catégorie : ")             ;
     scanf("%d", &cible_cat_chambre)              ;
     if((cible_cat_chambre < 0) || (cible_cat_chambre > 1))
@@ -720,8 +720,8 @@ void cible_chambre()
   while((cible_balcon < 0) || (cible_balcon > 1))
   {
     printf("Chambre avec balcon ?\n")            ;
-    printf("0 - pas de balcon\n")                ;
-    printf("1 - balcon\n")                       ;
+    printf("-0- pas de balcon\n")                ;
+    printf("-1- balcon\n")                       ;
     /*  printf("2 -indifférent\n")                  ;*/
     printf("Choix : ")                           ;
     scanf("%d", &cible_balcon)                   ;
@@ -736,8 +736,8 @@ void cible_chambre()
   while((cible_bain < 0) || (cible_bain > 1))
   {
     printf("Quel type de salle de bain ?\n")     ;
-    printf("0 - baignoire\n")                    ;
-    printf("1 - douche\n")                       ;
+    printf("-0- baignoire\n")                    ;
+    printf("-1- douche\n")                       ;
     /*  printf("2 - indifférent\n")                 ;*/
     printf("Choix : ")    ;
     scanf("%d", &cible_bain)                     ;
@@ -752,8 +752,8 @@ void cible_chambre()
   while((cible_vue < 0) || (cible_vue > 1))
   {
     printf("Chambre avec vue ?\n")               ;
-    printf("0 - pas de vue\n")                   ;
-    printf("1 - vue\n")                          ;
+    printf("-0- pas de vue\n")                   ;
+    printf("-1- vue\n")                          ;
     /*  printf("2 - indifférent\n")                 ;*/
     printf("Choix : ")                           ;
     scanf("%d", &cible_vue)                      ;
