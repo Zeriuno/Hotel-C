@@ -2024,7 +2024,7 @@ void travaux()
   rech_periode(demande.datearrivee, demande.datedepart) ;
   // on teste si les cases du tableau ont un code de résa 0 ou pas
   // si oui on continue, sinon on imprime le code de résa et la jour et on renvoie au menu principal
-
+/*
     if (demande.code_resa==O)
     {
 
@@ -2040,5 +2040,5 @@ void travaux()
     sauvegarde_resa();
     maj_planning   ;
     */
-  }
+  /*}*/
 }
