@@ -560,8 +560,8 @@ void dernier_code_resa()
   FILE *f1                    ;
   f1 = fopen(RESA_CODE, "r")  ;
   fscanf(f1, "%lu", &nb_resa) ;
-
 }
+
 /*############################################
 #                                            #
 #             creer_reservation              #
