@@ -34,7 +34,7 @@ Reste à faire:
 
 */
 
-#include "declarations.h"
+#include "declarations.h" /*c'est ici que sont les #include et les #define*/
 
 /*----------------------
 
