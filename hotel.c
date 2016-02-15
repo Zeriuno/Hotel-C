@@ -34,7 +34,7 @@ Reste à faire:
 
 */
 
-#include "0-code/declarations.h"
+#include "declarations.h"
 
 /*----------------------
 
@@ -246,6 +246,7 @@ main()
       if(test == 0)
       {
         printf("Choix invalide.\n")                            ;
+        while((poubelle=getchar()) != '\n')                   ;
       }
     }
 
@@ -255,7 +256,10 @@ main()
         creer_reservation() ;
         break               ;
 
-      case 2: case 3:
+      case 2:
+        printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
+        break               ;
+      case 3:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
         break               ;
       case 4:
