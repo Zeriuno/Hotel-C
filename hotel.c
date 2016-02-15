@@ -994,7 +994,7 @@ int choix_chambre()
   {
     printf("Choisir la chambre à réserver (0 pour quitter) : ") ;
     scanf("%d", &chambre_choisie)              ;
-    if(chambre_choisie = 0)
+    if(chambre_choisie == 0)
     {
       return(0) ;
     }
@@ -1002,7 +1002,7 @@ int choix_chambre()
     {
 
       i = 0 ;
-      while((test == NON_TROUVE) || (i < l)) /*test pour vérifier que le choix fait est parmi les choix possibles*/
+      while((test == NON_TROUVE) && (i < l)) /*test pour vérifier que le choix fait est parmi les choix possibles*/
       {
         j = chambres_dispo[i] ;
         if(chambre_choisie == tab_chambres[j].num_chambre)
