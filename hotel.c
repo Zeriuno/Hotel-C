@@ -1110,18 +1110,14 @@ void paiement_resa()
 
   nuit.type_chambre=chambre.type_chambre;
   nuit.categorie_chambre=chambre.categorie_chambre;
-    i= -1;
-    while (test == 0)
+  i= -1;
+  while (test == 0)
+  {
+    i++ ;
+    if (tab_prix_chambres[i].type_chambre==nuit.type_chambre) && (tab_prix_chambres[i].categorie_chambre==nuit.categorie_chambre)
     {
-      i++ ;
-      if (tab_prix_chambres[i].type_chambre==nuit.type_chambre)
-      {
-        if (tab_prix_chambres[i].categorie_chambre==nuit.categorie_chambre)
-        {
-          nuit=tab_prix_chambres[i];
-          test = 1                 ;
-        }
-      }
+      nuit=tab_prix_chambres[i];
+      test = 1                 ;
     }
   demande.total_resa=(demande.nuitees_resa[0]*nuit.prix_hs)+(demande.nuitees_resa[1]*nuit.prix_bs);
 
