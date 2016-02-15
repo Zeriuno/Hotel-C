@@ -277,7 +277,7 @@ main()
 
       case 2: case 3:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
-        break                                                                                             ;
+        break               ;
       case 4:
         printf("Entrez le numéro de la chambre à rechercher: ") ;
         scanf("%d", &chambre_cible)                             ;
