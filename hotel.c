@@ -78,6 +78,7 @@ void calcul_nuitees()                      ;
 int choix_chambre()                        ;
 void saisie_client()                       ;
 void paiement_resa()                       ;
+int paiement_cb()                          ;
 void sauvegarde_resa()                     ;
 void chargement_resa(long unsigned int p_code_resa) ;
 void modif_resa()                          ;
@@ -1142,7 +1143,7 @@ void paiement_resa()
 
   if(demande.mode_paiement == 3)
   {
-    test = paiement_cb();
+    paiement_cb();
   }
   if(test != 1)
   {
@@ -1157,6 +1158,26 @@ void paiement_resa()
 }
 
 
+/*############################################
+#                                            #
+#              paiement_cb                   #
+#                                            #
+##############################################
+
+Si dans paiement_resa le choix de paiement saisi (demande.mode_paiment) est 3, formulaire de saisie des données de la carte bleue.
+*/
+
+
+void paiement_cb()
+{
+  char numero_cb[16]           ;
+  char titulaire_cb_nom[20]    ;
+  char titulaire_cb_prenom[20] ;
+
+  printf("")
+  scanf("%s", );
+  printf("\n", );
+}
 /*############################################
 #                                            #
 #           sauvegarde_resa                  #
