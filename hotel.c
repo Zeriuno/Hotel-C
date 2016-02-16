@@ -1369,8 +1369,38 @@ Affiche la réservation chargée dans la variable globale demande.
 
 void affichage_resa()
 {
-  char paiement[9]                                                       ;
+  char paiement[9], date_1[11], date_2[11], temporaire[5]                ;
+  int a, m, j                                                            ;
   paiement[0] = '\0'                                                     ;
+
+
+  date_1[0] = '\0'                                                       ;
+  temporaire[0] = '\0'                                                   ;
+  a = demande.datearrivee/10000                                          ;
+  m = (demande.datearrivee - (a * 10000)) / 100                          ;
+  j = (demande.datearrivee - (a * 10000) - (m * 100))                    ;
+  sprintf(temporaire, "%d", j)                                           ;
+  strcat(date_1, temporaire)                                             ;
+  strcat(date_1, "/")                                                    ;
+  sprintf(temporaire, "%d", m)                                           ;
+  strcat(date_1, temporaire)                                             ;
+  strcat(date_1, "/")                                                    ;
+  sprintf(temporaire, "%d", a)                                           ;
+  strcat(date_1, temporaire)                                             ;
+
+  date_2[0] = '\0'                                                       ;
+  temporaire[0] = '\0'                                                   ;
+  a = demande.datedepart/10000                                           ;
+  m = (demande.datedepart - (a * 10000)) / 100                           ;
+  j = (demande.datedepart - (a * 10000) - (m * 100))                     ;
+  sprintf(temporaire, "%d", j)                                           ;
+  strcat(date_2, temporaire)                                             ;
+  strcat(date_2, "/")                                                    ;
+  sprintf(temporaire, "%d", m)                                           ;
+  strcat(date_2, temporaire)                                             ;
+  strcat(date_2, "/")                                                    ;
+  sprintf(temporaire, "%d", a)                                           ;
+  strcat(date_2, temporaire)                                             ;
 
   switch (demande.mode_paiement)
   {
