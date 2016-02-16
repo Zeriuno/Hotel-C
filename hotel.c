@@ -1184,7 +1184,7 @@ void paiement_resa()
 #                                            #
 ##############################################
 
-Si dans paiement_resa le choix de paiement saisi (demande.mode_paiment) est 3, formulaire de saisie des données de la carte bleue.
+Si dans paiement_resa le choix de paiement saisi (demande.mode_paiement) est 3, formulaire de saisie des données de la carte bleue.
 
 À ajouter: tests sur les valeurs saisies pour la carte de crédit, tests sur les espaces.
 */
