@@ -659,7 +659,7 @@ Dans un premier temps on contraint à spécifier tout choix, on ne permet pas de
 
 void cible_chambre()
 {
-  /*ce n'est pas nécessaire, on le déduit d cible_type_lits int cible_type_chambre ; /* 1 lit simple, 2 double, 3 triple*/
+  /*ce n'est pas nécessaire, on le déduit d cible_type_lits int cible_type_chambre dont les valeurs possibles sont 1 lit simple, 2 double, 3 triple*/
   int cible_cat_chambre  ; /* 0 chambre, 1 suite*/
   int cible_type_lits    ; /* 1 lit simple, 2 deux lits simples, 3 lit double, 4 trois lits simples, 5 lit simple et lit double */
   int cible_balcon       ; /* 0 pas, 1 balcon, 2 indifférent*/
