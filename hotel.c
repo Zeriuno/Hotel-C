@@ -2289,7 +2289,8 @@ void catalogue_services_menu()
 {
   int choix_cat = 0                                        ;
   chargement_catalogue_services()                          ;
-  while(choix_cat != 9){
+  while(choix_cat != 9)
+  {
     printf("\n")                                           ;
     printf("    CATALOGUE DES SERVICES\n\n")               ;
     printf("-1- Lire le catalogue des services\n")         ;
