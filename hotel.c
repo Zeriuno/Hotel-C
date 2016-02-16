@@ -1365,7 +1365,7 @@ void maj_planning()
 #                                            #
 ##############################################
 
-Appelé dans le main() le programme gère la modification d'une réservation.
+Appelé dans le main() le programme gère la recherche et, le cas échéant, modification d'une réservation.
 
 */
 
