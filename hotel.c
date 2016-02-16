@@ -23,6 +23,8 @@
 * v 0.1.11 - 2016-02-14 cible_date OK, problèmes sur cible_chambre
 * v 0.1.12 - 2016-02-15 cible_date OK avec tests. Problèmes sur cible_chambre
 * v 0.1.13 - 2016-02-15 Réservation OK jusqu'au paiement
+* v 0.1.14 - 2016-02-16 Séparation du code: utilitaires sortis dans fichier consacré. Makefile
+* v 0.1.15 - 2016-02-16 fin paiement_cb
 
 
 Reste à faire:
@@ -45,29 +47,46 @@ Déclarations préliminaires
 ----------------------*/
 
 
-/*D'utilité générale*/
+/*----------------------
+
+D'utilité générale
+
+Programmes réunis dans utilitaires.c
+----------------------*/
 
 void mauvais_choix(int par_choisi)                            ; /* Mauvais choix à l'intérieur des menus*/
 long unsigned int jjmmaaaa_vers_aaaammjj(int j, int m, int a) ; /*Prendre une date saisie et la traduire en lonf int date*/
 
 
-/*Calendrier*/
+/*----------------------
+
+Calendrier
+----------------------*/
 void lecture_jours()       ; /* Prend les jours présents dans le fichier qui tient compte des jours (et saison) et les charge dans le tableau correspondant.*/
 void test_date()           ; /* Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tableau et dans le calendrier. Si la date a changé, déclanche la mise à jour dans les deux.*/
-void maj_calendrier(int i) ; /*mise à jour*/
+void maj_calendrier(int i) ; /* Mise à jour du calendrier à partir des déclarations de l'utilisateur */
 
-/*Chambres*/
-int rech_chambre(int chambre_rech)         ;
-void chargement_chambres()                 ;
+/*----------------------
+
+Chambres
+----------------------*/
+void chargement_chambres()                 ; /* Procédure lancée au démarrage: les chambres sont chargées dans un tableau à partir du fichier (défini dans les constantes)*/
+int rech_chambre(int chambre_rech)         ; /* Trouver une chambre à partir d'un numéro de chambre */
 void modification_chambre(int res_chambre) ;
 void enreg_chambre()                       ;
 void affichage_chambre()                   ;
 
-/*Planning*/
-void chargement_planning()                 ;
+/*----------------------
+
+Planning
+----------------------*/
+void chargement_planning()                 ; /* Procédure lancée au démarrage: le planning est chargé dans un tableau à partir du fichier (défini dans les constantes)*/
 
 
-/*Réservations*/
+/*----------------------
+
+Réservations
+----------------------*/
 void dernier_code_resa()                   ;
 void chargement_prix()                     ;
 void creer_reservation()                   ;
