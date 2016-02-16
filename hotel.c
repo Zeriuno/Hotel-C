@@ -2160,14 +2160,12 @@ Sortie par un menu de choix.
 
 void affichage_note(char p_entree_note[])
 {
-  FILE *f1;
+  FILE *f1                                ;
   float total_commande = 0, prix_commande ;
-  int choix_note ;
-  /*il faut utiliser stat, apparemment, qui a besoin d'une structure
+  int choix_note                          ;
 
 
-  /*vérification de l'existence du fichier
-  if()/* si le fichier n'existe pas
+
   {
     printf("Il n'existe pas de note pour cette réservation. Pour en créer une, ajouter une entrée.\n\n") ;
     printf("Choix possibles :\n\n");
