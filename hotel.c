@@ -1162,9 +1162,11 @@ void paiement_resa()
   printf("-4- Virement\n")                              ;
   printf("Choix : ")                                    ;
   scanf("%d", &demande.mode_paiement)                   ;
+  if(demande.mode_paiement == 3)
+  {
+    paiement_cb()                                       ;
+  }
   printf("Le paiement a bien été effectué.\n")          ;
-  /*à ce moment on imprime toutes les données de la réservation et du moyen de paiement dans un fichier numero_reservation_paiement_resa.txt
-  */
 }
 
 
