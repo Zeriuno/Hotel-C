@@ -52,7 +52,7 @@
 
 
 ##Recherche d'une réservation
-A-T-ON FAIT LA RECHERCHE D'UNE RESERVATION??
+
 1. Saisir le numéro de réservation.
 
 2. Affichage du résultat.
@@ -60,9 +60,17 @@ A-T-ON FAIT LA RECHERCHE D'UNE RESERVATION??
 3. Choix "0": ne pas afficher la réservation en entier et retour au menu principal.
    Choix "1": afficher la réservation en entier.
 
+##Affichage d'une réservation
+
+1. Dans le choix précédent, l'utilisateur a choisi "1".
+2. La réservation s'affiche en entier. 
+3. On demande à l'utilisateur s'il souhaite modifier la réservation, l'annuler ou retourner au menu principal: 
+Choisir "1" pour modifier la réservation.
+Choisir "2" pour annulerla réservation.
+Choisir "3" pour retourner au menu principal. 
+
 ##Modification d'une réservation
 Lorsque l'utilisateur choisit de modifier une réservation, le chargement du fichier entree_resa se fait automatiquement.
-Suite à l'affichage de la réservation, on demande à l'utilisateur s'il souhaite modifier la réservation, l'annuler ou retourner au menu principal.
 
 1. Choisir "1" pour modifier la réservation. L'utilisateur peut modifier la date et la chambre de la réservation.
 On recherche si une autre chambre ou période est disponible en fonction de la modification et on affiche les résultats.
