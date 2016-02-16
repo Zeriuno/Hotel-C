@@ -1029,6 +1029,8 @@ int choix_chambre()
 #                                            #
 ##############################################
 
+À ajouter, un test sur la chaîne de caractères du numéro de téléphone.
+Le premier doit être un +, les suivants que des chiffres.
 
 */
 void saisie_client()
