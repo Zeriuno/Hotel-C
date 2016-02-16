@@ -1029,44 +1029,20 @@ int choix_chambre()
 #                                            #
 ##############################################
 
+
 */
 void saisie_client()
 {
   char nom_client[100], prenom_client[200], numero_telephone_client[20] ;
-  int test                                   ;
 
-  test = 0                                   ;
-  while(test == 0)
-  {
-    printf("Nom du client : ")               ;
-    test = scanf("%s", demande.nomclient)    ;
-    if(test == 0)
-    {
-      printf("Saisie non valide.\n")         ;
-    }
-  }
+  printf("Nom du client : ")                                            ;
+  scanf("%s", demande.nomclient)                                        ;
 
-  test = 0                                   ;
-  while(test == 0)
-  {
-    printf("Prénom du client : ")            ;
-    test = scanf("%s", demande.prenomclient) ;
-    if(test == 0)
-    {
-      printf("Saisie non valide.\n")         ;
-    }
-  }
+  printf("Prénom du client : ")                                         ;
+  scanf("%s", demande.prenomclient)                                     ;
 
-  test = 0                                   ;
-  while(test == 0)
-  {
-    printf("Numéro de téléphone : ")         ;
-    test = scanf("%s", demande.telclient)    ;
-    if(test == 0)
-    {
-      printf("Saisie non valide.\n")         ;
-    }
-  }
+  printf("Numéro de téléphone (format +3301234567) : ")                 ;
+  scanf("%s", demande.telclient)                                        ;
 }
 
 
