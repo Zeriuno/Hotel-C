@@ -1332,7 +1332,8 @@ void modification_resa()
   }
   else
   {
-    affichage_resa();
+    affichage_resa()                                                    ;
+    choix_modif_resa()                                                  ;
 
   }
 }
