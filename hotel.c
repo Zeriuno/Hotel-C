@@ -120,7 +120,7 @@ void creation_note()                       ; /* Création de la note, vide. Appe
 void menu_recherche_note()                 ; /* Permet de choisir entre recherche_note_cha et recherche_note_num */
 long unsigned int recherche_note_cha()     ; /* Prend un numéro de chambre et le passe à menu_choix_note */
 long unsigned int recherche_note_num()     ; /* Prend un numéro de réservation et le passe à menu_choix_note */
-void menu_choix_note(long unsigned int p_num_resa) ;
+void menu_choix_note(char p_entree_note[]) ;
 
 /*----------------------
 
