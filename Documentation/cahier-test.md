@@ -116,6 +116,9 @@ Tout autre choix que "o" ne permet pas de modification de la chambre, et l'utili
 
 6. Choisir un chiffre non prévu →  Message d'erreur affiché.
 
+mise à jour prix
+ services et chaege ds strsust elemenint et suuprimer ou meetrte ç jour ou laisser !
+
 ##Quitter le programme
 
 1. Choix "9" dans le menu principal: "Au revoir".
