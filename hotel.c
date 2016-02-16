@@ -2285,10 +2285,10 @@ void catalogue_services_menu()
   while(choix_cat != 9){
     printf("\n")                                           ;
     printf("    CATALOGUE DES SERVICES\n\n")               ;
-    printf("1 - Lire le catalogue des services\n")         ;
-    printf("2 - Modifier le catalogue des services\n")     ;
-    printf("3 - Ajouter un service\n")                     ;
-    printf("9 - Quitter et revenir au menu principal\n\n") ;
+    printf("-1- Lire le catalogue des services\n")         ;
+    printf("-2- Modifier le catalogue des services\n")     ;
+    printf("-3- Ajouter un service\n")                     ;
+    printf("-9- Quitter et revenir au menu principal\n\n") ;
 
     printf("Choisissez une action : ")                     ;
     scanf("%d", &choix_cat)                                ;
