@@ -2082,14 +2082,14 @@ On demande la saisie du numéro de réservation, on le passe à menu_choix_note.
 long unsigned int recherche_note_num()
 {
   char entree_note[20], temporaire[11]         ;
-  long unsigned int num_resa                   ;
+  long unsigned int rech_num_resa              ;
   printf("Saisir le numéro de réservation : ") ;
-  scanf("%lu", &num_resa)                      ;
+  scanf("%lu", &rech_num_resa)                 ;
 
   temporaire[0] = '\0'                         ;
   entree_note[0] = '\0'                        ;
   strcat(entree_note, DOSSIER_NOTES)           ;
-  sprintf(temporaire, "%lu", p_num_resa)       ;
+  sprintf(temporaire, "%lu", rech_num_resa)    ;
   strcat(entree_note, temporaire)              ;
   strcat(entree_note, ".txt")                  ;
 }
