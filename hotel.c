@@ -1371,38 +1371,38 @@ Appelé dans le main() le programme gère la modification d'une réservation.
 
 void modification_resa()
 {
-  int test = 0                                                          ;
-  long unsigned int code_modif_resa                                     ;
-  printf("Modification de réservation.\n")                              ;
+  int test = 0                                                            ;
+  long unsigned int code_modif_resa                                       ;
+  printf("Recherche de réservation.\n")                                   ;
   while(test == 0)
   {
-    printf("Veuillez saisir le numéro de la réservation à modifier : ") ;
-    test = scanf("%lu", &code_modif_resa)                               ;
+    printf("Veuillez saisir le numéro de la réservation à rechercher : ") ;
+    test = scanf("%lu", &code_modif_resa)                                 ;
     if(test == 0)
     {
-      printf("Choix non valide.\n")                                     ;
-      while((poubelle=getchar()) != '\n')                               ;
+      printf("Choix non valide.\n")                                       ;
+      while((poubelle=getchar()) != '\n')                                 ;
     }
     else
     {
-      test = 1                                                          ;
+      test = 1                                                            ;
     }
     if((code_modif_resa > nb_resa)||(code_modif_resa < 2)) /* 0 est le code pour indiquer que la réservation est possible, 1 pour signaler des travaux. On ne veut pas permettre leur modification */
     {
-      printf("Code de réservation invalide.\n")                         ;
-      test = 0                                                          ;
+      printf("Code de réservation invalide.\n")                           ;
+      test = 0                                                            ;
     }
   }
-  test = 0                                                              ;
-  test = chargement_resa(code_modif_resa)                               ;
+  test = 0                                                                ;
+  test = chargement_resa(code_modif_resa)                                 ;
   if(test == 0)
   {
-    printf("Erreur dans le chargement de la réservation\n")             ;
+    printf("Erreur dans le chargement de la réservation\n")               ;
   }
   else
   {
-    affichage_resa()                                                    ;
-    choix_modif_resa()                                                  ;
+    affichage_resa()                                                      ;
+    choix_modif_resa()                                                    ;
   }
 }
 
