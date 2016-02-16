@@ -1347,12 +1347,17 @@ Le int retourné indique le résultat de l'opération.
 
 int chargement_resa(long unsigned int p_code_resa)
 {
-  char entree_resa[15], temporaire[11]    ;
-  FILE *f1;
+  char entree_resa[20], temporaire[11]    ;
+  FILE *f1                                ;
 
+  temporaire[0] = '\0'                    ;
+  entree_resa[0] = '\0'                   ;
+  strcat(entree_resa, DOSSIER_RESA)       ;
   sprintf(temporaire, "%lu", p_code_resa) ;
   strcat(entree_resa, temporaire)         ;
-  f1=fopen(entree_resa, "r")              ;
+  strcat(entree_resa, ".txt")             ;
+
+  f1 = fopen(entree_resa, "r");
   fscanf(f1, "%lu %d %lu %lu %d %d %s %s %s %f %d", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa[0], &demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient, &demande.total_resa, &demande.mode_paiement) ;
   fclose(f1)                              ;
 }
@@ -1436,7 +1441,7 @@ void affichage_resa()
 /*    printf("Tarif par nuit : %.2f\n", nuit.prix_hs)                      ; Pas de décompte des tarifs par nuit: en cas de changement dans les tarifs, nous lirions le nouveau prix, ce qui donnerait un résultat en désaccord avec le total. Faute d'historisation des prix, omission ici de cette information. */
   }
   printf("Montant reglé : %.2f\n", demande.total_resa)                   ;
-  printf("Moyen de paiement : %s\n", paiement)                           ;
+  printf("Moyen de paiement : %s\n\n", paiement)                         ;
 }
 
 /*############################################
