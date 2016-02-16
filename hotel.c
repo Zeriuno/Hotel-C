@@ -1470,10 +1470,12 @@ void choix_modif_resa()
       printf("-1- Modifier la réservation \n")     ;
       printf("-2- Annuler la réservation \n")      ;
       printf("-3- Retourner au menu principal \n") ;
+      printf("Choix : " )                          ;
       t2 = scanf("%d", &choix_mod)                 ;
       if(t2 == 0)
       {
         printf("Erreur de saisie\n")               ;
+        while((poubelle=getchar()) != '\n')        ;
       }
     }
     switch (choix_mod)
@@ -1492,6 +1494,7 @@ void choix_modif_resa()
         break                                      ;
       default:
         mauvais_choix(choix_mod)                   ;
+        t2 = 0                                     ;
         break                                      ;
     }
   }
