@@ -1077,7 +1077,13 @@ Un numéro de réservation est affecté à la demande de réservation en cours d
 
 void nouveau_nb_resa()
 {
-  demande.code_resa = nb_resa + 1 ;
+  FILE *f1                        ;
+  demande.code_resa = nb_resa + 1 ; /* La nouvelle réservation = dernière réservation +1 */
+  nb_resa = demande.code_resa     ; /* Mise à jour du dernier numéro de réservation */
+
+  f1=fopen(RESA_CODE, "w")        ; /* Afin de garantir la symmétrie entre nb_resa et l'information sauvegardée dans le fichier, mise à jour du fichier */
+  fprintf(f1, "%lu", nb_resa)     ;
+  fclose(f1)                      ;
 }
 
 
