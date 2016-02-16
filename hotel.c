@@ -2154,7 +2154,7 @@ void recherche_note()
 #                                            #
 ##############################################
 
-Appelée par recherche_note, prend en argument le nom du fichier de la note (num_note). Elle vérifie si le fichier existe. Si oui, l'affiche, sinon elle previent l'utilisateur.
+Appelée par recherche_note, prend en argument le nom du fichier de la note (num_note).
 Sortie par un menu de choix.
 
 
