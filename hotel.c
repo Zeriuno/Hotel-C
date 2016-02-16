@@ -1319,8 +1319,17 @@ void modification_resa()
       test = 0                                                          ;
     }
   }
-  chargement_resa(code_modif_resa)                                      ;
+  test = 0
+  test = chargement_resa(code_modif_resa)                               ;
+  if(test == 0)
+  {
+    printf("Erreur dans le chargement de la réservation\n")             ;
+  }
+  else
+  {
+    affichage_resa();
 
+  }
 }
 
 /*############################################
