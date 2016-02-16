@@ -26,6 +26,7 @@
 * v 0.1.14 - 2016-02-16 Séparation du code: utilitaires sortis dans fichier consacré. Makefile
 * v 0.1.15 - 2016-02-16 fin paiement_cb
 * v 1.0.0 - 2016-02-16 Réservation fonctionnelle
+* v 1.0.1 - 2016-02-16 Création note
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
