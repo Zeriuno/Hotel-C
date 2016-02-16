@@ -2405,22 +2405,22 @@ void suppression_service()
   }
   else
   {
-    printf("Nom du service à supprimer: ";
-    scanf("%s", nom_rech);
-    numero = rech_services(nom_rech);
+    printf("Nom du service à supprimer : ")         ;
+    scanf("%s", nom_rech)                           ;
+    numero = rech_services(nom_rech)                ;
     if (numero == NON_TROUVE)
       {
-        printf("%s non trouvé \n", nom_rech);
+        printf("%s non trouvé \n", nom_rech)        ;
       }
     else
     {
       for (i=numero; i<nb_services-1; i++)
       {
-        catalogue_service[i]=catalogue_service[i+1];
+        catalogue_service[i]=catalogue_service[i+1] ;
       }
-      nb_services--;
-      printf("%s supprimé \n", nom_rech);
-      sauv_catalogue_services=1   ;
+      nb_services--                                 ;
+      printf("%s supprimé \n", nom_rech)            ;
+      sauv_catalogue_services=1                     ;
     }
 }
 
