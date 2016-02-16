@@ -1608,7 +1608,7 @@ void modif_resa()
     scanf("%s", demande.prenomclient)                              ;
     printf("Numéro de téléphone actuel : %s\n", demande.telclient) ;
     printf("Nouveau numéro de téléphone (format +3301234567): ")   ;
-    scanf("%s", demande.telclient)                                 ;
+    scanf("%s", demande.telclient)                                 ; /* cf test préconisé dans saisie_client() */
 
       // AJOUTER PAIEMENT
     // si
