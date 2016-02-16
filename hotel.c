@@ -283,8 +283,7 @@ main()
       printf("-4- Rechercher une chambre.\n\n\n")              ;
       printf("     PARAMÈTRES    \n")                          ;
       printf("__________________________________________\n\n") ;
-      printf("-5- Mettre à jour la date du planning.\n")       ;
-      printf("-6- Catalogue des services.\n\n\n")              ;
+      printf("-5- Catalogue des services.\n\n\n")              ;
       printf("     QUITTER    \n")                             ;
       printf("__________________________________________\n\n") ;
       printf("-9- Quitter l'application.\n\n")                 ;
