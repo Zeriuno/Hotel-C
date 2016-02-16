@@ -2423,10 +2423,10 @@ Affiche un message de confirmation.
 */
 
 void enreg_catalogue_services(){
-  FILE *f1                                  ;
-  f1 = fopen(CAT_SERVICES, "w") ;
-  int i                                     ;
-  struct entree_service service             ;
+  FILE *f1                                                              ;
+  f1 = fopen(CAT_SERVICES, "w")                                         ;
+  int i                                                                 ;
+  struct entree_service service                                         ;
 
 
   for(i = 0; i < nb_services ; i++)
@@ -2434,9 +2434,9 @@ void enreg_catalogue_services(){
     service = catalogue_services[i]                                     ;
     fprintf(f1, "%s %.2f\n", service.nom_service, service.prix_service) ;
   }
-  fclose(f1)                                      ;
-  sauv_catalogue_services = 0                     ;
-  printf("Le catalogue a bien été sauvegardé.\n") ;
+  fclose(f1)                                                            ;
+  sauv_catalogue_services = 0                                           ;
+  printf("Le catalogue a bien été sauvegardé.\n")                       ;
 }
 
 /*############################################
