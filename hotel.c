@@ -1991,7 +1991,17 @@ Création de la note, vide. Appellée dans creer_reservation.
 */
 void creation_note()
 {
-  d
+  char entree_note[20], temporaire[5]           ;
+  FILE *f1                                      ;
+
+  temporaire[0] = '\0'                          ;
+  entree_note[0] = '\0'                         ;
+  strcat(entree_note, DOSSIER_NOTES)            ;
+  sprintf(temporaire, "%lu", demande.code_resa) ;
+  strcat(entree_note, temporaire)               ;
+  strcat(entree_note, ".txt")                   ;
+  f1=fopen(entree_note, "w")                    ;
+  fclose(f1)                                    ;
 }
 
 
