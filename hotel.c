@@ -1245,6 +1245,8 @@ void sauvegarde_resa()
   char entree_resa[20], temporaire[11]          ;
   FILE *f1                                      ;
 
+  temporaire[0] = '\0'                          ;
+  entree_resa[0] = '\0'                         ;
   strcat(entree_resa, DOSSIER_RESA)             ;
   sprintf(temporaire, "%lu", demande.code_resa) ;
   strcat(entree_resa, temporaire)               ;
