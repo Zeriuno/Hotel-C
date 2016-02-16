@@ -1340,10 +1340,11 @@ void modification_resa()
 ##############################################
 
 Reçoit un code de réservation en paramètre et charge les données dans la variable globale demande.
+Le int retourné indique le résultat de l'opération.
 
 */
 
-void chargement_resa(long unsigned int p_code_resa)
+int chargement_resa(long unsigned int p_code_resa)
 {
   char entree_resa[15], temporaire[11]    ;
   FILE *f1;
