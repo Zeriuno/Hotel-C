@@ -123,14 +123,14 @@ void creation_note()                       ; /* Création de la note, vide. Appe
 Gestion des services
 complémentaires
 ----------------------*/
-void catalogue_services_menu()             ; /* Menu qui montre les choix possibles pour le catalogue de services */
-void chargement_catalogue_services()       ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente */
-void affichage_catalogue()                 ; /* Montre le tableau de services */
-void saisie_services()                     ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés */
-void enreg_catalogue_services()            ; /* Sauvegarde le tableau chargé en mémoire dans un fichier */
-void modif_services()                      ; /* Pour modifier les services déjà listés */
-void modification_catalogue()
-
+void catalogue_services_menu()                       ; /* Menu qui montre les choix possibles pour le catalogue de services */
+void chargement_catalogue_services()                 ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente */
+void affichage_catalogue()                           ; /* Montre le tableau de services */
+void saisie_services()                               ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés */
+void enreg_catalogue_services()                      ; /* Sauvegarde le tableau chargé en mémoire dans un fichier */
+void modif_services()                                ; /* Pour modifier les services déjà listés */
+int rech_service(char nom_serv_rech[MAX_NOM_SERVICE] ; /* Recherche pour la suppression d'un service*/
+void suppression_service()                           ; /* Suppression d'un service */
 
 /*----------------------
 
@@ -2278,7 +2278,7 @@ Recherche d'un service
 
 
 */
-void rech_services(char nom_serv_rech[MAX_MAW_SERVICE])
+int rech_service(char nom_serv_rech[MAX_NOM_SERVICE])
 {
   struct entree_service service  ;
   int i, numserv                 ;
@@ -2304,7 +2304,7 @@ Supprime d'un services
 */
 void suppression_service()
 {
-  char nom_rech[MAX_NOM_SERVICE] ;
+  char nom_rech[] ;
   int i = 0, numero=NON_TROUVE   ;
   if (nb_services== 0)
   {
