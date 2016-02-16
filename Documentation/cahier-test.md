@@ -39,8 +39,8 @@
 3. Affichage des chambres disponibles.
 
 4. L'utilisateur peut choisir une chambre correspondant aux critères renseignés.
-   Choix "0": L'utilisateur ne souhaite pas choisir une chambre parmi la sélection proposée. Retour au menu principal.
-   Choix "1": L'utilisateur souhaite réserver une chambre dans la liste. Il saisit le numéro de la chambre choisie.
+    * Choix "0": L'utilisateur ne souhaite pas choisir une chambre parmi la sélection proposée. Retour au menu principal.
+    * Choix "1": L'utilisateur souhaite réserver une chambre dans la liste. Il saisit le numéro de la chambre choisie.
 
 5. Saisir des données du client: nom, prénom, numéro de téléphone.
 
@@ -65,9 +65,9 @@
 1. Dans le choix précédent, l'utilisateur a choisi "1".
 2. La réservation s'affiche en entier. 
 3. On demande à l'utilisateur s'il souhaite modifier la réservation, l'annuler ou retourner au menu principal: 
-Choisir "1" pour modifier la réservation.
-Choisir "2" pour annulerla réservation.
-Choisir "3" pour retourner au menu principal. 
+ * Choisir "1" pour modifier la réservation.
+ * Choisir "2" pour annulerla réservation.
+ * Choisir "3" pour retourner au menu principal. 
 
 ##Modification d'une réservation
 Lorsque l'utilisateur choisit de modifier une réservation, le chargement du fichier entree_resa se fait automatiquement.
@@ -94,9 +94,9 @@ Sinon, on lui demande directement confirmation de la réservation avant le retou
 
 1. Comparer la date de début du séjour (déterminée grâce à la   recherche de réservation) et la date du jour.
 
-2. "1" (Différence > 14 jours): L'annulation a bien été prise en compte. Remboursement de 70%.
-   "2" (Différence > 7 jours): L'annulation a bien été prise en compte. Remboursement de 30%.
-   "3" (Différence <= 7 jours): L'annulation a bien été prise en compte. Pas de remboursement.
+2. * "1" (Différence > 14 jours): L'annulation a bien été prise en compte. Remboursement de 70%.
+   * "2" (Différence > 7 jours): L'annulation a bien été prise en compte. Remboursement de 30%.
+   * "3" (Différence <= 7 jours): L'annulation a bien été prise en compte. Pas de remboursement.
 
 3. Retour au menu principal.
 
