@@ -96,8 +96,11 @@ void rech_periode(long unsigned int datearrivee, long unsigned int datedepart) ;
 void calcul_nuitees()                      ;
 int choix_chambre()                        ;
 void saisie_client()                       ;
+void nouveau_nb_resa()                     ; /* Un numéro de réservation est affecté à la demande de réservation en cours de traitement */
 void paiement_resa()                       ;
+void paiement_cb()                         ;
 void sauvegarde_resa()                     ;
+void maj_planning()                        ;
 void chargement_resa(long unsigned int p_code_resa) ;
 void choix_modif_resa()                    ;
 void modif_resa()                          ;
@@ -1055,6 +1058,23 @@ void saisie_client()
   }
 }
 
+
+/*############################################
+#                                            #
+#            nouveau_nb_resa                 #
+#                                            #
+##############################################
+
+Un numéro de réservation est affecté à la demande de réservation en cours de traitement.
+
+*/
+
+void nouveau_nb_resa()
+{
+  demande.code_resa = nb_resa + 1 ;
+}
+
+
 /*############################################
 #                                            #
 #             paiement_resa                  #
@@ -1105,47 +1125,101 @@ void paiement_resa()
 ##############################################
 
 Si dans paiement_resa le choix de paiement saisi (demande.mode_paiment) est 3, formulaire de saisie des données de la carte bleue.
+
+À ajouter: tests sur les valeurs saisies pour la carte de crédit, tests sur les espaces.
 */
 
 
 void paiement_cb()
 {
-  char numero_cb[16]           ;
-  char titulaire_cb_nom[20]    ;
-  char titulaire_cb_prenom[20] ;
-  int test = 0                 ;
+  char numero_cb[16]                       ;
+  char titulaire_cb_nom[20]                ;
+  char titulaire_cb_prenom[20]             ;
+  int test = 0, mois_cb, annee_cb, code_cb ;
 
 //nom, prénom, numéro, code 3 chiffres, validité
+
+  printf("Saisir le nom du titulaire de la carte bancaire : ")                ;
+  scanf("%s", titulaire_cb_nom)                                               ;
+
+  printf("Saisir le prénom du titulaire de la carte bancaire : ")             ;
+  scanf("%s", titulaire_cb_prenom)                                            ;
+
+  printf("Saisir les 16 chiffres de la carte bancaire, sans espaces : ")      ;
+  scanf("%s", numero_cb)                                                      ;
+
   while(test == 0)
   {
-    printf("")
-    scanf("%s", );
+    printf("Saisir la date de fin de validité de la carte (format mm/aa) :" ) ;
+    test = scanf("%d/%d", &mois_cb, &annee_cb)                                ;
     if(test == 0)
     {
-      printf("Erreur de saisie.\n") ;
+      printf("Erreur de saisie.\n")                                           ;
+    }
+  }
+
+  test = 0                                                                    ;
+  while(test == 0)
+  {
+    printf("Saisir le code de sécurité de trois chiffres :" )                 ;
+    test = scanf("%d", &code_cb )                                             ;
+    if(test == 0)
+    {
+      printf("Erreur de saisie.\n")                                           ;
     }
   }
 }
+
+
 /*############################################
 #                                            #
 #           sauvegarde_resa                  #
 #                                            #
 ##############################################
 
+Les informations sur la réservation sont sauvegardées dans le fichier DOSSIER_RESA/$code_resa.txt.
+
 */
 
 void sauvegarde_resa()
 {
-  char entree_resa[15], temporaire[11] ;
-  FILE *f1                             ;
+  char entree_resa[20], temporaire[11]          ;
+  FILE *f1                                      ;
 
+  strcat(entree_resa, DOSSIER_RESA)             ;
   sprintf(temporaire, "%lu", demande.code_resa) ;
   strcat(entree_resa, temporaire)               ;
+  strcat(entree_resa, ".txt")                   ;
   f1=fopen(entree_resa, "w")                    ;
   fprintf(f1, "%lu %d %lu %lu %d %d %s %s %s %.2f %d", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa[0], demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient, demande.total_resa, demande.mode_paiement);
   fclose(f1)                                    ;
 }
 
+/*############################################
+#                                            #
+#              maj_planning                  #
+#                                            #
+##############################################
+
+Une fois la réservation validée, son code est inséré dans le planning aux cases déjà déterminées dans rech_periode().
+
+*/
+
+void maj_planning()
+{
+  int i, j = 0 ;
+
+
+  while(demande.num_chambre != tab_chambres[j].num_chambre ) /*Recherche, dans le tableau des chambres, de l'indice auquel correspond la case avec le bon num_chambre*/
+  {
+    j++        ;
+  }
+
+  for(i = numcase_resa_date_debut ; i < numcase_resa_date_fin + 1 ; i++)
+  {
+    planning[j][i] = demande.code_resa ;
+  }
+}
 /*############################################
 #                                            #
 #           chargement_resa                  #
