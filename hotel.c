@@ -1465,54 +1465,54 @@ Modification d'une réservation : partie dates et client
 */
 void modif_resa()
 {
-  char nom_client[100], prenom_client[200], numero_telephone_client[20];
-  int jour_debut, mois_debut, annee_debut                              ;
-  int jour_fin, mois_fin, annee_fin                                    ;
-  int a, m, j ;
-  char datearriveeavant[10], datedepartavant[10], temporaire[10], choix_modif_chambre  ;
-  int continu_modif                                                    ;
+  char nom_client[100], prenom_client[200], numero_telephone_client[20]               ;
+  int jour_debut, mois_debut, annee_debut                                             ;
+  int jour_fin, mois_fin, annee_fin                                                   ;
+  int a, m, j                                                                         ;
+  char datearriveeavant[10], datedepartavant[10], temporaire[10], choix_modif_chambre ;
+  int continu_modif                                                                   ;
 
-  datearriveeavant[0] = '\0' ;
-  a = demande.datearrivee / 10000 ;
-  m = (demande.datearrivee - (a * 10000)) / 100       ;
-  j = (demande.datearrivee - (a * 10000) - (m * 100)) ;
-  sprintf(temporaire, "%d", j)                       ;
+  datearriveeavant[0] = '\0'                              ;
+  a = demande.datearrivee / 10000                         ;
+  m = (demande.datearrivee - (a * 10000)) / 100           ;
+  j = (demande.datearrivee - (a * 10000) - (m * 100))     ;
+  sprintf(temporaire, "%d", j)                            ;
   strcat(datearriveeavant, temporaire)                    ;
   strcat(datearriveeavant, "/")                           ;
-  sprintf(temporaire, "%d", m)                       ;
+  sprintf(temporaire, "%d", m)                            ;
   strcat(datearriveeavant, temporaire)                    ;
   strcat(datearriveeavant, "/")                           ;
-  sprintf(temporaire, "%d", a)                       ;
+  sprintf(temporaire, "%d", a)                            ;
   strcat(datearriveeavant, temporaire)                    ;
 
 
-  printf("Date actuelle de début  : %s\n", datearriveeavant)                         ;
+  printf("Date actuelle de début  : %s\n", datearriveeavant)                          ;
   printf("Saisir la nouvelle date de début (jj/mm/aaaa) : ")                          ;
   scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)                           ;
   demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut)   ;
 
-  datedepartavant[0] = '\0' ;
-  temporaire[0] = '\0'      ;
-  a = demande.datedepart / 10000 ;
-  m = (demande.datedepart - (a * 10000)) / 100       ;
-  j = (demande.datedepart - (a * 10000) - (m * 100)) ;
-  sprintf(temporaire, "%d", j)                       ;
+  datedepartavant[0] = '\0'                              ;
+  temporaire[0] = '\0'                                   ;
+  a = demande.datedepart / 10000                         ;
+  m = (demande.datedepart - (a * 10000)) / 100           ;
+  j = (demande.datedepart - (a * 10000) - (m * 100))     ;
+  sprintf(temporaire, "%d", j)                           ;
   strcat(datedepartavant, temporaire)                    ;
   strcat(datedepartavant, "/")                           ;
-  sprintf(temporaire, "%d", m)                       ;
+  sprintf(temporaire, "%d", m)                           ;
   strcat(datedepartavant, temporaire)                    ;
   strcat(datedepartavant, "/")                           ;
-  sprintf(temporaire, "%d", a)                       ;
+  sprintf(temporaire, "%d", a)                           ;
   strcat(datedepartavant, temporaire)                    ;
-  printf("Date actuelle de fin  : %s\n", datedepartavant)                            ;
+  printf("Date actuelle de fin  : %s\n", datedepartavant)                             ;
   printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                      ;
   scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                                 ;
   demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)          ;
   choix_modif_chambre='a'                                                             ;
   while ((choix_modif_chambre!='o')||(choix_modif_chambre!='n'))
   {
-    printf("Voulez-vous modifier la chambre (o/n)?\n");
-    scanf("%c", &choix_modif_chambre)                 ;
+    printf("Voulez-vous modifier la chambre (o/n)?\n") ;
+    scanf("%c", &choix_modif_chambre)                  ;
     if((choix_modif_chambre!='o')&&(choix_modif_chambre!='n'))
     {
       printf("Choix non valide\n") ;
