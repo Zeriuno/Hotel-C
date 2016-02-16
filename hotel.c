@@ -56,7 +56,7 @@ Programmes réunis dans utilitaires.c
 
 void mauvais_choix(int par_choisi)                            ; /* Mauvais choix à l'intérieur des menus */
 long unsigned int jjmmaaaa_vers_aaaammjj(int j, int m, int a) ; /* Prendre une date saisie et la traduire en lonf int date */
-char aaaammjj_vers_jjmmaaaa(long unsigned int date) ; /* Retourne en chaine de caractères jj/mm/aaaa la date fournie en format aaaammjj */
+char aaaammjj_vers_jjmmaaaa(long unsigned int date)           ; /* Retourne en chaine de caractères jj/mm/aaaa la date fournie en format aaaammjj */
 
 /*----------------------
 
