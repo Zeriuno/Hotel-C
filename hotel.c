@@ -2104,7 +2104,7 @@ Récupère le numéro d'une réservation, trouve le fichier correspondant, et pr
 
 */
 
-void menu_choix_note(char )
+void menu_choix_note(char p_entree_note[])
 {
   int t1, t2, choix_note                                 ;
   FILE *f1                                               ;
@@ -2127,13 +2127,17 @@ void menu_choix_note(char )
       switch(choix_note)  /* passe entree_note au programme suivant, selon le choix. Ensuite, celui-ci terminé, on boucle jusqu'au choix de revenir au menu principal */
       {
       case 1:
-        affichage_note(num_note)             ;
+        affichage_note(p_entree_note)        ;
+        printf("Retour au menu principal\n") ;
+        t1 = 1                               ;
         break                                ;
       case 2:
-        ajout_note(num_note)                 ;
+        ajout_note(p_entree_note)            ;
+        printf("Retour au menu principal\n") ;
+        t1 = 1                               ;
         break                                ;
       case 3:
-        paiement_note(num_note)              ;
+        paiement_note(p_entree_note)         ;
         break                                ;
       case 9:
         printf("Retour au menu principal\n") ;
@@ -2154,7 +2158,7 @@ Appelée par recherche_note, prend en argument le nom du fichier de la note (num
 Sortie par un menu de choix.
 
 
-void affichage_note(char num_note[])
+void affichage_note(char p_entree_note[])
 {
   FILE *f1;
   float total_commande = 0, prix_commande ;
