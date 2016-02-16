@@ -121,6 +121,9 @@ void menu_recherche_note()                 ; /* Permet de choisir entre recherch
 long unsigned int recherche_note_cha()     ; /* Prend un numéro de chambre et le passe à menu_choix_note */
 long unsigned int recherche_note_num()     ; /* Prend un numéro de réservation et le passe à menu_choix_note */
 void menu_choix_note(char p_entree_note[]) ;
+void affichage_note(char p_entree_note[])  ; /* La note est affichée ensuite choix possibles (ajout, règlement)*/
+void ajout_note(char p_entree_note[])      ;
+void paiement_note(char p_entree_note[])   ;
 
 /*----------------------
 
@@ -1340,7 +1343,7 @@ void maj_planning()
 #                                            #
 ##############################################
 
-Appelé dans le main() le programme gère la modificatio d'une réservation.
+Appelé dans le main() le programme gère la recherche et, le cas échéant, modification d'une réservation.
 
 */
 
@@ -2154,21 +2157,20 @@ void menu_choix_note(char p_entree_note[])
 #                                            #
 ##############################################
 
-Appelée par recherche_note, prend en argument le nom du fichier de la note (num_note). Elle vérifie si le fichier existe. Si oui, l'affiche, sinon elle previent l'utilisateur.
+Appelée par recherche_note, prend en argument le nom du fichier de la note (num_note).
 Sortie par un menu de choix.
 
+*/
 
 void affichage_note(char p_entree_note[])
 {
-  FILE *f1;
+  FILE *f1                                ;
   float total_commande = 0, prix_commande ;
-  int choix_note ;
-  /*il faut utiliser stat, apparemment, qui a besoin d'une structure
+  int choix_note                          ;
 
 
-  /*vérification de l'existence du fichier
-  if()/* si le fichier n'existe pas
-  {
+
+
     printf("Il n'existe pas de note pour cette réservation. Pour en créer une, ajouter une entrée.\n\n") ;
     printf("Choix possibles :\n\n");
     printf("1 - Rechercher une autre note\n");
@@ -2179,13 +2181,13 @@ void affichage_note(char p_entree_note[])
     switch(choix_note)
     {
       case 1:
-        recherche_note();
+
         break;
       case 2:
-        ajout_note(num_note);
+        ajout_note(p_entree_note);
         break;
       case 3:
-        paiement_note(num_note);
+        paiement_note(p_entree_note);
         break;
       case 9:
         printf("Retour au menu principal\n");
@@ -2226,7 +2228,7 @@ void affichage_note(char p_entree_note[])
            printf("Retour au menu principal\n");
            break;
        }
-     }
+     }*/
 }
 
 /*############################################
@@ -2236,10 +2238,9 @@ void affichage_note(char p_entree_note[])
 ##############################################
 Ajoute une entrée depuis le catalogue des services.
 Prend en paramètre l'identifiant d'une note.
-Si la note n'existe pas, elle sera créée.
+*/
 
-
-void ajout_note(char num_note[])
+void ajout_note(char p_entree_note[])
 {
   char date[11];
   FILE *f1;
@@ -2248,7 +2249,7 @@ void ajout_note(char num_note[])
   /* ici une recherche dans le tableau des services
   printf("");
   f1 = fopen(num_note, ""); /* il n'y aurait pas de 'append'?
-  fclose(f1);
+  fclose(f1);*/
 }
 
 
@@ -2262,13 +2263,13 @@ Teste si la note existe. Si non, renvoie un message d'erreur.
 Autrement elle récupère le total, demande les moyens de paiement et des informations.
 Le paiement est simulé et sauvegardé.
 
-void paiement_note(char num_note[])
+*/
+void paiement_note(char p_entree_note[])
 {
   FILE *f1;
 
 }
 
-*/
 
 
 
@@ -2289,7 +2290,8 @@ void catalogue_services_menu()
 {
   int choix_cat = 0                                        ;
   chargement_catalogue_services()                          ;
-  while(choix_cat != 9){
+  while(choix_cat != 9)
+  {
     printf("\n")                                           ;
     printf("    CATALOGUE DES SERVICES\n\n")               ;
     printf("1 - Lire le catalogue des services\n")         ;
@@ -2315,6 +2317,7 @@ void catalogue_services_menu()
         break                    ;
       default:
         mauvais_choix(choix_cat) ;
+        while((poubelle=getchar()) != '\n') ;
         break                    ;
     }
   }
