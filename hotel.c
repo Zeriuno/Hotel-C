@@ -24,11 +24,8 @@
 * v 0.1.12 - 2016-02-15 cible_date OK avec tests. Problèmes sur cible_chambre
 * v 0.1.13 - 2016-02-15 Réservation OK jusqu'au paiement
 * v 0.1.14 - 2016-02-16 Séparation du code: utilitaires sortis dans fichier consacré. Makefile
-<<<<<<< HEAD
 * v 0.1.15 - 2016-02-16 fin paiement_cb
 
-=======
->>>>>>> e812131208f573c1d82804ad430c5955cb0f42cb
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
