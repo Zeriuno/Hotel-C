@@ -2093,7 +2093,7 @@ Création de la note, vide. Appellée dans creer_reservation.
 */
 void creation_note()
 {
-  char entree_note[20], temporaire[5]           ;
+  char entree_note[20], temporaire[11]          ;
   FILE *f1                                      ;
 
   temporaire[0] = '\0'                          ;
