@@ -131,7 +131,8 @@ void affichage_catalogue()                 ; /* Montre le tableau de services */
 void saisie_services()                     ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés */
 void enreg_catalogue_services()            ; /* Sauvegarde le tableau chargé en mémoire dans un fichier */
 void modif_services()                      ; /* Pour modifier les services déjà listés */
-void modification_catalogue()
+void modification_catalogue()              ;
+int rech_services(char nom_serv_rech[MAX_NOM_SERVICE]) ;
 
 
 /*----------------------
@@ -2371,7 +2372,7 @@ Recherche d'un service
 
 
 */
-void rech_services(char nom_serv_rech[MAX_NOM_SERVICE])
+int rech_services(char nom_serv_rech[MAX_NOM_SERVICE])
 {
   struct entree_service service  ;
   int i, numserv                 ;
