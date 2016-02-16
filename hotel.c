@@ -2158,7 +2158,7 @@ Appelée par recherche_note, prend en argument le nom du fichier de la note (num
 Sortie par un menu de choix.
 
 
-void affichage_note(char num_note[])
+void affichage_note(char p_entree_note[])
 {
   FILE *f1;
   float total_commande = 0, prix_commande ;
@@ -2236,10 +2236,9 @@ void affichage_note(char num_note[])
 ##############################################
 Ajoute une entrée depuis le catalogue des services.
 Prend en paramètre l'identifiant d'une note.
-Si la note n'existe pas, elle sera créée.
+*
 
-
-void ajout_note(char num_note[])
+void ajout_note(char p_entree_note[])
 {
   char date[11];
   FILE *f1;
