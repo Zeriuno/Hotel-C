@@ -1320,7 +1320,7 @@ void modification_resa()
       test = 0                                                          ;
     }
   }
-  test = 0
+  test = 0                                                              ;
   test = chargement_resa(code_modif_resa)                               ;
   if(test == 0)
   {
