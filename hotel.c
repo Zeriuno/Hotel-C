@@ -2262,7 +2262,7 @@ Teste si la note existe. Si non, renvoie un message d'erreur.
 Autrement elle récupère le total, demande les moyens de paiement et des informations.
 Le paiement est simulé et sauvegardé.
 
-void paiement_note(char num_note[])
+void paiement_note(char p_entree_note[])
 {
   FILE *f1;
 
