@@ -258,7 +258,10 @@ main()
     test = 0                                                   ;
     while(test == 0)
     {
-      printf("Voici les actions possibles:\n\n")               ;
+      printf("__________________________________________\n\n") ;
+      printf("              MENU PRINCIPAL\n\n")               ;
+      printf("__________________________________________\n\n") ;
+      printf("Voici les actions possibles\n\n")                ;
       printf("   RÉSERVATIONS      \n")                        ;
       printf("__________________________________________\n\n") ;
       printf("-1- Effectuer une réservation\n")                ;
