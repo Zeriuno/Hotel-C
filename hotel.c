@@ -1254,6 +1254,7 @@ void sauvegarde_resa()
   f1=fopen(entree_resa, "w")                    ;
   fprintf(f1, "%lu %d %lu %lu %d %d %s %s %s %.2f %d", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa[0], demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient, demande.total_resa, demande.mode_paiement);
   fclose(f1)                                    ;
+  printf("La réservation n.%lu a bien été enregistrée.\n", demande.code_resa) ;
 }
 
 /*############################################
@@ -1280,6 +1281,7 @@ void maj_planning()
   {
     planning[j][i] = demande.code_resa ;
   }
+  printf("La réservation %lu a bien été insérée dans le planning.\n", demande.code_resa) ;
 }
 /*############################################
 #                                            #
