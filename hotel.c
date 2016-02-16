@@ -111,7 +111,11 @@ void annulation_resa()                     ;
 void annul_origine()                       ;
 
 
+/*----------------------
 
+Note
+----------------------*/
+void creation_note()                       ; /* Création de la note, vide. Appellée dans creer_reservation */
 
 
 /*----------------------
@@ -119,12 +123,12 @@ void annul_origine()                       ;
 Gestion des services
 complémentaires
 ----------------------*/
-void catalogue_services_menu()             ; /* Menu qui montre les choix possibles pour le catalogue de services*/
-void chargement_catalogue_services()       ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente*/
-void affichage_catalogue()                 ; /* Montre le tableau de services*/
-void saisie_services()                     ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés*/
-void enreg_catalogue_services()            ; /* Sauvegarde le tableau chargé en mémoire dans un fichier*/
-void modif_services()                      ; /* Pour modifier les services déjà listés*/
+void catalogue_services_menu()             ; /* Menu qui montre les choix possibles pour le catalogue de services */
+void chargement_catalogue_services()       ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente */
+void affichage_catalogue()                 ; /* Montre le tableau de services */
+void saisie_services()                     ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés */
+void enreg_catalogue_services()            ; /* Sauvegarde le tableau chargé en mémoire dans un fichier */
+void modif_services()                      ; /* Pour modifier les services déjà listés */
 
 
 /*----------------------
@@ -590,6 +594,7 @@ void creer_reservation()
     nouveau_nb_resa()                                   ;
     paiement_resa()                                     ; /* Comme le paiement est supposé être toujours effectué avec succès, pas de test pour décider si poursuivre ou pas. */
     sauvegarde_resa()                                   ;
+    creation_note()                                     ; /* On crée la note, vide. À partir de ce moment le client peut faire des commandes qui seront enregistrées.*/
     maj_planning()                                      ;
   }
 }
@@ -1976,6 +1981,21 @@ void annulation_resa()
 #                                            #
 #              PARTIE NOTES                  #
 #       #############################        #
+#                                            #
+#              creation_note                 #
+#                                            #
+##############################################
+
+Création de la note, vide. Appellée dans creer_reservation.
+
+*/
+void creation_note()
+{
+  d
+}
+
+
+/*############################################
 #                                            #
 #             recherche_note                 #
 #                                            #
