@@ -1089,25 +1089,70 @@ void nouveau_nb_resa()
 */
 void paiement_resa()
 {
-  int i, test = 0 ;
-  struct prix_nuit nuit ;
+  char date_1[11], date_2[11], temporaire[5]            ;
+  int i, test = 0, a, m, j                              ;
+  struct prix_nuit nuit                                 ;
   FILE *f1;
 
-  nuit.type_chambre=chambre.type_chambre;
-  nuit.categorie_chambre=chambre.categorie_chambre;
+  nuit.type_chambre=chambre.type_chambre                ;
+  nuit.categorie_chambre=chambre.categorie_chambre      ;
 
   i= -1;
   while (test == 0)
   {
-    i++ ;
+    i++                                                 ;
     if ((tab_prix_chambres[i].type_chambre==nuit.type_chambre) && (tab_prix_chambres[i].categorie_chambre==nuit.categorie_chambre))
 
     {
-      nuit=tab_prix_chambres[i];
-      test = 1                 ;
+      nuit=tab_prix_chambres[i]                         ;
+      test = 1                                          ;
     }
   }
-  demande.total_resa=(demande.nuitees_resa[0]*nuit.prix_bs)+(demande.nuitees_resa[1]*nuit.prix_hs);
+  demande.total_resa=(demande.nuitees_resa[0]*nuit.prix_bs)+(demande.nuitees_resa[1]*nuit.prix_hs) ;
+
+  date_1[0] = '\0'                                      ;
+  temporaire[0] = '\0'                                  ;
+  a = demande.datearrivee/10000                         ;
+  m = (demande.datearrivee - (a * 10000)) / 100         ;
+  j = (demande.datearrivee - (a * 10000) - (m * 100))   ;
+  sprintf(temporaire, "%d", j)                          ;
+  strcat(date_1, temporaire)                            ;
+  strcat(date_1, "/")                                   ;
+  sprintf(temporaire, "%d", m)                          ;
+  strcat(date_1, temporaire)                            ;
+  strcat(date_1, "/")                                   ;
+  sprintf(temporaire, "%d", a)                          ;
+  strcat(date_1, temporaire)                            ;
+
+  date_2[0] = '\0'                                      ;
+  temporaire[0] = '\0'                                  ;
+  a = demande.datedepart/10000                          ;
+  m = (demande.datedepart - (a * 10000)) / 100          ;
+  j = (demande.datedepart - (a * 10000) - (m * 100))    ;
+  sprintf(temporaire, "%d", j)                          ;
+  strcat(date_2, temporaire)                            ;
+  strcat(date_2, "/")                                   ;
+  sprintf(temporaire, "%d", m)                          ;
+  strcat(date_2, temporaire)                            ;
+  strcat(date_2, "/")                                   ;
+  sprintf(temporaire, "%d", a)                          ;
+  strcat(date_2, temporaire)                            ;
+
+
+  printf("Réservation n.%lu\n", demande.code_resa)      ;
+  printf("Client : %s %s\n", demande.nomclient, demande.prenomclient)    ;
+  printf("Séjour du %s au %s\n", date_1, date_2 )       ;
+  printf("Chambre n.%d\n", demande.chambre_resa)        ;
+  if(demande.nuitees_resa[0] > 0)
+  {
+    printf("Nuit en tarif basse saison : %d\n", demande.nuitees_resa[0]) ;
+    printf("Tarif par nuit : %f\n", nuit.prix_bs)       ;
+  }
+  if(demande.nuitees_resa[1] > 0)
+  {
+    printf("Nuit en tarif haute saison : %d\n", demande.nuitees_resa[1]) ;
+    printf("Tarif par nuit : %f\n", nuit.prix_hs)       ;
+  }
 
   printf("Montant à payer : %f\n", demande.total_resa)  ;
   printf("Choisir le mode de paiement: \n")             ;
