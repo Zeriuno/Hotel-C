@@ -1427,12 +1427,12 @@ void affichage_resa()
   if(demande.nuitees_resa[0] > 0)
   {
     printf("Nuit en tarif basse saison : %d\n", demande.nuitees_resa[0]) ;
-    printf("Tarif par nuit : %.2f\n", nuit.prix_bs)                      ;
+/*    printf("Tarif par nuit : %.2f\n", nuit.prix_bs)                      ; Pas de décompte des tarifs par nuit: en cas de changement dans les tarifs, nous lirions le nouveau prix, ce qui donnerait un résultat en désaccord avec le total. Faute d'historisation des prix, omission ici de cette information. */
   }
   if(demande.nuitees_resa[1] > 0)
   {
     printf("Nuit en tarif haute saison : %d\n", demande.nuitees_resa[1]) ;
-    printf("Tarif par nuit : %.2f\n", nuit.prix_hs)                      ;
+/*    printf("Tarif par nuit : %.2f\n", nuit.prix_hs)                      ; Pas de décompte des tarifs par nuit: en cas de changement dans les tarifs, nous lirions le nouveau prix, ce qui donnerait un résultat en désaccord avec le total. Faute d'historisation des prix, omission ici de cette information. */
   }
   printf("Montant reglé : %.2f\n", demande.total_resa)                   ;
   printf("Moyen de paiement : %s\n", paiement)                           ;
