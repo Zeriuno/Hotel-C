@@ -1338,10 +1338,7 @@ void modification_resa()
 #                                            #
 ##############################################
 
-Reçoit un doce de réservation en paramètre et charge les données dans la variable globale demande.
-
-
-Ajouter test si p_code_resa non valide.
+Reçoit un code de réservation en paramètre et charge les données dans la variable globale demande.
 
 */
 
@@ -1360,37 +1357,99 @@ void chargement_resa(long unsigned int p_code_resa)
 
 /*############################################
 #                                            #
+#             affichage_resa                 #
+#                                            #
+##############################################
+
+Affiche la réservation chargée dans la variable globale demande.
+
+*/
+
+void affichage_resa()
+{
+  char paiement[9]                                                       ;
+  paiement[0] = '\0'                                                     ;
+
+  switch (demande.mode_paiement)
+  {
+    case 1:
+      strcpy(paiement, "espèces")                                        ;
+      break                                                              ;
+    case 2:
+      strcpy(paiement, "chèque")                                         ;
+      break                                                              ;
+    case 3:
+      strcpy(paiement, "CB")                                             ;
+      break                                                              ;
+    case 4:
+      strcpy(paiement, "virement")                                       ;
+      break                                                              ;
+    default:
+      printf("La réservation contient des informations à vérifier\n")    ;
+      break                                                              ;
+  }
+  printf("Réservation n.%lu\n", demande.code_resa)                       ;
+  printf("Client : %s %s\n", demande.nomclient, demande.prenomclient)    ;
+  printf("Séjour du %s au %s\n", date_1, date_2 )                        ;
+  printf("Chambre n.%d\n", demande.chambre_resa)                         ;
+  if(demande.nuitees_resa[0] > 0)
+  {
+    printf("Nuit en tarif basse saison : %d\n", demande.nuitees_resa[0]) ;
+    printf("Tarif par nuit : %.2f\n", nuit.prix_bs)                      ;
+  }
+  if(demande.nuitees_resa[1] > 0)
+  {
+    printf("Nuit en tarif haute saison : %d\n", demande.nuitees_resa[1]) ;
+    printf("Tarif par nuit : %.2f\n", nuit.prix_hs)                      ;
+  }
+  printf("Montant reglé : %.2f\n", demande.total_resa)                   ;
+  printf("Moyen de paiement : %s\n", paiement)                           ;
+}
+
+/*############################################
+#                                            #
 #           choix_modif_resa                 #
 #                                            #
 ##############################################
+
 Après affichage de la réservation (suite à la recherche) choisir entre modification, annulation ou retour au menu principal
-*//*
+*/
 
 void choix_modif_resa()
 {
-  int choix_mod;
-  printf("Que voulez-vous faire? \n");
-  printf("1 - Modifier la réservation \n");
-  printf("2 - Annuler la réservation \n");
-  printf("2 - Retourner au menu principal \n");
-  scanf("%d", &choix_mod);
-  switch (choix_mod)
+  int choix_mod, t1 = 0, t2 = 0                    ;
+
+  while(t1 == 0)
   {
-    case 1:
+    while(t2 == 0)
     {
-      modif_resa();
+      printf("Que voulez-vous faire? \n")          ;
+      printf("-1- Modifier la réservation \n")     ;
+      printf("-2- Annuler la réservation \n")      ;
+      printf("-3- Retourner au menu principal \n") ;
+      t2 = scanf("%d", &choix_mod)                 ;
+      if(t2 == 0)
+      {
+        printf("Erreur de saisie\n")               ;
+      }
     }
-    break;
-    case 2:
+    switch (choix_mod)
     {
-      annul_origine();
-    }
-    break;
-    case 3:
-    break;
-    default:
-    {
-      printf("Erreur de saisie\n", );
+      case 1:
+        t1 = 1                                     ;
+        modif_resa()                               ;
+        break                                      ;
+      case 2:
+        t1 = 1                                     ;
+        annul_origine()                            ;
+        break                                      ;
+      case 3:
+        t1 = 1                                     ;
+        printf("Retour au menu principal\n")       ;
+        break                                      ;
+      default:
+        mauvais_choix(choix_mod)                   ;
+        break                                      ;
     }
   }
 }
