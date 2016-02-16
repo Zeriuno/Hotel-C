@@ -30,7 +30,7 @@
 6. Choisir un chiffre non prévu →  Message d'erreur affiché.
 
 ##Effectuer une réservation
-(Lorsque l'utilisateur choisit d'effectuer une réservation, on charge automatiquement le fichier contenant le pris des nuitées dans un tableau.)
+(Lorsque l'utilisateur choisit d'effectuer une réservation, on charge automatiquement le fichier contenant le prix des nuitées dans un tableau.)
 
 1. Saisir la période. Le calcul du nombre de nuitées est automatique.  
 
@@ -57,17 +57,18 @@
 
 2. Affichage du résultat.
 
-3. Choix "0": ne pas afficher la réservation en entier et retour au menu principal.
-   Choix "1": afficher la réservation en entier.
+3.
+* Choix "0": ne pas afficher la réservation en entier et retour au menu principal.
+  * Choix "1": afficher la réservation en entier.
 
 ##Affichage d'une réservation
 
 1. Dans le choix précédent, l'utilisateur a choisi "1".
-2. La réservation s'affiche en entier. 
-3. On demande à l'utilisateur s'il souhaite modifier la réservation, l'annuler ou retourner au menu principal: 
+2. La réservation s'affiche en entier.
+3. On demande à l'utilisateur s'il souhaite modifier la réservation, l'annuler ou retourner au menu principal:
  * Choisir "1" pour modifier la réservation.
  * Choisir "2" pour annulerla réservation.
- * Choisir "3" pour retourner au menu principal. 
+ * Choisir "3" pour retourner au menu principal.
 
 ##Modification d'une réservation
 Lorsque l'utilisateur choisit de modifier une réservation, le chargement du fichier entree_resa se fait automatiquement.
