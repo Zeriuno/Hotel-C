@@ -85,20 +85,23 @@ void chargement_planning()                 ; /* Procédure lancée au démarrage
 
 Réservations
 ----------------------*/
-void dernier_code_resa()                   ;
-void chargement_prix()                     ;
-void creer_reservation()                   ;
-void cible_date()                          ;
-void cible_chambre()                       ;
-void rech_periode(long unsigned int datearrivee, long unsigned int datedepart) ;
-void calcul_nuitees()                      ;
-int choix_chambre()                        ;
-void saisie_client()                       ;
+void dernier_code_resa()                   ; /* Chargement des paramètres, au démarrage */
+void chargement_prix()                     ; /* Chargement des paramètres, au démarrage */
+
+void creer_reservation()                   ; /* Création d'une réservation. Contient toutes les suivantes */
+void cible_date()                          ; /* Saisie de la période demandée */
+void cible_chambre()                       ; /* Saisie des critères demandés pour la chambre */
+void rech_periode(long unsigned int datearrivee, long unsigned int datedepart) ; /* Identification des cases correspondantes à la période demandée dans le tableau planning */
+void calcul_nuitees()                      ; /* Calcul des nuitées selon saison pour la période demandée*/
+int choix_chambre()                        ; /* Identification des chambres disponibles dans la période selon les critères demandés */
+void saisie_client()                       ; /* Saisie des informations sur le client */
 void nouveau_nb_resa()                     ; /* Un numéro de réservation est affecté à la demande de réservation en cours de traitement */
-void paiement_resa()                       ;
-void paiement_cb()                         ;
-void sauvegarde_resa()                     ;
-void maj_planning()                        ;
+void paiement_resa()                       ; /* Paiement de la réservation */
+void paiement_cb()                         ; /* Saisie des données de la carte bancaire en cas de paiement par cb */
+void sauvegarde_resa()                     ; /* Les informations sur la réservation sont sauvegardées dans un fichier */
+void maj_planning()                        ; /* La nouvelle réservation est intégrée dans le planning */
+
+void modification_resa()                   ; /* Modification d'une réservation. Contient toutes les suivantes */
 void chargement_resa(long unsigned int p_code_resa) ;
 void choix_modif_resa()                    ;
 void modif_resa()                          ;
@@ -288,7 +291,7 @@ main()
         break               ;
 
       case 2:
-        printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
+        modification_resa() ;
         break               ;
       case 3:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
@@ -1281,12 +1284,56 @@ void maj_planning()
   }
   printf("La réservation %lu a bien été insérée dans le planning.\n", demande.code_resa) ;
 }
+
+
+/*############################################
+#                                            #
+#           modification_resa                #
+#                                            #
+##############################################
+
+Appelé dans le main() le programme gère la modificatio d'une réservation.
+
+*/
+
+void modification_resa()
+{
+  int test = 0                                                          ;
+  long unsigned int code_modif_resa                                     ;
+  printf("Modification de réservation.\n")                              ;
+  while(test == 0)
+  {
+    printf("Veuillez saisir le numéro de la réservation à modifier : ") ;
+    test = scanf("%lu", &code_modif_resa)                               ;
+    if(test == 0)
+    {
+      printf("Choix non valide.\n")                                     ;
+    }
+    else
+    {
+      test = 1                                                          ;
+    }
+    if(code_modif_resa > nb_resa)
+    {
+      printf("Code de réservation invalide.\n")                         ;
+      test = 0                                                          ;
+    }
+  }
+  chargement_resa(code_modif_resa)                                      ;
+
+}
+
 /*############################################
 #                                            #
 #           chargement_resa                  #
 #                                            #
 ##############################################
-Ajouter test si p_code_resa non valide
+
+Reçoit un doce de réservation en paramètre et charge les données dans la variable globale demande.
+
+
+Ajouter test si p_code_resa non valide.
+
 */
 
 void chargement_resa(long unsigned int p_code_resa)
