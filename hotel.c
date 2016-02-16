@@ -1454,7 +1454,8 @@ void affichage_resa()
 #                                            #
 ##############################################
 
-Après affichage de la réservation (suite à la recherche) choisir entre modification, annulation ou retour au menu principal
+Appelé dans modification_resa()
+Après affichage de la réservation choisir entre modification, annulation ou retour au menu principal
 */
 
 void choix_modif_resa()
