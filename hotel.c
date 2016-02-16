@@ -108,7 +108,6 @@ void affichage_resa()                      ; /* Affichage de la réservation cha
 void choix_modif_resa()                    ; /* Choisir entre modification, annulation ou retour au menu principal */
 void modif_resa()                          ; /* Modification des dates et des informations client. */
 void modif_resa_cha()                      ;
-void annulation_resa()                     ;
 void annul_origine()                       ;
 void remboursement()                       ;
 void annulation_resa_planning()            ;
