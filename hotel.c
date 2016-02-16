@@ -1288,7 +1288,7 @@ Les informations sur la réservation sont sauvegardées dans le fichier DOSSIER_
 
 void sauvegarde_resa()
 {
-  char entree_resa[20], temporaire[5]           ;
+  char entree_resa[20], temporaire[11]          ; /* Devant acceuillir un long int, temporaire doit être 10 +'\0'*/
   FILE *f1                                      ;
 
   temporaire[0] = '\0'                          ;
@@ -1992,7 +1992,7 @@ Création de la note, vide. Appellée dans creer_reservation.
 */
 void creation_note()
 {
-  char entree_note[20], temporaire[5]           ;
+  char entree_note[20], temporaire[11]          ;
   FILE *f1                                      ;
 
   temporaire[0] = '\0'                          ;
