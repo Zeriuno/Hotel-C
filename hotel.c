@@ -1819,79 +1819,79 @@ void modif_resa_cha()
       }
     }
   }
-  chambre.bain = cible_bain                      ;
+  chambre.bain = cible_bain                       ;
 
-  cible_vue = 999                                ;
+  cible_vue = 999                                 ;
   while((cible_vue < 0) || (cible_vue > 1))
   {
-    printf("Vue :")                                ;
-    printf("0 - pas de vue\n")                     ;
-    printf("1 - vue\n")                            ;
-    printf("Actuellement : %d\n", chambre.vue)     ;
-    printf("Choix : ")                             ;
-    test = scanf("%d", &cible_vue)                       ;
+    printf("Vue :")                               ;
+    printf("0 - pas de vue\n")                    ;
+    printf("1 - vue\n")                           ;
+    printf("Actuellement : %d\n", chambre.vue)    ;
+    printf("Choix : ")                            ;
+    test = scanf("%d", &cible_vue)                ;
     if(test == 0)
     {
-      printf("Erreur de saisie.\n")              ;
-      while((poubelle=getchar()) != '\n')        ;
+      printf("Erreur de saisie.\n")               ;
+      while((poubelle=getchar()) != '\n')         ;
     }
     else
     {
       if((cible_vue < 0) || (cible_vue > 1))
       {
-        printf("Choix non valide.\n")              ;
+        printf("Choix non valide.\n")               ;
       }
     }
   }
-  chambre.vue = cible_vue                        ;
+  chambre.vue = cible_vue                           ;
 
-  cible_fumeur = 999                             ;
+  cible_fumeur = 999                                ;
   while((cible_fumeur < 0) || (cible_fumeur > 1))
   {
-    printf("Fumeur :")                             ;
-    printf("0 - non fumeur\n")                     ;
-    printf("1 - fumeur\n")                         ;
-    printf("Actuellement : %d\n", chambre.fumeur)  ;
-    printf("Choix : ")                             ;
-    test = scanf("%d", &cible_fumeur)                     ;
+    printf("Fumeur :")                              ;
+    printf("0 - non fumeur\n")                      ;
+    printf("1 - fumeur\n")                          ;
+    printf("Actuellement : %d\n", chambre.fumeur)   ;
+    printf("Choix : ")                              ;
+    test = scanf("%d", &cible_fumeur)               ;
     if(test == 0)
     {
-      printf("Erreur de saisie.\n")              ;
-      while((poubelle=getchar()) != '\n')        ;
+      printf("Erreur de saisie.\n")                 ;
+      while((poubelle=getchar()) != '\n')           ;
     }
     else
     {
       if((cible_fumeur < 0) || (cible_fumeur > 1))
       {
-        printf("Choix non valide.\n")              ;
+        printf("Choix non valide.\n")               ;
       }
     }
   }
-  chambre.fumeur = cible_fumeur                  ;
+  chambre.fumeur = cible_fumeur                     ;
 
-  cible_animaux = 999                            ;
+  cible_animaux = 999                               ;
   while((cible_animaux < 0) || (cible_animaux > 1))
   {
-    printf("Animaux :")                            ;
-    printf("0 - animaux non autorisés\n")          ;
-    printf("1 - animaux autorisés\n")              ;
-    printf("Actuellement : %d \n", chambre.animaux);
-    printf("Choix : ")                             ;
-    test = scanf("%d", &cible_animaux)             ;
+    printf("Animaux :")                             ;
+    printf("0 - animaux non autorisés\n")           ;
+    printf("1 - animaux autorisés\n")               ;
+    printf("Actuellement : %d \n", chambre.animaux) ;
+    printf("Choix : ")                              ;
+    test = scanf("%d", &cible_animaux)              ;
     if(test == 0)
     {
-      printf("Erreur de saisie.\n")              ;
-      while((poubelle=getchar()) != '\n')        ;
+      printf("Erreur de saisie.\n")                 ;
+      while((poubelle=getchar()) != '\n')           ;
     }
     else
     {
       if((cible_animaux < 0) || (cible_animaux > 1))
       {
-        printf("Choix non valide.\n")              ;
+        printf("Choix non valide.\n")               ;
       }
     }
   }
-  chambre.animaux = cible_animaux                ;
+  chambre.animaux = cible_animaux                   ;
 }
 
 /*############################################
