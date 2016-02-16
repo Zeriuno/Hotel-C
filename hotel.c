@@ -1400,7 +1400,6 @@ void modification_resa()
   {
     affichage_resa()                                                     ;
     choix_modif_resa()                                                   ;
-
   }
 }
 
@@ -1547,12 +1546,12 @@ void choix_modif_resa()
     switch (choix_mod)
     {
       case 1:
-        t1 = 1                                     ;
         modif_resa()                               ;
-        break                                      ;
-      case 2:/*
         t1 = 1                                     ;
-        annul_origine()                            ;*/
+        break                                      ;
+      case 2:
+        annul_origine()                            ;
+        t1 = 1                                     ;
         break                                      ;
       case 3:
         t1 = 1                                     ;
@@ -1777,7 +1776,7 @@ void modif_resa_cha()
     printf("1 - suite\n")                          ;
     printf("Actuellement : %d\n", chambre.categorie_chambre);
     printf("Choix : ")                             ;
-    test = scanf("%d", &cible_cat_chambre)                ;
+    test = scanf("%d", &cible_cat_chambre)         ;
     if(test == 0)
     {
       printf("Erreur de saisie.\n")                ;
@@ -1802,7 +1801,7 @@ void modif_resa_cha()
     scanf("%d", &cible_balcon)                     ;
     printf("Actuellement : %d\n", chambre.balcon);
     printf("Choix : ")                             ;
-    test = scanf("%d", &cible_balcon)                     ;
+    test = scanf("%d", &cible_balcon)              ;
     if(test == 0)
     {
       printf("Erreur de saisie.\n")              ;
@@ -1825,7 +1824,7 @@ void modif_resa_cha()
     printf("0 - baignoire\n")                      ;
     printf("1 - douche\n")                         ;
     printf("Actuellement : %d\n", chambre.bain)    ;
-    test = scanf("%d", &cible_bain)                       ;
+    test = scanf("%d", &cible_bain)                ;
     if(test == 0)
     {
       printf("Erreur de saisie.\n")              ;
@@ -1920,8 +1919,10 @@ void modif_resa_cha()
 #                                            #
 ##############################################
 
+Appelé dans choix_modif_resa()
+Véririe l'origine de l'annulation appelle le sous-programme nécessaire.
 Origine de l'annulation d'une réservation
-*//*
+*/
 void annul_origine()
 {
   int raison_annul = 0, i=0;
@@ -1936,7 +1937,7 @@ void annul_origine()
       annulation_resa_planning() ;
       break;
     case 2:
-
+/*
     //  printf("Saisir la date de demande d'annulation"); /*Au cas où l'annulation aurait été demandée un autre jour qu'à la date du jour. Par exemple, aucun membre du personnel*//*
       while (calendrier[i].date != demande.datearrivee)
       {
