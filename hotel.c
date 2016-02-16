@@ -2137,10 +2137,10 @@ void recherche_note()
       affichage_note(num_note);
       break;
     case 2:
-      ajout_note(num_note);
+      ajout_note(p_entree_note);
       break;
     case 3:
-      paiement_note(num_note);
+      paiement_note(p_entree_note);
       break;
     case 9:
       printf("Retour au menu principal\n");
