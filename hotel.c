@@ -112,7 +112,11 @@ void annul_origine()                       ;
 
 
 
-/*Gestion des services complémentaires*/
+/*----------------------
+
+Gestion des services
+complémentaires
+----------------------*/
 void catalogue_services_menu()             ; /* Menu qui montre les choix possibles pour le catalogue de services*/
 void chargement_catalogue_services()       ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente*/
 void affichage_catalogue()                 ; /* Montre le tableau de services*/
@@ -157,23 +161,23 @@ struct prix_nuit tab_prix_chambres[NB_CHAMBRES_PRIX] ;
 
 struct resa
 {
-  long unsigned int code_resa    ; /*long unsigned int, cela en garantit l'unicité sur une période assez longue.*/
-  int chambre_resa               ;
-  long unsigned int datearrivee  ;
-  long unsigned int datedepart   ;
-  int nuitees_resa[1]            ; /*case 0 basse saison, case 1 haute saison*/
+  long unsigned int code_resa    ; /* long unsigned int, cela en garantit l'unicité sur une période assez longue. */
+  int chambre_resa               ; /* Le numéro de la chambre dans laquelle dormira le client */
+  long unsigned int datearrivee  ; /* Date (aaaammjj) de la première nuitée */
+  long unsigned int datedepart   ; /* Date (aaaammjj) de la dernière nuitée */
+  int nuitees_resa[2]            ; /* Case 0 basse saison, case 1 haute saison */
   char nomclient[50]             ;
   char prenomclient[50]          ;
-  char telclient[12]             ;  /*+33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12?*/
-  float total_resa               ; /*montant total de la chambre en fonction des nuitées et de la saison*/
-  int mode_paiement              ; /*mode de paiement au moment de la réservation*/
+  char telclient[12]             ;  /* +33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12? */
+  float total_resa               ; /* Montant total de la chambre en fonction des nuitées et de la saison */
+  int mode_paiement              ; /* Comment est reglée la réservation: 1 espèces, 2 chèque, 3 CB, 4 virement */
 };
 
 struct resa demande              ;
-long unsigned int nb_resa        ; /*dernière réservation faite, la suivante devra prendre nb_resa+1*/
-long unsigned int planning[MAX_NB_CHAMBRES][ANNEE] ; /*Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux.*/
+long unsigned int nb_resa        ; /* Dernière réservation faite, la suivante devra prendre nb_resa+1 */
+long unsigned int planning[MAX_NB_CHAMBRES][ANNEE] ; /* Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux. */
 
-int numcase_resa_chambre; /*Identifie la case dans le tableau planning ou dans tab_chambres qui correspond à la chambre demandée/reservée*/
+int numcase_resa_chambre         ; /*Identifie la case dans le tableau planning ou dans tab_chambres qui correspond à la chambre demandée/reservée*/
 int numcase_resa_date_debut, numcase_resa_date_fin ; /*identifient la position dans le planning/calendrier de la case où débute et finit la réservation*/
 /* Variables globales concernant les chambres*/
 
@@ -369,7 +373,7 @@ Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tab
 void test_date()
 {
   char choix_date = 'f'                ;
-  char date_chaine[11], temporaire[10] ;
+  char date_chaine[11], temporaire[11] ;
   int i = 0, a, m, j                   ;
 
   printf("Test des paramètres\n")      ;
@@ -430,7 +434,7 @@ void maj_calendrier(int i)
   }
   for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent: MORE FUTURE (slogan anti-punk)*/
   {
-    date_chaine[0] = '\0'; /*cette ligne et les onze suivantes étaient dans une fonction à part entière, mais retournaient une chaîne de caractères et l'affectaient à une variable, je ne sais pas faire*/
+    date_chaine[0] = '\0'                                ; /*cette ligne et les onze suivantes étaient dans une fonction à part entière, mais retournaient une chaîne de caractères et l'affectaient à une variable, je ne sais pas faire*/
     a = calendrier[j-1].date/10000                       ;
     m = (calendrier[j-1].date - (a * 10000)) / 100       ;
     d = (calendrier[j-1].date - (a * 10000) - (m * 100)) ;
@@ -446,11 +450,11 @@ void maj_calendrier(int i)
     while(test == 0)
     {
       printf("Quel jour vient après le %s (format jj/mm/aaaa) ? ", date_chaine) ;
-      test = scanf("%d/%d/%d", &d, &m, &a)                        ;
+      test = scanf("%d/%d/%d", &d, &m, &a)               ;
       if(test == 0)
       {
-        printf("Erreur de saisie.\n") ;
-        while((poubelle=getchar()) != '\n')                   ;
+        printf("Erreur de saisie.\n")                    ;
+        while((poubelle=getchar()) != '\n')              ;
       }
     }
     calendrier[j].date = jjmmaaaa_vers_aaaammjj(d, m, a) ;
@@ -543,13 +547,13 @@ Au démarrage, récupère les prix des nuitées et les charge dans un tableau, v
 
 void chargement_prix()
 {
-  FILE *f1 ;
-  int i    ;
+  FILE *f1                 ;
+  int i                    ;
 
-  f1=fopen(PRIX_NUIT, "r");
+  f1=fopen(PRIX_NUIT, "r") ;
   for (i=0; i<NB_CHAMBRES_PRIX; i++)
   {
-    fscanf(f1, "%d %d %f %f", &tab_prix_chambres[i].type_chambre, &tab_prix_chambres[i].categorie_chambre, &tab_prix_chambres[i].prix_hs, &tab_prix_chambres[i].prix_bs);
+    fscanf(f1, "%d %d %f %f", &tab_prix_chambres[i].type_chambre, &tab_prix_chambres[i].categorie_chambre, &tab_prix_chambres[i].prix_hs, &tab_prix_chambres[i].prix_bs) ;
   }
 }
 
@@ -565,7 +569,7 @@ Procédure pour créer une réservation.
 */
 void creer_reservation()
 {
-  int continue_resa ; /* continue resa permet de savoir si on poursuit ou bien on abandonne le processus. 0 pour abandonner, 1 pour continuer */
+  int continue_resa                                     ; /* continue resa permet de savoir si on poursuit ou bien on abandonne le processus. 0 pour abandonner, 1 pour continuer */
 
   printf("Création de réservation.\n")                  ;
   cible_date()                                          ;
@@ -577,11 +581,10 @@ void creer_reservation()
   if(continue_resa == 1)
   {
     saisie_client()                                     ;
-    paiement_resa()                                     ;
-    /*
-    sauvegarde_resa();
-    maj_planning   ;
-    */
+    nouveau_nb_resa()                                   ;
+    paiement_resa()                                     ; /* Comme le paiement est supposé être toujours effectué avec succès, pas de test pour décider si poursuivre ou pas. */
+    sauvegarde_resa()                                   ;
+    maj_planning()                                      ;
   }
 }
 
@@ -597,11 +600,11 @@ Procédure pour saisir une date.
 */
 void cible_date()
 {
-  int jour_debut, mois_debut, annee_debut ;
-  int jour_fin, mois_fin, annee_fin       ;
-  short int  test                         ; /*test 0: FAUX; test 1: VRAI*/
+  int jour_debut, mois_debut, annee_debut                                             ;
+  int jour_fin, mois_fin, annee_fin                                                   ;
+  short int  test                                                                     ; /*test 0: FAUX; test 1: VRAI*/
 
-  test = 0                                ;
+  test = 0                                                                            ;
   while(test == 0)
   {
     printf("Saisir la date de début (jj/mm/aaaa) : ")                                 ;
@@ -610,7 +613,7 @@ void cible_date()
     if((demande.datearrivee < calendrier[0].date)|| (demande.datearrivee > calendrier[ANNEE-1].date))
     {
       printf("Date fausse.\n")                                                        ;
-      while((poubelle=getchar()) != '\n')                   ;
+      while((poubelle=getchar()) != '\n')                                             ;
     }
     else
     {
@@ -627,7 +630,7 @@ void cible_date()
     if((demande.datedepart < demande.datearrivee)||(demande.datedepart > calendrier[ANNEE-1].date))
     {
       printf("Date fausse.\n")                                                        ;
-      while((poubelle=getchar()) != '\n')                   ;
+      while((poubelle=getchar()) != '\n')                                             ;
 
     }
     else
@@ -647,6 +650,7 @@ Procédure pour déterminer quelle chambre recherche le client.
 Les données sont chargées dans la struct cha chambre.
 Dans un premier temps on contraint à spécifier tout choix, on ne permet pas de déclarer un critère comme indifférent (ceci est une évolution envisageable).
 */
+
 void cible_chambre()
 {
   /*ce n'est pas nécessaire, on le déduit d cible_type_lits int cible_type_chambre ; /* 1 lit simple, 2 double, 3 triple*/
@@ -1236,7 +1240,7 @@ void chargement_resa(long unsigned int p_code_resa)
   sprintf(temporaire, "%lu", p_code_resa) ;
   strcat(entree_resa, temporaire)         ;
   f1=fopen(entree_resa, "r")              ;
-  fscanf(f1, "%lu %d %lu %lu %d %d %s %s %s %f %d", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa[0], &demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient, &demande.total_resa, &demande.mode_paiement);
+  fscanf(f1, "%lu %d %lu %lu %d %d %s %s %s %f %d", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa[0], &demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient, &demande.total_resa, &demande.mode_paiement) ;
   fclose(f1)                              ;
 }
 
@@ -2141,7 +2145,7 @@ void travaux()
   cible_date()                                          ;
   printf("Saisir le numéro de la chambre : ")           ;
   scanf("%d", &cible_num_chambre)                       ;
-  chambre.num_chambre=cible_num_chambre                 ;
+  chambre.num_chambre = cible_num_chambre               ;
   rech_periode(demande.datearrivee, demande.datedepart) ;
   // on teste si les cases du tableau ont un code de résa 0 ou pas
   // si oui on continue, sinon on imprime le code de résa et la jour et on renvoie au menu principal
