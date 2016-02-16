@@ -110,6 +110,9 @@ void modif_resa()                          ; /* Modification des dates et des in
 void modif_resa_cha()                      ;
 void annulation_resa()                     ;
 void annul_origine()                       ;
+void remboursement()                       ;
+void annulation_resa_planning()            ;
+
 
 
 /*----------------------
@@ -1912,8 +1915,9 @@ void annul_origine()
   switch (raison_annul)
   {
     case 1:
-      annulation_resa() ;
-    break;
+      remboursement()            ;
+      annulation_resa_planning() ;
+      break;
     case 2:
 
     //  printf("Saisir la date de demande d'annulation"); /*Au cas où l'annulation aurait été demandée un autre jour qu'à la date du jour. Par exemple, aucun membre du personnel*//*
@@ -1939,19 +1943,18 @@ void annul_origine()
       }                                              ;
       printf("Le remboursement total de la réservation a été effectué, soit %.2f\n", demande.total_resa);
       annulation_resa();
+      >>>>>> MODIFICATION DU PLANNING*/
     break;
     default:
-      printf("Erreur de saisie. \n");
-    break;
+      mauvais_choix(raison_annul) ;
+    break                         ;
   }
-  >>>>>> MODIFICATION DU PLANNING
 }
-*/
 
 
 /*############################################
 #                                            #
-#             annulation_resa                #
+#               remboursement                #
 #                                            #
 ##############################################
 
@@ -1959,7 +1962,79 @@ void annul_origine()
 
 */
 
-void annulation_resa()
+void remboursement()
+{
+  char paiement[9] ;
+  FILE *f1         ;
+  int t1 = 0, t2   ;
+
+
+  switch (demande.mode_paiement)
+  {
+    case 1:
+      strcpy(paiement, "espèces")                                              ;
+      break                                                                    ;
+    case 2:
+      strcpy(paiement, "chèque")                                               ;
+      break                                                                    ;
+    case 3:
+      strcpy(paiement, "CB")                                                   ;
+      break                                                                    ;
+    case 4:
+      strcpy(paiement, "virement")                                             ;
+      break                                                                    ;
+    default:
+      printf("La réservation contient des informations à vérifier\n")          ;
+      break                                                                    ;
+  }
+  printf("Le montant total payé par le client, %s %s, a été de : %.2f\n", demande.prenomclient, demande.nomclient, demande.total_resa)         ;
+  printf("Le paiement a été effectué par %s\n", paiement)                      ;
+
+  while(t1 == 0)
+  {
+    printf("Choisir le mode de remboursement de %.2f: \n", demande.total_resa) ;
+    printf("-1- Espèces\n")                                                    ;
+    printf("-2- Chèque\n")                                                     ;
+    printf("-3- Carte bancaire\n")                                             ;
+    printf("-4- Virement\n")                                                   ;
+    printf("Choix : ")                                                         ;
+    t2 = scanf("%d", &demande.mode_paiement)                                   ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie.\n")                                            ;
+    }
+    else
+    {
+      if((demande.mode_paiement < 0) || (demande.mode_paiement > 4))
+      {
+        mauvais_choix(demande.mode_paiement)                                   ;
+      }
+      else
+      {
+        if(demande.mode_paiement == 3)
+        {
+          paiement_cb()                                                        ;
+        }
+        printf("Le remboursement a bien été effectué.\n")                      ;
+        t1 = 1                                                                 ;
+      }
+    }
+  }
+}
+
+
+/*############################################
+#                                            #
+#         annulation_resa_planning           #
+#                                            #
+##############################################
+
+Appelé dans annul_origine()
+À partir du code_resa, on supprime la case dans le planning: on remet à 0
+
+*/
+
+void annulation_resa_planning()
 {
  int i=0, j=0;
 
