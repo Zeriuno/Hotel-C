@@ -1610,9 +1610,7 @@ void modif_resa()
     printf("Nouveau numéro de téléphone (format +3301234567): ")   ;
     scanf("%s", demande.telclient)                                 ; /* cf test préconisé dans saisie_client() */
 
-      // AJOUTER PAIEMENT
-    // si
-
+    /* si il y a une différence dans le montant, il faut un paiement */
   }
   else
   {
