@@ -2417,12 +2417,13 @@ void suppression_service()
     {
       for (i=numero; i<nb_services-1; i++)
       {
-        catalogue_service[i]=catalogue_service[i+1] ;
+        catalogue_services[i]=catalogue_services[i+1] ;
       }
       nb_services--                                 ;
       printf("%s supprimé \n", nom_rech)            ;
       sauv_catalogue_services=1                     ;
     }
+  }
 }
 
 /*############################################
