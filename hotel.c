@@ -1103,11 +1103,11 @@ void paiement_resa()
   struct prix_nuit nuit                                  ;
   FILE *f1;
 
-  nuit.type_chambre=chambre.type_chambre                 ;
-  nuit.categorie_chambre=chambre.categorie_chambre       ;
+  nuit.type_chambre = chambre.type_chambre               ; /* On retrouve les critères de type de chambre et catégorie de chambre, nécessaires pour déterminer le prix à la nuitée */
+  nuit.categorie_chambre = chambre.categorie_chambre     ;
 
   i= -1;
-  while (test == 0)
+  while (test == 0) /* On retrouve le prix à la nuitée en trouvant dans le tableau des prix le champ où type de chambre et catégorie sont les mêmes que dans notre cas */
   {
     i++                                                  ;
     if ((tab_prix_chambres[i].type_chambre==nuit.type_chambre) && (tab_prix_chambres[i].categorie_chambre==nuit.categorie_chambre))
