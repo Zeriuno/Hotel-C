@@ -1640,6 +1640,14 @@ void modif_resa_cha()
 
   printf("Saisir les critères de la chambre souhaitée :   ");
   printf("Type actuel de chambre : %d \n", chambre.type_lits);
+  cible_type_lits = 999  ;
+  while((cible_type_lits < 1) || (cible_type_lits > 5))
+  {
+    if((cible_type_lits < 1) || (cible_type_lits > 5))
+    {
+      printf("Choix non valide.\n")                ;
+    }
+  }
   printf("Nouveau type de chambre : ")           ;
   printf("1 - un lit simple\n")                  ;
   printf("2 - deux lits simples\n")              ;
@@ -1648,6 +1656,7 @@ void modif_resa_cha()
   printf("5 - un lit double et un lit simple\n") ;
   scanf("%d", &cible_type_lits)                  ;
   chambre.type_lits = cible_type_lits            ;
+
   switch(cible_type_lits)
   {
     case 1 :
