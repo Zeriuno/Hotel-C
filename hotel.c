@@ -117,7 +117,10 @@ void annul_origine()                       ;
 Note
 ----------------------*/
 void creation_note()                       ; /* Création de la note, vide. Appellée dans creer_reservation */
-
+void menu_recherche_note()                 ; /* Permet de choisir entre recherche_note_cha et recherche_note_num */
+long unsigned int recherche_note_cha()     ; /* Prend un numéro de chambre et le passe à menu_choix_note */
+long unsigned int recherche_note_num()     ; /* Prend un numéro de réservation et le passe à menu_choix_note */
+void menu_choix_note(long unsigned int p_num_resa) ;
 
 /*----------------------
 
@@ -2006,44 +2009,138 @@ void creation_note()
 }
 
 
+
 /*############################################
 #                                            #
-#             recherche_note                 #
+#           recherche_note_cha               #
 #                                            #
 ##############################################
 
-On demande la saisie du numéro de réservation, on récupère la note correspondante. Elle sera passée au programme d'affichage, de paiement ou bien d'ajout.
+On demande la saisie du numéro de chambre, on récupère le numéro de réservation correspondante. Il sera passé à menu_choix_note.
 
-void recherche_note()
+*/
+
+void menu_recherche_note()
 {
-  char num_note[15]          ;
-  int choix_note             ;
-  long unsigned int num_resa ;
-
-  printf("Saisir le numéro de réservation : ")   ;
-  scanf("%lu", num_resa)                         ;
-  sprintf(num_note, "%lu", num_resa)             ;
-  strcat(num_note, "_note.txt")                  ;
-  printf(" 1 - Afficher la note\n")              ; /*menu de choix
-  printf(" 2 - Ajouter une entrée sur la note\n");
-  printf(" 3 - Régler la note\n")                ;
-  printf(" 9 - Quitter et revenir au menu principal\n");
-  printf("Faire un choix : ")                          ;
-  scanf("%d", &choix_note)                             ;
-  switch(choix_note)  /* passe num_note au programme suivant, selon le choix
+  int t1 = 0, t2 = 0, choix_recherche_note   ;
+  printf("Menu de recherche d'une note\n")   ;
+  while(t1 == 0)
   {
-    case 1:
-      affichage_note(num_note);
-      break;
-    case 2:
-      ajout_note(num_note);
-      break;
-    case 3:
-      paiement_note(num_note);
-      break;
-    case 9:
-      printf("Retour au menu principal\n");
-      break;
+    printf("-1- Recherche de note par numéro de réservation\n") ;
+    printf("-2- Recherche de note par numéro de chambre (uniquement pour les réservations en cours)\n") ;
+    printf("-3- Retour au menu principal\n") ;
+    printf("Choix : ")                       ;
+    t2 = scanf("%d", &choix_recherche_note)  ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")           ;
+      while((poubelle=getchar()) != '\n')    ;
+    }
+    switch (choix_recherche_note)
+    {
+      case 1:
+        recherche_note_num()                 ;
+        break                                ;
+      case 2:
+        recherche_note_cha()                 ;
+        break                                ;
+      case 3:
+        printf("Retour au menu principal\n") ;
+        t1 = 1                               ;
+        break                                ;
+      default:
+        mauvais_choix(choix_recherche_note)  ;
+        break                                ;
+    }
+  }
+}
+
+/*############################################
+#                                            #
+#           recherche_note_cha               #
+#                                            #
+##############################################
+
+On demande la saisie du numéro de chambre, on récupère le numéro de réservation correspondante. Il sera passé à menu_choix_note.
+
+*/
+
+long unsigned int recherche_note_cha()
+{
+}
+
+/*############################################
+#                                            #
+#           recherche_note_num               #
+#                                            #
+##############################################
+
+On demande la saisie du numéro de réservation, on le passe à menu_choix_note.
+
+*/
+
+long unsigned int recherche_note_num()
+{
+  char entree_note[20], temporaire[11]         ;
+  long unsigned int num_resa                   ;
+  printf("Saisir le numéro de réservation : ") ;
+  scanf("%lu", &num_resa)                      ;
+
+  temporaire[0] = '\0'                         ;
+  entree_note[0] = '\0'                        ;
+  strcat(entree_note, DOSSIER_NOTES)           ;
+  sprintf(temporaire, "%lu", p_num_resa)       ;
+  strcat(entree_note, temporaire)              ;
+  strcat(entree_note, ".txt")                  ;
+}
+
+/*############################################
+#                                            #
+#              menu_choix_note               #
+#                                            #
+##############################################
+
+Récupère le numéro d'une réservation, trouve le fichier correspondant, et propose des actions à l'utilisateur.
+
+*/
+
+void menu_choix_note(char )
+{
+  int t1, t2, choix_note                                 ;
+  FILE *f1                                               ;
+
+  t1 = 0;
+  while(t1 == 0)
+  {
+    printf("-1- Afficher la note\n")                     ; /*menu de choix*/
+    printf("-2- Ajouter une entrée sur la note\n")       ;
+    printf("-3- Régler la note\n")                       ;
+    printf("-4- Quitter et revenir au menu principal\n") ;
+    printf("Choix : ")                                   ;
+    t2 = scanf("%d", &choix_note)                        ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")           ;
+    }
+    else
+    {
+      switch(choix_note)  /* passe entree_note au programme suivant, selon le choix. Ensuite, celui-ci terminé, on boucle jusqu'au choix de revenir au menu principal */
+      {
+      case 1:
+        affichage_note(num_note)             ;
+        break                                ;
+      case 2:
+        ajout_note(num_note)                 ;
+        break                                ;
+      case 3:
+        paiement_note(num_note)              ;
+        break                                ;
+      case 9:
+        printf("Retour au menu principal\n") ;
+        t1 = 1                               ;
+        break                                ;
+      }
+    }
   }
 }
 
