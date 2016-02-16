@@ -104,8 +104,8 @@ void maj_planning()                        ; /* La nouvelle réservation est int
 void modification_resa()                   ; /* Modification d'une réservation. Contient toutes les suivantes */
 int chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation, retourne une valeur selon le succès ou pas de l'opération */
 void affichage_resa()                      ; /* Affichage de la réservation chargée */
-void choix_modif_resa()                    ;
-void modif_resa()                          ;
+void choix_modif_resa()                    ; /* Choisir entre modification, annulation ou retour au menu principal */
+void modif_resa()                          ; /* Modification des dates et des informations client. */
 void modif_resa_cha()                      ;
 void annulation_resa()                     ;
 void annul_origine()                       ;
@@ -1514,11 +1514,12 @@ void modif_resa()
   char nom_client[100], prenom_client[200], numero_telephone_client[20]               ;
   int jour_debut, mois_debut, annee_debut                                             ;
   int jour_fin, mois_fin, annee_fin                                                   ;
-  int a, m, j                                                                         ;
-  char datearriveeavant[10], datedepartavant[10], temporaire[10], choix_modif_chambre ;
+  int a, m, j, t1, t2                                                                 ;
+  char datearriveeavant[10], datedepartavant[11], temporaire[5], choix_modif_chambre  ;
   int continu_modif                                                                   ;
 
   datearriveeavant[0] = '\0'                              ;
+  temporaire[0] = '\0'                                    ;
   a = demande.datearrivee / 10000                         ;
   m = (demande.datearrivee - (a * 10000)) / 100           ;
   j = (demande.datearrivee - (a * 10000) - (m * 100))     ;
@@ -1532,10 +1533,31 @@ void modif_resa()
   strcat(datearriveeavant, temporaire)                    ;
 
 
-  printf("Date actuelle de début  : %s\n", datearriveeavant)                          ;
-  printf("Saisir la nouvelle date de début (jj/mm/aaaa) : ")                          ;
-  scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)                           ;
-  demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut)   ;
+  t1 = 0                                                                                ;
+  t2 = 0                                                                                ;
+  while (t1 == 0)
+  {
+    printf("Date actuelle de début  : %s\n", datearriveeavant)                          ;
+    printf("Saisir la nouvelle date de début (jj/mm/aaaa) : ")                          ;
+    t2 = scanf("%d/%d/%d", &jour_debut, &mois_debut, &annee_debut)                      ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")                                                      ;
+    }
+    else
+    {
+      demande.datearrivee = jjmmaaaa_vers_aaaammjj(jour_debut, mois_debut, annee_debut) ;
+      if((demande.datearrivee < calendrier[0].date) || (demande.datearrivee > calendrier[ANNEE].date))
+      {
+        printf("Date fausse.\n")                                                        ;
+      }
+      else
+      {
+        t1 = 1                                                                          ;
+      }
+    }
+  }
+
 
   datedepartavant[0] = '\0'                              ;
   temporaire[0] = '\0'                                   ;
@@ -1550,18 +1572,41 @@ void modif_resa()
   strcat(datedepartavant, "/")                           ;
   sprintf(temporaire, "%d", a)                           ;
   strcat(datedepartavant, temporaire)                    ;
-  printf("Date actuelle de fin  : %s\n", datedepartavant)                             ;
-  printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")                      ;
-  scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                                 ;
-  demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin)          ;
-  choix_modif_chambre='a'                                                             ;
+
+  t1 = 0                                                                         ;
+  t2 = 0                                                                         ;
+  while (t1 == 0)
+  {
+    printf("Date actuelle de fin  : %s\n", datedepartavant)                      ;
+    printf("Saisir la date de la dernière nuitée (jj/mm/aaaa) : ")               ;
+    t2 = scanf("%d/%d/%d", &jour_fin, &mois_fin, &annee_fin)                     ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")                                               ;
+    }
+    else
+    {
+      demande.datedepart = jjmmaaaa_vers_aaaammjj(jour_fin, mois_fin, annee_fin) ;
+      if((demande.datedepart < demande.datearrivee)||(demande.datedepart > calendrier[ANNEE].date))
+      {
+        printf("Date fausse.\n")                                                 ;
+      }
+      else
+      {
+        t1 = 1                                                                   ;
+      }
+    }
+  }
+
+
+  choix_modif_chambre='a'                               ;
   while ((choix_modif_chambre!='o')||(choix_modif_chambre!='n'))
   {
-    printf("Voulez-vous modifier la chambre (o/n)?\n") ;
-    scanf("%c", &choix_modif_chambre)                  ;
+    printf("Voulez-vous modifier la chambre (o/n)?\n")  ;
+    scanf("%c", &choix_modif_chambre)                   ;
     if((choix_modif_chambre!='o')&&(choix_modif_chambre!='n'))
     {
-      printf("Choix non valide\n") ;
+      printf("Choix non valide\n")                      ;
     }
   }
   if (choix_modif_chambre=='o')
@@ -1572,20 +1617,20 @@ void modif_resa()
   calcul_nuitees()                                      ;
   if ((numcase_resa_date_debut != NON_TROUVE) && (numcase_resa_date_fin != NON_TROUVE))
   {
-    continu_modif=choix_chambre() ;
+    continu_modif=choix_chambre()                       ;
   }
 
   if (continu_modif==1)
   {
-    printf("Nom actuel du client : %s\n", demande.nomclient)      ;
-    printf("Nouveau nom du client : ")                            ;
-    scanf("%s", demande.nomclient)                                ;
-    printf("Prénom actuel du client : %s\n", demande.prenomclient);
-    printf("Nouveau prénom du client : ")                         ;
-    scanf("%s", demande.prenomclient)                             ;
-    printf("Numéro de téléphone actuel : %s\n", demande.telclient);
-    printf("Nouveau numéro de téléphone : ")                      ;
-    scanf("%s", demande.telclient)                                ;
+    printf("Nom actuel du client : %s\n", demande.nomclient)       ;
+    printf("Nouveau nom du client : ")                             ;
+    scanf("%s", demande.nomclient)                                 ;
+    printf("Prénom actuel du client : %s\n", demande.prenomclient) ;
+    printf("Nouveau prénom du client : ")                          ;
+    scanf("%s", demande.prenomclient)                              ;
+    printf("Numéro de téléphone actuel : %s\n", demande.telclient) ;
+    printf("Nouveau numéro de téléphone : ")                       ;
+    scanf("%s", demande.telclient)                                 ;
 
       // AJOUTER PAIEMENT
     // si
@@ -1593,7 +1638,7 @@ void modif_resa()
   }
   else
   {
-    printf("Abandon de la procédure de modification\n") ;
+    printf("Abandon de la procédure de modification.\nRetour au menu principal\n") ;
   }
 }
 
