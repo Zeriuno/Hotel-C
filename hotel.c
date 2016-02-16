@@ -102,7 +102,8 @@ void sauvegarde_resa()                     ; /* Les informations sur la réserva
 void maj_planning()                        ; /* La nouvelle réservation est intégrée dans le planning */
 
 void modification_resa()                   ; /* Modification d'une réservation. Contient toutes les suivantes */
-void chargement_resa(long unsigned int p_code_resa) ;
+int chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation, retourne une valeur selon le succès ou pas de l'opération */
+void affichage_resa()                      ; /* Affichage de la réservation chargée */
 void choix_modif_resa()                    ;
 void modif_resa()                          ;
 void modif_resa_cha()                      ;
