@@ -2392,7 +2392,7 @@ int rech_services(char nom_serv_rech[MAX_NOM_SERVICE])
 #                                            #
 ##############################################
 
-Supprime d'un services
+Supprime un service
 
 
 */
