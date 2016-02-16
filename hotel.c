@@ -2315,6 +2315,7 @@ void catalogue_services_menu()
         break                    ;
       default:
         mauvais_choix(choix_cat) ;
+        while((poubelle=getchar()) != '\n') ;
         break                    ;
     }
   }
