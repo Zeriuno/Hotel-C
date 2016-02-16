@@ -1309,12 +1309,13 @@ void modification_resa()
     if(test == 0)
     {
       printf("Choix non valide.\n")                                     ;
+      while((poubelle=getchar()) != '\n')                               ;
     }
     else
     {
       test = 1                                                          ;
     }
-    if(code_modif_resa > nb_resa)
+    if((code_modif_resa > nb_resa)||(code_modif_resa < 2)) /* 0 est le code pour indiquer que la réservation est possible, 1 pour signaler des travaux. On ne veut pas permettre leur modification */
     {
       printf("Code de réservation invalide.\n")                         ;
       test = 0                                                          ;
