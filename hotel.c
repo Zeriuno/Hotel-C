@@ -378,7 +378,7 @@ Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tab
 void test_date()
 {
   char choix_date = 'f'                ;
-  char date_chaine[11], temporaire[11] ;
+  char date_chaine[11], temporaire[5]  ;
   int i = 0, a, m, j                   ;
 
   printf("Test des paramètres\n")      ;
@@ -1247,7 +1247,7 @@ Les informations sur la réservation sont sauvegardées dans le fichier DOSSIER_
 
 void sauvegarde_resa()
 {
-  char entree_resa[20], temporaire[11]          ;
+  char entree_resa[20], temporaire[5]           ;
   FILE *f1                                      ;
 
   temporaire[0] = '\0'                          ;
@@ -1351,7 +1351,7 @@ Le int retourné indique le résultat de l'opération.
 
 int chargement_resa(long unsigned int p_code_resa)
 {
-  char entree_resa[20], temporaire[11]    ;
+  char entree_resa[20], temporaire[5]     ;
   FILE *f1                                ;
 
   temporaire[0] = '\0'                    ;
