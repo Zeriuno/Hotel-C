@@ -1471,9 +1471,9 @@ void choix_modif_resa()
         t1 = 1                                     ;
         modif_resa()                               ;
         break                                      ;
-      case 2:
+      case 2:/*
         t1 = 1                                     ;
-        annul_origine()                            ;
+        annul_origine()                            ;*/
         break                                      ;
       case 3:
         t1 = 1                                     ;
