@@ -2615,7 +2615,7 @@ Supprime un service
 */
 void suppression_service()
 {
-  char nom_rech[] ;
+  char nom_rech[MAX_NOM_SERVICE] ;
   int i = 0, numero=NON_TROUVE   ;
   if (nb_services== 0)
   {
