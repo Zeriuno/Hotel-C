@@ -3136,7 +3136,7 @@ Procédure pour déclarer des travaux
 */
 void travaux()
 {
-  char temporaire[5]                                 ;
+  char temporaire[5], date_1[11]                     ;
   int cible_num_chambre, t1=0, t2, i, libre, a, m, j ;
   long unsigned int date_num                         ;
 
@@ -3187,7 +3187,7 @@ void travaux()
   libre = 0                                             ;
   while(i < numcase_resa_date_fin + 1)
   {
-    if(planning[i] != 0)
+    if(planning[demande.chambre_resa][i] != 0)
     {
       libre = 1                                         ;
       date_num = calendrier[i].date                     ;
@@ -3204,13 +3204,13 @@ void travaux()
       strcat(date_1, "/")                               ;
       sprintf(temporaire, "%d", a)                      ;
       strcat(date_1, temporaire)                        ;
-      if(planning[i] == 1)
+      if(planning[demande.chambre_resa][i] == 1)
       {
         printf("Le %s la chambre est déjà en travaux\n", date_1);
       }
       else
       {
-        printf("La chambre est occupée le %s par la réservation %lu\n", date_1, planning[i]) ;
+        printf("La chambre est occupée le %s par la réservation %lu\n", date_1, planning[demande.chambre_resa][i]) ;
       }
       i++                                               ;
     }
