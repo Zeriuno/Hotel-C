@@ -2912,4 +2912,5 @@ int travaux()
     maj_planning   ;
     */
   /*}*/
+  return(1);
 }
