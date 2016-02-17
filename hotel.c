@@ -74,6 +74,7 @@ int rech_chambre(int chambre_rech)         ; /* Trouver une chambre à partir d'
 void modification_chambre(int res_chambre) ;
 void enreg_chambre()                       ;
 void affichage_chambre()                   ;
+void modif_prix_chambre()                  ;
 
 /*----------------------
 
@@ -140,6 +141,20 @@ void paiement_note(char p_entree_note[])   ;
 Gestion des services
 complémentaires
 ----------------------*/
+void catalogue_services_menu()                       ; /* Menu qui montre les choix possibles pour le catalogue de services */
+void chargement_catalogue_services()                 ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente */
+void affichage_catalogue()                           ; /* Montre le tableau de services */
+void saisie_services()                               ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés */
+void enreg_catalogue_services()                      ; /* Sauvegarde le tableau chargé en mémoire dans un fichier */
+void modif_services()                                ; /* Pour modifier les services déjà listés */
+int rech_service(char nom_serv_rech[MAX_NOM_SERVICE] ; /* Recherche pour la suppression d'un service*/
+void suppression_service()                           ; /* Suppression d'un service */
+
+/*----------------------
+
+Nuitées
+----------------------*/
+void modif_prix_chambre()                      ; /* Modification du prix des nuitées */
 void catalogue_services_menu()             ; /* Menu qui montre les choix possibles pour le catalogue de services */
 void chargement_catalogue_services()       ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente */
 void affichage_catalogue()                 ; /* Montre le tableau de services */
@@ -148,6 +163,7 @@ void enreg_catalogue_services()            ; /* Sauvegarde le tableau chargé en
 void modif_services()                      ; /* Pour modifier les services déjà listés */
 void modification_catalogue()              ;
 int rech_services(char nom_serv_rech[MAX_NOM_SERVICE]) ;
+
 
 
 /*----------------------
@@ -180,6 +196,7 @@ struct prix_nuit
 };
 
 struct prix_nuit tab_prix_chambres[NB_CHAMBRES_PRIX] ;
+struct prix_nuit nuit                                ;
 
 
 /*Réservations*/
@@ -249,6 +266,7 @@ struct entree_service /* Modèle du service additionnel*/
   float prix_service                  ;
 };
 struct entree_service catalogue_services[MAX_CAT_SERV] ;  /* Tableau listant les services*/
+
 
 
 /*############################################
@@ -2129,7 +2147,6 @@ void menu_recherche_note()
   while(t1 == 0)
   {
     printf("-1- Recherche de note par numéro de réservation\n") ;
-    printf("-1- Recherche de note par numéro de réservation\n") ;
     printf("-2- Recherche de note par numéro de chambre (uniquement pour les réservations en cours)\n") ;
     printf("-3- Retour au menu principal\n") ;
     printf("Choix : ")                       ;
@@ -2474,7 +2491,9 @@ Recherche d'un service
 
 
 */
+
 int rech_services(char nom_serv_rech[MAX_NOM_SERVICE])
+
 {
   struct entree_service service  ;
   int i, numserv                 ;
@@ -2500,7 +2519,7 @@ Supprime un service
 */
 void suppression_service()
 {
-  char nom_rech[MAX_NOM_SERVICE] ;
+  char nom_rech[] ;
   int i = 0, numero=NON_TROUVE   ;
   if (nb_services== 0)
   {
@@ -2912,4 +2931,77 @@ int travaux()
     */
   /*}*/
   return(1);
+}
+
+
+
+/*############################################
+#                                            #
+#             modif_prix_chambre             #
+#                                            #
+##############################################
+
+Procédure modifier le prix d'un chambre
+
+
+*/
+void modif_prix_chambre()
+{
+
+  printf("Modification du prix d'une chambre.\n")                ;
+  printf("Type de la chambre: chambre simple.\n")                ;
+  printf("Catégorie de la chambre: chambre.\n")                  ;
+  printf("Prix actuel de la chambre en haute saison : %.2f\n", ) ;
+  printf("Nouveau prix de la chambre en haute saison :")         ;
+  scanf("%f", nuit.prix_hs)                                      ;
+  printf("Prix actuel de la chambre en basse saison : %.2f\n", ) ;
+  printf("Nouveau prix de la chambre en basse saison :" )        ;
+  scanf("%f", nuit.prix_bs)                                      ;
+
+  printf("Type de la chambre: chambre simple.\n")                ;
+  printf("Catégorie de la chambre: suite.\n")                    ;
+  printf("Prix actuel de la chambre en haute saison : %.2f\n", ) ;
+  printf("Nouveau prix de la chambre en haute saison :")         ;
+  scanf("%f", nuit.prix_hs)                                      ;
+  printf("Prix actuel de la chambre en basse saison : %.2f\n", ) ;
+  printf("Nouveau prix de la chambre en basse saison :" )        ;
+  scanf("%f", nuit.prix_bs)                                      ;
+
+  printf("Type de la chambre: chambre double.\n")                ;
+  printf("Catégorie de la chambre: chambre.\n")                  ;
+  printf("Prix actuel de la chambre en haute saison : %.2f\n", ) ;
+  printf("Nouveau prix de la chambre en haute saison :")         ;
+  scanf("%f", nuit.prix_hs)                                      ;
+  printf("Prix actuel de la chambre en basse saison : %.2f\n", ) ;
+  printf("Nouveau prix de la chambre en basse saison :" )        ;
+  scanf("%f", nuit.prix_bs)                                      ;
+
+  printf("Type de la chambre: chambre double.\n")                ;
+  printf("Catégorie de la chambre: suite.\n")                    ;
+  printf("Prix actuel de la chambre en haute saison : %.2f\n", ) ;
+  printf("Nouveau prix de la chambre en haute saison :")         ;
+  scanf("%f", nuit.prix_hs)                                      ;
+  printf("Prix actuel de la chambre en basse saison : %.2f\n", ) ;
+  printf("Nouveau prix de la chambre en basse saison :" )        ;
+  scanf("%f", nuit.prix_bs)                                      ;
+
+  printf("Type de la chambre: chambre triple.\n")                ;
+  printf("Catégorie de la chambre: chambre.\n")                  ;
+  printf("Prix actuel de la chambre en haute saison : %.2f\n", ) ;
+  printf("Nouveau prix de la chambre en haute saison :")         ;
+  scanf("%f", nuit.prix_hs)                                      ;
+  printf("Prix actuel de la chambre en basse saison : %.2f\n", ) ;
+  printf("Nouveau prix de la chambre en basse saison :" )        ;
+  scanf("%f", nuit.prix_bs)                                      ;
+
+  printf("Type de la chambre: chambre triple.\n")                ;
+  printf("Catégorie de la chambre: suite.\n")                    ;
+  printf("Prix actuel de la chambre en haute saison : %.2f\n", ) ;
+  printf("Nouveau prix de la chambre en haute saison :")         ;
+  scanf("%f", nuit.prix_hs)                                      ;
+  printf("Prix actuel de la chambre en basse saison : %.2f\n", ) ;
+  printf("Nouveau prix de la chambre en basse saison :" )        ;
+  scanf("%f", nuit.prix_bs)                                      ;
+
+  tab_prix_chambres[NB_CHAMBRES_PRIX]=nuit                       ;
 }

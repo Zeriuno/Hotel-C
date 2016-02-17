@@ -39,7 +39,7 @@
 
 3. On demande à l'utilisateur s'il souhaite modifier la réservation, l'annuler ou retourner au menu principal:
  * Choisir "1" pour modifier la réservation.
- * Choisir "2" pour annulerla réservation.
+ * Choisir "2" pour annuler la réservation.
  * Choisir "3" pour retourner au menu principal.
 
 ####Modification d'une réservation
@@ -133,6 +133,9 @@ Tout autre choix que "o" ne permet pas de modification de la chambre, et l'utili
 5. Choisir "9" → On sort du menu services pour revenir au menu principal.
 
 6. Choisir un chiffre non prévu →  Message d'erreur affiché.
+
+mise à jour prix
+ services et chaege ds strsust elemenint et suuprimer ou meetrte ç jour ou laisser !
 
 ##Quitter le programme
 
