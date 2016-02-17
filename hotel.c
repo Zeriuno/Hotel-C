@@ -2194,7 +2194,7 @@ long unsigned int recherche_note_cha()
   while(t1 == 0)
   {
     printf("Saisir le numéro de la chambre : " ) ;
-    t2 = scanf("%d", rech_note_chambre)  ;
+    t2 = scanf("%d", &rech_note_chambre)  ;
     if(t2 == 0)
     {
       printf("Erreur de saisie\n")        ;
