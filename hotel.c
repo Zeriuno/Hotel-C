@@ -2852,17 +2852,17 @@ Procédure pour déclarer des travaux
 */
 int travaux()
 {
-  int cible_num_chambre, t1=0, t2, i                                 ;
-  printf("Déclaration de travaux.\n")                   ;
+  int cible_num_chambre, t1=0, t2, i        ;
+  printf("Déclaration de travaux.\n")       ;
   cible_date()                                          ;
   while (t1 == 0)
   {
-    printf("Saisir le numéro de la chambre (0 pour quitter) : ")           ;
-    t2= scanf("%d", &cible_num_chambre)                       ;
+    printf("Saisir le numéro de la chambre (0 pour quitter) : ")                           ;
+    t2= scanf("%d", &cible_num_chambre)     ;
     if(t2 == 0)
     {
-      printf("Erreur de saisie.\n")      ;
-      while((poubelle=getchar()) != '\n');
+      printf("Erreur de saisie.\n")         ;
+      while((poubelle=getchar()) != '\n')   ;
     }
     else
     {
