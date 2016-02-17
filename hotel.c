@@ -2454,7 +2454,7 @@ void paiement_note(char p_entree_note[])
   char date_chaine[11], temporaire[5]                         ;
   FILE *f1                                                    ;
   float note_total = 0                                        ;
-  int i = 0, k, a, m, j, test=0                               ;
+  int i = 0, k, a, m, j, test=0, t2                           ;
   struct frais note[MAX_ENTREES_FRAIS]                        ;
 
 
@@ -2484,7 +2484,7 @@ void paiement_note(char p_entree_note[])
     sprintf(temporaire, "%d", a)                       ;
     strcat(date_chaine, temporaire)                    ;
 
-    printf("%s %s %.2f", date_chaine note[i].nomfrais, note[i].montantfrais) ;
+    printf("%s %s %.2f", date_chaine, note[i].nomfrais, note[i].montantfrais) ;
   }
   printf("Le montant total de la note est : %.2f €.\n", note_total) ;
 
@@ -2579,10 +2579,11 @@ void catalogue_services_menu()
         saisie_services()        ;
         break                    ;
       case 9:
+        printf("Retour au menu principal\n") ;
         break                    ;
       default:
         mauvais_choix(choix_cat) ;
-        while((poubelle=getchar()) != '\n') ;
+        while((poubelle=getchar()) != '\n')  ;
         break                    ;
     }
   }
