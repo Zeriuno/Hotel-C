@@ -1454,20 +1454,8 @@ void chargement_resa(long unsigned int p_code_resa)
   strcat(entree_resa, temporaire)         ;
   strcat(entree_resa, ".txt")             ;
 
-  printf("%s\n", entree_resa);
-  f1 = fopen(entree_resa, "r");
+  f1 = fopen(entree_resa, "r")            ;
   fscanf(f1, "%lu %d %lu %lu %d %d %s %s %s %f %d", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa[0], &demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient, &demande.total_resa, &demande.mode_paiement) ;
-  printf("%lu\n", demande.code_resa);
-  printf("%d\n", demande.chambre_resa);
-  printf("%lu\n", demande.datearrivee);
-  printf("%lu\n", demande.datedepart);
-  printf("%d\n", demande.nuitees_resa[0]);
-  printf("%d\n", demande.nuitees_resa[1]);
-  printf("%s\n", demande.nomclient);
-  printf("%s\n", demande.prenomclient);
-  printf("%s\n", demande.telclient);
-  printf("%f\n", demande.total_resa);
-  printf("%d\n", demande.mode_paiement);
   fclose(f1)                              ;
 }
 
@@ -2622,7 +2610,7 @@ void depart()
     }
     else
     {
-      t1 = 0 ;
+      t1 = 1 ;
     }
   }
 
@@ -2646,6 +2634,10 @@ void depart()
   {
     printf("Il reste une note à payer \n");
     affichage_note(entree_note)           ;
+  }
+  else
+  {
+    printf("Aucune note à payer. Bon départ ! \n");
   }
 }
 
