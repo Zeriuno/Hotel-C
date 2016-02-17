@@ -2384,11 +2384,11 @@ void affichage_note(char p_entree_note[])
     char nomfrais[]        ;
   };
 
-  f1=fopen(entree_note, "r")                    ;
+  f1=fopen(p_entree_note, "r")                    ;
   fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
   while(!feof(f1))
   {
-    fscanf(f1, "%lu %s %f", &note[i].datefrais, &note[i].nomfrais), &note[i].montantfrais ;
+    fscanf(f1, "%lu %s %f", &note[i].datefrais, note[i].nomfrais, &note[i].montantfrais) ;
     note_total += note[i].montantfrais ;
     i++                                ;
   }
