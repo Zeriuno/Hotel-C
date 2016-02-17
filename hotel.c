@@ -2374,9 +2374,9 @@ void affichage_note(char p_entree_note[])
   float total_commande = 0, prix_commande ;
   int choix_note                          ;
 
+}
 
-
-
+/*
     printf("Choix possibles :\n\n")                 ;
     printf("1 - Rechercher une autre note\n")       ;
     printf("2 - Ajouter une entrée à cette note\n") ;
@@ -2431,7 +2431,7 @@ void affichage_note(char p_entree_note[])
            break;
          case 9:
            printf("Retour au menu principal\n");
-           break;*/
+           break;
 
        }
      }
