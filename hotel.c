@@ -147,7 +147,7 @@ void affichage_catalogue()                           ; /* Montre le tableau de s
 void saisie_services()                               ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés */
 void enreg_catalogue_services()                      ; /* Sauvegarde le tableau chargé en mémoire dans un fichier */
 void modif_services()                                ; /* Pour modifier les services déjà listés */
-int rech_service(char nom_serv_rech[MAX_NOM_SERVICE] ; /* Recherche pour la suppression d'un service*/
+int rech_service(char nom_serv_rech[MAX_NOM_SERVICE]) ; /* Recherche pour la suppression d'un service*/
 void suppression_service()                           ; /* Suppression d'un service */
 
 /*----------------------
