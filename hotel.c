@@ -108,8 +108,10 @@ void affichage_resa()                      ; /* Affichage de la réservation cha
 void choix_modif_resa()                    ; /* Choisir entre modification, annulation ou retour au menu principal */
 void modif_resa()                          ; /* Modification des dates et des informations client. */
 void modif_resa_cha()                      ;
-void annulation_resa()                     ;
 void annul_origine()                       ;
+void remboursement()                       ;
+void annulation_resa_planning()            ;
+
 
 
 /*----------------------
@@ -130,7 +132,7 @@ void affichage_catalogue()                           ; /* Montre le tableau de s
 void saisie_services()                               ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés */
 void enreg_catalogue_services()                      ; /* Sauvegarde le tableau chargé en mémoire dans un fichier */
 void modif_services()                                ; /* Pour modifier les services déjà listés */
-int rech_service(char nom_serv_rech[MAX_MAW_SERVICE] ; /* Recherche pour la suppression d'un service*/
+int rech_service(char nom_serv_rech[MAX_NOM_SERVICE] ; /* Recherche pour la suppression d'un service*/
 void suppression_service()                           ; /* Suppression d'un service */
 
 /*----------------------
@@ -138,6 +140,15 @@ void suppression_service()                           ; /* Suppression d'un servi
 Nuitées
 ----------------------*/
 void modif_prix_chambre()                      ; /* Modification du prix des nuitées */
+void catalogue_services_menu()             ; /* Menu qui montre les choix possibles pour le catalogue de services */
+void chargement_catalogue_services()       ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente */
+void affichage_catalogue()                 ; /* Montre le tableau de services */
+void saisie_services()                     ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés */
+void enreg_catalogue_services()            ; /* Sauvegarde le tableau chargé en mémoire dans un fichier */
+void modif_services()                      ; /* Pour modifier les services déjà listés */
+void modification_catalogue()              ;
+int rech_services(char nom_serv_rech[MAX_NOM_SERVICE]) ;
+
 
 
 /*----------------------
@@ -1153,7 +1164,7 @@ void nouveau_nb_resa()
 void paiement_resa()
 {
   char date_1[11], date_2[11], temporaire[5]             ;
-  int i, test = 0, a, m, j                               ;
+  int i, test = 0, a, m, j, t2                           ;
   struct prix_nuit nuit                                  ;
   FILE *f1;
 
@@ -1163,73 +1174,91 @@ void paiement_resa()
   i= -1;
   while (test == 0) /* On retrouve le prix à la nuitée en trouvant dans le tableau des prix le champ où type de chambre et catégorie sont les mêmes que dans notre cas */
   {
-    i++                                                  ;
+    i++                                                    ;
     if ((tab_prix_chambres[i].type_chambre==nuit.type_chambre) && (tab_prix_chambres[i].categorie_chambre==nuit.categorie_chambre))
 
     {
-      nuit=tab_prix_chambres[i]                          ;
-      test = 1                                           ;
+      nuit=tab_prix_chambres[i]                            ;
+      test = 1                                             ;
     }
   }
   demande.total_resa=(demande.nuitees_resa[0]*nuit.prix_bs)+(demande.nuitees_resa[1]*nuit.prix_hs) ;
 
-  date_1[0] = '\0'                                       ;
-  temporaire[0] = '\0'                                   ;
-  a = demande.datearrivee/10000                          ;
-  m = (demande.datearrivee - (a * 10000)) / 100          ;
-  j = (demande.datearrivee - (a * 10000) - (m * 100))    ;
-  sprintf(temporaire, "%d", j)                           ;
-  strcat(date_1, temporaire)                             ;
-  strcat(date_1, "/")                                    ;
-  sprintf(temporaire, "%d", m)                           ;
-  strcat(date_1, temporaire)                             ;
-  strcat(date_1, "/")                                    ;
-  sprintf(temporaire, "%d", a)                           ;
-  strcat(date_1, temporaire)                             ;
+  date_1[0] = '\0'                                         ;
+  temporaire[0] = '\0'                                     ;
+  a = demande.datearrivee/10000                            ;
+  m = (demande.datearrivee - (a * 10000)) / 100            ;
+  j = (demande.datearrivee - (a * 10000) - (m * 100))      ;
+  sprintf(temporaire, "%d", j)                             ;
+  strcat(date_1, temporaire)                               ;
+  strcat(date_1, "/")                                      ;
+  sprintf(temporaire, "%d", m)                             ;
+  strcat(date_1, temporaire)                               ;
+  strcat(date_1, "/")                                      ;
+  sprintf(temporaire, "%d", a)                             ;
+  strcat(date_1, temporaire)                               ;
 
-  date_2[0] = '\0'                                       ;
-  temporaire[0] = '\0'                                   ;
-  a = demande.datedepart/10000                           ;
-  m = (demande.datedepart - (a * 10000)) / 100           ;
-  j = (demande.datedepart - (a * 10000) - (m * 100))     ;
-  sprintf(temporaire, "%d", j)                           ;
-  strcat(date_2, temporaire)                             ;
-  strcat(date_2, "/")                                    ;
-  sprintf(temporaire, "%d", m)                           ;
-  strcat(date_2, temporaire)                             ;
-  strcat(date_2, "/")                                    ;
-  sprintf(temporaire, "%d", a)                           ;
-  strcat(date_2, temporaire)                             ;
+  date_2[0] = '\0'                                         ;
+  temporaire[0] = '\0'                                     ;
+  a = demande.datedepart/10000                             ;
+  m = (demande.datedepart - (a * 10000)) / 100             ;
+  j = (demande.datedepart - (a * 10000) - (m * 100))       ;
+  sprintf(temporaire, "%d", j)                             ;
+  strcat(date_2, temporaire)                               ;
+  strcat(date_2, "/")                                      ;
+  sprintf(temporaire, "%d", m)                             ;
+  strcat(date_2, temporaire)                               ;
+  strcat(date_2, "/")                                      ;
+  sprintf(temporaire, "%d", a)                             ;
+  strcat(date_2, temporaire)                               ;
 
 
-  printf("Réservation n.%lu\n", demande.code_resa)       ;
+  printf("Réservation n.%lu\n", demande.code_resa)         ;
   printf("Client : %s %s\n", demande.nomclient, demande.prenomclient)    ;
-  printf("Séjour du %s au %s\n", date_1, date_2 )        ;
-  printf("Chambre n.%d\n", demande.chambre_resa)         ;
+  printf("Séjour du %s au %s\n", date_1, date_2 )          ;
+  printf("Chambre n.%d\n", demande.chambre_resa)           ;
   if(demande.nuitees_resa[0] > 0)
   {
     printf("Nuit en tarif basse saison : %d\n", demande.nuitees_resa[0]) ;
-    printf("Tarif par nuit : %.2f\n", nuit.prix_bs)      ;
+    printf("Tarif par nuit : %.2f\n", nuit.prix_bs)        ;
   }
   if(demande.nuitees_resa[1] > 0)
   {
     printf("Nuit en tarif haute saison : %d\n", demande.nuitees_resa[1]) ;
-    printf("Tarif par nuit : %.2f\n", nuit.prix_hs)      ;
+    printf("Tarif par nuit : %.2f\n", nuit.prix_hs)        ;
   }
-
-  printf("Montant à payer : %.2f\n", demande.total_resa) ;
-  printf("Choisir le mode de paiement: \n")              ;
-  printf("-1- Espèces\n")                                ;
-  printf("-2- Chèque\n")                                 ;
-  printf("-3- Carte bancaire\n")                         ;
-  printf("-4- Virement\n")                               ;
-  printf("Choix : ")                                     ;
-  scanf("%d", &demande.mode_paiement)                    ;
-  if(demande.mode_paiement == 3)
+  test = 0 ;
+  while(test == 0)
   {
-    paiement_cb()                                        ;
+    printf("Montant à payer : %.2f\n", demande.total_resa) ;
+    printf("Choisir le mode de paiement: \n")              ;
+    printf("-1- Espèces\n")                                ;
+    printf("-2- Chèque\n")                                 ;
+    printf("-3- Carte bancaire\n")                         ;
+    printf("-4- Virement\n")                               ;
+    printf("Choix : ")                                     ;
+    t2 = scanf("%d", &demande.mode_paiement)               ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie.\n")                        ;
+    }
+    else
+    {
+      if((demande.mode_paiement < 0) || (demande.mode_paiement > 4))
+      {
+        mauvais_choix(demande.mode_paiement)               ;
+      }
+      else
+      {
+        if(demande.mode_paiement == 3)
+        {
+          paiement_cb()                                    ;
+        }
+        printf("Le paiement a bien été effectué.\n")       ;
+        test = 1                                           ;
+      }
+    }
   }
-  printf("Le paiement a bien été effectué.\n")           ;
 }
 
 
@@ -1385,7 +1414,6 @@ void modification_resa()
   {
     affichage_resa()                                                    ;
     choix_modif_resa()                                                  ;
-
   }
 }
 
@@ -1532,12 +1560,12 @@ void choix_modif_resa()
     switch (choix_mod)
     {
       case 1:
-        t1 = 1                                     ;
         modif_resa()                               ;
-        break                                      ;
-      case 2:/*
         t1 = 1                                     ;
-        annul_origine()                            ;*/
+        break                                      ;
+      case 2:
+        annul_origine()                            ;
+        t1 = 1                                     ;
         break                                      ;
       case 3:
         t1 = 1                                     ;
@@ -1762,7 +1790,7 @@ void modif_resa_cha()
     printf("1 - suite\n")                          ;
     printf("Actuellement : %d\n", chambre.categorie_chambre);
     printf("Choix : ")                             ;
-    test = scanf("%d", &cible_cat_chambre)                ;
+    test = scanf("%d", &cible_cat_chambre)         ;
     if(test == 0)
     {
       printf("Erreur de saisie.\n")                ;
@@ -1787,7 +1815,7 @@ void modif_resa_cha()
     scanf("%d", &cible_balcon)                     ;
     printf("Actuellement : %d\n", chambre.balcon);
     printf("Choix : ")                             ;
-    test = scanf("%d", &cible_balcon)                     ;
+    test = scanf("%d", &cible_balcon)              ;
     if(test == 0)
     {
       printf("Erreur de saisie.\n")              ;
@@ -1810,7 +1838,7 @@ void modif_resa_cha()
     printf("0 - baignoire\n")                      ;
     printf("1 - douche\n")                         ;
     printf("Actuellement : %d\n", chambre.bain)    ;
-    test = scanf("%d", &cible_bain)                       ;
+    test = scanf("%d", &cible_bain)                ;
     if(test == 0)
     {
       printf("Erreur de saisie.\n")              ;
@@ -1905,8 +1933,10 @@ void modif_resa_cha()
 #                                            #
 ##############################################
 
+Appelé dans choix_modif_resa()
+Véririe l'origine de l'annulation appelle le sous-programme nécessaire.
 Origine de l'annulation d'une réservation
-*//*
+*/
 void annul_origine()
 {
   int raison_annul = 0, i=0;
@@ -1917,10 +1947,11 @@ void annul_origine()
   switch (raison_annul)
   {
     case 1:
-      annulation_resa() ;
-    break;
+      remboursement()            ;
+      annulation_resa_planning() ;
+      break;
     case 2:
-
+/*
     //  printf("Saisir la date de demande d'annulation"); /*Au cas où l'annulation aurait été demandée un autre jour qu'à la date du jour. Par exemple, aucun membre du personnel*//*
       while (calendrier[i].date != demande.datearrivee)
       {
@@ -1944,19 +1975,18 @@ void annul_origine()
       }                                              ;
       printf("Le remboursement total de la réservation a été effectué, soit %.2f\n", demande.total_resa);
       annulation_resa();
+      >>>>>> MODIFICATION DU PLANNING*/
     break;
     default:
-      printf("Erreur de saisie. \n");
-    break;
+      mauvais_choix(raison_annul) ;
+    break                         ;
   }
-  >>>>>> MODIFICATION DU PLANNING
 }
-*/
 
 
 /*############################################
 #                                            #
-#             annulation_resa                #
+#               remboursement                #
 #                                            #
 ##############################################
 
@@ -1964,7 +1994,79 @@ void annul_origine()
 
 */
 
-void annulation_resa()
+void remboursement()
+{
+  char paiement[9] ;
+  FILE *f1         ;
+  int t1 = 0, t2   ;
+
+
+  switch (demande.mode_paiement)
+  {
+    case 1:
+      strcpy(paiement, "espèces")                                              ;
+      break                                                                    ;
+    case 2:
+      strcpy(paiement, "chèque")                                               ;
+      break                                                                    ;
+    case 3:
+      strcpy(paiement, "CB")                                                   ;
+      break                                                                    ;
+    case 4:
+      strcpy(paiement, "virement")                                             ;
+      break                                                                    ;
+    default:
+      printf("La réservation contient des informations à vérifier\n")          ;
+      break                                                                    ;
+  }
+  printf("Le montant total payé par le client, %s %s, a été de : %.2f\n", demande.prenomclient, demande.nomclient, demande.total_resa)         ;
+  printf("Le paiement a été effectué par %s\n", paiement)                      ;
+
+  while(t1 == 0)
+  {
+    printf("Choisir le mode de remboursement de %.2f: \n", demande.total_resa) ;
+    printf("-1- Espèces\n")                                                    ;
+    printf("-2- Chèque\n")                                                     ;
+    printf("-3- Carte bancaire\n")                                             ;
+    printf("-4- Virement\n")                                                   ;
+    printf("Choix : ")                                                         ;
+    t2 = scanf("%d", &demande.mode_paiement)                                   ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie.\n")                                            ;
+    }
+    else
+    {
+      if((demande.mode_paiement < 0) || (demande.mode_paiement > 4))
+      {
+        mauvais_choix(demande.mode_paiement)                                   ;
+      }
+      else
+      {
+        if(demande.mode_paiement == 3)
+        {
+          paiement_cb()                                                        ;
+        }
+        printf("Le remboursement a bien été effectué.\n")                      ;
+        t1 = 1                                                                 ;
+      }
+    }
+  }
+}
+
+
+/*############################################
+#                                            #
+#         annulation_resa_planning           #
+#                                            #
+##############################################
+
+Appelé dans annul_origine()
+À partir du code_resa, on supprime la case dans le planning: on remet à 0
+
+*/
+
+void annulation_resa_planning()
 {
  int i=0, j=0;
 
@@ -2201,10 +2303,10 @@ void catalogue_services_menu()
   while(choix_cat != 9){
     printf("\n")                                           ;
     printf("    CATALOGUE DES SERVICES\n\n")               ;
-    printf("1 - Lire le catalogue des services\n")         ;
-    printf("2 - Modifier le catalogue des services\n")     ;
-    printf("3 - Ajouter un service\n")                     ;
-    printf("9 - Quitter et revenir au menu principal\n\n") ;
+    printf("-1- Lire le catalogue des services\n")         ;
+    printf("-2- Modifier le catalogue des services\n")     ;
+    printf("-3- Ajouter un service\n")                     ;
+    printf("-9- Quitter et revenir au menu principal\n\n") ;
 
     printf("Choisissez une action : ")                     ;
     scanf("%d", &choix_cat)                                ;
@@ -2288,7 +2390,9 @@ Recherche d'un service
 
 
 */
-int rech_service(char nom_serv_rech[MAX_MAW_SERVICE])
+
+int rech_services(char nom_serv_rech[MAX_NOM_SERVICE])
+
 {
   struct entree_service service  ;
   int i, numserv                 ;
@@ -2308,7 +2412,7 @@ int rech_service(char nom_serv_rech[MAX_MAW_SERVICE])
 #                                            #
 ##############################################
 
-Supprime d'un services
+Supprime un service
 
 
 */
@@ -2322,23 +2426,24 @@ void suppression_service()
   }
   else
   {
-    printf("Nom du service à supprimer: ";
-    scanf("%s", nom_rech);
-    numero = rech_services(nom_rech);
+    printf("Nom du service à supprimer : ")         ;
+    scanf("%s", nom_rech)                           ;
+    numero = rech_services(nom_rech)                ;
     if (numero == NON_TROUVE)
       {
-        printf("%s non trouvé \n", nom_rech);
+        printf("%s non trouvé \n", nom_rech)        ;
       }
     else
     {
       for (i=numero; i<nb_services-1; i++)
       {
-        catalogue_service[i]=catalogue_service[i+1];
+        catalogue_services[i]=catalogue_services[i+1] ;
       }
-      nb_services--;
-      printf("%s supprimé \n", nom_rech);
-      sauv_catalogue_services=1   ;
+      nb_services--                                 ;
+      printf("%s supprimé \n", nom_rech)            ;
+      sauv_catalogue_services=1                     ;
     }
+  }
 }
 
 /*############################################
