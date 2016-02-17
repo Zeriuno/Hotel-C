@@ -48,10 +48,11 @@
  On recherche si la chambre actuelle ou si une autre chambre est disponible durant la période renseignée en fonction de la modification. 
 
 2. On affiche les résultats.
-3. 
-* Choix 1: abandon
-* Choix 2: sélectionner une chambre parmi la liste proposée
-4. L'utilisateur peut modifier les données du client, son nom, son prénom, son numéro de téléphone.
+ 
+   * Choix 1: abandon
+   * Choix 2: sélectionner une chambre parmi la liste proposée
+   
+3. L'utilisateur peut modifier les données du client, son nom, son prénom, son numéro de téléphone.
 
 A ENLEVER: [S'il y a différence négative entre le prix de la chambre initiale et celui de la nouvelle chambre, alors on demande le paiement du supplément.
  Si la modification entraine une augmentation du prix, alors le client doit payer un supplément.
@@ -60,9 +61,9 @@ A ENLEVER: [S'il y a différence négative entre le prix de la chambre initiale 
    * remboursement de 30% si l'écart entre la date du jour et la date de début de séjour est supérieur à 7 jours.
    * pas de remboursement.]
 
-5. On lui demande directement confirmation de la réservation avant le retour au menu principal.
+4. On lui demande directement confirmation de la réservation avant le retour au menu principal.
 
-6. Modification du planning.
+5. Modification du planning.
 
 ####Annulation d'une réservation
 
@@ -83,7 +84,6 @@ A ENLEVER: [S'il y a différence négative entre le prix de la chambre initiale 
  2. Confirmation et modification du planning.
 
  3. Retour au menu principal.
- 4. 
  
 ###Note de la chambre
  1. On demande à l'utilisateur s'il souhaite accéder à une note en saisissant son numéro de réservation ou de chambre (seulement pour les réservations en cours).
