@@ -9,6 +9,8 @@
 #define NON_TROUVE -1 /*Pour tester si un résultat a été trouvé à la recherche*/
 #define ANNEE 365 /* Utilisée pour dimensionner le planning et le calendrier*/
 #define NB_CHAMBRES_PRIX 6 /* nb de chambres différentes dans les prix*/
+#define MAX_NOM_CLI 20 /*taille du nomclient dans la structure resa*/
+#define MAX_PNOM_CLI 20 /*taille du prenomclient dans la structure resa*/
 
 /*Fichiers*/
 

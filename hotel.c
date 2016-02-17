@@ -208,8 +208,8 @@ struct resa
   long unsigned int datearrivee  ; /* Date (aaaammjj) de la première nuitée */
   long unsigned int datedepart   ; /* Date (aaaammjj) de la dernière nuitée */
   int nuitees_resa[2]            ; /* Case 0 basse saison, case 1 haute saison */
-  char nomclient[50]             ;
-  char prenomclient[50]          ;
+  char nomclient[MAX_NOM_CLI]    ;
+  char prenomclient[MAX_PNOM_CLI] ;
   char telclient[12]             ;  /* +33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12? */
   float total_resa               ; /* Montant total de la chambre en fonction des nuitées et de la saison */
   int mode_paiement              ; /* Comment est reglée la réservation: 1 espèces, 2 chèque, 3 CB, 4 virement */
