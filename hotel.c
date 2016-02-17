@@ -309,7 +309,7 @@ main()
       printf("   RÉSERVATIONS      \n")                        ;
       printf("__________________________________________\n\n") ;
       printf("-1- Effectuer une réservation\n")                ;
-      printf("-2- Rechercher une réservation\n\n\n")           ;
+      printf("-2- Rechercher une réservation\n")               ;
       printf("-3- Exécuter un check-out\n\n\n")                ;
       printf("     CHAMBRES      \n")                          ;
       printf("__________________________________________\n\n") ;
@@ -378,6 +378,7 @@ main()
         break                                                                                             ;
       case 7:
         catalogue_services_menu()                                                                         ;
+        break                                                                                             ;
       case 9:
         printf("Vous avez choisi de quitter l'application.\nMerci et au revoir.\n")                       ;
         break                                                                                             ;
@@ -2559,20 +2560,51 @@ Gestion du départ: si note à régler alors afficher la note.
 */
 void depart()
 {
-    int i=0 ;
-    printf("Saisir le numéro de réservation: ")    ;
-    scanf("%lu\n", &demande.code_resa)             ;
-    while (i>)
+  char note_nom_cli[MAX_NOM_CLI], note_pnom_cli[MAX_PNOM_CLI] ;
+  char temporaire[11], entree_note[20]                        ;
+  int i=0, t1 =0 , t2                                         ;
+  FILE *f1                                                    ;
+  float note_total = 0                                        ;
+  long unsigned int id_resa                                   ;
+  struct frais note[MAX_ENTREES_FRAIS]                        ;
+
+  while(t1 == 0)
+  {
+    printf("Saisir le numéro de réservation : " ) ;
+    t2 = scanf("%lu", &id_resa)                   ;
+    if(t2 == 0)
     {
-      if (i>0)
-      {
-        printf("Il reste une note à payer \n");
-        affichage_note(p_entree_note);
-      }
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
     }
+    else
+    {
+      t1 = 0 ;
+    }
+  }
+
+  temporaire[0] = '\0'                          ;
+  entree_note[0] = '\0'                         ;
+  strcat(entree_note, DOSSIER_NOTES)            ;
+  sprintf(temporaire, "%lu", id_resa)           ;
+  strcat(entree_note, temporaire)               ;
+  strcat(entree_note, ".txt")                   ;
+  f1=fopen(entree_note, "r")                    ;
+  fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
+  while(!feof(f1))
+  {
+    fscanf(f1, "%lu %s %f", &note[i].datefrais, note[i].nomfrais, &note[i].montantfrais) ;
+    note_total += note[i].montantfrais ;
+    i++                                ;
+  }
+  fclose(f1)                           ;
+
+  if (i>0)
+  {
+    printf("Il reste une note à payer \n");
+    affichage_note(entree_note)           ;
+  }
 }
-
-
 
 /*############################################
 #                                            #
