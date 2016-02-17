@@ -249,9 +249,9 @@ int a_sauv_chambre = 0                   ; /*pour la modification des chambres*/
   /* Variables globales concernant les frais*/
 struct frais
 {
-  int datefrais        ; /*autrement on en fera une string de 9, 'aaaammjj' (8) + '\0'*/
-  float montantfrais   ;
-  int codefrais[200]   ;
+  long int datefrais              ; /*autrement on en fera une string de 9, 'aaaammjj' (8) + '\0'*/
+  float montantfrais              ;
+  char  nomfrais[MAX_NOM_SERVICE] ;
 };
 
 
