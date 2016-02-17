@@ -2321,13 +2321,13 @@ Récupère le numéro d'une réservation, trouve le fichier correspondant, et pr
 
 void menu_choix_note(char p_entree_note[])
 {
-  int t1, t2, choix_note                               ;
-  FILE *f1                                             ;
+  int t1, t2, choix_note                   ;
+  FILE *f1                                 ;
 
-  t1 = 0                                               ;
+  int t1 = 0                               ;
   while(t1 == 0)
   {
-    printf("-1- Afficher la note\n")                     ; /*menu de choix*/
+    printf("-1- Afficher la note\n")                     ;
     printf("-2- Ajouter une entrée sur la note\n")       ;
     printf("-3- Régler la note\n")                       ;
     printf("-4- Quitter et revenir au menu principal\n") ;
@@ -2343,13 +2343,9 @@ void menu_choix_note(char p_entree_note[])
       {
         case 1:
           affichage_note(p_entree_note)        ;
-          printf("Retour au menu principal\n") ;
-          t1 = 1                               ;
           break                                ;
         case 2:
           ajout_note(p_entree_note)            ;
-          printf("Retour au menu principal\n") ;
-          t1 = 1                               ;
           break                                ;
         case 3:
           paiement_note(p_entree_note)         ;
