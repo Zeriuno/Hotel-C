@@ -314,6 +314,7 @@ main()
         break               ;
       case 3:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
+        /*travaux();*/
         break               ;
       case 4:
         printf("Entrez le numéro de la chambre à rechercher: ") ;
@@ -2842,11 +2843,41 @@ Procédure pour déclarer des travaux
 */
 void travaux()
 {
-  int cible_num_chambre                                 ;
+  int cible_num_chambre, t1=0, t2                                 ;
   printf("Déclaration de travaux.\n")                   ;
   cible_date()                                          ;
-  printf("Saisir le numéro de la chambre : ")           ;
-  scanf("%d", &cible_num_chambre)                       ;
+  while (t1 == 0)
+  {
+    printf("Saisir le numéro de la chambre (0 pour quitter) : ")           ;
+    t2= scanf("%d", &cible_num_chambre)                       ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie.\n")      ;
+      while((poubelle=getchar()) != '\n');
+    }
+    else
+    {
+      if(cible_num_chambre == 0)
+      {
+        return(0);
+      }
+      else
+      {
+        i = 0 ;
+        while((test == NON_TROUVE) && (i < MAX_NB_CHAMBRES))
+        {
+          if(cible_num_chambre == tab_chambres[i].num_chambre)
+          {
+            test = 1 ;
+          }
+          else
+          {
+            i++      ;
+          }
+        }
+      }
+    }
+  }
   chambre.num_chambre = cible_num_chambre               ;
   rech_periode(demande.datearrivee, demande.datedepart) ;
   // on teste si les cases du tableau ont un code de résa 0 ou pas
