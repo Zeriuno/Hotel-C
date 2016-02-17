@@ -110,6 +110,7 @@ void depart()                              ; /* Vérification d'une éventuelle 
 Travaux
 ----------------------*/
 void travaux()                          ;
+void maj_planning_travaux() ;
 
 void recherche_resa()                      ; /* Modification d'une réservation. Contient toutes les suivantes */
 void chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation */
