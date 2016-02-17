@@ -2253,7 +2253,7 @@ void menu_choix_note(char p_entree_note[])
 
 Appelée par recherche_note, prend en argument le nom du fichier de la note (num_note).
 Sortie par un menu de choix.
-
+*/
 
 void affichage_note(char p_entree_note[])
 {
@@ -2263,28 +2263,27 @@ void affichage_note(char p_entree_note[])
 
 
 
-  {
-    printf("Il n'existe pas de note pour cette réservation. Pour en créer une, ajouter une entrée.\n\n") ;
-    printf("Choix possibles :\n\n");
-    printf("1 - Rechercher une autre note\n");
-    printf("2 - Ajouter une entrée à cette note\n");
-    printf("9 - Revenir au menu principal\n");
-    printf("Faire un choix : ");
-    scanf("%d", choix_note) ;
+
+    printf("Choix possibles :\n\n")                 ;
+    printf("1 - Rechercher une autre note\n")       ;
+    printf("2 - Ajouter une entrée à cette note\n") ;
+    printf("9 - Revenir au menu principal\n")       ;
+    printf("Faire un choix : ")                     ;
+    scanf("%d", &choix_note)                        ;
     switch(choix_note)
     {
       case 1:
-        recherche_note();
-        break;
+        recherche_note()                            ;
+        break                                       ;
       case 2:
-        ajout_note(num_note);
-        break;
+        ajout_note(p_entree_note)                   ;
+        break                                       ;
       case 3:
-        paiement_note(num_note);
-        break;
+        paiement_note(p_entree_note)                ;
+        break                                       ;
       case 9:
-        printf("Retour au menu principal\n");
-        break;
+        printf("Retour au menu principal\n")        ;
+        break                                       ;
      }
 /*toute la suite va dans un else: si le fichier existe
      else
@@ -2319,7 +2318,8 @@ void affichage_note(char p_entree_note[])
            break;
          case 9:
            printf("Retour au menu principal\n");
-           break;
+           break;*/
+
        }
      }
 }
@@ -2331,7 +2331,7 @@ void affichage_note(char p_entree_note[])
 ##############################################
 Ajoute une entrée depuis le catalogue des services.
 Prend en paramètre l'identifiant d'une note.
-*
+*/
 
 void ajout_note(char p_entree_note[])
 {
@@ -2342,7 +2342,7 @@ void ajout_note(char p_entree_note[])
   /* ici une recherche dans le tableau des services
   printf("");
   f1 = fopen(num_note, ""); /* il n'y aurait pas de 'append'?
-  fclose(f1);
+  fclose(f1);*/
 }
 
 
@@ -2355,14 +2355,13 @@ Prend en paramètre le nom d'une note.
 Teste si la note existe. Si non, renvoie un message d'erreur.
 Autrement elle récupère le total, demande les moyens de paiement et des informations.
 Le paiement est simulé et sauvegardé.
-
+*/
 void paiement_note(char p_entree_note[])
 {
   FILE *f1;
 
 }
 
-*/
 
 
 
