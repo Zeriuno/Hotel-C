@@ -2406,7 +2406,7 @@ void affichage_note(char p_entree_note[])
 
     printf("%s %s %.2f", date_chaine, note[i].nomfrais, note[i].montantfrais) ;
   }
-  printf("Le montant totale de la note est : %.2f euros.\n", note_total) ;
+  printf("Le montant total de la note est : %.2f euros.\n", note_total) ;
   if(i == 1000)
   {
     printf("La note est pleine et doit être reglée.") ;
@@ -2449,8 +2449,74 @@ Le paiement est simulé et sauvegardé.
 */
 void paiement_note(char p_entree_note[])
 {
-  FILE *f1;
+  char note_nom_cli[MAX_NOM_CLI], note_pnom_cli[MAX_PNOM_CLI] ;
+  char date_chaine[11], temporaire[5]                         ;
+  FILE *f1                                                    ;
+  float note_total = 0                                        ;
+  int i = 0, k, a, m, j, test=0                               ;
+  struct frais note[MAX_ENTREES_FRAIS]                        ;
 
+
+  f1=fopen(p_entree_note, "r")                    ;
+  fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
+  while(!feof(f1))
+  {
+    fscanf(f1, "%lu %s %f", &note[i].datefrais, note[i].nomfrais, &note[i].montantfrais) ;
+    note_total += note[i].montantfrais ;
+    i++                                ;
+  }
+  fclose(f1)                           ;
+
+  for(k = 0 ; i < k ; j++)
+  {
+    date_chaine[0] = '\0'                              ;
+    temporaire[0] = '\0'                               ;
+    a = note[i].datefrais/10000                        ;
+    m = (note[i].datefrais - (a * 10000)) / 100        ;
+    j = (note[i].datefrais - (a * 10000) - (m * 100))  ;
+    sprintf(temporaire, "%d", j)                       ;
+    strcat(date_chaine, temporaire)                    ;
+    strcat(date_chaine, "/")                           ;
+    sprintf(temporaire, "%d", m)                       ;
+    strcat(date_chaine, temporaire)                    ;
+    strcat(date_chaine, "/")                           ;
+    sprintf(temporaire, "%d", a)                       ;
+    strcat(date_chaine, temporaire)                    ;
+
+    printf("%s %s %.2f", date_chaine note[i].nomfrais, note[i].montantfrais) ;
+  }
+  printf("Le montant total de la note est : %.2f euros.\n", note_total) ;
+
+  while(test == 0)
+  {
+
+    printf("Choisir le mode de paiement: \n")              ;
+    printf("-1- Espèces\n")                                ;
+    printf("-2- Chèque\n")                                 ;
+    printf("-3- Carte bancaire\n")                         ;
+    printf("-4- Virement\n")                               ;
+    printf("Choix : ")                                     ;
+    t2 = scanf("%d", &demande.mode_paiement)               ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie.\n")                        ;
+    }
+    else
+    {
+      if((demande.mode_paiement < 0) || (demande.mode_paiement > 4))
+      {
+        mauvais_choix(demande.mode_paiement)               ;
+      }
+      else
+      {
+        if(demande.mode_paiement == 3)
+        {
+          paiement_cb()                                    ;
+        }
+        printf("Le paiement a bien été effectué.\n")       ;
+        test = 1                                           ;
+      }
+    }
 }
 
 
