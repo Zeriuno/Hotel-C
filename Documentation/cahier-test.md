@@ -87,15 +87,15 @@ A ENLEVER: [S'il y a différence négative entre le prix de la chambre initiale 
  
 ###Note de la chambre
  1. On demande à l'utilisateur s'il souhaite accéder à une note en saisissant son numéro de réservation ou de chambre (seulement pour les réservations en cours).
-* Choix 1: Saisir le numéro de réservation.
-* Choix 2: Saisir le numéro de chambre. 
+   * Choix 1: Saisir le numéro de réservation.
+   * Choix 2: Saisir le numéro de chambre. 
 
  2. 
- * Choix 1: Afficher la note
- * Choix 2: Recherche une autre note
- * Choix 3: Ajout d'une note (nouvelle entrée dans le catalogue de services)
- * Choix 4: Régler la note (dans le cas où la note recherchée a bien été trouvée)
- * Choix 9: Retour au menu principal
+    * Choix 1: Afficher la note
+    * Choix 2: Recherche une autre note
+    * Choix 3: Ajout d'une note (nouvelle entrée dans le catalogue de services)
+    * Choix 4: Régler la note (dans le cas où la note recherchée a bien été trouvée)
+    * Choix 9: Retour au menu principal
 
 ##Chambres
 
