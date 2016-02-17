@@ -2845,10 +2845,11 @@ void affichage_catalogue()
   }
   else
   {
+    printf("\n")                                                          ;
     for(i=0; i < nb_services; i++)
     {
       service = catalogue_services[i]                                     ;
-      printf("%s : %.2f € \n", service.nom_service, service.prix_service) ;
+      printf("%d %s : %.2f € \n", i+1, service.nom_service, service.prix_service) ;
     }
   }
 }
