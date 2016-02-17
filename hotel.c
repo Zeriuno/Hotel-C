@@ -459,6 +459,7 @@ void test_date()
       else
       {
         printf("Choix non accepté. Les choix possibles sont 'o' pour 'oui' ou 'n' pour 'non'.\n") ;
+        while((poubelle=getchar()) != '\n')            ;
       }
     }
   }
