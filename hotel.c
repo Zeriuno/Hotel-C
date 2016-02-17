@@ -2424,16 +2424,27 @@ Prend en paramètre l'identifiant d'une note.
 
 void ajout_note(char p_entree_note[])
 {
-  char date[11];
-  FILE *f1;
+  char date[11]                           ;
+  int t1 = 0, t2, ajout_frais             ;
+  FILE *f1                                ;
 
+  affichage_catalogue()                   ;
 
-  /* ici une recherche dans le tableau des services
-  printf("");
-  f1 = fopen(num_note, ""); /* il n'y aurait pas de 'append'?
-  fclose(f1);*/
+  while(t1 == 0)
+  {
+    printf("Saisir le numéro du service à ajouter sur la note : ") ;
+    t2 = scanf("%d", &ajout_frais)        ;
+    if((t2 == 0) || (ajout_frais > nb_services))
+    {
+      printf("Erreur de saisie.\n")       ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+    else
+    {
+      t1 = 1                              ;
+    }
+  }
 }
-
 
 /*############################################
 #                                            #
