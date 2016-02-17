@@ -109,8 +109,6 @@ Tout autre choix que "o" ne permet pas de modification de la chambre, et l'utili
 2. Saisie de la période.
    Si la chambre est réservée alors un message d'erreur est affiché et l'utilisateur est renvoyé vers le menu principal.
 
-   (On cherche si d'autres chambres sont disponibles. Si c'est le cas, on propose à l'utilisateur de déplacer le client vers une autre chambre. Sinon, on annule la réservation et on procède au remboursement total de la réservation. )
-
 3. Modification du statut de la chambre.
 
 4. Modification du planning.
@@ -137,4 +135,4 @@ mise à jour prix
 
 ##Quitter le programme
 
-1. Choix "9" dans le menu principal: "Au revoir".
+1. Choix "9" dans le menu principal → "Au revoir".
