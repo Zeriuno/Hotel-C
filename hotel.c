@@ -296,6 +296,8 @@ main()
   chargement_chambres() ;
   chargement_planning() ;
   chargement_prix()     ;
+  chargement_catalogue_services() ;
+
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
   while(choix != 9) /* 9 est la valeur pour quitter. */
   {
@@ -2205,41 +2207,50 @@ long unsigned int recherche_note_cha()
     }
   }
 
-  id_resa = planning[rech_note_chambre][0]      ;
-  temporaire[0] = '\0'                          ;
-  entree_note[0] = '\0'                         ;
-  strcat(entree_note, DOSSIER_NOTES)            ;
-  sprintf(temporaire, "%lu", id_resa) ;
-  strcat(entree_note, temporaire)               ;
-  strcat(entree_note, ".txt")                   ;
-  f1=fopen(entree_note, "r")                    ;
-
-  fscanf(f1, "%s %s", client_nom, client_prenom) ;
-  fclose(f1)                                     ;
-
-  printf("Réservation de %s %s", client_prenom, client_nom) ;
-  t2 = 0 ;
-  while(t2 == 0)
+  if ((planning[rech_note_chambre][0]==0) || (planning[rech_note_chambre][0]==1))
   {
-    printf("Vous confirmez (o/n) ? ") ;
-    scanf("%c", &confirmation)        ;
-    if((confirmation != 'o') && (confirmation != 'n'))
-    {
-      printf("Erreur de saisie\n");
-    }
-    else
-    {
-      t2 = 0 ;
-    }
-  }
-  if(confirmation == 'n')
-  {
-    printf("Retour au menu de recherche d'une note\n");
-    menu_recherche_note() ;
+    printf("Erreur: la chambre n'est pas réservée.\n");
+    menu_recherche_note();
   }
   else
   {
-    menu_choix_note(entree_note);
+   id_resa = planning[rech_note_chambre][0]      ;
+   temporaire[0] = '\0'                          ;
+   entree_note[0] = '\0'                         ;
+   strcat(entree_note, DOSSIER_NOTES)            ;
+   sprintf(temporaire, "%lu", id_resa) ;
+   strcat(entree_note, temporaire)               ;
+   strcat(entree_note, ".txt")                   ;
+   f1=fopen(entree_note, "r")                    ;
+
+   fscanf(f1, "%s %s", client_nom, client_prenom) ;
+   fclose(f1)                                     ;
+
+   printf("Réservation de %s %s\n", client_prenom, client_nom) ;
+   t2 = 0 ;
+   while(t2 == 0)
+   {
+     while((poubelle=getchar()) != '\n') ;
+     printf("Vous confirmez (o/n) ? ") ;
+     scanf("%c", &confirmation)        ;
+     if((confirmation != 'o') && (confirmation != 'n'))
+     {
+       printf("Erreur de saisie\n");
+     }
+     else
+     {
+       t2 = 1 ;
+     }
+   }
+   if(confirmation == 'n')
+   {
+     printf("Retour au menu de recherche d'une note\n");
+     menu_recherche_note() ;
+   }
+   else
+   {
+     menu_choix_note(entree_note);
+   }
   }
 }
 
@@ -2284,10 +2295,11 @@ long unsigned int recherche_note_num()
   fscanf(f1, "%s %s", client_nom, client_prenom) ;
   fclose(f1)                                     ;
 
-  printf("Réservation de %s %s", client_prenom, client_nom) ;
+  printf("Réservation de %s %s\n", client_prenom, client_nom) ;
   t2 = 0 ;
   while(t2 == 0)
   {
+    while((poubelle=getchar()) != '\n') ;
     printf("Vous confirmez (o/n) ? ") ;
     scanf("%c", &confirmation)        ;
     if((confirmation != 'o') && (confirmation != 'n'))
@@ -2296,7 +2308,7 @@ long unsigned int recherche_note_num()
     }
     else
     {
-      t2 = 0 ;
+      t2 = 1 ;
     }
   }
   if(confirmation == 'n')
@@ -2348,8 +2360,8 @@ void menu_choix_note(char p_entree_note[])
         case 3:
           paiement_note(p_entree_note)         ;
           break                                ;
-        case 9:
-          printf("Retour au menu principal\n") ;
+        case 4:
+          printf("Retour précédent\n")         ;
           t1 = 1                               ;
           break                                ;
       }
@@ -2425,7 +2437,7 @@ Prend en paramètre l'identifiant d'une note.
 void ajout_note(char p_entree_note[])
 {
   char date[11], note_nom_cli[MAX_NOM_CLI], note_pnom_cli[MAX_PNOM_CLI] ;
-  int t1 = 0, t2, ajout_frais, j, i       ;
+  int t1 = 0, t2, ajout_frais, j, i=0     ;
   FILE *f1                                ;
   struct entree_service ajout             ;
   struct frais note[MAX_ENTREES_FRAIS]    ;
@@ -2446,7 +2458,8 @@ void ajout_note(char p_entree_note[])
       t1 = 1                              ;
     }
   }
-  ajout = catalogue_services[i]           ;
+
+  ajout = catalogue_services[ajout_frais] ;
 
   f1=fopen(p_entree_note, "r")            ;
   fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
@@ -2464,7 +2477,7 @@ void ajout_note(char p_entree_note[])
   i++                                        ;
   j = 0                                      ;
 
-  f1=fopen(p_entree_note, "r")               ;
+  f1=fopen(p_entree_note, "w")               ;
   fprintf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ;
   while(j < i)
   {
@@ -2472,6 +2485,7 @@ void ajout_note(char p_entree_note[])
     j++                                      ;
   }
   fclose(f1)                                 ;
+  printf("Le service a bien été ajouté à la note. \n");
 }
 
 /*############################################
@@ -2658,7 +2672,6 @@ Menu qui affiche les choix concernant les services de l'hôtel.
 void catalogue_services_menu()
 {
   int choix_cat = 0                                        ;
-  chargement_catalogue_services()                          ;
   while(choix_cat != 9)
   {
     printf("\n")                                           ;

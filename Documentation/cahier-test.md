@@ -89,7 +89,7 @@ L'utilisateur a choisi 1 dans le menu précédent.
  2.
     * Choix "1" → Afficher la note.
     * Choix "2" → Recherche une autre note.
-    * Choix "3" → Ajout d'une note (nouvelle entrée dans le catalogue de services).
+    * Choix "3" → Ajout d'une note.
     * Choix "4" → Régler la note (dans le cas où la note recherchée a bien été trouvée).
     * Choix "9" → Retour au menu principal.
 
