@@ -3044,15 +3044,35 @@ Procédure modifier le prix d'un chambre
 void modif_prix_chambre()
 {
 
-  printf("Modification du prix d'une chambre.\n")                ;
-  printf("Type de la chambre: chambre simple.\n")                ;
-  printf("Catégorie de la chambre: chambre.\n")                  ;
-  printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
-  printf("Nouveau prix de la chambre en haute saison :")         ;
-  scanf("%f", nuit.prix_hs)                                      ;
-  printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
-  printf("Nouveau prix de la chambre en basse saison :" )        ;
-  scanf("%f", nuit.prix_bs)                                      ;
+  int t2=0 ;
+
+  while(t2 == 0)
+  {
+    printf("Modification du prix d'une chambre.\n")                ;
+    printf("Type de la chambre: chambre simple.\n")                ;
+    printf("Catégorie de la chambre: chambre.\n")                  ;
+    printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
+    printf("Nouveau prix de la chambre en haute saison :")         ;
+    t2 = scanf("%f", nuit.prix_hs)                                 ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+  }
+
+  t2 = 0 ;
+  while(t2 == 0)
+  {
+    printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
+    printf("Nouveau prix de la chambre en basse saison :" )        ;
+    t2 = scanf("%f", nuit.prix_bs)                                 ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+  }
 
   printf("Type de la chambre: chambre simple.\n")                ;
   printf("Catégorie de la chambre: suite.\n")                    ;
