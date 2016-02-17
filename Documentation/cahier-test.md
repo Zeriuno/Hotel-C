@@ -45,19 +45,25 @@
 ####Modification d'une réservation
 
  1. Choisir "1" pour modifier la réservation. L'utilisateur peut modifier la date et la chambre de la réservation.
- On recherche si une autre chambre ou période est disponible en fonction de la modification et on affiche les résultats.
- Choix entre abandon, choix d'une chambre parmi la liste des chambres s'il y en a plusieurs, sinon possibilité de saisir directement la chambre.
- L'utilisateur peut modifier les données du client, son nom, son prénom, son numéro de téléphone.
+ On recherche si la chambre actuelle ou si une autre chambre est disponible durant la période renseignée en fonction de la modification. 
 
- 2. S'il y a différence négative entre le prix de la chambre initiale et celui de la nouvelle chambre, alors on demande le paiement du supplément.
+2. On affiche les résultats.
+3. 
+* Choix 1: abandon
+* Choix 2: sélectionner une chambre parmi la liste proposée
+* 
+4. L'utilisateur peut modifier les données du client, son nom, son prénom, son numéro de téléphone.
+
+A ENLEVER: [S'il y a différence négative entre le prix de la chambre initiale et celui de la nouvelle chambre, alors on demande le paiement du supplément.
  Si la modification entraine une augmentation du prix, alors le client doit payer un supplément.
  Si au contraire, la modification entraine une diminution du prix, dans le cas d'une réduction du nombre de jours, le client peut se voir rembourser une partie de la différence:
    * remboursement de 70% si l'écart entre la date du jour et la date de début de séjour est supérieur à 14 jours.
    * remboursement de 30% si l'écart entre la date du jour et la date de début de séjour est supérieur à 7 jours.
-   * pas de remboursement.
- Sinon, on lui demande directement confirmation de la réservation avant le retour au menu principal.
+   * pas de remboursement.]
 
- 3. Modification du planning.
+ 5. On lui demande directement confirmation de la réservation avant le retour au menu principal.
+
+ 6. Modification du planning.
 
 ####Annulation d'une réservation
 
