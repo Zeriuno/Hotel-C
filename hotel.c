@@ -2417,7 +2417,7 @@ void affichage_note(char p_entree_note[])
   if(i == 1000)
   {
     printf("La note est pleine et doit être reglée.");
-    paiement_note();
+    paiement_note(p_entree_note);
   }
   menu_choix_note(p_entree_note)
 }
@@ -3249,6 +3249,5 @@ void sauvegarde_prix_chambres()
     fprintf(f1, "%d %d %.2f %.2f\n", nuit.type_chambre, nuit.categorie_chambre, nuit.prix_hs, nuit.prix_bs) ;
   }
   fclose(f1)                                                            ;
-  sauvegarde_prix_chambres = 0                                          ;
-  printf("Le tableau des prix des nuitées a bien été sauvegardé.\n")    ;                   ;
+  printf("Le tableau des prix des nuitées a bien été sauvegardé.\n")    ;
 }
