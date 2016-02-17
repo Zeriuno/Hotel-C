@@ -4,16 +4,14 @@
 
 1. On demande à l'utilisateur si la date correspond bien à la date du jour. Si ce n'est pas le cas, l'utilisateur répond 'n' et on lui propose le jour d'après jusqu'à ce que la réponse soit positive ('o').
 
-2. Ensuite, on lui demande de saisir la date des jours futurs au format jj/mm/aaaa.
+2. Ensuite, on lui demande de saisir la date du jour suivant le dernier jour au format jj/mm/aaaa.
 
 3. Enfin, l'utilisateur doit renseigner la saison: haute (h) ou basse (b).
 
 ##Réservation
 ###Effectuer une réservation
 
-(Lorsque l'utilisateur choisit d'effectuer une réservation, on charge automatiquement le fichier contenant le pris des nuitées dans un tableau.)
-
-1. Saisir la période. Le calcul du nombre de nuitées est automatique.  
+1. Saisir la période.
 
 2. Saisir le type de chambre.
 
@@ -43,25 +41,19 @@
  * Choisir "3" pour retourner au menu principal.
 
 ####Modification d'une réservation
+L'utilisateur a choisi 1 dans le menu précédent.
 
- 1. Choisir "1" pour modifier la réservation. L'utilisateur peut modifier la date et la chambre de la réservation.
- On recherche si la chambre actuelle ou si une autre chambre est disponible durant la période renseignée en fonction de la modification. 
+ 1. L'utilisateur peut modifier la date et la chambre de la réservation.
+ On recherche si la chambre actuelle ou si une autre chambre est disponible durant la période renseignée en fonction de la modification (changement de période et/ou de chambre).
 
 2. On affiche les résultats.
- 
+
    * Choix 1: abandon
-   * Choix 2: sélectionner une chambre parmi la liste proposée
-   
+   * Choix 2: sélection d'une chambre parmi la liste proposée
+
 3. L'utilisateur peut modifier les données du client, son nom, son prénom, son numéro de téléphone.
 
-A ENLEVER: [S'il y a différence négative entre le prix de la chambre initiale et celui de la nouvelle chambre, alors on demande le paiement du supplément.
- Si la modification entraine une augmentation du prix, alors le client doit payer un supplément.
- Si au contraire, la modification entraine une diminution du prix, dans le cas d'une réduction du nombre de jours, le client peut se voir rembourser une partie de la différence:
-   * remboursement de 70% si l'écart entre la date du jour et la date de début de séjour est supérieur à 14 jours.
-   * remboursement de 30% si l'écart entre la date du jour et la date de début de séjour est supérieur à 7 jours.
-   * pas de remboursement.]
-
-4. On lui demande directement confirmation de la réservation avant le retour au menu principal.
+4. Retour au menu principal.
 
 5. Modification du planning.
 
@@ -71,7 +63,8 @@ A ENLEVER: [S'il y a différence négative entre le prix de la chambre initiale 
 
  1. Comparer la date de début du séjour (déterminée grâce à la   recherche de réservation) et la date du jour.
 
- 2. * "1" (Différence > 14 jours): L'annulation a bien été prise en compte. Remboursement de 70%.
+ 2.
+    * "1" (Différence > 14 jours): L'annulation a bien été prise en compte. Remboursement de 70%.
     * "2" (Différence > 7 jours): L'annulation a bien été prise en compte. Remboursement de 30%.
     * "3" (Différence <= 7 jours): L'annulation a bien été prise en compte. Pas de remboursement.
 
@@ -84,13 +77,13 @@ A ENLEVER: [S'il y a différence négative entre le prix de la chambre initiale 
  2. Confirmation et modification du planning.
 
  3. Retour au menu principal.
- 
+
 ###Note de la chambre
  1. On demande à l'utilisateur s'il souhaite accéder à une note en saisissant son numéro de réservation ou de chambre (seulement pour les réservations en cours).
    * Choix 1: Saisir le numéro de réservation.
-   * Choix 2: Saisir le numéro de chambre. 
+   * Choix 2: Saisir le numéro de chambre.
 
- 2. 
+ 2.
     * Choix 1: Afficher la note
     * Choix 2: Recherche une autre note
     * Choix 3: Ajout d'une note (nouvelle entrée dans le catalogue de services)

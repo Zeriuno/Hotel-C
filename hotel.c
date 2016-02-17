@@ -110,7 +110,7 @@ Travaux
 ----------------------*/
 int travaux();
 
-void modification_resa()                   ; /* Modification d'une réservation. Contient toutes les suivantes */
+void recherche_resa()                      ; /* Modification d'une réservation. Contient toutes les suivantes */
 int chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation, retourne une valeur selon le succès ou pas de l'opération */
 void affichage_resa()                      ; /* Affichage de la réservation chargée */
 void choix_modif_resa()                    ; /* Choisir entre modification, annulation ou retour au menu principal */
@@ -335,7 +335,7 @@ main()
         break               ;
 
       case 2:
-        modification_resa() ;
+        recherche_resa() ;
         break               ;
       case 3:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
@@ -1387,7 +1387,7 @@ void maj_planning()
 
 /*############################################
 #                                            #
-#           modification_resa                #
+#           recherche_resa                   #
 #                                            #
 ##############################################
 
@@ -1395,7 +1395,7 @@ Appelé dans le main() le programme gère la recherche et, le cas échéant, mod
 
 */
 
-void modification_resa()
+void recherche_resa()
 {
   int test = 0                                                            ;
   long unsigned int code_modif_resa                                       ;
@@ -1548,7 +1548,7 @@ void affichage_resa()
 #                                            #
 ##############################################
 
-Appelé dans modification_resa()
+Appelé dans recherche_resa()
 Après affichage de la réservation choisir entre modification, annulation ou retour au menu principal
 */
 
