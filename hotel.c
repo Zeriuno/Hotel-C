@@ -2563,20 +2563,18 @@ void modif_services()
 
 Recherche d'un service
 
-
 */
 
 int rech_services(char nom_serv_rech[MAX_NOM_SERVICE])
-
 {
-  struct entree_service service  ;
-  int i, numserv                 ;
+  struct entree_service service     ;
+  int i, numserv                    ;
   for (i=0; i<MAX_CAT_SERV; i++)
   {
-    service = catalogue_services[i];
+    service = catalogue_services[i] ;
     if (strcmp(service.nom_service, nom_serv_rech) ==0)
     {
-      numserv = i ;
+      numserv = i                   ;
     }
   }
 }
