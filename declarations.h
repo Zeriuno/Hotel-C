@@ -4,7 +4,7 @@
 /*Constantes*/
 
 #define MAX_CAT_SERV 20    /* Constante qui limite le catalogue des services -- ajouter un test concernant cette limite - Utilisé pour catalogue_services */
-#define MAX_NOM_SERVICE 21 /* Taille maximale de la chaîne de caractères qui décrit les services complémentaires - Utilisé pour nom_service */
+#define MAX_NOM_SERVICE 21 /* Taille maximale de la chaîne de caractères qui décrit les services complémentaires - Utilisé pour nom_service et dans la structure frais */
 #define MAX_NB_CHAMBRES 50 /*Utilisée dans tab_chambres[]*/
 #define NON_TROUVE -1 /*Pour tester si un résultat a été trouvé à la recherche*/
 #define ANNEE 365 /* Utilisée pour dimensionner le planning et le calendrier*/
