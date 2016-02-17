@@ -45,19 +45,25 @@
 ####Modification d'une réservation
 
  1. Choisir "1" pour modifier la réservation. L'utilisateur peut modifier la date et la chambre de la réservation.
- On recherche si une autre chambre ou période est disponible en fonction de la modification et on affiche les résultats.
- Choix entre abandon, choix d'une chambre parmi la liste des chambres s'il y en a plusieurs, sinon possibilité de saisir directement la chambre.
- L'utilisateur peut modifier les données du client, son nom, son prénom, son numéro de téléphone.
+ On recherche si la chambre actuelle ou si une autre chambre est disponible durant la période renseignée en fonction de la modification. 
 
- 2. S'il y a différence négative entre le prix de la chambre initiale et celui de la nouvelle chambre, alors on demande le paiement du supplément.
+2. On affiche les résultats.
+ 
+   * Choix 1: abandon
+   * Choix 2: sélectionner une chambre parmi la liste proposée
+   
+3. L'utilisateur peut modifier les données du client, son nom, son prénom, son numéro de téléphone.
+
+A ENLEVER: [S'il y a différence négative entre le prix de la chambre initiale et celui de la nouvelle chambre, alors on demande le paiement du supplément.
  Si la modification entraine une augmentation du prix, alors le client doit payer un supplément.
  Si au contraire, la modification entraine une diminution du prix, dans le cas d'une réduction du nombre de jours, le client peut se voir rembourser une partie de la différence:
    * remboursement de 70% si l'écart entre la date du jour et la date de début de séjour est supérieur à 14 jours.
    * remboursement de 30% si l'écart entre la date du jour et la date de début de séjour est supérieur à 7 jours.
-   * pas de remboursement.
- Sinon, on lui demande directement confirmation de la réservation avant le retour au menu principal.
+   * pas de remboursement.]
 
- 3. Modification du planning.
+4. On lui demande directement confirmation de la réservation avant le retour au menu principal.
+
+5. Modification du planning.
 
 ####Annulation d'une réservation
 
@@ -78,6 +84,18 @@
  2. Confirmation et modification du planning.
 
  3. Retour au menu principal.
+ 
+###Note de la chambre
+ 1. On demande à l'utilisateur s'il souhaite accéder à une note en saisissant son numéro de réservation ou de chambre (seulement pour les réservations en cours).
+   * Choix 1: Saisir le numéro de réservation.
+   * Choix 2: Saisir le numéro de chambre. 
+
+ 2. 
+    * Choix 1: Afficher la note
+    * Choix 2: Recherche une autre note
+    * Choix 3: Ajout d'une note (nouvelle entrée dans le catalogue de services)
+    * Choix 4: Régler la note (dans le cas où la note recherchée a bien été trouvée)
+    * Choix 9: Retour au menu principal
 
 ##Chambres
 

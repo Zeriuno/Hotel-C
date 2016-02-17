@@ -26,13 +26,14 @@
 * v 0.1.14 - 2016-02-16 Séparation du code: utilitaires sortis dans fichier consacré. Makefile
 * v 0.1.15 - 2016-02-16 fin paiement_cb
 * v 1.0.0 - 2016-02-16 Réservation fonctionnelle
+* v 1.0.1 - 2016-02-16 Création note
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
 * optimiser enregistrement sur fichier et cycle de modification des chambres.
 * optimiser affichage et saisie des descripteurs des chambres.
 * évaluer la possibilité de déclarer les variables de choix (vue/sans vue; fumeur/non fumeur; haute saison/basse saison) comme des short int;
-* tests détaillés dans chaque sous-programme.
+* Dans chaque sous-programme existent des test à ajouter, spécifiés dans l'en-tête du programme-même.
 
 */
 
@@ -102,6 +103,13 @@ void paiement_cb()                         ; /* Saisie des données de la carte 
 void sauvegarde_resa()                     ; /* Les informations sur la réservation sont sauvegardées dans un fichier */
 void maj_planning()                        ; /* La nouvelle réservation est intégrée dans le planning */
 
+
+/*----------------------
+
+Travaux
+----------------------*/
+int travaux();
+
 void modification_resa()                   ; /* Modification d'une réservation. Contient toutes les suivantes */
 int chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation, retourne une valeur selon le succès ou pas de l'opération */
 void affichage_resa()                      ; /* Affichage de la réservation chargée */
@@ -120,6 +128,13 @@ Note
 ----------------------*/
 void creation_note()                       ; /* Création de la note, vide. Appellée dans creer_reservation */
 
+void menu_recherche_note()                 ; /* Permet de choisir entre recherche_note_cha et recherche_note_num */
+long unsigned int recherche_note_cha()     ; /* Prend un numéro de chambre et le passe à menu_choix_note */
+long unsigned int recherche_note_num()     ; /* Prend un numéro de réservation et le passe à menu_choix_note */
+void menu_choix_note(char p_entree_note[]) ;
+void affichage_note(char p_entree_note[])  ; /* La note est affichée ensuite choix possibles (ajout, règlement)*/
+void ajout_note(char p_entree_note[])      ;
+void paiement_note(char p_entree_note[])   ;
 
 /*----------------------
 
@@ -298,8 +313,7 @@ main()
       printf("-4- Rechercher une chambre.\n\n\n")              ;
       printf("     PARAMÈTRES    \n")                          ;
       printf("__________________________________________\n\n") ;
-      printf("-5- Mettre à jour la date du planning.\n")       ;
-      printf("-6- Catalogue des services.\n\n\n")              ;
+      printf("-5- Catalogue des services.\n\n\n")              ;
       printf("     QUITTER    \n")                             ;
       printf("__________________________________________\n\n") ;
       printf("-9- Quitter l'application.\n\n")                 ;
@@ -325,6 +339,7 @@ main()
         break               ;
       case 3:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
+        /*travaux();*/
         break               ;
       case 4:
         printf("Entrez le numéro de la chambre à rechercher: ") ;
@@ -1327,7 +1342,7 @@ Les informations sur la réservation sont sauvegardées dans le fichier DOSSIER_
 
 void sauvegarde_resa()
 {
-  char entree_resa[20], temporaire[5]           ;
+  char entree_resa[20], temporaire[11]          ; /* Devant acceuillir un long int, temporaire doit être 10 +'\0'*/
   FILE *f1                                      ;
 
   temporaire[0] = '\0'                          ;
@@ -1376,44 +1391,44 @@ void maj_planning()
 #                                            #
 ##############################################
 
-Appelé dans le main() le programme gère la modification d'une réservation.
+Appelé dans le main() le programme gère la recherche et, le cas échéant, modification d'une réservation.
 
 */
 
 void modification_resa()
 {
-  int test = 0                                                          ;
-  long unsigned int code_modif_resa                                     ;
-  printf("Modification de réservation.\n")                              ;
+  int test = 0                                                            ;
+  long unsigned int code_modif_resa                                       ;
+  printf("Recherche de réservation.\n")                                   ;
   while(test == 0)
   {
-    printf("Veuillez saisir le numéro de la réservation à modifier : ") ;
-    test = scanf("%lu", &code_modif_resa)                               ;
+    printf("Veuillez saisir le numéro de la réservation à rechercher : ") ;
+    test = scanf("%lu", &code_modif_resa)                                 ;
     if(test == 0)
     {
-      printf("Choix non valide.\n")                                     ;
-      while((poubelle=getchar()) != '\n')                               ;
+      printf("Choix non valide.\n")                                       ;
+      while((poubelle=getchar()) != '\n')                                 ;
     }
     else
     {
-      test = 1                                                          ;
+      test = 1                                                            ;
     }
     if((code_modif_resa > nb_resa)||(code_modif_resa < 2)) /* 0 est le code pour indiquer que la réservation est possible, 1 pour signaler des travaux. On ne veut pas permettre leur modification */
     {
-      printf("Code de réservation invalide.\n")                         ;
-      test = 0                                                          ;
+      printf("Code de réservation invalide.\n")                           ;
+      test = 0                                                            ;
     }
   }
-  test = 0                                                              ;
-  test = chargement_resa(code_modif_resa)                               ;
+  test = 0                                                                ;
+  test = chargement_resa(code_modif_resa)                                 ;
   if(test == 0)
   {
-    printf("Erreur dans le chargement de la réservation\n")             ;
+    printf("Erreur dans le chargement de la réservation\n")               ;
   }
   else
   {
-    affichage_resa()                                                    ;
-    choix_modif_resa()                                                  ;
+    affichage_resa()                                                      ;
+    choix_modif_resa()                                                    ;
   }
 }
 
@@ -2104,7 +2119,7 @@ Création de la note, vide. Appellée dans creer_reservation.
 */
 void creation_note()
 {
-  char entree_note[20], temporaire[5]           ;
+  char entree_note[20], temporaire[11]          ;
   FILE *f1                                      ;
 
   temporaire[0] = '\0'                          ;
@@ -2120,42 +2135,131 @@ void creation_note()
 
 /*############################################
 #                                            #
-#             recherche_note                 #
+#           menu_recherche_note              #
 #                                            #
 ##############################################
 
-On demande la saisie du numéro de réservation, on récupère la note correspondante. Elle sera passée au programme d'affichage, de paiement ou bien d'ajout.
-
-void recherche_note()
+*/
+void menu_recherche_note()
 {
-  char num_note[15]          ;
-  int choix_note             ;
-  long unsigned int num_resa ;
-
-  printf("Saisir le numéro de réservation : ")   ;
-  scanf("%lu", num_resa)                         ;
-  sprintf(num_note, "%lu", num_resa)             ;
-  strcat(num_note, "_note.txt")                  ;
-  printf(" 1 - Afficher la note\n")              ; /*menu de choix
-  printf(" 2 - Ajouter une entrée sur la note\n");
-  printf(" 3 - Régler la note\n")                ;
-  printf(" 9 - Quitter et revenir au menu principal\n");
-  printf("Faire un choix : ")                          ;
-  scanf("%d", &choix_note)                             ;
-  switch(choix_note)  /* passe num_note au programme suivant, selon le choix
+  int t1 = 0, t2 = 0, choix_recherche_note   ;
+  printf("Menu de recherche d'une note\n")   ;
+  while(t1 == 0)
   {
-    case 1:
-      affichage_note(num_note);
-      break;
-    case 2:
-      ajout_note(num_note);
-      break;
-    case 3:
-      paiement_note(num_note);
-      break;
-    case 9:
-      printf("Retour au menu principal\n");
-      break;
+    printf("-1- Recherche de note par numéro de réservation\n") ;
+    printf("-1- Recherche de note par numéro de réservation\n") ;
+    printf("-2- Recherche de note par numéro de chambre (uniquement pour les réservations en cours)\n") ;
+    printf("-3- Retour au menu principal\n") ;
+    printf("Choix : ")                       ;
+    t2 = scanf("%d", &choix_recherche_note)  ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")           ;
+      while((poubelle=getchar()) != '\n')    ;
+    }
+    switch (choix_recherche_note)
+    {
+      case 1:
+        recherche_note_num()                 ;
+        break                                ;
+      case 2:
+        recherche_note_cha()                 ;
+        break                                ;
+      case 3:
+        printf("Retour au menu principal\n") ;
+        t1 = 1                               ;
+        break                                ;
+      default:
+        mauvais_choix(choix_recherche_note)  ;
+        break                                ;
+    }
+  }
+}
+
+/*############################################
+#                                            #
+#           recherche_note_cha               #
+#                                            #
+##############################################
+On demande la saisie du numéro de chambre, on récupère le numéro de réservation correspondante. Il sera passé à menu_choix_note.
+*/
+
+long unsigned int recherche_note_cha()
+{
+}
+
+/*############################################
+#                                            #
+#           recherche_note_num               #
+#                                            #
+##############################################
+On demande la saisie du numéro de réservation, on le passe à menu_choix_note.
+*/
+
+long unsigned int recherche_note_num()
+{
+char entree_note[20], temporaire[11]         ;
+long unsigned int rech_num_resa              ;
+printf("Saisir le numéro de réservation : ") ;
+scanf("%lu", &rech_num_resa)                 ;
+
+temporaire[0] = '\0'                         ;
+entree_note[0] = '\0'                        ;
+strcat(entree_note, DOSSIER_NOTES)           ;
+sprintf(temporaire, "%lu", rech_num_resa)    ;
+strcat(entree_note, temporaire)              ;
+strcat(entree_note, ".txt")                  ;
+}
+
+/*############################################
+#                                            #
+#              menu_choix_note               #
+#                                            #
+##############################################
+Récupère le numéro d'une réservation, trouve le fichier correspondant, et propose des actions à l'utilisateur.
+*/
+
+void menu_choix_note(char p_entree_note[])
+{
+  int t1, t2, choix_note                               ;
+  FILE *f1                                             ;
+
+  t1 = 0                                               ;
+  while(t1 == 0)
+  {
+    printf("-1- Afficher la note\n")                     ; /*menu de choix*/
+    printf("-2- Ajouter une entrée sur la note\n")       ;
+    printf("-3- Régler la note\n")                       ;
+    printf("-4- Quitter et revenir au menu principal\n") ;
+    printf("Choix : ")                                   ;
+    t2 = scanf("%d", &choix_note)                        ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")                       ;
+    }
+    else
+    {
+      switch(choix_note)  /* Passe p_entree_note au programme suivant, selon le choix. */
+      {
+        case 1:
+          affichage_note(p_entree_note)        ;
+          printf("Retour au menu principal\n") ;
+          t1 = 1                               ;
+          break                                ;
+        case 2:
+          ajout_note(p_entree_note)            ;
+          printf("Retour au menu principal\n") ;
+          t1 = 1                               ;
+          break                                ;
+        case 3:
+          paiement_note(p_entree_note)         ;
+          break                                ;
+        case 9:
+          printf("Retour au menu principal\n") ;
+          t1 = 1                               ;
+          break                                ;
+      }
+    }
   }
 }
 
@@ -2165,20 +2269,18 @@ void recherche_note()
 #                                            #
 ##############################################
 
-Appelée par recherche_note, prend en argument le nom du fichier de la note (num_note). Elle vérifie si le fichier existe. Si oui, l'affiche, sinon elle previent l'utilisateur.
+Appelée par recherche_note, prend en argument le nom du fichier de la note (num_note).
 Sortie par un menu de choix.
 
 
-void affichage_note(char num_note[])
+void affichage_note(char p_entree_note[])
 {
-  FILE *f1;
+  FILE *f1                                ;
   float total_commande = 0, prix_commande ;
-  int choix_note ;
-  /*il faut utiliser stat, apparemment, qui a besoin d'une structure
+  int choix_note                          ;
 
 
-  /*vérification de l'existence du fichier
-  if()/* si le fichier n'existe pas
+
   {
     printf("Il n'existe pas de note pour cette réservation. Pour en créer une, ajouter une entrée.\n\n") ;
     printf("Choix possibles :\n\n");
@@ -2247,10 +2349,9 @@ void affichage_note(char num_note[])
 ##############################################
 Ajoute une entrée depuis le catalogue des services.
 Prend en paramètre l'identifiant d'une note.
-Si la note n'existe pas, elle sera créée.
+*
 
-
-void ajout_note(char num_note[])
+void ajout_note(char p_entree_note[])
 {
   char date[11];
   FILE *f1;
@@ -2273,7 +2374,7 @@ Teste si la note existe. Si non, renvoie un message d'erreur.
 Autrement elle récupère le total, demande les moyens de paiement et des informations.
 Le paiement est simulé et sauvegardé.
 
-void paiement_note(char num_note[])
+void paiement_note(char p_entree_note[])
 {
   FILE *f1;
 
@@ -2300,7 +2401,8 @@ void catalogue_services_menu()
 {
   int choix_cat = 0                                        ;
   chargement_catalogue_services()                          ;
-  while(choix_cat != 9){
+  while(choix_cat != 9)
+  {
     printf("\n")                                           ;
     printf("    CATALOGUE DES SERVICES\n\n")               ;
     printf("-1- Lire le catalogue des services\n")         ;
@@ -2326,6 +2428,7 @@ void catalogue_services_menu()
         break                    ;
       default:
         mauvais_choix(choix_cat) ;
+        while((poubelle=getchar()) != '\n') ;
         break                    ;
     }
   }
@@ -2767,14 +2870,48 @@ Procédure pour déclarer des travaux
 
 
 */
-void travaux()
+int travaux()
 {
-  int cible_num_chambre                                 ;
-  printf("Déclaration de travaux.\n")                   ;
+  int cible_num_chambre, t1=0, t2, i        ;
+  printf("Déclaration de travaux.\n")       ;
   cible_date()                                          ;
-  printf("Saisir le numéro de la chambre : ")           ;
-  scanf("%d", &cible_num_chambre)                       ;
-  chambre.num_chambre = cible_num_chambre               ;
+  while (t1 == 0)
+  {
+    printf("Saisir le numéro de la chambre (0 pour quitter) : ")                           ;
+    t2= scanf("%d", &cible_num_chambre)     ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie.\n")         ;
+      while((poubelle=getchar()) != '\n')   ;
+    }
+    else
+    {
+      if(cible_num_chambre == 0)
+      {
+        return(0);
+      }
+      else
+      {
+        i = 0 ;
+        while((t1 == 0) && (i < MAX_NB_CHAMBRES))
+        {
+          if(cible_num_chambre == tab_chambres[i].num_chambre)
+          {
+            t1 = 1 ;
+          }
+          else
+          {
+            i++    ;
+          }
+        }
+        if(t1 == NON_TROUVE)
+        {
+          printf("Le choix fait ne correspond pas à une chambre existante.\n") ;
+        }
+      }
+    }
+  }
+  demande.chambre_resa = cible_num_chambre               ; /*on peut plutôt affecter le champ dans la structure demande*/
   rech_periode(demande.datearrivee, demande.datedepart) ;
   // on teste si les cases du tableau ont un code de résa 0 ou pas
   // si oui on continue, sinon on imprime le code de résa et la jour et on renvoie au menu principal
@@ -2795,6 +2932,7 @@ void travaux()
     maj_planning   ;
     */
   /*}*/
+  return(1);
 }
 
 
