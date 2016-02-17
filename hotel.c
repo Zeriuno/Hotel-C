@@ -2147,7 +2147,6 @@ void menu_recherche_note()
   while(t1 == 0)
   {
     printf("-1- Recherche de note par numéro de réservation\n") ;
-    printf("-1- Recherche de note par numéro de réservation\n") ;
     printf("-2- Recherche de note par numéro de chambre (uniquement pour les réservations en cours)\n") ;
     printf("-3- Retour au menu principal\n") ;
     printf("Choix : ")                       ;
