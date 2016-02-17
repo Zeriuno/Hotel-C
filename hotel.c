@@ -2254,7 +2254,7 @@ On demande la saisie du numéro de réservation, on le passe à menu_choix_note.
 
 long unsigned int recherche_note_num()
 {
-  char temporaire[11], entree_resa[20], client_nom[MAX_NOM_CLI], client_prenom[MAX_PNOM_CLI];
+  char temporaire[11], entree_note[20], client_nom[MAX_NOM_CLI], client_prenom[MAX_PNOM_CLI], confirmation;
   FILE *f1 ;
   int t1 = 0, t2            ;
   long unsigned int id_resa ;
