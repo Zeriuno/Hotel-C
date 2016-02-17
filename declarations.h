@@ -11,6 +11,7 @@
 #define NB_CHAMBRES_PRIX 6 /* nb de chambres différentes dans les prix*/
 #define MAX_NOM_CLI 20 /*taille du nomclient dans la structure resa*/
 #define MAX_PNOM_CLI 20 /*taille du prenomclient dans la structure resa*/
+#define MAX_ENTREES_FRAIS 1000 /* taille du tableau utilisé pour la note */
 
 /*Fichiers*/
 

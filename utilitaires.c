@@ -50,7 +50,7 @@ Retourne en chaine de caractères jj/mm/aaaa la date fournie en format aaaammjj
 char aaaammjj_vers_jjmmaaaa(long unsigned int date)
 {
   int annee, mois, jour                         ;
-  char temporaire[5];
+  char temporaire[5]                            ;
   char date_chaine[11]                          ;
   annee = date/10000                            ;
   mois = (date - (annee * 10000)) /100          ;
