@@ -310,14 +310,15 @@ main()
       printf("__________________________________________\n\n") ;
       printf("-1- Effectuer une réservation\n")                ;
       printf("-2- Rechercher une réservation\n")               ;
-      printf("-3- Exécuter un check-out\n\n\n")                ;
+      printf("-3- Rechercher une note\n")                      ;
+      printf("-4- Exécuter un check-out\n\n\n")                ;
       printf("                CHAMBRES      \n")               ;
       printf("__________________________________________\n\n") ;
-      printf("-4- Déclarer des travaux dans une chambre.\n")   ;
-      printf("-5- Rechercher une chambre\n\n\n")               ;
+      printf("-5- Déclarer des travaux dans une chambre\n")    ;
+      printf("-6- Rechercher une chambre\n\n\n")               ;
       printf("                PARAMÈTRES    \n")               ;
       printf("__________________________________________\n\n") ;
-      printf("-6- Catalogue des services\n\n\n")               ;
+      printf("-7- Catalogue des services\n\n\n")               ;
       printf("                 QUITTER    \n")                 ;
       printf("__________________________________________\n\n") ;
       printf("-9- Quitter l'application\n\n")                  ;
@@ -335,20 +336,22 @@ main()
     switch(choix)
     {
       case 1:
-        creer_reservation() ;
-        break               ;
-
+        creer_reservation()  ;
+        break                ;
       case 2:
-        recherche_resa()    ;
-        break               ;
+        recherche_resa()     ;
+        break                ;
       case 3:
-        depart()            ;
-        break               ;
+        menu_recherche_note();
+        break                ;
       case 4:
+        depart()             ;
+        break                ;
+      case 5:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
         /*travaux();*/
-        break               ;
-      case 5:
+        break                ;
+      case 6:
         printf("Entrez le numéro de la chambre à rechercher: ") ;
         scanf("%d", &chambre_cible)                             ;
         res_chambre=rech_chambre(chambre_cible)                 ;
@@ -373,12 +376,10 @@ main()
 
         }
         break                                                                                             ;
-      case 6: /*case 7:*/
+      case 7: /*case 7:*/
         catalogue_services_menu()                               ;
         break                                                                                             ;
-      case 7:
-        catalogue_services_menu()                                                                         ;
-        break                                                                                             ;
+
       case 9:
         printf("Vous avez choisi de quitter l'application.\nMerci et au revoir.\n")                       ;
         break                                                                                             ;
@@ -2201,7 +2202,7 @@ long unsigned int recherche_note_cha()
     }
     else
     {
-      t1 =  ;
+      t1 = 1 ;
     }
   }
 
