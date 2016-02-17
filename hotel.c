@@ -2186,6 +2186,62 @@ On demande la saisie du numéro de chambre, on récupère le numéro de réserva
 
 long unsigned int recherche_note_cha()
 {
+  char temporaire[11], entree_resa[20], client_nom[MAX_NOM_CLI], client_prenom[MAX_PNOM_CLI];
+  FILE *f1 ;
+  int rech_note_chambre, t1 = 0, t2 ;
+  long unsigned int id_resa         ;
+
+  while(t1 == 0)
+  {
+    printf("Saisir le numéro de la chambre : " ) ;
+    t2 = scanf("%d", rech_note_chambre)  ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+    else
+    {
+      t1 = 0 ;
+    }
+  }
+
+  id_resa = planning[rech_note_chambre][0]      ;
+  temporaire[0] = '\0'                          ;
+  entree_note[0] = '\0'                         ;
+  strcat(entree_note, DOSSIER_NOTES)            ;
+  sprintf(temporaire, "%lu", id_resa) ;
+  strcat(entree_note, temporaire)               ;
+  strcat(entree_note, ".txt")                   ;
+  f1=fopen(entree_note, "r")                    ;
+
+  fscanf(f1, "%s %s", client_nom, client_prenom) ;
+  fclose(f1)                                     ;
+
+  printf("Réservation de %s %s", client_prenom, client_nom) ;
+  t2 = 0 ;
+  while(t2 == 0)
+  {
+    printf("Vous confirmez (o/n) ? ") ;
+    scanf("%c", &confirmation)        ;
+    if((confirmation != 'o') && (confirmation != 'n'))
+    {
+      printf("Erreur de saisie\n");
+    }
+    else
+    {
+      t2 = 0 ;
+    }
+  }
+  if(confirmation == 'n')
+  {
+    printf("Retour au menu de recherche d'une note\n");
+    menu_recherche_note() ;
+  }
+  else
+  {
+    menu_choix_note(entree_note);
+  }
 }
 
 /*############################################
@@ -2198,17 +2254,61 @@ On demande la saisie du numéro de réservation, on le passe à menu_choix_note.
 
 long unsigned int recherche_note_num()
 {
-char entree_note[20], temporaire[11]         ;
-long unsigned int rech_num_resa              ;
-printf("Saisir le numéro de réservation : ") ;
-scanf("%lu", &rech_num_resa)                 ;
+  char temporaire[11], entree_resa[20], client_nom[MAX_NOM_CLI], client_prenom[MAX_PNOM_CLI];
+  FILE *f1 ;
+  int t1 = 0, t2            ;
+  long unsigned int id_resa ;
 
-temporaire[0] = '\0'                         ;
-entree_note[0] = '\0'                        ;
-strcat(entree_note, DOSSIER_NOTES)           ;
-sprintf(temporaire, "%lu", rech_num_resa)    ;
-strcat(entree_note, temporaire)              ;
-strcat(entree_note, ".txt")                  ;
+  while(t1 == 0)
+  {
+    printf("Saisir le numéro de réservation : " ) ;
+    t2 = scanf("%lu", id_resa)  ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+    else
+    {
+      t1 = 0 ;
+    }
+  }
+
+  temporaire[0] = '\0'                          ;
+  entree_note[0] = '\0'                         ;
+  strcat(entree_note, DOSSIER_NOTES)            ;
+  sprintf(temporaire, "%lu", id_resa)           ;
+  strcat(entree_note, temporaire)               ;
+  strcat(entree_note, ".txt")                   ;
+  f1=fopen(entree_note, "r")                    ;
+
+  fscanf(f1, "%s %s", client_nom, client_prenom) ;
+  fclose(f1)                                     ;
+
+  printf("Réservation de %s %s", client_prenom, client_nom) ;
+  t2 = 0 ;
+  while(t2 == 0)
+  {
+    printf("Vous confirmez (o/n) ? ") ;
+    scanf("%c", &confirmation)        ;
+    if((confirmation != 'o') && (confirmation != 'n'))
+    {
+      printf("Erreur de saisie\n");
+    }
+    else
+    {
+      t2 = 0 ;
+    }
+  }
+  if(confirmation == 'n')
+  {
+    printf("Retour au menu de recherche d'une note\n");
+    menu_recherche_note() ;
+  }
+  else
+  {
+    menu_choix_note(entree_note) ;
+  }
 }
 
 /*############################################
