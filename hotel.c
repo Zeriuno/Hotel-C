@@ -2680,7 +2680,7 @@ void suppression_service()
       }
     else
     {
-      for (i=numero; i<nb_services-1; i++)
+      for (i=numero ; i<nb_services-1 ; i++)
       {
         catalogue_services[i]=catalogue_services[i+1] ;
       }
