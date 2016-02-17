@@ -1701,6 +1701,7 @@ void modif_resa()
     scanf("%c", &choix_modif_chambre)                   ;
     if((choix_modif_chambre!='o')&&(choix_modif_chambre!='n'))
     {
+      while((poubelle=getchar()) != '\n')               ;
       printf("Choix non valide\n")                      ;
     }
   }
@@ -3165,7 +3166,7 @@ void travaux()
     {
       if(cible_num_chambre == 0)
       {
-        printf("Abandon.\n", );
+        printf("Abandon.\n");
         printf("Retour au menu principal.\n", );
       }
       else
