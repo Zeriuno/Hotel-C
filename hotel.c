@@ -112,7 +112,7 @@ Travaux
 int travaux();
 
 void recherche_resa()                      ; /* Modification d'une réservation. Contient toutes les suivantes */
-int chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation, retourne une valeur selon le succès ou pas de l'opération */
+void chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation */
 void affichage_resa()                      ; /* Affichage de la réservation chargée */
 void choix_modif_resa()                    ; /* Choisir entre modification, annulation ou retour au menu principal */
 void modif_resa()                          ; /* Modification des dates et des informations client. */
@@ -306,21 +306,21 @@ main()
       printf("              MENU PRINCIPAL\n\n")               ;
       printf("__________________________________________\n\n") ;
       printf("Voici les actions possibles\n\n")                ;
-      printf("   RÉSERVATIONS      \n")                        ;
+      printf("               RÉSERVATIONS      \n")            ;
       printf("__________________________________________\n\n") ;
       printf("-1- Effectuer une réservation\n")                ;
       printf("-2- Rechercher une réservation\n")               ;
       printf("-3- Exécuter un check-out\n\n\n")                ;
-      printf("     CHAMBRES      \n")                          ;
+      printf("                CHAMBRES      \n")               ;
       printf("__________________________________________\n\n") ;
       printf("-4- Déclarer des travaux dans une chambre.\n")   ;
-      printf("-5- Rechercher une chambre.\n\n\n")              ;
-      printf("     PARAMÈTRES    \n")                          ;
+      printf("-5- Rechercher une chambre\n\n\n")               ;
+      printf("                PARAMÈTRES    \n")               ;
       printf("__________________________________________\n\n") ;
-      printf("-6- Catalogue des services.\n\n\n")              ;
-      printf("     QUITTER    \n")                             ;
+      printf("-6- Catalogue des services\n\n\n")               ;
+      printf("                 QUITTER    \n")                 ;
       printf("__________________________________________\n\n") ;
-      printf("-9- Quitter l'application.\n\n")                 ;
+      printf("-9- Quitter l'application\n\n")                  ;
       /*printf("7 - Imprimer le programme d'aujourd'hui.\n") ; On ne l'a pas mis dans le planning, mais c'est une idée dont on avait parlé. On verra plus tard si et comment le faire.*/
 
       printf("Choix : ")                                       ;
@@ -1426,17 +1426,9 @@ void recherche_resa()
       test = 0                                                            ;
     }
   }
-  test = 0                                                                ;
-  test = chargement_resa(code_modif_resa)                                 ;
-  if(test == 0)
-  {
-    printf("Erreur dans le chargement de la réservation\n")               ;
-  }
-  else
-  {
-    affichage_resa()                                                      ;
-    choix_modif_resa()                                                    ;
-  }
+  chargement_resa(code_modif_resa)                                        ;
+  affichage_resa()                                                        ;
+  choix_modif_resa()                                                      ;
 }
 
 /*############################################
@@ -1450,7 +1442,7 @@ Le int retourné indique le résultat de l'opération.
 
 */
 
-int chargement_resa(long unsigned int p_code_resa)
+void chargement_resa(long unsigned int p_code_resa)
 {
   char entree_resa[20], temporaire[11]    ;
   FILE *f1                                ;
@@ -1462,8 +1454,20 @@ int chargement_resa(long unsigned int p_code_resa)
   strcat(entree_resa, temporaire)         ;
   strcat(entree_resa, ".txt")             ;
 
+  printf("%s\n", entree_resa);
   f1 = fopen(entree_resa, "r");
   fscanf(f1, "%lu %d %lu %lu %d %d %s %s %s %f %d", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa[0], &demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient, &demande.total_resa, &demande.mode_paiement) ;
+  printf("%lu\n", demande.code_resa);
+  printf("%d\n", demande.chambre_resa);
+  printf("%lu\n", demande.datearrivee);
+  printf("%lu\n", demande.datedepart);
+  printf("%d\n", demande.nuitees_resa[0]);
+  printf("%d\n", demande.nuitees_resa[1]);
+  printf("%s\n", demande.nomclient);
+  printf("%s\n", demande.prenomclient);
+  printf("%s\n", demande.telclient);
+  printf("%f\n", demande.total_resa);
+  printf("%d\n", demande.mode_paiement);
   fclose(f1)                              ;
 }
 
