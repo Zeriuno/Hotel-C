@@ -3074,50 +3074,146 @@ void modif_prix_chambre()
     }
   }
 
-  printf("Type de la chambre: chambre simple.\n")                ;
-  printf("Catégorie de la chambre: suite.\n")                    ;
-  printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
-  printf("Nouveau prix de la chambre en haute saison :")         ;
-  scanf("%f", &nuit.prix_hs)                                      ;
-  printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
-  printf("Nouveau prix de la chambre en basse saison :" )        ;
-  scanf("%f", &nuit.prix_bs)                                      ;
+  t2 = 0 ;
+  while(t2 == 0)
+  {
+    printf("Type de la chambre: chambre simple.\n")                ;
+    printf("Catégorie de la chambre: suite.\n")                    ;
+    printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
+    printf("Nouveau prix de la chambre en haute saison :")         ;
+    scanf("%f", &nuit.prix_hs)                                      ;
+    t2 = scanf("%f", &nuit.prix_bs)                                 ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+  }
 
-  printf("Type de la chambre: chambre double.\n")                ;
-  printf("Catégorie de la chambre: chambre.\n")                  ;
-  printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
-  printf("Nouveau prix de la chambre en haute saison :")         ;
-  scanf("%f", &nuit.prix_hs)                                      ;
-  printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
-  printf("Nouveau prix de la chambre en basse saison :" )        ;
-  scanf("%f", &nuit.prix_bs)                                      ;
+  t2 = 0 ;
+  while(t2 == 0)
+  {
+    printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
+    printf("Nouveau prix de la chambre en basse saison :" )        ;
+    scanf("%f", &nuit.prix_bs)                                      ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+  }
 
-  printf("Type de la chambre: chambre double.\n")                ;
-  printf("Catégorie de la chambre: suite.\n")                    ;
-  printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
-  printf("Nouveau prix de la chambre en haute saison :")         ;
-  scanf("%f", &nuit.prix_hs)                                      ;
-  printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
-  printf("Nouveau prix de la chambre en basse saison :" )        ;
-  scanf("%f", &nuit.prix_bs)                                      ;
+  t2 = 0 ;
+  while(t2 == 0)
+  {
+    printf("Type de la chambre: chambre double.\n")                ;
+    printf("Catégorie de la chambre: chambre.\n")                  ;
+    printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
+    printf("Nouveau prix de la chambre en haute saison :")         ;
+    scanf("%f", &nuit.prix_hs)                                      ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+  }
 
-  printf("Type de la chambre: chambre triple.\n")                ;
-  printf("Catégorie de la chambre: chambre.\n")                  ;
-  printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
-  printf("Nouveau prix de la chambre en haute saison :")         ;
-  scanf("%f", &nuit.prix_hs)                                      ;
-  printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
-  printf("Nouveau prix de la chambre en basse saison :" )        ;
-  scanf("%f", &nuit.prix_bs)                                      ;
+  t2 = 0 ;
+  while(t2 == 0)
+  {
+    printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
+    printf("Nouveau prix de la chambre en basse saison :" )        ;
+    scanf("%f", &nuit.prix_bs)                                      ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+  }
 
-  printf("Type de la chambre: chambre triple.\n")                ;
-  printf("Catégorie de la chambre: suite.\n")                    ;
-  printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
-  printf("Nouveau prix de la chambre en haute saison :")         ;
-  scanf("%f", &nuit.prix_hs)                                      ;
-  printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
-  printf("Nouveau prix de la chambre en basse saison :" )        ;
-  scanf("%f", &nuit.prix_bs)                                      ;
+  t2 = 0 ;
+  while(t2 == 0)
+  {
+    printf("Type de la chambre: chambre double.\n")                ;
+    printf("Catégorie de la chambre: suite.\n")                    ;
+    printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
+    printf("Nouveau prix de la chambre en haute saison :")         ;
+    scanf("%f", &nuit.prix_hs)                                      ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+  }
+  t2 = 0 ;
+  while(t2 == 0)
+  {
+    printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
+    printf("Nouveau prix de la chambre en basse saison :" )        ;
+    scanf("%f", &nuit.prix_bs)                                      ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+  }
+
+
+  t2 = 0 ;
+  while(t2 == 0)
+  {
+    printf("Type de la chambre: chambre triple.\n")                ;
+    printf("Catégorie de la chambre: chambre.\n")                  ;
+    printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
+    printf("Nouveau prix de la chambre en haute saison :")         ;
+    scanf("%f", &nuit.prix_hs)                                      ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+  }
+
+  t2 = 0 ;
+  while(t2 == 0)
+  {
+    printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
+    printf("Nouveau prix de la chambre en basse saison :" )        ;
+    scanf("%f", &nuit.prix_bs)                                      ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+  }
+
+  t2 = 0 ;
+  while(t2 == 0)
+  {
+    printf("Type de la chambre: chambre triple.\n")                ;
+    printf("Catégorie de la chambre: suite.\n")                    ;
+    printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
+    printf("Nouveau prix de la chambre en haute saison :")         ;
+    scanf("%f", &nuit.prix_hs)                                      ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+  }
+
+  t2 = 0 ;
+  while(t2 == 0)
+  {
+    printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
+    printf("Nouveau prix de la chambre en basse saison :" )        ;
+    scanf("%f", &nuit.prix_bs)                                      ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")        ;
+      while((poubelle=getchar()) != '\n') ;
+    }
+  }
 
   tab_prix_chambres[NB_CHAMBRES_PRIX]=nuit                       ;
 }
