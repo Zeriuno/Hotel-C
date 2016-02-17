@@ -2491,7 +2491,6 @@ void catalogue_services_menu()
         break                    ;
       case 2:
         modif_services()         ;
-/*        enreg_chambre()          ;*/
         break                    ;
       case 3:
         saisie_services()        ;
@@ -2513,7 +2512,6 @@ void catalogue_services_menu()
 ##############################################
 
 Modifie les services déjà saisis.
-
 
 */
 void modif_services()
