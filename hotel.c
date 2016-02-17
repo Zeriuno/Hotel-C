@@ -2864,16 +2864,20 @@ void travaux()
       else
       {
         i = 0 ;
-        while((test == NON_TROUVE) && (i < MAX_NB_CHAMBRES))
+        while((t1 == 0) && (i < MAX_NB_CHAMBRES))
         {
           if(cible_num_chambre == tab_chambres[i].num_chambre)
           {
-            test = 1 ;
+            t1 = 1 ;
           }
           else
           {
-            i++      ;
+            i++    ;
           }
+        }
+        if(t1 == NON_TROUVE)
+        {
+          printf("Le choix fait ne correspond pas à une chambre existante.\n") ;
         }
       }
     }
