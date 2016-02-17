@@ -109,7 +109,7 @@ void depart()                              ; /* Vérification d'une éventuelle 
 
 Travaux
 ----------------------*/
-int travaux();
+void travaux()                          ;
 
 void recherche_resa()                      ; /* Modification d'une réservation. Contient toutes les suivantes */
 void chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation */
@@ -346,7 +346,7 @@ main()
         break               ;
       case 4:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
-        /*travaux();*/
+        travaux()           ;
         break               ;
       case 5:
         printf("Entrez le numéro de la chambre à rechercher: ") ;
@@ -3134,11 +3134,11 @@ Procédure pour déclarer des travaux
 
 
 */
-int travaux()
+void travaux()
 {
   int cible_num_chambre, t1=0, t2, i        ;
   printf("Déclaration de travaux.\n")       ;
-  cible_date()                                          ;
+  cible_date()                              ;
   while (t1 == 0)
   {
     printf("Saisir le numéro de la chambre (0 pour quitter) : ")                           ;
@@ -3152,30 +3152,33 @@ int travaux()
     {
       if(cible_num_chambre == 0)
       {
-        return(0);
+        printf("Abandon.\n", );
+        printf("Retour au menu principal.\n", );
       }
       else
       {
-        i = 0 ;
-        while((t1 == 0) && (i < MAX_NB_CHAMBRES))
+        i = 0  ;
+        t2 = 0 ;
+        while((t2 == 0) && (i < MAX_NB_CHAMBRES))
         {
           if(cible_num_chambre == tab_chambres[i].num_chambre)
           {
-            t1 = 1 ;
+            t2 = 1 ;
           }
           else
           {
             i++    ;
           }
         }
-        if(t1 == NON_TROUVE)
+        if(t2 == 0)
         {
           printf("Le choix fait ne correspond pas à une chambre existante.\n") ;
         }
       }
     }
   }
-  demande.chambre_resa = cible_num_chambre               ; /*on peut plutôt affecter le champ dans la structure demande*/
+  demande.chambre_resa = cible_num_chambre              ;
+  cible_date()                                          ;
   rech_periode(demande.datearrivee, demande.datedepart) ;
   // on teste si les cases du tableau ont un code de résa 0 ou pas
   // si oui on continue, sinon on imprime le code de résa et la jour et on renvoie au menu principal
