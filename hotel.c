@@ -2186,7 +2186,7 @@ On demande la saisie du numéro de chambre, on récupère le numéro de réserva
 
 long unsigned int recherche_note_cha()
 {
-  char temporaire[11], entree_resa[20], client_nom[MAX_NOM_CLI], client_prenom[MAX_PNOM_CLI];
+  char temporaire[11], entree_note[20], client_nom[MAX_NOM_CLI], client_prenom[MAX_PNOM_CLI], confirmation;
   FILE *f1 ;
   int rech_note_chambre, t1 = 0, t2 ;
   long unsigned int id_resa         ;
