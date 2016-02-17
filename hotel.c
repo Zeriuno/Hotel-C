@@ -2522,6 +2522,15 @@ void paiement_note(char p_entree_note[])
    recreation_note(p_entree_note[]);
 }
 
+
+/*############################################
+#                                            #
+#              recreation_note               #
+#                                            #
+##############################################
+Ecrase ancienne note.
+
+*/
 void recreation_note(char p_entree_note[])
 {
   char note_nomclient[MAX_NOM_CLI], note_prenomclient[MAX_PNOM_CLI] ;
