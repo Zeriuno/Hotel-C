@@ -2209,7 +2209,7 @@ long unsigned int recherche_note_cha()
     }
     else
     {
-      t1 = 0 ;
+      t1 =  ;
     }
   }
 
@@ -2277,7 +2277,7 @@ long unsigned int recherche_note_num()
     }
     else
     {
-      t1 = 0 ;
+      t1 = 1 ;
     }
   }
 
