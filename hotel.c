@@ -2554,6 +2554,7 @@ void recreation_note(char p_entree_note[])
 #                                            #
 ##############################################
 
+Appelé dans le main()
 Menu qui affiche les choix concernant les services de l'hôtel.
 
 
