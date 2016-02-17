@@ -2129,6 +2129,7 @@ void creation_note()
   strcat(entree_note, temporaire)               ;
   strcat(entree_note, ".txt")                   ;
   f1=fopen(entree_note, "w")                    ;
+  fprintf(f1, "%s %s 0", demande.nomclient, demande.prenomclient) ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
   fclose(f1)                                    ;
 }
 
