@@ -2849,7 +2849,7 @@ void affichage_catalogue()
     for(i=0; i < nb_services; i++)
     {
       service = catalogue_services[i]                                     ;
-      printf("%d %s : %.2f € \n", i+1, service.nom_service, service.prix_service) ;
+      printf("%d %s : %.2f € \n", i, service.nom_service, service.prix_service) ;
     }
   }
 }
