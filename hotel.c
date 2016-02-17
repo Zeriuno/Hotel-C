@@ -135,6 +135,7 @@ void menu_choix_note(char p_entree_note[]) ;
 void affichage_note(char p_entree_note[])  ; /* La note est affichée ensuite choix possibles (ajout, règlement)*/
 void ajout_note(char p_entree_note[])      ;
 void paiement_note(char p_entree_note[])   ;
+void recreation_note(char p_entree_note[]) ;
 
 /*----------------------
 
@@ -2406,10 +2407,10 @@ void affichage_note(char p_entree_note[])
 
     printf("%s %s %.2f", date_chaine, note[i].nomfrais, note[i].montantfrais) ;
   }
-  printf("Le montant total de la note est : %.2f euros.\n", note_total) ;
+  printf("Le montant total de la note est : %.2f €.\n", note_total) ;
   if(i == 1000)
   {
-    printf("La note est pleine et doit être reglée.") ;
+    printf("La note est pleine et doit être réglée.") ;
     paiement_note(p_entree_note)                      ;
   }
   menu_choix_note(p_entree_note)                      ;
@@ -2457,7 +2458,7 @@ void paiement_note(char p_entree_note[])
   struct frais note[MAX_ENTREES_FRAIS]                        ;
 
 
-  f1=fopen(p_entree_note, "r")                    ;
+  f1=fopen(p_entree_note, "r")                       ;
   fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
   while(!feof(f1))
   {
@@ -2485,7 +2486,7 @@ void paiement_note(char p_entree_note[])
 
     printf("%s %s %.2f", date_chaine note[i].nomfrais, note[i].montantfrais) ;
   }
-  printf("Le montant total de la note est : %.2f euros.\n", note_total) ;
+  printf("Le montant total de la note est : %.2f €.\n", note_total) ;
 
   while(test == 0)
   {
@@ -2515,8 +2516,24 @@ void paiement_note(char p_entree_note[])
         }
         printf("Le paiement a bien été effectué.\n")       ;
         test = 1                                           ;
-      }
-    }
+       }
+     }
+   }
+   recreation_note(p_entree_note[]);
+}
+
+void recreation_note(char p_entree_note[])
+{
+  char note_nomclient[MAX_NOM_CLI], note_prenomclient[MAX_PNOM_CLI] ;
+  FILE *f1                                                          ;
+
+  f1=fopen(p_entree_note, "r")                                      ;
+  fscanf(f1, "%s %s", note_nomclient, note_prenomclient)            ;
+  fclose(f1)                                                        ;
+
+  f1=fopen(p_entree_note, "w")                                      ;
+  fprintf(f1, "%s %s\n", note_nomclient, note_prenomclient)         ;
+  fclose(f1)                                                        ;
 }
 
 
