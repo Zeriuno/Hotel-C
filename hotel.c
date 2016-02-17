@@ -369,10 +369,7 @@ main()
         }
         break                                                                                             ;
       case 5: /*case 7:*/
-        printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
-        break                                                                                             ;
-      case 6:
-        catalogue_services_menu()                                                                         ;
+        catalogue_services_menu()                               ;
         break                                                                                             ;
       case 9:
         printf("Vous avez choisi de quitter l'application.\nMerci et au revoir.\n")                       ;
