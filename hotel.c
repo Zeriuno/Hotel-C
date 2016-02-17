@@ -335,7 +335,7 @@ main()
         break               ;
 
       case 2:
-        recherche_resa() ;
+        recherche_resa()    ;
         break               ;
       case 3:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
@@ -1726,7 +1726,7 @@ void modif_resa()
     printf("Nouveau numéro de téléphone (format +3301234567): ")   ;
     scanf("%s", demande.telclient)                                 ; /* cf test préconisé dans saisie_client() */
 
-    /* si il y a une différence dans le montant, il faut un paiement */
+    /* s'il y a une différence dans le montant, il faut un paiement */
   }
   else
   {
@@ -1990,7 +1990,7 @@ void annul_origine()
       }                                              ;
       printf("Le remboursement total de la réservation a été effectué, soit %.2f\n", demande.total_resa);
       annulation_resa();
-      >>>>>> MODIFICATION DU PLANNING*/
+      maj_planning(); */
     break;
     default:
       mauvais_choix(raison_annul) ;
@@ -2034,7 +2034,7 @@ void remboursement()
       printf("La réservation contient des informations à vérifier\n")          ;
       break                                                                    ;
   }
-  printf("Le montant total payé par le client, %s %s, a été de : %.2f\n", demande.prenomclient, demande.nomclient, demande.total_resa)         ;
+  printf("Le montant total payé par le client, %s %s, a été de : %.2f\n", demande.prenomclient, demande.nomclient, demande.total_resa) ;
   printf("Le paiement a été effectué par %s\n", paiement)                      ;
 
   while(t1 == 0)
