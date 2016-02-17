@@ -374,11 +374,10 @@ main()
         }
         break                                                                                             ;
       case 6: /*case 7:*/
-        printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
+        catalogue_services_menu()                               ;
         break                                                                                             ;
       case 7:
         catalogue_services_menu()                                                                         ;
-        break                                                                                             ;
       case 9:
         printf("Vous avez choisi de quitter l'application.\nMerci et au revoir.\n")                       ;
         break                                                                                             ;
@@ -2459,7 +2458,7 @@ void paiement_note(char p_entree_note[])
   char date_chaine[11], temporaire[5]                         ;
   FILE *f1                                                    ;
   float note_total = 0                                        ;
-  int i = 0, k, a, m, j, test=0                               ;
+  int i = 0, k, a, m, j, test=0, t2                           ;
   struct frais note[MAX_ENTREES_FRAIS]                        ;
 
 
@@ -2489,7 +2488,7 @@ void paiement_note(char p_entree_note[])
     sprintf(temporaire, "%d", a)                       ;
     strcat(date_chaine, temporaire)                    ;
 
-    printf("%s %s %.2f", date_chaine note[i].nomfrais, note[i].montantfrais) ;
+    printf("%s %s %.2f", date_chaine, note[i].nomfrais, note[i].montantfrais) ;
   }
   printf("Le montant total de la note est : %.2f €.\n", note_total) ;
 
@@ -2524,7 +2523,7 @@ void paiement_note(char p_entree_note[])
        }
      }
    }
-   recreation_note(p_entree_note[]);
+   recreation_note(p_entree_note);
 }
 
 
@@ -2584,6 +2583,7 @@ void depart()
 #                                            #
 ##############################################
 
+Appelé dans le main()
 Menu qui affiche les choix concernant les services de l'hôtel.
 
 
@@ -2615,10 +2615,11 @@ void catalogue_services_menu()
         saisie_services()        ;
         break                    ;
       case 9:
+        printf("Retour au menu principal\n") ;
         break                    ;
       default:
         mauvais_choix(choix_cat) ;
-        while((poubelle=getchar()) != '\n') ;
+        while((poubelle=getchar()) != '\n')  ;
         break                    ;
     }
   }
@@ -2873,10 +2874,11 @@ void affichage_catalogue()
   }
   else
   {
+    printf("\n")                                                          ;
     for(i=0; i < nb_services; i++)
     {
       service = catalogue_services[i]                                     ;
-      printf("%s : %.2f € \n", service.nom_service, service.prix_service) ;
+      printf("%d %s : %.2f € \n", i, service.nom_service, service.prix_service) ;
     }
   }
 }
