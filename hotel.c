@@ -102,6 +102,7 @@ void paiement_resa()                       ; /* Paiement de la réservation */
 void paiement_cb()                         ; /* Saisie des données de la carte bancaire en cas de paiement par cb */
 void sauvegarde_resa()                     ; /* Les informations sur la réservation sont sauvegardées dans un fichier */
 void maj_planning()                        ; /* La nouvelle réservation est intégrée dans le planning */
+void depart()                              ; /* Vérification d'une éventuelle note à payer au moment du départ */
 
 
 /*----------------------
@@ -309,13 +310,14 @@ main()
       printf("__________________________________________\n\n") ;
       printf("-1- Effectuer une réservation\n")                ;
       printf("-2- Rechercher une réservation\n\n\n")           ;
+      printf("-3- Exécuter un check-out\n\n\n")                ;
       printf("     CHAMBRES      \n")                          ;
       printf("__________________________________________\n\n") ;
-      printf("-3- Déclarer des travaux dans une chambre.\n")   ;
-      printf("-4- Rechercher une chambre.\n\n\n")              ;
+      printf("-4- Déclarer des travaux dans une chambre.\n")   ;
+      printf("-5- Rechercher une chambre.\n\n\n")              ;
       printf("     PARAMÈTRES    \n")                          ;
       printf("__________________________________________\n\n") ;
-      printf("-5- Catalogue des services.\n\n\n")              ;
+      printf("-6- Catalogue des services.\n\n\n")              ;
       printf("     QUITTER    \n")                             ;
       printf("__________________________________________\n\n") ;
       printf("-9- Quitter l'application.\n\n")                 ;
@@ -340,10 +342,13 @@ main()
         recherche_resa()    ;
         break               ;
       case 3:
+        depart()            ;
+        break               ;
+      case 4:
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
         /*travaux();*/
         break               ;
-      case 4:
+      case 5:
         printf("Entrez le numéro de la chambre à rechercher: ") ;
         scanf("%d", &chambre_cible)                             ;
         res_chambre=rech_chambre(chambre_cible)                 ;
@@ -368,10 +373,10 @@ main()
 
         }
         break                                                                                             ;
-      case 5: /*case 7:*/
+      case 6: /*case 7:*/
         printf("C'est une fonction qui n'a pas encore été développée. Les auteurs sont des fainéants!\n") ;
         break                                                                                             ;
-      case 6:
+      case 7:
         catalogue_services_menu()                                                                         ;
         break                                                                                             ;
       case 9:
@@ -2545,6 +2550,28 @@ void recreation_note(char p_entree_note[])
   fclose(f1)                                                        ;
 }
 
+/*############################################
+#                                            #
+#              depart                        #
+#                                            #
+##############################################
+Gestion du départ: si note à régler alors afficher la note.
+
+*/
+void depart()
+{
+    int i=0 ;
+    printf("Saisir le numéro de réservation: ")    ;
+    scanf("%lu\n", &demande.code_resa)             ;
+    while (i>)
+    {
+      if (i>0)
+      {
+        printf("Il reste une note à payer \n");
+        affichage_note(p_entree_note);
+      }
+    }
+}
 
 
 
