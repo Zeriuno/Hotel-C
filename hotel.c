@@ -3053,7 +3053,7 @@ void modif_prix_chambre()
     printf("Catégorie de la chambre: chambre.\n")                  ;
     printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
     printf("Nouveau prix de la chambre en haute saison :")         ;
-    t2 = scanf("%f", nuit.prix_hs)                                 ;
+    t2 = scanf("%f", &nuit.prix_hs)                                 ;
     if(t2 == 0)
     {
       printf("Erreur de saisie\n")        ;
@@ -3066,7 +3066,7 @@ void modif_prix_chambre()
   {
     printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
     printf("Nouveau prix de la chambre en basse saison :" )        ;
-    t2 = scanf("%f", nuit.prix_bs)                                 ;
+    t2 = scanf("%f", &nuit.prix_bs)                                 ;
     if(t2 == 0)
     {
       printf("Erreur de saisie\n")        ;
@@ -3078,46 +3078,46 @@ void modif_prix_chambre()
   printf("Catégorie de la chambre: suite.\n")                    ;
   printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
   printf("Nouveau prix de la chambre en haute saison :")         ;
-  scanf("%f", nuit.prix_hs)                                      ;
+  scanf("%f", &nuit.prix_hs)                                      ;
   printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
   printf("Nouveau prix de la chambre en basse saison :" )        ;
-  scanf("%f", nuit.prix_bs)                                      ;
+  scanf("%f", &nuit.prix_bs)                                      ;
 
   printf("Type de la chambre: chambre double.\n")                ;
   printf("Catégorie de la chambre: chambre.\n")                  ;
   printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
   printf("Nouveau prix de la chambre en haute saison :")         ;
-  scanf("%f", nuit.prix_hs)                                      ;
+  scanf("%f", &nuit.prix_hs)                                      ;
   printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
   printf("Nouveau prix de la chambre en basse saison :" )        ;
-  scanf("%f", nuit.prix_bs)                                      ;
+  scanf("%f", &nuit.prix_bs)                                      ;
 
   printf("Type de la chambre: chambre double.\n")                ;
   printf("Catégorie de la chambre: suite.\n")                    ;
   printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
   printf("Nouveau prix de la chambre en haute saison :")         ;
-  scanf("%f", nuit.prix_hs)                                      ;
+  scanf("%f", &nuit.prix_hs)                                      ;
   printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
   printf("Nouveau prix de la chambre en basse saison :" )        ;
-  scanf("%f", nuit.prix_bs)                                      ;
+  scanf("%f", &nuit.prix_bs)                                      ;
 
   printf("Type de la chambre: chambre triple.\n")                ;
   printf("Catégorie de la chambre: chambre.\n")                  ;
   printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
   printf("Nouveau prix de la chambre en haute saison :")         ;
-  scanf("%f", nuit.prix_hs)                                      ;
+  scanf("%f", &nuit.prix_hs)                                      ;
   printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
   printf("Nouveau prix de la chambre en basse saison :" )        ;
-  scanf("%f", nuit.prix_bs)                                      ;
+  scanf("%f", &nuit.prix_bs)                                      ;
 
   printf("Type de la chambre: chambre triple.\n")                ;
   printf("Catégorie de la chambre: suite.\n")                    ;
   printf("Prix actuel de la chambre en haute saison : %.2f\n", nuit.prix_hs) ;
   printf("Nouveau prix de la chambre en haute saison :")         ;
-  scanf("%f", nuit.prix_hs)                                      ;
+  scanf("%f", &nuit.prix_hs)                                      ;
   printf("Prix actuel de la chambre en basse saison : %.2f\n", nuit.prix_hs) ;
   printf("Nouveau prix de la chambre en basse saison :" )        ;
-  scanf("%f", nuit.prix_bs)                                      ;
+  scanf("%f", &nuit.prix_bs)                                      ;
 
   tab_prix_chambres[NB_CHAMBRES_PRIX]=nuit                       ;
 }
