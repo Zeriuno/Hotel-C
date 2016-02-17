@@ -2262,7 +2262,7 @@ long unsigned int recherche_note_num()
   while(t1 == 0)
   {
     printf("Saisir le numéro de réservation : " ) ;
-    t2 = scanf("%lu", id_resa)  ;
+    t2 = scanf("%lu", &id_resa)  ;
     if(t2 == 0)
     {
       printf("Erreur de saisie\n")        ;
@@ -2324,7 +2324,6 @@ void menu_choix_note(char p_entree_note[])
   int t1, t2, choix_note                   ;
   FILE *f1                                 ;
 
-  int t1 = 0                               ;
   while(t1 == 0)
   {
     printf("-1- Afficher la note\n")                     ;
