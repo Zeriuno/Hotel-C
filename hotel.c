@@ -2378,13 +2378,6 @@ void affichage_note(char p_entree_note[])
   int i = 0, k, a, m, j                                       ;
   struct frais note[MAX_ENTREES_FRAIS]                        ;
 
-  struct frais
-  {
-    long int datefrais        ; /*autrement on en fera une string de 9, 'aaaammjj' (8) + '\0'*/
-    float montantfrais  ;
-    char nomfrais[]        ;
-  };
-
   f1=fopen(p_entree_note, "r")                    ;
   fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
   while(!feof(f1))
@@ -2411,15 +2404,15 @@ void affichage_note(char p_entree_note[])
     sprintf(temporaire, "%d", a)                       ;
     strcat(date_chaine, temporaire)                    ;
 
-    printf("%s %s %.2f", date_chaine note[i].nomfrais, note[i].montantfrais) ;
+    printf("%s %s %.2f", date_chaine, note[i].nomfrais, note[i].montantfrais) ;
   }
   printf("Le montant totale de la note est : %.2f euros.\n", note_total) ;
   if(i == 1000)
   {
-    printf("La note est pleine et doit être reglée.");
-    paiement_note(p_entree_note);
+    printf("La note est pleine et doit être reglée.") ;
+    paiement_note(p_entree_note)                      ;
   }
-  menu_choix_note(p_entree_note)
+  menu_choix_note(p_entree_note)                      ;
 }
 
 /*############################################
