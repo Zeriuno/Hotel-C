@@ -2566,7 +2566,7 @@ Recherche d'un service
 int rech_services(char nom_serv_rech[MAX_NOM_SERVICE])
 {
   struct entree_service service     ;
-  int i, numserv                    ;
+  int i, numserv = -1               ;
   for (i=0; i<MAX_CAT_SERV; i++)
   {
     service = catalogue_services[i] ;
@@ -2574,6 +2574,14 @@ int rech_services(char nom_serv_rech[MAX_NOM_SERVICE])
     {
       numserv = i                   ;
     }
+  }
+  if(numserv == -1)
+  {
+    return(NON_TROUVE)              ;
+  }
+  else
+  {
+    return(numserv)                 ;
   }
 }
 
