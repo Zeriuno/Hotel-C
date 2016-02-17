@@ -102,6 +102,13 @@ void paiement_cb()                         ; /* Saisie des données de la carte 
 void sauvegarde_resa()                     ; /* Les informations sur la réservation sont sauvegardées dans un fichier */
 void maj_planning()                        ; /* La nouvelle réservation est intégrée dans le planning */
 
+
+/*----------------------
+
+Travaux
+----------------------*/
+int travaux();
+
 void modification_resa()                   ; /* Modification d'une réservation. Contient toutes les suivantes */
 int chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation, retourne une valeur selon le succès ou pas de l'opération */
 void affichage_resa()                      ; /* Affichage de la réservation chargée */
@@ -2841,9 +2848,9 @@ Procédure pour déclarer des travaux
 
 
 */
-void travaux()
+int travaux()
 {
-  int cible_num_chambre, t1=0, t2                                 ;
+  int cible_num_chambre, t1=0, t2, i                                 ;
   printf("Déclaration de travaux.\n")                   ;
   cible_date()                                          ;
   while (t1 == 0)
