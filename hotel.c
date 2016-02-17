@@ -1445,7 +1445,7 @@ Le int retourné indique le résultat de l'opération.
 
 int chargement_resa(long unsigned int p_code_resa)
 {
-  char entree_resa[20], temporaire[5]     ;
+  char entree_resa[20], temporaire[11]    ;
   FILE *f1                                ;
 
   temporaire[0] = '\0'                    ;
