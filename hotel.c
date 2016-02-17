@@ -2519,7 +2519,7 @@ void paiement_note(char p_entree_note[])
        }
      }
    }
-   recreation_note(p_entree_note[]);
+   recreation_note(p_entree_note);
 }
 
 void recreation_note(char p_entree_note[])
