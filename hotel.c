@@ -110,6 +110,7 @@ void depart()                              ; /* Vérification d'une éventuelle 
 Travaux
 ----------------------*/
 void travaux()                          ;
+void maj_planning_travaux() ;
 
 void recherche_resa()                      ; /* Modification d'une réservation. Contient toutes les suivantes */
 void chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation */
@@ -3140,22 +3141,24 @@ void affichage_chambre()
 
 /*############################################
 #                                            #
-#             travaux                        #
+#                  travaux                   #
 #                                            #
 ##############################################
 
 Procédure pour déclarer des travaux
 
-
 */
 void travaux()
 {
-  int cible_num_chambre, t1=0, t2, i        ;
+  char temporaire[5], date_1[11]                     ;
+  int cible_num_chambre, t1=0, t2, i, libre, a, m, j ;
+  long unsigned int date_num                         ;
+
   printf("Déclaration de travaux.\n")       ;
   cible_date()                              ;
   while (t1 == 0)
   {
-    printf("Saisir le numéro de la chambre (0 pour quitter) : ")                           ;
+    printf("Saisir le numéro de la chambre (0 pour quitter) : ")                                      ;
     t2= scanf("%d", &cible_num_chambre)     ;
     if(t2 == 0)
     {
@@ -3166,8 +3169,13 @@ void travaux()
     {
       if(cible_num_chambre == 0)
       {
+<<<<<<< HEAD
         printf("Abandon.\n");
         printf("Retour au menu principal.\n", );
+=======
+        printf("Abandon.\n")                  ;
+        printf("Retour au menu principal.\n") ;
+>>>>>>> origin/master
       }
       else
       {
@@ -3186,7 +3194,7 @@ void travaux()
         }
         if(t2 == 0)
         {
-          printf("Le choix fait ne correspond pas à une chambre existante.\n") ;
+          printf("Le choix fait ne correspond pas à une chambre existante.\n")                        ;
         }
       }
     }
@@ -3194,29 +3202,75 @@ void travaux()
   demande.chambre_resa = cible_num_chambre              ;
   cible_date()                                          ;
   rech_periode(demande.datearrivee, demande.datedepart) ;
-  // on teste si les cases du tableau ont un code de résa 0 ou pas
-  // si oui on continue, sinon on imprime le code de résa et la jour et on renvoie au menu principal
-/*
-    if (demande.code_resa==O)
+  i = numcase_resa_date_debut                           ;
+  libre = 0                                             ;
+  while(i < numcase_resa_date_fin + 1)
+  {
+    if(planning[demande.chambre_resa][i] != 0)
     {
-
+      libre = 1                                         ;
+      date_num = calendrier[i].date                     ;
+      date_1[0] = '\0'                                  ;
+      temporaire[0] = '\0'                              ;
+      a = date_num/10000                                ;
+      m = (date_num - (a * 10000)) / 100                ;
+      j = (date_num - (a * 10000) - (m * 100))          ;
+      sprintf(temporaire, "%d", j)                      ;
+      strcat(date_1, temporaire)                        ;
+      strcat(date_1, "/")                               ;
+      sprintf(temporaire, "%d", m)                      ;
+      strcat(date_1, temporaire)                        ;
+      strcat(date_1, "/")                               ;
+      sprintf(temporaire, "%d", a)                      ;
+      strcat(date_1, temporaire)                        ;
+      if(planning[demande.chambre_resa][i] == 1)
+      {
+        printf("Le %s la chambre est déjà en travaux\n", date_1);
+      }
+      else
+      {
+        printf("La chambre est occupée le %s par la réservation %lu\n", date_1, planning[demande.chambre_resa][i]) ;
+      }
+      i++                                               ;
     }
-
-
-
-// si pas de nouvelles chambres trouvées alors annulation_resa()
-// printf("Remboursement total de la réservation, soit %.2f", demande.total_resa);
-
- //affecter le numéro de résa à 1
-    /*
-    sauvegarde_resa();
-    maj_planning   ;
-    */
-  /*}*/
-  return(1);
+  }
+  if(libre != 0)
+  {
+    printf("Impossible de déclarer des travaux, veuillez modifier les réservatons avant.\n");
+  }
+  else
+  {
+    demande.code_resa = 1    ;
+    maj_planning_travaux()   ;
+    printf("La déclaration de travaux a bien été effectuée\n") ;
+  }
 }
 
+/*############################################
+#                                            #
+#            maj_planning_travaux            #
+#                                            #
+##############################################
 
+Une fois la demande de travaux validée, insertion dans le planning.
+
+*/
+
+void maj_planning_travaux()
+{
+  int i, j = 0 ;
+
+
+  while(demande.chambre_resa != tab_chambres[j].num_chambre ) /*Recherche, dans le tableau des chambres, de l'indice auquel correspond la case avec le bon num_chambre*/
+  {
+    j++        ;
+  }
+
+  for(i = numcase_resa_date_debut ; i < numcase_resa_date_fin + 1 ; i++)
+  {
+    planning[j][i] = demande.code_resa ;
+  }
+}
 
 /*############################################
 #                                            #
