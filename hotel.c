@@ -2432,9 +2432,11 @@ Prend en paramètre l'identifiant d'une note.
 
 void ajout_note(char p_entree_note[])
 {
-  char date[11]                           ;
-  int t1 = 0, t2, ajout_frais             ;
+  char date[11], note_nom_cli[MAX_NOM_CLI], note_pnom_cli[MAX_PNOM_CLI] ;
+  int t1 = 0, t2, ajout_frais, j, i       ;
   FILE *f1                                ;
+  struct entree_service ajout             ;
+  struct frais note[MAX_ENTREES_FRAIS]    ;
 
   affichage_catalogue()                   ;
 
@@ -2452,6 +2454,32 @@ void ajout_note(char p_entree_note[])
       t1 = 1                              ;
     }
   }
+  ajout = catalogue_services[i]           ;
+
+  f1=fopen(p_entree_note, "r")            ;
+  fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
+  while(!feof(f1))
+  {
+    fscanf(f1, "%lu %s %f", &note[i].datefrais, note[i].nomfrais, &note[i].montantfrais) ;
+    i++                                      ;
+  }
+  fclose(f1)                                 ;
+
+  note[i].datefrais = calendrier[0].date     ;
+  strcpy(note[i].nomfrais, ajout.nom_service);
+  note[i].montantfrais = ajout.prix_service  ;
+
+  i++                                        ;
+  j = 0                                      ;
+
+  f1=fopen(p_entree_note, "r")               ;
+  fprintf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ;
+  while(j < i)
+  {
+    fprintf(f1, "%lu %s %f", note[j].datefrais, note[j].nomfrais, note[j].montantfrais) ;
+    j++                                      ;
+  }
+  fclose(f1)                                 ;
 }
 
 /*############################################
