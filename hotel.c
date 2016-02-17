@@ -2882,7 +2882,7 @@ void travaux()
       }
     }
   }
-  chambre.num_chambre = cible_num_chambre               ;
+  demande.chambre_resa = cible_num_chambre               ; /*on peut plutôt affecter le champ dans la structure demande*/
   rech_periode(demande.datearrivee, demande.datedepart) ;
   // on teste si les cases du tableau ont un code de résa 0 ou pas
   // si oui on continue, sinon on imprime le code de résa et la jour et on renvoie au menu principal
