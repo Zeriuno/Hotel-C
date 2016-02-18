@@ -586,34 +586,6 @@ void chargement_planning()
 
 /*############################################
 #                                            #
-#         enregistrement_planning            #
-#                                            #
-##############################################
-
-Appelée après par maj_planning et maj_planning_travaux.
-Sauvegarde dans le fichier PLANNING les données du planning présentes en mémoire.
-
-*/
-
-
-void enregistrement_planning()
-{
-  FILE *f1                               ;
-  int i, j                               ;
-  f1 = fopen(PLANNING, "w")              ;
-  for(i = 0 ; i < MAX_NB_CHAMBRES ; i++)
-  {
-    for(j = 0 ; j < ANNEE ; j++)
-    {
-      fprintf(f1, "%lu", planning[i][j]) ;
-    }
-  }
-  fclose(f1)                             ;
-}
-
-
-/*############################################
-#                                            #
 #              maj_planning                  #
 #                                            #
 ##############################################
@@ -682,6 +654,8 @@ Appelé dans annul_origine(), après on revient au menu principal.
 Appelle enregistrement_planning().
 À partir du code_resa, on supprime la case dans le planning: on remet à 0
 
+Le calcul pour trouver les cases du planning pourrait être extrait, car dans un des deux cas -passage par annul_client()- il a déjà eu lieu. Il s'agit de le sortir et ne le faire qu'en cas d'annulation par l'hôtel.
+
 */
 
 void annulation_resa_planning()
@@ -706,6 +680,206 @@ void annulation_resa_planning()
   printf("L'annulation a bien été effectuée. \n") ;
 }
 
+/*############################################
+#                                            #
+#         enregistrement_planning            #
+#                                            #
+##############################################
+
+Appelée par maj_planning, maj_planning_travaux et annulation_resa_planning.
+Sauvegarde dans le fichier PLANNING les données du planning présentes en mémoire.
+
+*/
+
+
+void enregistrement_planning()
+{
+  FILE *f1                               ;
+  int i, j                               ;
+  f1 = fopen(PLANNING, "w")              ;
+  for(i = 0 ; i < MAX_NB_CHAMBRES ; i++)
+  {
+    for(j = 0 ; j < ANNEE ; j++)
+    {
+      fprintf(f1, "%lu", planning[i][j]) ;
+    }
+  }
+  fclose(f1)                             ;
+}
+/*############################################
+#                                            #
+#               programme_crea               #
+#                                            #
+##############################################
+
+Lit le planning de hier, celui d'aujourd'hui et prépare le programme de la journée en confrontant les codes de réservation.
+
+*/
+void programme_crea(int p_hier)
+{
+  FILE *f1 ;
+  int i, cpt_libres = 0, cpt_hiertr = 0, cpt_aujtr = 0, cpt_recouche = 0, cpt_senva = 0, cpt_arrive = 0 ;
+  int hier_travaux[MAX_NB_CHAMBRES], auj_travaux[MAX_NB_CHAMBRES], recouche[MAX_NB_CHAMBRES], gdmen[MAX_NB_CHAMBRES], libres[MAX_NB_CHAMBRES] ;
+  long unsigned int senva[MAX_NB_CHAMBRES], arrive[MAX_NB_CHAMBRES], chambre_hier, chambre_auj          ;
+
+  chargement_planning()                                        ;
+  for(i = 0 ; i < MAX_NB_CHAMBRES ; i++)
+  {
+    chambre_hier = planning[i][p_hier]                         ;
+    chambre_auj = planning[i][p_hier+1]                        ;
+    switch(chambre_hier)
+    {
+      case 0:
+        break                                                  ;
+      case 1:
+        if(chambre_auj != 1)
+        hier_travaux[cpt_hiertr] = tab_chambres[i].num_chambre ;
+        cpt_hiertr++                                           ;
+        break                                                  ;
+      default:
+        if(chambre_hier == chambre_auj)
+        {
+          recouche[cpt_recouche] = tab_chambres[i].num_chambre ;
+          cpt_recouche++                                       ;
+        }
+        else
+        {
+          senva[cpt_senva] = chambre_hier                      ;
+          gdmen[cpt_senva] = tab_chambres[i].num_chambre       ;
+          cpt_senva++                                          ;
+        }
+    }
+    switch(chambre_auj)
+    {
+      case 0:
+        libres[cpt_libres] = tab_chambres[i].num_chambre       ;
+        cpt_libres++                                           ;
+        break                                                  ;
+      case 1:
+        auj_travaux[cpt_aujtr] = tab_chambres[i].num_chambre   ;
+        cpt_aujtr++                                            ;
+        break                                                  ;
+      default:
+        if(chambre_auj != chambre_hier)
+        {
+          arrive[cpt_arrive] = chambre_auj                     ;
+        }
+    }
+  }
+
+  f1 = fopen(PROGRAMME, "w")                                   ;
+  fprintf(f1, "PROGRAMME DU JOUR\n\n")                         ;
+  fprintf(f1, "Départs")                                       ;
+  if(cpt_senva == 0)
+  {
+    fprintf(f1, " : aucun.\n")                                 ;
+  }
+  else
+  {
+    fprintf(f1, "\n")                                          ;
+    for(i = 0 ; i < cpt_senva; i++)
+    {
+      fprintf(f1, "Chambre n.%d\n, réservation n.%lu", gdmen[i], senva[i]) ;
+    }
+  }
+  fprintf(f1, "Arrivées")                            ;
+  if(cpt_arrive == 0)
+  {
+    fprintf(f1, " : aucune.\n")                      ;
+  }
+  else
+  {
+    fprintf(f1, "\n")                                ;
+    for(i = 0 ; i < cpt_arrive; i++)
+    {
+      fprintf(f1, "Réservation n.%lu\n", arrive[i])  ;
+    }
+  }
+  fprintf(f1, "Chambres libres")                     ;
+  if(cpt_libres == 0)
+  {
+    fprintf(f1, " : aucune.\n")                      ;
+  }
+  else
+  {
+    fprintf(f1, "\n")                                ;
+    for( i = 0 ; i < cpt_libres ; i++)
+    {
+      fprintf(f1, "Chambre n.%d\n", libres[i])       ;
+    }
+  }
+  fprintf(f1, "Ménage, recouches")                   ;
+  if(cpt_recouche == 0)
+  {
+    fprintf(f1, " : aucune.\n")                      ;
+  }
+  else
+  {
+    fprintf(f1, "\n");
+    for( i = 0 ; i < cpt_recouche ; i++)
+    {
+      fprintf(f1, "Chambre n.%d\n", recouche[i])     ;
+    }
+  }
+  fprintf(f1, "Ménage, grand ménage")                ;
+  if(cpt_senva == 0)
+  {
+    fprintf(f1, " : aucun.\n")                       ;
+  }
+  else
+  {
+    fprintf(f1, "\n")                                ;
+    for(i = 0 ; i < cpt_senva; i++)
+    {
+      fprintf(f1, "Chambre n.%d\n", gdmen[i])        ;
+    }
+  }
+  fprintf(f1, "Travaux finis hier, à vérifier")      ;
+  if(cpt_hiertr == 0)
+  {
+    fprintf(f1, " : aucun.\n")                       ;
+  }
+  else
+  {
+    fprintf(f1, "\n")                                ;
+    for(i = 0 ; i < cpt_hiertr; i++)
+    {
+      fprintf(f1, "Chambre n.%d\n", hier_travaux[i]) ;
+    }
+  }
+  fprintf(f1, "Travaux prévus pour aujourd'hui")     ;
+  if(cpt_aujtr == 0)
+  {
+    fprintf(f1, " : aucun.\n")                       ;
+  }
+  else
+  {
+    fprintf(f1, "\n")                                ;
+    for(i = 0 ; i < cpt_aujtr; i++)
+    {
+      fprintf(f1, "Chambre n.%d\n", auj_travaux[i])  ;
+    }
+  }
+  fclose(f1)                                         ;
+  printf("Le programme de la journée est prêt.\n")   ;
+}
+
+
+/*############################################
+#                                            #
+#               programme_lis                #
+#                                            #
+##############################################
+
+Appelée dans le menu principal.
+Affiche le programme du jour via cat.
+Ce n'est pas que de la fainéantise, c'est aussi pour permettre à l'utilisateur d'imprimer le fichier!
+*/
+
+void programme_lis()
+{
+  system("cat 1-Parametres/programme.txt") ;
+}
 /*############################################
 #                                            #
 #             PARTIE RESERVATIONS            #
