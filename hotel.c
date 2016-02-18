@@ -2384,6 +2384,8 @@ void creation_note()
 #                                            #
 ##############################################
 
+Appelée dans le menu principal.
+
 */
 void menu_recherche_note()
 {
