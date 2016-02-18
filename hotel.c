@@ -73,9 +73,9 @@ Chambres
 void chargement_chambres()                 ; /* Procédure lancée au démarrage: les chambres sont chargées dans un tableau à partir du fichier (défini dans les constantes)*/
 int rech_chambre(int chambre_rech)         ; /* Trouver une chambre à partir d'un numéro de chambre */
 void modification_chambre(int res_chambre) ;
-void enreg_chambre()                       ;
-void affichage_chambre()                   ;
-void modif_prix_chambre()                  ;
+void enreg_chambre()                       ; /* Enregistrer les changemens apportés aux chambres */
+void affichage_chambre()                   ; /* Montre toutes les caractéristiques */
+void modif_prix_chambre()                  ; /* Modification du prix des nuitées */
 
 /*----------------------
 
@@ -163,7 +163,6 @@ void suppression_service()                            ; /* Suppression d'un serv
 
 Nuitées
 ----------------------*/
-void modif_prix_chambre()                  ; /* Modification du prix des nuitées */
 void catalogue_services_menu()             ; /* Menu qui montre les choix possibles pour le catalogue de services */
 void chargement_catalogue_services()       ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente */
 void affichage_catalogue()                 ; /* Montre le tableau de services */
