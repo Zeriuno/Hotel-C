@@ -72,7 +72,7 @@ Chambres
 ----------------------*/
 void chargement_chambres()                 ; /* Procédure lancée au démarrage: les chambres sont chargées dans un tableau à partir du fichier (défini dans les constantes)*/
 int rech_chambre(int chambre_rech)         ; /* Trouver une chambre à partir d'un numéro de chambre */
-void modification_chambre(int res_chambre) ;
+void modification_chambre(int res_chambre) ; /* Modifier les caractéristiques d'une chambre */
 void enreg_chambre()                       ; /* Enregistrer les changemens apportés aux chambres */
 void affichage_chambre()                   ; /* Montre toutes les caractéristiques */
 void modif_prix_chambre()                  ; /* Modification du prix des nuitées */
