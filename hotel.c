@@ -2103,73 +2103,103 @@ Calcul du préavis afin de rembourser la réservation.
 
 void annul_client()
 {
-  int test, t2, deja                                               ;
-  long unsigned int nb_resa_annul                                  ;
+  char c                                                                ;
+  int t1, t2, trouve = 0, deja= 0, i = 0, j = 0                         ;
+  long unsigned int nb_resa_annul                                       ;
 
-
-  printf("Saisir le numéro de réservation (0 pour revenir au menu principal) : ") ;
-  t2 = scanf("%lu", &nb_resa_annul)                                ;
-  if(t2 == 0)
+  while(t1 == 0)
   {
-    printf("Erreur de saisie.\n")                                  ;
-    while((poubelle=getchar()) != '\n')                            ;
-    else
-  }
-
-  while((poubelle=getchar()) != '\n')                              ;
-  printf("L'annulation a-t-elle été demandée aujourd'hui (o/n) ?") ;
-  scanf("%c", &c)                                                  ;
-  if(c != 'o')
-  {
-    if(choix_date == 'n')
+    printf("Saisir le numéro de réservation (0 pour revenir au menu principal) : ") ;
+    t2 = scanf("%lu", &nb_resa_annul)                                   ;
+    if(t2 == 0)
     {
-      while((poubelle=getchar()) != '\n')                          ;
-      printf("Il y a combien de jours ? ")                         ;
-      t2 = scanf("%d", &deja)                                      ;
-      if(t2 == 0)
+      printf("Erreur de saisie.\n")                                     ;
+      while((poubelle=getchar()) != '\n')                               ;
+    }
+    else
+    {
+      if(nb_resa_annul == 0)
       {
-        printf("Erreur de saisie.\n")                              ;
-        while((poubelle=getchar()) != '\n')                        ;
+        printf("Abandon.\nRetour au menu principal.\n")               ;
+        t1 = 1                                                        ;
+      }
+      else
+      {
+        if(nb_resa_annul > nb_resa)
+        {
+          printf("Cette réservation n'a pas encore été effectuée.\n") ;
+        }
+        else
+        {
+          while((trouve == 0 ) || (i < ANNEE))
+          {
+            if(planning[j][i] == nb_resa_annul) /* i sera l'indice du calendrier et indiquera donc les jours de préavis*/
+            {
+              trouve = 1                                              ;
+            }
+            else
+            {
+              if(j < MAX_NB_CHAMBRES)
+              {
+                j++                                                   ;
+              }
+              else
+              {
+                j = 0                                                 ;
+                i++                                                   ;
+              }
+            }
+          }
+          printf("La réservation est déjà passée.\n")                 ;
+          if(trouve == 1)
+          {
+            while((poubelle=getchar()) != '\n')                              ;
+            printf("L'annulation a-t-elle été demandée aujourd'hui (o/n) ?") ;
+            scanf("%c", &c)                                                  ;
+            if(c != 'o')
+            {
+              if(c == 'n')
+              {
+                while((poubelle=getchar()) != '\n')                          ;
+                printf("Il y a combien de jours ? ")                         ;
+                t2 = scanf("%d", &deja)                                      ;
+                if(t2 == 0)
+                {
+                  printf("Erreur de saisie.\n")                              ;
+                  while((poubelle=getchar()) != '\n')                        ;
+                }
+              }
+              else
+              {
+                printf("Choix non accepté. Les choix possibles sont 'o' pour 'oui' ou 'n' pour 'non'.\n") ;
+                while((poubelle=getchar()) != '\n')                          ;
+              }
+            }
+            i += deja ;
+            switch(i) /* y en a marre des if */
+            {
+              case 1: case 2: case 3: case 4: case 5: case 6:
+                printf("Annullation la dernière semaine : aucun remboursement.\n") ;
+                /*maj planning*/
+                break ;
+              case 7: case 8: case 9: case 10: case 11: case 12: case 13: case 14:
+                printf("La réservation sera remboursée à hauteur de trente pour cent.\n") ;
+                /*remboursement_partiel(30)*/
+                /*maj_planning*/
+                break;
+              default:
+                printf("La réservation sera remboursée à hauteur de soixante-dix pour cent.\n") ;
+                /*remboursement_partiel(70)*/
+                /*maj_planning*/
+                break;
+            }
+          }
+        }
       }
     }
-    else
-    {
-      printf("Choix non accepté. Les choix possibles sont 'o' pour 'oui' ou 'n' pour 'non'.\n") ;
-      while((poubelle=getchar()) != '\n')                          ;
-    }
   }
-
-  test = scanf("%d/%d/%d", &d, &m, &a)               ;
-  if(test == 0)
-  {
-    printf("Erreur de saisie.\n")                    ;
-    while((poubelle=getchar()) != '\n')              ;
-  }
-  /*
-  while (calendrier[i].date != demande.datearrivee)
-  {
-    i++;
-  }
-  /*  i = ecart de jours entre la date du jour et la date de début du séjour*//*
-  if (i>14)
-  {
-    printf("Remboursement de 70%, soit %.2f \n", 0.7*demande.total_resa);
-  }
-  else
-  {
-   if (i>7)
-   {
-    printf("Remboursement de 30%, soit %.2f \n", 0.3*demande.total_resa);
-   }
-   else
-   {
-    printf("Pas de remboursement.") ;
-   }
-  }                                              ;
-  printf("Le remboursement total de la réservation a été effectué, soit %.2f\n", demande.total_resa);
-  annulation_resa();
-  maj_planning(); */
 }
+
 
 /*############################################
 #                                            #
