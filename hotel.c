@@ -459,6 +459,7 @@ void test_date()
       else
       {
         printf("Choix non accepté. Les choix possibles sont 'o' pour 'oui' ou 'n' pour 'non'.\n") ;
+        while((poubelle=getchar()) != '\n')            ;
       }
     }
   }
@@ -920,25 +921,21 @@ Trouve les indices des cases dans le planning pour les dates données.
 
 void rech_periode(long unsigned int datearrivee, long unsigned int datedepart)
 {
+  int i=0                                   ;
 
-/*demande.date arrivee parcourir le tableau pour trouver la même valeur: indice
-de la case de la date et boucler à partir de la date vers la suivante pour avoir les deux indices*/
-
-  int i=0                      ;
-
-  numcase_resa_date_debut=NON_TROUVE   ;
-  numcase_resa_date_fin=NON_TROUVE   ;
+  numcase_resa_date_debut=NON_TROUVE        ;
+  numcase_resa_date_fin=NON_TROUVE          ;
 
 
   while((i<ANNEE)&&(numcase_resa_date_debut==NON_TROUVE))
   {
     if(demande.datearrivee==calendrier[i].date)
     {
-      numcase_resa_date_debut=i ;
+      numcase_resa_date_debut=i             ;
     }
     else
     {
-      i++               ;
+      i++                                   ;
     }
   }
   if (numcase_resa_date_debut!=NON_TROUVE)
@@ -947,11 +944,11 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
     {
       if(demande.datedepart==calendrier[i].date)
       {
-        numcase_resa_date_fin=i ;
+        numcase_resa_date_fin=i              ;
       }
       else
       {
-        i++               ;
+        i++                                  ;
       }
     }
   }
@@ -961,7 +958,7 @@ de la case de la date et boucler à partir de la date vers la suivante pour avoi
   }
   if (numcase_resa_date_fin==NON_TROUVE)
   {
-    printf("Date de départ non trouvée\n") ;
+    printf("Date de départ non trouvée\n")   ;
   }
 }
 
@@ -3152,28 +3149,28 @@ void travaux()
 {
   char temporaire[5], date_1[11]                                    ;
   int cible_num_chambre, t1=0, t2, i, libre, a, m, j, k             ;
-  long unsigned int date_num                                        ;
+  long unsigned int date_num                         ;
 
   printf("Déclaration de travaux.\n")                               ;
   cible_date()                                                      ;
   while (t1 == 0)
   {
     printf("Saisir le numéro de la chambre (0 pour quitter) : ")    ;
-    t2= scanf("%d", &cible_num_chambre)                             ;
-    if(t2 == 0)
+    t2 = scanf("%d", &cible_num_chambre)                            ;
+    if(t2 == 0)  /* test de la saisie */
     {
       printf("Erreur de saisie.\n")                                 ;
       while((poubelle=getchar()) != '\n')                           ;
     }
     else
     {
-      if(cible_num_chambre == 0)
+      if(cible_num_chambre == 0) /* abandon */
       {
         printf("Abandon.\n")                                        ;
         printf("Retour au menu principal.\n")                       ;
-        t1=1;
+        t1 = 1                                                      ;
       }
-      else
+      else /* la saisie correspond-t-elle à une chambre?*/
       {
         i = 0                                                       ;
         t2 = 0                                                      ;
@@ -3194,24 +3191,20 @@ void travaux()
         }
         else
         {
-          t1 = 1                                                    ;
+          t1 = 2                                                    ; /* pour sortir de la boucle de saisie */
+          demande.chambre_resa = cible_num_chambre                  ; /* Nous savons maintenant que la valeur saisie est celle d'une chambre, on la stocke dans la structure demande */
         }
-      }
+      } /* sortie du test de chambre */
     }
-  }
+  } /* sortie de la boucle de saisie */
 
-
-  demande.chambre_resa = cible_num_chambre              ;
+  if(t1 == 2)
+  {
   rech_periode(demande.datearrivee, demande.datedepart) ;
-
-  /*i garde l'indice du tableau qui correspond à la chambre souhaitée*/
   k = numcase_resa_date_debut                           ;
-
   libre = 0                                             ;
   while(k < numcase_resa_date_fin + 1)
   {
-    printf("k = %d\n", k) ; /*debug*/
-    printf("numcase_resa_date_fin = %d\n", numcase_resa_date_fin) ; /*debug*/
     if(planning[i][k] != 0)
     {
       libre = 1                                         ;
@@ -3237,8 +3230,8 @@ void travaux()
       {
         printf("La chambre est occupée le %s par la réservation %lu\n", date_1, planning[i][k]) ;
       }
-      i++                                               ;
     }
+    k++                                                 ;
   }
   if(libre != 0)
   {
@@ -3251,7 +3244,7 @@ void travaux()
     printf("La déclaration de travaux a bien été effectuée\n") ;
   }
 }
-
+}
 
 /*############################################
 #                                            #
