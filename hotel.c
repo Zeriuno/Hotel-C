@@ -81,6 +81,9 @@ void modif_prix_chambre()                  ;
 Planning
 ----------------------*/
 void chargement_planning()                 ; /* Procédure lancée au démarrage: le planning est chargé dans un tableau à partir du fichier (défini dans les constantes)*/
+void enregistrement_planning()             ;
+void maj_planning()                        ; /* La nouvelle réservation est intégrée dans le planning */
+void maj_planning_travaux()                ; /* La nouvelle déclaration de travaux est intégrée dans le planning */
 
 
 /*----------------------
@@ -101,7 +104,6 @@ void nouveau_nb_resa()                     ; /* Un numéro de réservation est a
 void paiement_resa()                       ; /* Paiement de la réservation */
 void paiement_cb()                         ; /* Saisie des données de la carte bancaire en cas de paiement par cb */
 void sauvegarde_resa()                     ; /* Les informations sur la réservation sont sauvegardées dans un fichier */
-void maj_planning()                        ; /* La nouvelle réservation est intégrée dans le planning */
 void depart()                              ; /* Vérification d'une éventuelle note à payer au moment du départ */
 
 
@@ -110,7 +112,6 @@ void depart()                              ; /* Vérification d'une éventuelle 
 Travaux
 ----------------------*/
 void travaux()                          ;
-void maj_planning_travaux() ;
 
 void recherche_resa()                      ; /* Modification d'une réservation. Contient toutes les suivantes */
 void chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation */
@@ -553,6 +554,9 @@ void maj_calendrier(int i)
 #                                            #
 ##############################################
 
+Appelée au lancement du programme.
+Charge en mémoire les données du planning présentes dans le fichier PLANNING.
+
 */
 
 void chargement_planning()
@@ -568,6 +572,94 @@ void chargement_planning()
     }
   }
   fclose(f1)                             ;
+}
+
+/*############################################
+#                                            #
+#         enregistrement_planning            #
+#                                            #
+##############################################
+
+Appelée après par maj_planning et maj_planning_travaux.
+Sauvegarde dans le fichier PLANNING les données du planning présentes en mémoire.
+
+*/
+
+
+void enregistrement_planning()
+{
+  FILE *f1                               ;
+  int i, j                               ;
+  f1 = fopen(PLANNING, "w")              ;
+  for(i = 0 ; i < MAX_NB_CHAMBRES ; i++)
+  {
+    for(j = 0 ; j < ANNEE ; j++)
+    {
+      fprintf(f1, "%lu", planning[i][j]) ;
+    }
+  }
+  fclose(f1)                             ;
+}
+
+
+/*############################################
+#                                            #
+#              maj_planning                  #
+#                                            #
+##############################################
+
+Appelée par creer_reservation().
+Appelle enregistrement_planning().
+Une fois la réservation validée, son code est inséré dans le planning aux cases déjà déterminées dans rech_periode().
+
+*/
+
+void maj_planning()
+{
+  int i, j = 0 ;
+
+
+  while(demande.chambre_resa != tab_chambres[j].num_chambre ) /*Recherche, dans le tableau des chambres, de l'indice auquel correspond la case avec le bon num_chambre*/
+  {
+    j++                                ;
+  }
+
+  for(i = numcase_resa_date_debut ; i < numcase_resa_date_fin + 1 ; i++)
+  {
+    planning[j][i] = demande.code_resa ;
+  }
+  enregistrement_planning()            ;
+  printf("La réservation %lu a bien été insérée dans le planning.\n", demande.code_resa) ;
+}
+
+/*############################################
+#                                            #
+#            maj_planning_travaux            #
+#                                            #
+##############################################
+
+Appelée par travaux().
+Appelle enregistrement_planning().
+
+Une fois la demande de travaux validée, insertion dans le planning.
+
+*/
+
+void maj_planning_travaux()
+{
+  int i, j = 0                         ;
+
+
+  while(demande.chambre_resa != tab_chambres[j].num_chambre ) /*Recherche, dans le tableau des chambres, de l'indice auquel correspond la case avec le bon num_chambre*/
+  {
+    j++                                ;
+  }
+
+  for(i = numcase_resa_date_debut ; i < numcase_resa_date_fin + 1 ; i++)
+  {
+    planning[j][i] = demande.code_resa ;
+  }
+  enregistrement_planning()            ;
 }
 
 /*############################################
@@ -1362,33 +1454,6 @@ void sauvegarde_resa()
   fprintf(f1, "%lu %d %lu %lu %d %d %s %s %s %.2f %d", demande.code_resa, demande.chambre_resa, demande.datearrivee, demande.datedepart, demande.nuitees_resa[0], demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient, demande.total_resa, demande.mode_paiement);
   fclose(f1)                                    ;
   printf("La réservation n.%lu a bien été enregistrée.\n", demande.code_resa) ;
-}
-
-/*############################################
-#                                            #
-#              maj_planning                  #
-#                                            #
-##############################################
-
-Une fois la réservation validée, son code est inséré dans le planning aux cases déjà déterminées dans rech_periode().
-
-*/
-
-void maj_planning()
-{
-  int i, j = 0 ;
-
-
-  while(demande.chambre_resa != tab_chambres[j].num_chambre ) /*Recherche, dans le tableau des chambres, de l'indice auquel correspond la case avec le bon num_chambre*/
-  {
-    j++        ;
-  }
-
-  for(i = numcase_resa_date_debut ; i < numcase_resa_date_fin + 1 ; i++)
-  {
-    planning[j][i] = demande.code_resa ;
-  }
-  printf("La réservation %lu a bien été insérée dans le planning.\n", demande.code_resa) ;
 }
 
 
@@ -3239,37 +3304,11 @@ void travaux()
   }
   else
   {
-    demande.code_resa = 1    ;
-    maj_planning_travaux()   ;
+    demande.code_resa = 1                                      ;
+    maj_planning_travaux()                                     ;
     printf("La déclaration de travaux a bien été effectuée\n") ;
   }
 }
-}
-
-/*############################################
-#                                            #
-#            maj_planning_travaux            #
-#                                            #
-##############################################
-
-Une fois la demande de travaux validée, insertion dans le planning.
-
-*/
-
-void maj_planning_travaux()
-{
-  int i, j = 0 ;
-
-
-  while(demande.chambre_resa != tab_chambres[j].num_chambre ) /*Recherche, dans le tableau des chambres, de l'indice auquel correspond la case avec le bon num_chambre*/
-  {
-    j++        ;
-  }
-
-  for(i = numcase_resa_date_debut ; i < numcase_resa_date_fin + 1 ; i++)
-  {
-    planning[j][i] = demande.code_resa ;
-  }
 }
 
 /*############################################
