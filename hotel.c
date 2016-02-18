@@ -113,8 +113,9 @@ void choix_modif_resa()                    ; /* Choisir entre modification, annu
 void modif_resa()                          ; /* Modification des dates et des informations client. */
 void modif_resa_cha()                      ;
 void annul_origine()                       ; /* Menu de choix selon l'origine de la demande d'annulation */
-void remboursement()                       ;
+void remboursement()                       ; /* En cas de remboursement integral */
 void annul_client()                        ;
+void remboursement_partiel(int p_poursan)  ;
 void annulation_resa_planning()            ; /* Met en acte l'annulation en changeant le planning*/
 
 
