@@ -85,7 +85,9 @@ void chargement_planning()                 ; /* Procédure lancée au démarrage
 void enregistrement_planning()             ;
 void maj_planning()                        ; /* La nouvelle réservation est intégrée dans le planning */
 void maj_planning_travaux()                ; /* La nouvelle déclaration de travaux est intégrée dans le planning */
-
+void annulation_resa_planning()            ; /* Met en acte l'annulation en changeant le planning */
+void programme_crea(int p_hier)            ; /* Appellé par maj_calendrier, prépare le programme de la journée */
+void programme_lis()                       ; /* Permet de consulter le programme de la journée */
 
 /*----------------------
 
@@ -96,16 +98,19 @@ void chargement_prix()                     ; /* Chargement des paramètres, au d
 
 void creer_reservation()                   ; /* Création d'une réservation. Contient toutes les suivantes */
 void cible_date()                          ; /* Saisie de la période demandée */
-void cible_chambre()                       ; /* Saisie des critères demandés pour la chambre */
+void cible_chambre()                       ; /* Saisie de tous les critères demandés pour la chambre */
+void cible_chambre_simple()                ; /* Choix de la chambre simplifié */
 void rech_periode(long unsigned int datearrivee, long unsigned int datedepart) ; /* Identification des cases correspondantes à la période demandée dans le tableau planning */
 void calcul_nuitees()                      ; /* Calcul des nuitées selon saison pour la période demandée*/
 int choix_chambre()                        ; /* Identification des chambres disponibles dans la période selon les critères demandés */
+int choix_chambre_simple()                 ; /* Identification des chambres disponibles dans la période selon les critères simplifiés */
 void saisie_client()                       ; /* Saisie des informations sur le client */
 void nouveau_nb_resa()                     ; /* Un numéro de réservation est affecté à la demande de réservation en cours de traitement */
 void paiement_resa()                       ; /* Paiement de la réservation */
 void paiement_cb()                         ; /* Saisie des données de la carte bancaire en cas de paiement par cb */
 void sauvegarde_resa()                     ; /* Les informations sur la réservation sont sauvegardées dans un fichier */
 void depart()                              ; /* Vérification d'une éventuelle note à payer au moment du départ */
+void supprime_resa(long unsigned int p_code_resa) ;/* Appelée par depart() ou bien suite à l'annulation */
 void recherche_resa()                      ; /* Modification d'une réservation. Contient toutes les suivantes */
 void chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation */
 void affichage_resa()                      ; /* Affichage de la réservation chargée */
@@ -115,9 +120,7 @@ void modif_resa_cha()                      ;
 void annul_origine()                       ; /* Menu de choix selon l'origine de la demande d'annulation */
 void remboursement()                       ; /* En cas de remboursement integral */
 void annul_client()                        ; /* Défini si il doit y avoir remboursement, à quel niveau, et puis met à jour le planning */
-void remboursement_partiel(int p_poursan)  ; /* Rembourse le client en fonction du pourcentage indiqué par le paramètre p_poursan*/
-void annulation_resa_planning()            ; /* Met en acte l'annulation en changeant le planning*/
-
+void remboursement_partiel(int p_poursan)  ; /* Rembourse le client en fonction du pourcentage indiqué par le paramètre p_poursan */
 
 /*----------------------
 
@@ -134,31 +137,33 @@ void creation_note()                       ; /* Création de la note, vide. Appe
 void menu_recherche_note()                 ; /* Permet de choisir entre recherche_note_cha et recherche_note_num */
 void recherche_note_cha()                  ; /* Prend un numéro de chambre et le passe à menu_choix_note */
 void recherche_note_num()                  ; /* Prend un numéro de réservation et le passe à menu_choix_note */
-void menu_choix_note(char p_entree_note[]) ;
+void menu_choix_note(char p_entree_note[]) ; /* Offre le choix entre les trois suivantes */
 void affichage_note(char p_entree_note[])  ; /* La note est affichée ensuite choix possibles (ajout, règlement)*/
-void ajout_note(char p_entree_note[])      ;
-void paiement_note(char p_entree_note[])   ;
-void recreation_note(char p_entree_note[]) ;
+void ajout_note(char p_entree_note[])      ; /* Ajout d'une entrée dans le fichier de la note */
+void paiement_note(char p_entree_note[])   ; /* Paiement de la note*/
+void recreation_note(char p_entree_note[]) ; /* Une fois la note payée elle est remise à zéro */
+void supprime_note(long unsigned int p_code_resa) ; /* Suppression de la note */
+
 
 /*----------------------
 
 Gestion des services
 complémentaires
 ----------------------*/
-void catalogue_services_menu()                       ; /* Menu qui montre les choix possibles pour le catalogue de services */
-void chargement_catalogue_services()                 ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente */
-void affichage_catalogue()                           ; /* Montre le tableau de services */
-void saisie_services()                               ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés */
-void enreg_catalogue_services()                      ; /* Sauvegarde le tableau chargé en mémoire dans un fichier */
-void modif_services()                                ; /* Pour modifier les services déjà listés */
+void catalogue_services_menu()                        ; /* Menu qui montre les choix possibles pour le catalogue de services */
+void chargement_catalogue_services()                  ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente */
+void affichage_catalogue()                            ; /* Montre le tableau de services */
+void saisie_services()                                ; /* Pour saisir de nouveaux services, à la suite de ceux déjà listés */
+void enreg_catalogue_services()                       ; /* Sauvegarde le tableau chargé en mémoire dans un fichier */
+void modif_services()                                 ; /* Pour modifier les services déjà listés */
 int rech_service(char nom_serv_rech[MAX_NOM_SERVICE]) ; /* Recherche pour la suppression d'un service*/
-void suppression_service()                           ; /* Suppression d'un service */
+void suppression_service()                            ; /* Suppression d'un service */
 
 /*----------------------
 
 Nuitées
 ----------------------*/
-void modif_prix_chambre()                      ; /* Modification du prix des nuitées */
+void modif_prix_chambre()                  ; /* Modification du prix des nuitées */
 void catalogue_services_menu()             ; /* Menu qui montre les choix possibles pour le catalogue de services */
 void chargement_catalogue_services()       ; /* Prend le fichier des services et le charge en mémoire (dans un tableau). Procédure transparente */
 void affichage_catalogue()                 ; /* Montre le tableau de services */
