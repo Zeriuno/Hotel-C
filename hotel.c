@@ -2171,7 +2171,7 @@ void affichage_resa()
       strcpy(paiement, "virement")                                       ;
       break                                                              ;
     default:
-      printf("La réservation contient des informations à vérifier\n")    ;
+      printf("Le moyen de paiement n'a pas été correctement renseigné.\n") ;
       break                                                              ;
   }
   printf("Réservation n.%lu\n", demande.code_resa)                       ;
