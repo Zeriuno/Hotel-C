@@ -114,8 +114,8 @@ void modif_resa()                          ; /* Modification des dates et des in
 void modif_resa_cha()                      ;
 void annul_origine()                       ; /* Menu de choix selon l'origine de la demande d'annulation */
 void remboursement()                       ; /* En cas de remboursement integral */
-void annul_client()                        ;
-void remboursement_partiel(int p_poursan)  ;
+void annul_client()                        ; /* Défini si il doit y avoir remboursement, à quel niveau, et puis met à jour le planning */
+void remboursement_partiel(int p_poursan)  ; /* Rembourse le client en fonction du pourcentage indiqué par le paramètre p_poursan*/
 void annulation_resa_planning()            ; /* Met en acte l'annulation en changeant le planning*/
 
 
