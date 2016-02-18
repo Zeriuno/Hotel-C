@@ -1874,28 +1874,28 @@ void modif_resa_cha()
     {
       if((cible_type_lits < 1) || (cible_type_lits > 5))
       {
-        printf("Choix non valide.\n")            ;
+        printf("Choix non valide.\n")              ;
       }
     }
   }
-  chambre.type_lits = cible_type_lits            ;
+  chambre.type_lits = cible_type_lits              ;
 
   switch(cible_type_lits)
   {
     case 1 :
-      chambre.type_chambre = 1                   ;
-      break                                      ;
+      chambre.type_chambre = 1                     ;
+      break                                        ;
     case 2 :
     case 3 :
-      chambre.type_chambre = 2                   ;
-      break                                      ;
+      chambre.type_chambre = 2                     ;
+      break                                        ;
     case 4 :
     case 5 :
-      chambre.type_chambre = 3                   ;
-      break                                      ;
+      chambre.type_chambre = 3                     ;
+      break                                        ;
   }
 
-  cible_cat_chambre = 999                        ;
+  cible_cat_chambre = 999                          ;
   while((cible_cat_chambre < 0) || (cible_cat_chambre > 1))
   {
     printf("Catégorie :")                          ;
@@ -1966,27 +1966,27 @@ void modif_resa_cha()
       }
     }
   }
-  chambre.bain = cible_bain                       ;
+  chambre.bain = cible_bain                        ;
 
-  cible_vue = 999                                 ;
+  cible_vue = 999                                  ;
   while((cible_vue < 0) || (cible_vue > 1))
   {
-    printf("Vue :")                               ;
-    printf("0 - pas de vue\n")                    ;
-    printf("1 - vue\n")                           ;
-    printf("Actuellement : %d\n", chambre.vue)    ;
-    printf("Choix : ")                            ;
-    test = scanf("%d", &cible_vue)                ;
+    printf("Vue :")                                ;
+    printf("0 - pas de vue\n")                     ;
+    printf("1 - vue\n")                            ;
+    printf("Actuellement : %d\n", chambre.vue)     ;
+    printf("Choix : ")                             ;
+    test = scanf("%d", &cible_vue)                 ;
     if(test == 0)
     {
-      printf("Erreur de saisie.\n")               ;
-      while((poubelle=getchar()) != '\n')         ;
+      printf("Erreur de saisie.\n")                ;
+      while((poubelle=getchar()) != '\n')          ;
     }
     else
     {
       if((cible_vue < 0) || (cible_vue > 1))
       {
-        printf("Choix non valide.\n")               ;
+        printf("Choix non valide.\n")              ;
       }
     }
   }
