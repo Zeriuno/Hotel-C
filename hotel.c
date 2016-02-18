@@ -1493,37 +1493,48 @@ void sauvegarde_resa()
 ##############################################
 
 Appelé dans le main() le programme gère la recherche et, le cas échéant, modification d'une réservation.
+Appelle dans l'ordre chargement_resa(), affichage_resa() et choix_modif_resa().
 
 */
 
 void recherche_resa()
 {
-  int test = 0                                                            ;
-  long unsigned int code_modif_resa                                       ;
-  printf("Recherche de réservation.\n")                                   ;
+  int test = 0, t2                                                      ;
+  long unsigned int code_modif_resa                                     ;
+  printf("Recherche de réservation.\n")                                 ;
   while(test == 0)
   {
-    printf("Veuillez saisir le numéro de la réservation à rechercher : ") ;
-    test = scanf("%lu", &code_modif_resa)                                 ;
-    if(test == 0)
+    printf("Veuillez saisir le numéro de la réservation à rechercher ") ;
+    printf("(0 pour revenir au menu principal) : ")                     ;
+    t2 = scanf("%lu", &code_modif_resa)                                 ;
+    if(t2 == 0)
     {
-      printf("Choix non valide.\n")                                       ;
-      while((poubelle=getchar()) != '\n')                                 ;
+      printf("Choix non valide.\n")                                     ;
+      while((poubelle=getchar()) != '\n')                               ;
     }
-    else
+    else /* l'utilisateur a effectivement saisi un numérique */
     {
-      test = 1                                                            ;
-    }
-    if((code_modif_resa > nb_resa)||(code_modif_resa < 2)) /* 0 est le code pour indiquer que la réservation est possible, 1 pour signaler des travaux. On ne veut pas permettre leur modification */
-    {
-      printf("Code de réservation invalide.\n")                           ;
-      test = 0                                                            ;
-    }
+       if((code_modif_resa > nb_resa)||(code_modif_resa == 1)) /* 0 est le code pour indiquer que la réservation est possible, 1 pour signaler des travaux. On ne veut pas permettre leur modification */
+       {
+         printf("Code de réservation invalide.\n")                      ;
+       }
+       else
+       {
+         test = 1                                                       ; /* On sortira de toute façon de la boucle while */
+         if(code_modif_resa == 0)
+         {
+           printf("Retour au menu principal.\n")                        ;
+         }
+         else
+         {
+           chargement_resa(code_modif_resa)                             ;
+           affichage_resa()                                             ;
+           choix_modif_resa()                                           ;
+         }
+       }
+     } /* fin des tests sur le numérique */
+   } /* fin du while */
   }
-  chargement_resa(code_modif_resa)                                        ;
-  affichage_resa()                                                        ;
-  choix_modif_resa()                                                      ;
-}
 
 /*############################################
 #                                            #
