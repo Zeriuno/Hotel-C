@@ -2276,6 +2276,81 @@ void remboursement()
 
 /*############################################
 #                                            #
+#           remboursement_partiel            #
+#                                            #
+##############################################
+
+En cas de remboursement partiel.
+
+Appelée par annul_origine(), y retourne et passe la main à annulation_resa_planning().
+À partir du code_resa, on supprime la case dans le planning: on remet à 0
+
+*/
+
+void remboursement_partiel(int p_poursan)
+{
+  char paiement[9]                                                             ;
+  FILE *f1                                                                     ;
+  float combien                                                                ;
+  int t1 = 0, t2                                                               ;
+
+
+  switch (demande.mode_paiement)
+  {
+    case 1:
+      strcpy(paiement, "espèces")                                              ;
+      break                                                                    ;
+    case 2:
+      strcpy(paiement, "chèque")                                               ;
+      break                                                                    ;
+    case 3:
+      strcpy(paiement, "CB")                                                   ;
+      break                                                                    ;
+    case 4:
+      strcpy(paiement, "virement")                                             ;
+      break                                                                    ;
+    default:
+      printf("La réservation contient des informations à vérifier\n")          ;
+      break                                                                    ;
+  }
+  printf("Le montant total payé par le client, %s %s, a été de : %.2f\n", demande.prenomclient, demande.nomclient, demande.total_resa) ;
+  printf("Le paiement a été effectué par %s\n", paiement)                      ;
+
+  combien = (demande.total_resa * p_poursan) / 100                             ;
+  while(t1 == 0)
+  {
+    printf("Choisir le mode de remboursement :\n")                             ;
+    printf("-1- Espèces\n")                                                    ;
+    printf("-2- Chèque\n")                                                     ;
+    printf("-3- Carte bancaire\n")                                             ;
+    printf("-4- Virement\n")                                                   ;
+    printf("Choix : ")                                                         ;
+    t2 = scanf("%d", &demande.mode_paiement)                                   ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie.\n")                                            ;
+    }
+    else
+    {
+      if((demande.mode_paiement < 0) || (demande.mode_paiement > 4))
+      {
+        mauvais_choix(demande.mode_paiement)                                   ;
+      }
+      else
+      {
+        if(demande.mode_paiement == 3)
+        {
+          paiement_cb()                                                        ;
+        }
+        printf("Le remboursement a bien été effectué.\n")                      ;
+        t1 = 1                                                                 ;
+      }
+    }
+  }
+}
+
+/*############################################
+#                                            #
 #              PARTIE NOTES                  #
 #       #############################        #
 #                                            #
