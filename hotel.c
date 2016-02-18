@@ -494,6 +494,8 @@ void maj_calendrier(int i)
   FILE *f1                            ;
   int j, a, m, d, test                ;
 
+  programme_crea(i - 1)               ;
+
   for(j = i; j < ANNEE; j++) /* déplacer les valeurs des jours dans le calendrier: LE FUTUR C'EST MAINTENANT!*/
   {
     calendrier[j-i] = calendrier[j]   ;
