@@ -3516,7 +3516,7 @@ void modif_prix_chambre()
     }
     tab_prix_chambres[6].prix_bs = prix   ;
   }
-    sauvegarde_prix_chambres              ;
+    sauvegarde_prix_chambres()              ;
 }
 
 /*############################################
