@@ -3705,18 +3705,18 @@ Affiche les données déjà chargées dans le tableau de services.
 */
 void affichage_catalogue()
 {
-  struct entree_service service                                           ;
-  int i                                                                   ;
+  struct entree_service service                                                 ;
+  int i                                                                         ;
   if(nb_services == 0)
   {
-    printf("Le catalogue des services est vide.\n")                       ;
+    printf("Le catalogue des services est vide.\n")                             ;
   }
   else
   {
-    printf("\n")                                                          ;
+    printf("\n")                                                                ;
     for(i=0; i < nb_services; i++)
     {
-      service = catalogue_services[i]                                     ;
+      service = catalogue_services[i]                                           ;
       printf("%d %s : %.2f € \n", i, service.nom_service, service.prix_service) ;
     }
   }
