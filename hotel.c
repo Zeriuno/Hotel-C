@@ -191,7 +191,7 @@ struct jour
 {
   long unsigned int date ; /*date aaaammjj*/
   short int saison       ; /*0 basse saison, 1 haute saison*/
-};
+}                        ;
 
 struct jour calendrier[ANNEE] ;
 
@@ -203,7 +203,7 @@ struct prix_nuit
   int categorie_chambre   ; /* 0 chambre ; 1 suite */
   float prix_hs           ; /* prix haute saison */
   float prix_bs           ; /* prix basse saison */
-};
+}                         ;
 
 struct prix_nuit tab_prix_chambres[NB_CHAMBRES_PRIX] ;
 struct prix_nuit nuit                                ;
@@ -223,7 +223,7 @@ struct resa
   char telclient[12]             ;  /* +33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12? */
   float total_resa               ; /* Montant total de la chambre en fonction des nuitées et de la saison */
   int mode_paiement              ; /* Comment est reglée la réservation: 1 espèces, 2 chèque, 3 CB, 4 virement */
-};
+}                                ;
 
 struct resa demande              ;
 long unsigned int nb_resa        ; /* Dernière réservation faite, la suivante devra prendre nb_resa+1 */
@@ -246,7 +246,7 @@ struct cha
   int fumeur              ; /* 0 non fumeur, 1 fumeur */
   int animaux             ; /* 0 pas d'animaux, 1 animaux acceptés */
   /*champ remarques en chaîne de caractères*/
-};
+}                         ;
 
 struct cha tab_chambres[MAX_NB_CHAMBRES] ; /*Tableau listant les chambres*/
 struct cha chambre                       ;
@@ -259,22 +259,22 @@ int a_sauv_chambre = 0                   ; /*pour la modification des chambres*/
   /* Variables globales concernant les frais*/
 struct frais
 {
-  long int datefrais              ; /*autrement on en fera une string de 9, 'aaaammjj' (8) + '\0'*/
-  float montantfrais              ;
-  char  nomfrais[MAX_NOM_SERVICE] ;
-};
+  long int datefrais                     ; /*autrement on en fera une string de 9, 'aaaammjj' (8) + '\0'*/
+  float montantfrais                     ;
+  char  nomfrais[MAX_NOM_SERVICE]        ;
+}                                        ;
 
 
   /* Variables globales concernant le catalogue_services*/
 
-int sauv_catalogue_services = 0 ; /* Test. 1 : tableau à sauvegarder; 0 non.*/
-int nb_services = 0             ; /* Pour garder trace du nombre de services déjà saisis*/
+int sauv_catalogue_services = 0          ; /* Test. 1 : tableau à sauvegarder; 0 non.*/
+int nb_services = 0                      ; /* Pour garder trace du nombre de services déjà saisis*/
 
 struct entree_service /* Modèle du service additionnel*/
 {
-  char  nom_service[MAX_NOM_SERVICE]  ;
-  float prix_service                  ;
-};
+  char  nom_service[MAX_NOM_SERVICE]     ;
+  float prix_service                     ;
+}                                        ;
 struct entree_service catalogue_services[MAX_CAT_SERV] ;  /* Tableau listant les services*/
 
 
