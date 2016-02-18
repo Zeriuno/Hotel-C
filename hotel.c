@@ -1874,11 +1874,11 @@ void modif_resa_cha()
     {
       if((cible_type_lits < 1) || (cible_type_lits > 5))
       {
-        printf("Choix non valide.\n")              ;
+        printf("Choix non valide.\n")            ;
       }
     }
   }
-  chambre.type_lits = cible_type_lits              ;
+  chambre.type_lits = cible_type_lits            ;
 
   switch(cible_type_lits)
   {
