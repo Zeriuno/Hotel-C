@@ -616,7 +616,7 @@ Une fois la réservation validée, son code est inséré dans le planning aux ca
 
 void maj_planning()
 {
-  int i, j = 0 ;
+  int i, j = 0                         ;
 
 
   while(demande.chambre_resa != tab_chambres[j].num_chambre ) /*Recherche, dans le tableau des chambres, de l'indice auquel correspond la case avec le bon num_chambre*/
