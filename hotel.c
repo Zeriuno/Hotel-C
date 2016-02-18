@@ -298,9 +298,9 @@ main()
   int test              ;
 
   dernier_code_resa()   ;
+  chargement_chambres() ;
   lecture_jours()       ;
   test_date()           ;
-  chargement_chambres() ;
   chargement_planning() ;
   chargement_prix()     ;
   chargement_catalogue_services() ;
