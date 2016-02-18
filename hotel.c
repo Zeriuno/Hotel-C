@@ -1922,6 +1922,105 @@ void sauvegarde_resa()
   printf("La réservation n.%lu a bien été enregistrée.\n", demande.code_resa) ;
 }
 
+/*############################################
+#                                            #
+#                   depart                   #
+#                                            #
+##############################################
+
+Appelée dans le menu principal, lui passe la main après avoir effectué la suppresssion du fichier de réservation.
+Gestion du départ: si note à régler alors afficher la note.
+
+*/
+void depart()
+{
+  char note_nom_cli[MAX_NOM_CLI], note_pnom_cli[MAX_PNOM_CLI] ;
+  char temporaire[11], entree_note[20]                        ;
+  int i=0, t1 =0 , t2                                         ;
+  FILE *f1                                                    ;
+  float note_total = 0                                        ;
+  long unsigned int id_resa                                   ;
+  struct frais note[MAX_ENTREES_FRAIS]                        ;
+
+  while(t1 == 0)
+  {
+    printf("Saisir le numéro de réservation : " )             ;
+    t2 = scanf("%lu", &id_resa)                               ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")                            ;
+      while((poubelle=getchar()) != '\n')                     ;
+    }
+    else
+    {
+      t1 = 1 ;
+    }
+  }
+
+  temporaire[0] = '\0'                                        ;
+  entree_note[0] = '\0'                                       ;
+  strcat(entree_note, DOSSIER_NOTES)                          ;
+  sprintf(temporaire, "%lu", id_resa)                         ;
+  strcat(entree_note, temporaire)                             ;
+  strcat(entree_note, ".txt")                                 ;
+  t1 = 0                                                      ;
+  while(t1 == 0)
+  {
+    i = 0                                                     ;
+    f1=fopen(entree_note, "r")                                ;
+    fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
+    while(!feof(f1))
+    {
+      fscanf(f1, "%lu %s %f", &note[i].datefrais, note[i].nomfrais, &note[i].montantfrais) ;
+      note_total += note[i].montantfrais                      ;
+      i++                                                     ;
+    }
+    fclose(f1)                                                ;
+
+    if (i>0)
+    {
+      printf("Il reste une note à payer.\n")                  ;
+      affichage_note(entree_note)                             ;
+    }
+    else
+    {
+      t1 = 1                                                  ;
+    }
+  }
+  supprime_note(id_resa)                                      ;
+  printf("Aucune note à payer. Bon départ !\n")               ;
+}
+
+/*############################################
+#                                            #
+#              supprime_resa                 #
+#                                            #
+##############################################
+
+Appelée dans le annul_origine() et dans depart(), leur passe la main après avoir effectué la suppresssion du fichier de réservation.
+
+*/
+
+void supprime_resa(long unsigned int p_code_resa)
+{
+  char entree_resa[20], temporaire[11]    ;
+  FILE *f1                                ;
+  int test                                ;
+
+  temporaire[0] = '\0'                    ;
+  entree_resa[0] = '\0'                   ;
+  strcat(entree_resa, DOSSIER_RESA)       ;
+  sprintf(temporaire, "%lu", p_code_resa) ;
+  strcat(entree_resa, temporaire)         ;
+  strcat(entree_resa, ".txt")             ;
+
+  test = unlink(entree_resa)              ;
+  if(test == -1)
+  {
+    printf("Erreur dans la suppression du fichier\n")              ;
+    printf("Supprimez manuellemenet le fichier %s\n", entree_resa) ;
+  }
+}
 
 /*############################################
 #                                            #
