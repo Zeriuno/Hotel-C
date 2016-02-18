@@ -2069,41 +2069,18 @@ void annul_origine()
       while((poubelle=getchar()) != '\n')                        ;
     }
     switch (raison_annul)
-  {
-    case 1:
-      remboursement()                                            ;
-      annulation_resa_planning()                                 ;
-      t1 = 1                                                     ;
-      break                                                      ;
-    case 2:
-/*
-    //  printf("Saisir la date de demande d'annulation"); /*Au cas où l'annulation aurait été demandée un autre jour qu'à la date du jour. Par exemple, aucun membre du personnel*//*
-      while (calendrier[i].date != demande.datearrivee)
-      {
-        i++;
-      }
-      /*  i = ecart de jours entre la date du jour et la date de début du séjour*//*
-      if (i>14)
-      {
-        printf("Remboursement de 70%, soit %.2f \n", 0.7*demande.total_resa);
-      }
-      else
-      {
-       if (i>7)
-       {
-        printf("Remboursement de 30%, soit %.2f \n", 0.3*demande.total_resa);
-       }
-       else
-       {
-        printf("Pas de remboursement.") ;
-       }
-      }                                              ;
-      printf("Le remboursement total de la réservation a été effectué, soit %.2f\n", demande.total_resa);
-      annulation_resa();
-      maj_planning(); */
+    {
+      case 1:
+        remboursement()                                          ;
+        annulation_resa_planning()                               ;
+        t1 = 1                                                   ;
+        break                                                    ;
+      case 2:
+        annul_client()                                           ;
         break;
       case 9:
-        printf("Abandon.\n Retour au menu précédent")            ;
+        printf("Abandon.\n Retour au menu principal\n")          ;
+        t1 = 1                                                   ;
         break                                                    ;
       default:
         mauvais_choix(raison_annul)                              ;
@@ -2112,6 +2089,87 @@ void annul_origine()
   }
 }
 
+
+/*############################################
+#                                            #
+#               annul_client                 #
+#                                            #
+##############################################
+
+Appelée par annul_origine()
+Calcul du préavis afin de rembourser la réservation.
+
+*/
+
+void annul_client()
+{
+  int test, t2, deja                                               ;
+  long unsigned int nb_resa_annul                                  ;
+
+
+  printf("Saisir le numéro de réservation (0 pour revenir au menu principal) : ") ;
+  t2 = scanf("%lu", &nb_resa_annul)                                ;
+  if(t2 == 0)
+  {
+    printf("Erreur de saisie.\n")                                  ;
+    while((poubelle=getchar()) != '\n')                            ;
+    else
+  }
+
+  while((poubelle=getchar()) != '\n')                              ;
+  printf("L'annulation a-t-elle été demandée aujourd'hui (o/n) ?") ;
+  scanf("%c", &c)                                                  ;
+  if(c != 'o')
+  {
+    if(choix_date == 'n')
+    {
+      while((poubelle=getchar()) != '\n')                          ;
+      printf("Il y a combien de jours ? ")                         ;
+      t2 = scanf("%d", &deja)                                      ;
+      if(t2 == 0)
+      {
+        printf("Erreur de saisie.\n")                              ;
+        while((poubelle=getchar()) != '\n')                        ;
+      }
+    }
+    else
+    {
+      printf("Choix non accepté. Les choix possibles sont 'o' pour 'oui' ou 'n' pour 'non'.\n") ;
+      while((poubelle=getchar()) != '\n')                          ;
+    }
+  }
+
+  test = scanf("%d/%d/%d", &d, &m, &a)               ;
+  if(test == 0)
+  {
+    printf("Erreur de saisie.\n")                    ;
+    while((poubelle=getchar()) != '\n')              ;
+  }
+  /*
+  while (calendrier[i].date != demande.datearrivee)
+  {
+    i++;
+  }
+  /*  i = ecart de jours entre la date du jour et la date de début du séjour*//*
+  if (i>14)
+  {
+    printf("Remboursement de 70%, soit %.2f \n", 0.7*demande.total_resa);
+  }
+  else
+  {
+   if (i>7)
+   {
+    printf("Remboursement de 30%, soit %.2f \n", 0.3*demande.total_resa);
+   }
+   else
+   {
+    printf("Pas de remboursement.") ;
+   }
+  }                                              ;
+  printf("Le remboursement total de la réservation a été effectué, soit %.2f\n", demande.total_resa);
+  annulation_resa();
+  maj_planning(); */
+}
 
 /*############################################
 #                                            #
