@@ -2848,7 +2848,7 @@ void recreation_note(char p_entree_note[])
 
 /*############################################
 #                                            #
-#              depart                        #
+#                   depart                   #
 #                                            #
 ##############################################
 Gestion du départ: si note à régler alors afficher la note.
