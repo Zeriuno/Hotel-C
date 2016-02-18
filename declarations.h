@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-
+#include <unistd.h> /* pour la suppression des fichiers de réservations et notes */
+#include <stdlib.h> /* pour programme_lis */
 /*Constantes*/
 
 #define MAX_CAT_SERV 20    /* Constante qui limite le catalogue des services -- ajouter un test concernant cette limite - Utilisé pour catalogue_services */
