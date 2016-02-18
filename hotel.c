@@ -1542,6 +1542,7 @@ void recherche_resa()
 #                                            #
 ##############################################
 
+Appelée par recherche_resa(), passe la main à affichage_resa() et choix_modif_resa().
 Reçoit un code de réservation en paramètre et charge les données dans la variable globale demande.
 Le int retourné indique le résultat de l'opération.
 
@@ -1571,6 +1572,7 @@ void chargement_resa(long unsigned int p_code_resa)
 #                                            #
 ##############################################
 
+Appelée par recherche_resa() après chargement_resa(), passe la main à choix_modif_resa().
 Affiche la réservation chargée dans la variable globale demande.
 
 */
@@ -1652,8 +1654,9 @@ void affichage_resa()
 #                                            #
 ##############################################
 
-Appelé dans recherche_resa()
-Après affichage de la réservation choisir entre modification, annulation ou retour au menu principal
+Appelé dans recherche_resa() après affichage_resa() et chargement_resa().
+Choisir entre modification, annulation ou retour au menu principal.
+
 */
 
 void choix_modif_resa()
@@ -1704,6 +1707,7 @@ void choix_modif_resa()
 #                                            #
 ##############################################
 
+Appelée par choix_modif_resa(), passe la main au menu principal.
 Modification d'une réservation : partie dates et client
 
 */
@@ -1847,7 +1851,9 @@ void modif_resa()
 #                                            #
 ##############################################
 
+Appelée par modif_resa() lui passe également la main.
 Modification de la réservation : partie chambres
+
 */
 void modif_resa_cha()
 {
