@@ -1885,9 +1885,9 @@ void modif_resa_cha()
       }
     }
   }
-  chambre.categorie_chambre = cible_cat_chambre  ;
+  chambre.categorie_chambre = cible_cat_chambre    ;
 
-  cible_balcon = 999                             ;
+  cible_balcon = 999                               ;
   while((cible_balcon < 0) || (cible_balcon > 1))
   {
     printf("Balcon :")                             ;
@@ -1899,8 +1899,8 @@ void modif_resa_cha()
     test = scanf("%d", &cible_balcon)              ;
     if(test == 0)
     {
-      printf("Erreur de saisie.\n")              ;
-      while((poubelle=getchar()) != '\n')        ;
+      printf("Erreur de saisie.\n")                ;
+      while((poubelle=getchar()) != '\n')          ;
     }
     else
     {
@@ -1910,20 +1910,21 @@ void modif_resa_cha()
       }
     }
   }
-  chambre.balcon = cible_balcon                  ;
+  chambre.balcon = cible_balcon                    ;
 
-  cible_bain = 999                               ;
+  cible_bain = 999                                 ;
   while((cible_bain < 0) || (cible_bain > 1))
   {
-    printf("Salle de bain : ")   ;
+    printf("Salle de bain : ")                     ;
     printf("0 - baignoire\n")                      ;
     printf("1 - douche\n")                         ;
     printf("Actuellement : %d\n", chambre.bain)    ;
+    printf("Choix : ")                             ;
     test = scanf("%d", &cible_bain)                ;
     if(test == 0)
     {
-      printf("Erreur de saisie.\n")              ;
-      while((poubelle=getchar()) != '\n')        ;
+      printf("Erreur de saisie.\n")                ;
+      while((poubelle=getchar()) != '\n')          ;
     }
     else
     {
