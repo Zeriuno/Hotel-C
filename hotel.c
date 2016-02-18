@@ -126,7 +126,7 @@ void remboursement_partiel(int p_poursan)  ; /* Rembourse le client en fonction 
 
 Travaux
 ----------------------*/
-void travaux()                          ;
+void travaux()                            ;
 
 /*----------------------
 
@@ -378,7 +378,6 @@ main()
           if (choix_modif == 'o')
           {
             modification_chambre(res_chambre)                   ;
-
           }
           printf("Retour au menu.\n")                           ;
           enreg_chambre()                                       ;
