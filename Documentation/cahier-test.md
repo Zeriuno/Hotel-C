@@ -1,4 +1,15 @@
-#Cahier de tests
+#Manuel utilisateur
+
+##Remarques générales
+
+Les fichiers réunis dans le dossier "1-Parametres" sont indispensables pour le fonctionnement de l'application.
+Une partie d'entre eux peuvent être mis à jour, de manière automatique ou avec l'intervention de l'utilisateur. La compromission de leur intégrité peut toutefois sérieusement compromettre le bon fonctionnement de l'application.
+Seule exception, le fichier programme.txt, créé de manière automatique par l'application.
+
+L'application a une approche résiliente et conservative: les modifications sont sauvegardées dès leur effectuation afin de garantir la persistence de l'information même en cas de dysfonctionnement.
+En cas d'invite de saisie montrant deux alternatives en casse différente, une minuscule, l'autre majuscule (e.g. "o/N"), l'alternative en majuscule est le choix par défaut.
+
+Les fichiers réunis dans les dossiers "note" et "resa" contiennent les informations sur les notes ouvertes et les réservations enregistrées. Les fichiers sont supprimés automatiquement par l'application quand le client part et solde son compte. En cas d'échec, l'application invite l'utilisateur à rémédier directement à l'erreur.
 
 ##Lancement du programme
 
@@ -13,7 +24,7 @@
 
 1. Saisir la période.
 
-2. Saisir le type de chambre.
+2. Saisir le type de chambre (on peut choisir de saisir tous les paramètres ou bien de uniquement le tipe de lits et la catégorie de la chambre).
 
 3. Affichage des chambres disponibles.
 
@@ -36,9 +47,9 @@
 2. Affichage du résultat.
 
 3. On demande à l'utilisateur s'il souhaite modifier la réservation, l'annuler ou retourner au menu principal:
- * Choisir "1" pour modifier la réservation.
- * Choisir "2" pour annuler la réservation.
- * Choisir "3" pour retourner au menu principal.
+ * Choix "1" → pour modifier la réservation. L'utilisateur sera guidé ensuite dans la modification selon les étapes déjà abordées pour la réservation.
+ * Choix "2" → pour annuler la réservation. L'utilisateur sera ensuite guidées pour déterminer les droits au remboursement éventuel et l'effectuer.
+ * Choix "3" → pour retourner au menu principal.
 
 ####Modification d'une réservation
 L'utilisateur a choisi 1 dans le menu précédent.
@@ -53,9 +64,9 @@ L'utilisateur a choisi 1 dans le menu précédent.
 
 3. L'utilisateur peut modifier les données du client, son nom, son prénom, son numéro de téléphone.
 
-4. Retour au menu principal.
+4. Modification du planning.
 
-5. Modification du planning.
+5. Retour au menu principal.
 
 ####Annulation d'une réservation
 
@@ -115,24 +126,30 @@ Tout autre choix que "o" ne permet pas de modification de la chambre, et l'utili
 
 5. Confirmation et retour au menu principal.
 
-
 ##Paramètres
+
+###Services
 
 1. Accéder au menu des services → Les choix possibles sont affichés, une invite de saisie est affichée, on attend la saisie de l'utilisateur.
 
-2. Choisir "1" ("Lire le catalogue des services"). Si le fichier catalogue-services.txt existe, alors il est affiché à l'écran. Si le fichier est vide, un message d'erreur est affiché et l'utilisateur est redirgé vers le menu des services.
+2. Choix "1" ("Lire le catalogue des services"). Si le fichier catalogue-services.txt existe, alors il est affiché à l'écran. Si le fichier est vide, un message d'erreur est affiché et l'utilisateur est redirgé vers le menu des services.
 
-3. Choisir "2" → Si des services n'existent pas, un message d'avertissement est montré, sinon ils peuvent être modifiés (titre et prix). En donnant "fin" comme titre de service, on sort et on revient au menu services.
+3. Choix "2" → Si des services n'existent pas, un message d'avertissement est montré, sinon ils peuvent être modifiés (titre et prix). En donnant "fin" comme titre de service, on sort et on revient au menu services.
 
-4. Choisir "3" → On propose d'ajouter un nouveau service en saissiant d'abord son titre et puis son prix. En donnant "fin" comme titre, on sort et on revient au menu services. Les services saisis sont automatiquement sauvegardés dans le fichier catalogue avant le retour au menu.
+4. Choix "3" → On propose d'ajouter un nouveau service en saissiant d'abord son titre et puis son prix. En donnant "fin" comme titre, on sort et on revient au menu services. Les services saisis sont automatiquement sauvegardés dans le fichier catalogue avant le retour au menu.
 
-5. Choisir "9" → On sort du menu services pour revenir au menu principal.
+5. Choix "9" → On sort du menu services pour revenir au menu principal.
 
-6. Choisir un chiffre non prévu →  Message d'erreur affiché.
+6. Choix d'un chiffre non prévu →  Message d'erreur affiché.
 
-mise à jour prix
+###Programme du jour
 
+L'application affiche, s'il a été créé, le programme du jour pour l'hôtel et revient au menu principal. Le programme est créé de manière automatique au démarrage en confrontant lors de la mise à jour de la date.
+
+###Modifier le prix des chambres
+
+En choisissant 8, le programme offre la possibilité de changer les prix de toutes les catégories des chambres.
 
 ##Quitter le programme
 
-1. Choix "9" dans le menu principal → "Au revoir".
+1. Choix "0" dans le menu principal → "Au revoir".
