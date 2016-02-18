@@ -2407,9 +2407,11 @@ void menu_recherche_note()
     {
       case 1:
         recherche_note_num()                 ;
+        t1 = 1                               ;
         break                                ;
       case 2:
         recherche_note_cha()                 ;
+        t1 = 1                               ;
         break                                ;
       case 3:
         printf("Retour au menu principal\n") ;
