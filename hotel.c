@@ -3863,7 +3863,8 @@ void modification_chambre(int res_chambre)
 #                                            #
 ##############################################
 
-Enregistrer automatique lors de la modification des chambres.
+Appelée dans un choix du menu principal.
+Sauvegarde automatique lors de la modification des chambres.
 
 
 */
@@ -3888,8 +3889,8 @@ void enreg_chambre()
 #                                            #
 ##############################################
 
-Affiche les données déjà chargées dans la liste des chambres.
-
+Appelée dans un choix du menu principal.
+Affiche les données déjà chargées dans la liste des chambres pour les modifier ensuite.
 
 */
 void affichage_chambre()
