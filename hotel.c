@@ -2020,17 +2020,27 @@ Origine de l'annulation d'une réservation
 */
 void annul_origine()
 {
-  int raison_annul = 0, i=0;
-  printf("Qui est à l'origine de la demande d'annulation ' ? ");
-  printf("1 - Décision de l'hôtel \n")                         ;
-  printf("2 - Décision du client \n")                          ;
-  scanf("%d", &raison_annul)                                   ;
-  switch (raison_annul)
+  int raison_annul = 0, i=0, t1= 0, t2                           ;
+
+  while(t1 == 0)
+  {
+    printf("Qui est à l'origine de la demande d'annulation ?\n") ;
+    printf("-1- Décision de l'hôtel\n")                          ;
+    printf("-2- Décision du client\n")                           ;
+    printf("-9- Quitter et revenir au menu précédent\n")         ;
+    t2 = scanf("%d", &raison_annul)                              ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie\n")                               ;
+      while((poubelle=getchar()) != '\n')                        ;
+    }
+    switch (raison_annul)
   {
     case 1:
-      remboursement()            ;
-      annulation_resa_planning() ;
-      break;
+      remboursement()                                            ;
+      annulation_resa_planning()                                 ;
+      t1 = 1                                                     ;
+      break                                                      ;
     case 2:
 /*
     //  printf("Saisir la date de demande d'annulation"); /*Au cas où l'annulation aurait été demandée un autre jour qu'à la date du jour. Par exemple, aucun membre du personnel*//*
@@ -2057,10 +2067,11 @@ void annul_origine()
       printf("Le remboursement total de la réservation a été effectué, soit %.2f\n", demande.total_resa);
       annulation_resa();
       maj_planning(); */
-    break;
-    default:
-      mauvais_choix(raison_annul) ;
-    break                         ;
+        break;
+      default:
+        mauvais_choix(raison_annul) ;
+        break                         ;
+    }
   }
 }
 
