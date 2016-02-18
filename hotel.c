@@ -937,23 +937,73 @@ Procédure pour créer une réservation.
 */
 void creer_reservation()
 {
-  int continue_resa                                     ; /* continue resa permet de savoir si on poursuit ou bien on abandonne le processus. 0 pour abandonner, 1 pour continuer */
+  int continue_resa, kell_resa, t1 = 0, t2                  ; /* continue resa permet de savoir si on poursuit ou bien on abandonne le processus. 0 pour abandonner, 1 pour continuer */
 
-  printf("Création de réservation.\n")                  ;
-  cible_date()                                          ;
-  cible_chambre()                                       ;
-
-  rech_periode(demande.datearrivee, demande.datedepart) ;
-  calcul_nuitees()                                      ;
-  continue_resa = choix_chambre()                       ;
-  if(continue_resa == 1)
+  printf("Création de réservation.\n")                      ;
+  cible_date()                                              ;
+  while(t1 == 0)
   {
-    saisie_client()                                     ;
-    nouveau_nb_resa()                                   ;
-    paiement_resa()                                     ; /* Comme le paiement est supposé être toujours effectué avec succès, pas de test pour décider si poursuivre ou pas. */
-    sauvegarde_resa()                                   ;
-    creation_note()                                     ; /* On crée la note, vide. À partir de ce moment le client peut faire des commandes qui seront enregistrées.*/
-    maj_planning()                                      ;
+    printf("Sélection de la chambre :\n")                   ;
+    printf("-1- Spécification de tous les critères\n")      ;
+    printf("-2- Par type de lits et catégorie seulement\n") ;
+    printf("-3- Retour au menu principal\n")                ;
+    printf("Choix : ")                                      ;
+    t2 = scanf("%d", &kell_resa)                            ;
+    if(t2 == 0)
+    {
+      printf("Erreur de saisie.\n")                         ;
+      while((poubelle=getchar()) != '\n')                   ;
+    }
+    else
+    {
+      if(kell_resa > 3)
+      {
+        mauvais_choix(kell_resa)                            ;
+      }
+      else
+      {
+        t1 = 1                                              ;
+      }
+    }
+  }
+  if(kell_resa == 1)
+  {
+    cible_chambre()                                         ;
+    rech_periode(demande.datearrivee, demande.datedepart)   ;
+    calcul_nuitees()                                        ;
+    continue_resa = choix_chambre()                         ;
+    if(continue_resa == 1)
+    {
+      saisie_client()                                       ;
+      nouveau_nb_resa()                                     ;
+      paiement_resa()                                       ; /* Comme le paiement est supposé être toujours effectué avec succès, pas de test pour décider si poursuivre ou pas. */
+      sauvegarde_resa()                                     ;
+      creation_note()                                       ; /* On crée la note, vide. À partir de ce moment le client peut faire des commandes qui seront enregistrées.*/
+      maj_planning()                                        ;
+    }
+  }
+  else
+  {
+    if(kell_resa == 2)
+    {
+      cible_chambre_simple();
+      rech_periode(demande.datearrivee, demande.datedepart) ;
+      calcul_nuitees()                                      ;
+      continue_resa = choix_chambre_simple()                ;
+      if(continue_resa == 1)
+      {
+        saisie_client()                                     ;
+        nouveau_nb_resa()                                   ;
+        paiement_resa()                                     ; /* Comme le paiement est supposé être toujours effectué avec succès, pas de test pour décider si poursuivre ou pas. */
+        sauvegarde_resa()                                   ;
+        creation_note()                                     ; /* On crée la note, vide. À partir de ce moment le client peut faire des commandes qui seront enregistrées.*/
+        maj_planning()                                      ;
+      }
+    }
+    else
+    {
+      printf("Abandon.\nRetour au menu principal\n")        ;
+    }
   }
 }
 
@@ -1212,6 +1262,87 @@ void cible_chambre()
     }
   }
   chambre.animaux = cible_animaux                  ;
+}
+
+/*############################################
+#                                            #
+#           cible_chambre_simple             #
+#                                            #
+##############################################
+
+Procédure pour déterminer quelle chambre recherche le client sur moins de critères.
+Les données sont chargées dans la struct cha chambre.
+*/
+
+void cible_chambre_simple()
+{
+  int cible_cat_chambre                            ; /* 0 chambre, 1 suite*/
+  int cible_type_lits                              ; /* 1 lit simple, 2 deux lits simples, 3 lit double, 4 trois lits simples, 5 lit simple et lit double */
+  int test = 0                                     ;
+
+  cible_type_lits = 999                            ;
+  while((cible_type_lits < 1) || (cible_type_lits > 5))
+  {
+    printf("Quel type de lits ?\n")                ;
+    printf("-1- un lit simple\n")                  ;
+    printf("-2- deux lits simples\n")              ;
+    printf("-3- un lit double\n")                  ;
+    printf("-4- trois lits simples\n")             ;
+    printf("-5- un lit double et un lit simple\n") ;
+    printf("Saisir le type de lits : ")            ;
+    test = scanf("%d", &cible_type_lits)           ;
+    if(test == 0)
+    {
+      printf("Erreur de saisie.\n")                ;
+      while((poubelle=getchar()) != '\n')          ;
+    }
+    else
+    {
+      if((cible_type_lits < 1) || (cible_type_lits > 5))
+      {
+        printf("Choix non valide.\n")              ;
+      }
+    }
+  }
+  chambre.type_lits = cible_type_lits              ;
+
+  switch(cible_type_lits)
+  {
+    case 1 :
+      chambre.type_chambre = 1                     ;
+      break                                        ;
+    case 2 :
+    case 3 :
+      chambre.type_chambre = 2                     ;
+      break                                        ;
+    case 4 :
+    case 5 :
+      chambre.type_chambre = 3                     ;
+      break                                        ;
+  }
+
+  cible_cat_chambre = 999                          ;
+  while((cible_cat_chambre < 0) || (cible_cat_chambre > 1))
+  {
+    printf("Quelle catégorie de chambre ?\n")      ;
+    printf("-0- chambre\n")                        ;
+    printf("-1- suite\n")                          ;
+    printf("Saisir la catégorie : ")               ;
+    test = scanf("%d", &cible_cat_chambre)         ;
+    if(test == 0)
+    {
+      printf("Erreur de saisie.\n")                ;
+      while((poubelle=getchar()) != '\n')          ;
+    }
+    else
+    {
+      if((cible_cat_chambre < 0) || (cible_cat_chambre > 1))
+      {
+        printf("Choix non valide.\n")              ;
+      }
+    }
+  }
+  chambre.categorie_chambre = cible_cat_chambre    ;
 }
 
 /*############################################
