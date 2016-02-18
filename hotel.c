@@ -2061,8 +2061,8 @@ void modif_resa_cha()
 #                                            #
 ##############################################
 
-Appelé dans choix_modif_resa()
-Véririe l'origine de l'annulation appelle le sous-programme nécessaire.
+Appelé dans choix_modif_resa(), ensuite on est redirigé vers le menu principal.
+Vérifie l'origine de l'annulation appelle le sous-programme nécessaire.
 Origine de l'annulation d'une réservation
 */
 void annul_origine()
