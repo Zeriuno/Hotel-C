@@ -2177,7 +2177,8 @@ void annul_client()
 #                                            #
 ##############################################
 
-à partir du code_resa, on supprime la case dans le planning: on remet à 0
+Appelée par annul_origine(), y retourne et passe la main à annulation_resa_planning().
+À partir du code_resa, on supprime la case dans le planning: on remet à 0
 
 */
 
