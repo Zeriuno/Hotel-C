@@ -1451,10 +1451,10 @@ On demande d'en choisir une ou bien de renoncer.
 */
 int choix_chambre()
 {
-  int chambres_ok[MAX_NB_CHAMBRES]    ;
-  int chambres_dispo[MAX_NB_CHAMBRES] ;
+  int chambres_ok[MAX_NB_CHAMBRES]         ;
+  int chambres_dispo[MAX_NB_CHAMBRES]      ;
   int i, j, k, l, m, test, chambre_choisie ;
-  j = 0                               ;
+  j = 0                                    ;
 
 
   /* On trouve les chambres qui correspondent à la chambre souhaitée */
@@ -1523,36 +1523,36 @@ int choix_chambre()
   }
   else
   {
-    printf("Chambres disponibles : %d\n", l) ;
+    printf("Chambres disponibles : %d\n", l)                    ;
     for(i=0; i < l; i++)
     {
-      j = chambres_dispo[i]       ;
-      printf("Chambre n.%d\n", tab_chambres[j].num_chambre);
+      j = chambres_dispo[i]                                     ;
+      printf("Chambre n.%d\n", tab_chambres[j].num_chambre)     ;
     }
   }
-  test = NON_TROUVE               ;
+  test = NON_TROUVE                                             ;
   while(test == NON_TROUVE)
   {
     printf("Choisir la chambre à réserver (0 pour quitter) : ") ;
-    scanf("%d", &chambre_choisie) ;
+    scanf("%d", &chambre_choisie)                               ;
     if(chambre_choisie == 0)
     {
-      return(0)                   ;
+      return(0)                                                 ;
     }
     else
     {
 
-      i = 0                       ;
+      i = 0                                                     ;
       while((test == NON_TROUVE) && (i < l)) /*test pour vérifier que le choix fait est parmi les choix possibles*/
       {
-        j = chambres_dispo[i]     ;
+        j = chambres_dispo[i]                                   ;
         if(chambre_choisie == tab_chambres[j].num_chambre)
         {
-          test = 1                ;
+          test = 1                                              ;
         }
         else
         {
-          i++                     ;
+          i++                                                   ;
         }
       }
       if(test == NON_TROUVE)
