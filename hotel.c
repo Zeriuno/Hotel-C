@@ -327,7 +327,8 @@ main()
       printf("-6- Rechercher une chambre\n\n\n")               ;
       printf("                PARAMÈTRES    \n")               ;
       printf("__________________________________________\n\n") ;
-      printf("-7- Catalogue des services\n\n\n")               ;
+      printf("-7- Catalogue des services\n")                   ;
+      printf("-8- Voir le programme du jour\n\n\n")            ;
       printf("                 QUITTER    \n")                 ;
       printf("__________________________________________\n\n") ;
       printf("-9- Quitter l'application\n\n")                  ;
@@ -383,17 +384,19 @@ main()
           enreg_chambre()                                       ;
 
         }
-        break                                                                                             ;
-      case 7: /*case 7:*/
-        catalogue_services_menu()                               ;
-        break                                                                                             ;
-
+        break                                                                       ;
+      case 7:
+        catalogue_services_menu()                                                   ;
+        break                                                                       ;
+      case 8:
+        programme_lis()                                                             ;
+        break                                                                       ;
       case 9:
-        printf("Vous avez choisi de quitter l'application.\nMerci et au revoir.\n")                       ;
-        break                                                                                             ;
+        printf("Vous avez choisi de quitter l'application.\nMerci et au revoir.\n") ;
+        break                                                                       ;
       default:
-        mauvais_choix(choix)                                                                              ;
-        break                                                                                             ;
+        mauvais_choix(choix)                                                        ;
+        break                                                                       ;
     }
   }
 }
