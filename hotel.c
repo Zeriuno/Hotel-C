@@ -3843,8 +3843,6 @@ void modification_chambre(int res_chambre)
     printf("Animaux ou non : ")                                       ;
     scanf("%d", &chambre.animaux)                                     ;
     tab_chambres[res_chambre] = chambre                               ;
-    /*a_sauv_chambre=1                                                ; ça après*/
-  /*}*/
 }
 
 /*############################################
@@ -3869,7 +3867,6 @@ void enreg_chambre()
     fprintf(f1, "%d %d %d %d %d %d %d %d %d %d\n", chambre.num_chambre, chambre.type_chambre, chambre.type_lits, chambre.categorie_chambre, chambre.type_lits, chambre.balcon, chambre.vue, chambre.bain, chambre.fumeur, chambre.animaux) ;
   }
   fclose(f1)                                                ;
-  /*a_sauv_chambre = 0                                        ;*/
   printf("La liste des chambres a bien été sauvegardée.\n") ;
 }
 
