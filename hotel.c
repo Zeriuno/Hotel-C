@@ -3525,7 +3525,8 @@ void modif_prix_chambre()
 #                                            #
 ##############################################
 
-Enregistre le tableau dans le fichier CAT_SERVICES.
+Enregistre le tableau dans le fichier PRIX_NUIT.
+Appelée par modif_prix_chambre().
 Affiche un message de confirmation.
 
 */
