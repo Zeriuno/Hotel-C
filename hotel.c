@@ -27,6 +27,7 @@
 * v 0.1.15 - 2016-02-16 fin paiement_cb
 * v 1.0.0 - 2016-02-16 Réservation fonctionnelle
 * v 1.0.1 - 2016-02-16 Création note
+* v 2.1.5 - 2016-02-18 (almost) feature complete.
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
