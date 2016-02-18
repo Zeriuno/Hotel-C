@@ -2429,74 +2429,78 @@ void menu_recherche_note()
 #           recherche_note_cha               #
 #                                            #
 ##############################################
+
+Appelée par menu_recherche_note().
+Après son éxecution on revient au menu principal.
+
 On demande la saisie du numéro de chambre, on récupère le numéro de réservation correspondante. Il sera passé à menu_choix_note.
+
 */
 
-long unsigned int recherche_note_cha()
+void recherche_note_cha()
 {
   char temporaire[11], entree_note[20], client_nom[MAX_NOM_CLI], client_prenom[MAX_PNOM_CLI], confirmation;
-  FILE *f1 ;
-  int rech_note_chambre, t1 = 0, t2 ;
-  long unsigned int id_resa         ;
+  FILE *f1                                        ;
+  int rech_note_chambre, t1 = 0, t2               ;
+  long unsigned int id_resa                       ;
 
   while(t1 == 0)
   {
-    printf("Saisir le numéro de la chambre : " ) ;
-    t2 = scanf("%d", &rech_note_chambre)  ;
+    printf("Saisir le numéro de la chambre : " )  ;
+    t2 = scanf("%d", &rech_note_chambre)          ;
     if(t2 == 0)
     {
-      printf("Erreur de saisie\n")        ;
-      while((poubelle=getchar()) != '\n') ;
+      printf("Erreur de saisie\n")                ;
+      while((poubelle=getchar()) != '\n')         ;
     }
     else
     {
-      t1 = 1 ;
+      t1 = 1                                      ;
     }
   }
 
   if ((planning[rech_note_chambre][0]==0) || (planning[rech_note_chambre][0]==1))
   {
     printf("Erreur: la chambre n'est pas réservée.\n");
-    menu_recherche_note();
+    menu_recherche_note()                         ;
   }
   else
   {
-   id_resa = planning[rech_note_chambre][0]      ;
-   temporaire[0] = '\0'                          ;
-   entree_note[0] = '\0'                         ;
-   strcat(entree_note, DOSSIER_NOTES)            ;
+   id_resa = planning[rech_note_chambre][0]       ;
+   temporaire[0] = '\0'                           ;
+   entree_note[0] = '\0'                          ;
+   strcat(entree_note, DOSSIER_NOTES)             ;
    sprintf(temporaire, "%lu", id_resa) ;
-   strcat(entree_note, temporaire)               ;
-   strcat(entree_note, ".txt")                   ;
-   f1=fopen(entree_note, "r")                    ;
+   strcat(entree_note, temporaire)                ;
+   strcat(entree_note, ".txt")                    ;
+   f1=fopen(entree_note, "r")                     ;
 
    fscanf(f1, "%s %s", client_nom, client_prenom) ;
    fclose(f1)                                     ;
 
    printf("Réservation de %s %s\n", client_prenom, client_nom) ;
-   t2 = 0 ;
+   t2 = 0                                         ;
    while(t2 == 0)
    {
-     while((poubelle=getchar()) != '\n') ;
-     printf("Vous confirmez (o/n) ? ") ;
-     scanf("%c", &confirmation)        ;
+     while((poubelle=getchar()) != '\n')          ;
+     printf("Vous confirmez (o/n) ? ")            ;
+     scanf("%c", &confirmation)                   ;
      if((confirmation != 'o') && (confirmation != 'n'))
      {
-       printf("Erreur de saisie\n");
+       printf("Erreur de saisie\n")               ;
      }
      else
      {
-       t2 = 1 ;
+       t2 = 1                                     ;
      }
    }
    if(confirmation == 'n')
    {
-     printf("Retour au menu de recherche d'une note\n");
-     menu_recherche_note() ;
+     printf("Retour au menu principal\n")         ;
    }
    else
    {
-     menu_choix_note(entree_note);
+     menu_choix_note(entree_note)                 ;
    }
   }
 }
@@ -2509,7 +2513,7 @@ long unsigned int recherche_note_cha()
 On demande la saisie du numéro de réservation, on le passe à menu_choix_note.
 */
 
-long unsigned int recherche_note_num()
+void recherche_note_num()
 {
   char temporaire[11], entree_note[20], client_nom[MAX_NOM_CLI], client_prenom[MAX_PNOM_CLI], confirmation;
   FILE *f1 ;
