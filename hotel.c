@@ -2069,9 +2069,12 @@ void annul_origine()
       annulation_resa();
       maj_planning(); */
         break;
+      case 9:
+        printf("Abandon.\n Retour au menu précédent")            ;
+        break                                                    ;
       default:
-        mauvais_choix(raison_annul) ;
-        break                         ;
+        mauvais_choix(raison_annul)                              ;
+        break                                                    ;
     }
   }
 }
