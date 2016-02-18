@@ -2097,8 +2097,16 @@ void chargement_resa(long unsigned int p_code_resa)
   strcat(entree_resa, ".txt")             ;
 
   f1 = fopen(entree_resa, "r")            ;
+  if(f1 != NULL)
+  {
   fscanf(f1, "%lu %d %lu %lu %d %d %s %s %s %f %d", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa[0], &demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient, &demande.total_resa, &demande.mode_paiement) ;
   fclose(f1)                              ;
+  }
+  else
+  {
+    printf("Il n'existe pas de fichier pour la réservation %lu.\n", p_code_resa) ;
+    printf("Les informations qui suivent sont fausses.\n")                       ;
+  }
 }
 
 
