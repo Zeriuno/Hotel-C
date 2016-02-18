@@ -664,6 +664,40 @@ void maj_planning_travaux()
 
 /*############################################
 #                                            #
+#         annulation_resa_planning           #
+#                                            #
+##############################################
+
+Appelé dans annul_origine(), après on revient au menu principal.
+Appelle enregistrement_planning().
+À partir du code_resa, on supprime la case dans le planning: on remet à 0
+
+*/
+
+void annulation_resa_planning()
+{
+ int i=0, j=0                                     ;
+
+ while (demande.chambre_resa!=tab_chambres[i].num_chambre) /*on trouve l'indice de la chambre*/
+ {
+  i++                                             ;
+ }
+ while (demande.datearrivee!=calendrier[j].date) /*on trouve l'indice du premier jour du séjour*/
+ {
+  j++                                             ;
+ }
+
+ while(planning[i][j] == demande.code_resa)
+ {
+  planning[i][j] = 0                              ;
+  j++                                             ;
+ }
+  enregistrement_planning()                       ;
+  printf("L'annulation a bien été effectuée. \n") ;
+}
+
+/*############################################
+#                                            #
 #             PARTIE RESERVATIONS            #
 #       #############################        #
 #                                            #
@@ -2029,6 +2063,7 @@ void annul_origine()
     printf("-1- Décision de l'hôtel\n")                          ;
     printf("-2- Décision du client\n")                           ;
     printf("-9- Quitter et revenir au menu précédent\n")         ;
+    printf("Choix : ")                                           ;
     t2 = scanf("%d", &raison_annul)                              ;
     if(t2 == 0)
     {
