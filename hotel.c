@@ -30,6 +30,7 @@
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
+* Pour améliorer les préstations, transformer les boucles de recherche while en boucles for.
 * optimiser enregistrement sur fichier et cycle de modification des chambres.
 * optimiser affichage et saisie des descripteurs des chambres.
 * évaluer la possibilité de déclarer les variables de choix (vue/sans vue; fumeur/non fumeur; haute saison/basse saison) comme des short int;
