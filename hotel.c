@@ -292,7 +292,7 @@ main()
 {
   char choix_modif      ;
   int chambre_cible = 0 ; /*Chambre recherchée*/
-  int choix = 0         ; /* Déclaration de la variable et initialisation à une valeur qui permet de rentrer dans le 'while'. */
+  int choix = 3         ; /* Déclaration de la variable et initialisation à une valeur qui permet de rentrer dans le 'while'. */
   int res_chambre = 0   ; /*Résultat recherche chambres */
   int test, t1, t2      ;
 
@@ -305,7 +305,7 @@ main()
   chargement_catalogue_services() ;
 
   printf("\n\nBienvenue dans le programme de gestion des réservations.\n\n") ;
-  while(choix != 9) /* 9 est la valeur pour quitter. */
+  while(choix != 0) /* 0 est la valeur pour quitter. */
   {
     test = 0                                                   ;
     while(test == 0)
@@ -327,38 +327,46 @@ main()
       printf("                PARAMÈTRES    \n")               ;
       printf("__________________________________________\n\n") ;
       printf("-7- Catalogue des services\n")                   ;
-      printf("-8- Voir le programme du jour\n\n\n")            ;
+      printf("-8- Voir le programme du jour\n")                ;
+      printf("-9- Modifier le prix des chambres\n\n\n")        ;
       printf("                 QUITTER    \n")                 ;
       printf("__________________________________________\n\n") ;
-      printf("-9- Quitter l'application\n\n")                  ;
+      printf("-0- Quitter l'application\n\n")                  ;
       /*printf("7 - Imprimer le programme d'aujourd'hui.\n") ; On ne l'a pas mis dans le planning, mais c'est une idée dont on avait parlé. On verra plus tard si et comment le faire.*/
 
       printf("Choix : ")                                       ;
-      t1=scanf("%d", &choix)                                 ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
+      t1=scanf("%d", &choix)                                   ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
       if(t1 == 0)
       {
         printf("Choix invalide.\n")                            ;
         while((poubelle=getchar()) != '\n')                    ;
       }
+      else
+      {
+        test = 1                                               ;
+      }
     }
 
     switch(choix)
     {
+      case 0:
+        printf("Vous avez choisi de quitter l'application.\nMerci et au revoir.\n") ;
+        break                                                                       ;
       case 1:
-        creer_reservation()  ;
-        break                ;
+        creer_reservation()                                                         ;
+        break                                                                       ;
       case 2:
-        recherche_resa()     ;
-        break                ;
+        recherche_resa()                                                            ;
+        break                                                                       ;
       case 3:
-        menu_recherche_note();
-        break                ;
+        menu_recherche_note()                                                       ;
+        break                                                                       ;
       case 4:
-        depart()             ;
-        break                ;
+        depart()                                                                    ;
+        break                                                                       ;
       case 5:
-        travaux()            ;
-        break                ;
+        travaux()                                                                   ;
+        break                                                                       ;
       case 6:
         printf("Entrez le numéro de la chambre à rechercher: ") ;
 
@@ -396,7 +404,7 @@ main()
         programme_lis()                                                             ;
         break                                                                       ;
       case 9:
-        printf("Vous avez choisi de quitter l'application.\nMerci et au revoir.\n") ;
+        modif_prix_chambre()                                                        ;
         break                                                                       ;
       default:
         mauvais_choix(choix)                                                        ;
