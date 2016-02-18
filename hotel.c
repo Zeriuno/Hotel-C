@@ -3681,18 +3681,6 @@ void chargement_catalogue_services()
   char test_sauv                ;
   int i                         ;
 
-/* Le chargement du catalogue a lieu de manière automatique lors de l'entrée dans le menu de services. Il n'est donc pas nécessaire de faire ce test. Bloc de code gardé ici pour d'éventuels futurs changements dans le processus qui pourraient se servir de cette fonction.
-
-  if (sauv_catalogue_services == 1)
-  {
-    printf("Le catalogue chargé a été modifié.\n")                        ;
-    printf("Voulez-vous sauvegarder les modifications effectuées? (O/n)") ;
-    scanf("%c", &test_sauv)                                               ;
-    if(test_sauv != 'n')
-    {
-      enreg_catalogue_services()            ;
-    }
-  }*/
   f1 = fopen(CAT_SERVICES, "r") ;
   while(!feof(f1))
   {
