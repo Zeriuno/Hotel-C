@@ -1831,6 +1831,7 @@ void modif_resa_cha()
     printf("3 - un lit double\n")                  ;
     printf("4 - trois lits simples\n")             ;
     printf("5 - un lit double et un lit simple\n") ;
+    printf("Choix : ")                             ;
     test = scanf("%d", &cible_type_lits)           ;
     if(test == 0)
     {
