@@ -1561,8 +1561,130 @@ int choix_chambre()
       }
     }
   }
-  demande.chambre_resa = chambre_choisie ;
-  return(1)                              ;
+  demande.chambre_resa = chambre_choisie                        ;
+  return(1)                                                     ;
+}
+
+/*############################################
+#                                            #
+#           choix_chambre_simple             #
+#                                            #
+##############################################
+Dans les bornes du planning données par rech_periode, recherche de chambres avec code de réservation qui indique qu'elles sont libres.
+On désigne une liste des chambres possibles.
+On demande d'en choisir une ou bien de renoncer.
+*/
+
+
+int choix_chambre_simple()
+{
+  int chambres_ok[MAX_NB_CHAMBRES]         ;
+  int chambres_dispo[MAX_NB_CHAMBRES]      ;
+  int i, j, k, l, m, test, chambre_choisie ;
+  j = 0                                    ;
+
+
+  /* On trouve les chambres qui correspondent à la chambre souhaitée */
+
+  for(i=0 ; i < MAX_NB_CHAMBRES ; i++)
+  {
+    if
+    (
+      (chambre.type_chambre == tab_chambres[i].type_chambre) &&
+      (chambre.type_lits == tab_chambres[i].type_lits) &&
+      (chambre.categorie_chambre == tab_chambres[i].categorie_chambre)
+    )
+    {
+    chambres_ok[j] = i ;
+    j++                ;
+    }
+  }
+
+  printf("Chambres correspondant à la demande : %d\n", j) ;
+
+  /*On teste leur disponibilité sur la période demandée*/
+  l = 0 ; /*décompte des chambres disponibles*/
+  if(j > 0)
+  {
+    for(i = 0 ; i < j ; i++)
+    {
+      test = 1            ;
+      k = chambres_ok[i]  ;
+      m = numcase_resa_date_debut ;
+      while((test==1)&&(m <= numcase_resa_date_fin))
+       /*disponibilité sur le premier jour*/
+      {
+        if(planning[k][m] != 0)
+        {
+          test = 0 ;
+        }
+        else
+        {
+          m++ ;
+        }
+      }
+      if(test == 1)
+      {
+        chambres_dispo[l] = chambres_ok[i] ;
+        l++                                ;
+      }
+    }
+  }
+  else
+  {
+    printf("Pas de réservation possible.\n") ;
+    return(0)                                ;
+    /*Offrir la possibilité de modifier les critères de chambre*/
+  }
+  /*Si l == 0, pas de choix disponibles dans la période, avec les critères donnés*/
+  if(l==0)
+  {
+    printf("Il n'y a pas de chambres disponibles dans la période définie selon les critères donnés\n") ;
+    return(0) ;
+    /*Offrir la possibilité de modifier les critères de date*/
+  }
+  else
+  {
+    printf("Chambres disponibles : %d\n", l)                    ;
+    for(i=0; i < l; i++)
+    {
+      j = chambres_dispo[i]                                     ;
+      printf("Chambre n.%d\n", tab_chambres[j].num_chambre)     ;
+    }
+  }
+  test = NON_TROUVE                                             ;
+  while(test == NON_TROUVE)
+  {
+    printf("Choisir la chambre à réserver (0 pour quitter) : ") ;
+    scanf("%d", &chambre_choisie)                               ;
+    if(chambre_choisie == 0)
+    {
+      return(0)                                                 ;
+    }
+    else
+    {
+
+      i = 0                                                     ;
+      while((test == NON_TROUVE) && (i < l)) /*test pour vérifier que le choix fait est parmi les choix possibles*/
+      {
+        j = chambres_dispo[i]                                   ;
+        if(chambre_choisie == tab_chambres[j].num_chambre)
+        {
+          test = 1                                              ;
+        }
+        else
+        {
+          i++                                                   ;
+        }
+      }
+      if(test == NON_TROUVE)
+      {
+        printf("Le choix n'est pas valide. Choisir une des chambres disponibles affichées.\n") ;
+      }
+    }
+  }
+  demande.chambre_resa = chambre_choisie                        ;
+  return(1)                                                     ;
 }
 
 /*############################################
