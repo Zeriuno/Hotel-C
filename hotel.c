@@ -3065,60 +3065,60 @@ On demande la saisie du numéro de réservation, on le passe à menu_choix_note.
 void recherche_note_num()
 {
   char temporaire[11], entree_note[20], client_nom[MAX_NOM_CLI], client_prenom[MAX_PNOM_CLI], confirmation;
-  FILE *f1 ;
-  int t1 = 0, t2            ;
-  long unsigned int id_resa ;
+  FILE *f1                                        ;
+  int t1 = 0, t2                                  ;
+  long unsigned int id_resa                       ;
 
   while(t1 == 0)
   {
     printf("Saisir le numéro de réservation : " ) ;
-    t2 = scanf("%lu", &id_resa)  ;
+    t2 = scanf("%lu", &id_resa)                   ;
     if(t2 == 0)
     {
-      printf("Erreur de saisie\n")        ;
-      while((poubelle=getchar()) != '\n') ;
+      printf("Erreur de saisie\n")                ;
+      while((poubelle=getchar()) != '\n')         ;
     }
     else
     {
-      t1 = 1 ;
+      t1 = 1                                      ;
     }
   }
 
-  temporaire[0] = '\0'                          ;
-  entree_note[0] = '\0'                         ;
-  strcat(entree_note, DOSSIER_NOTES)            ;
-  sprintf(temporaire, "%lu", id_resa)           ;
-  strcat(entree_note, temporaire)               ;
-  strcat(entree_note, ".txt")                   ;
-  f1=fopen(entree_note, "r")                    ;
+  temporaire[0] = '\0'                            ;
+  entree_note[0] = '\0'                           ;
+  strcat(entree_note, DOSSIER_NOTES)              ;
+  sprintf(temporaire, "%lu", id_resa)             ;
+  strcat(entree_note, temporaire)                 ;
+  strcat(entree_note, ".txt")                     ;
+  f1=fopen(entree_note, "r")                      ;
 
-  fscanf(f1, "%s %s", client_nom, client_prenom) ;
-  fclose(f1)                                     ;
+  fscanf(f1, "%s %s", client_nom, client_prenom)  ;
+  fclose(f1)                                      ;
 
   printf("Réservation de %s %s\n", client_prenom, client_nom) ;
-  t2 = 0 ;
+  t2 = 0                                          ;
   while(t2 == 0)
   {
-    while((poubelle=getchar()) != '\n') ;
-    printf("Vous confirmez (o/n) ? ") ;
-    scanf("%c", &confirmation)        ;
+    while((poubelle=getchar()) != '\n')           ;
+    printf("Vous confirmez (o/n) ? ")             ;
+    scanf("%c", &confirmation)                    ;
     if((confirmation != 'o') && (confirmation != 'n'))
     {
-      printf("Erreur de saisie\n");
+      printf("Erreur de saisie\n")                ;
     }
     else
     {
-      t2 = 1 ;
+      t2 = 1                                      ;
     }
   }
   if(confirmation == 'n')
   {
     printf("Retour au menu de recherche d'une note\n");
-    menu_recherche_note() ;
+    menu_recherche_note()                         ;
   }
   else
   {
-    menu_choix_note(entree_note) ;
+    menu_choix_note(entree_note)                  ;
   }
 }
 
@@ -3132,8 +3132,8 @@ Récupère le numéro d'une réservation, trouve le fichier correspondant, et pr
 
 void menu_choix_note(char p_entree_note[])
 {
-  int t1, t2, choix_note                   ;
-  FILE *f1                                 ;
+  int t1, t2, choix_note                                 ;
+  FILE *f1                                               ;
 
   while(t1 == 0)
   {
@@ -3188,15 +3188,15 @@ void affichage_note(char p_entree_note[])
   int i = 0, k, a, m, j                                       ;
   struct frais note[MAX_ENTREES_FRAIS]                        ;
 
-  f1=fopen(p_entree_note, "r")                    ;
+  f1=fopen(p_entree_note, "r")                                ;
   fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
   while(!feof(f1))
   {
     fscanf(f1, "%lu %s %f", &note[i].datefrais, note[i].nomfrais, &note[i].montantfrais) ;
-    note_total += note[i].montantfrais ;
-    i++                                ;
+    note_total += note[i].montantfrais                 ;
+    i++                                                ;
   }
-  fclose(f1)                           ;
+  fclose(f1)                                           ;
 
   for(k = 0 ; i < k ; j++)
   {
@@ -3237,55 +3237,55 @@ Prend en paramètre l'identifiant d'une note.
 void ajout_note(char p_entree_note[])
 {
   char date[11], note_nom_cli[MAX_NOM_CLI], note_pnom_cli[MAX_PNOM_CLI] ;
-  int t1 = 0, t2, ajout_frais, j, i=0     ;
-  FILE *f1                                ;
-  struct entree_service ajout             ;
-  struct frais note[MAX_ENTREES_FRAIS]    ;
+  int t1 = 0, t2, ajout_frais, j, i=0                              ;
+  FILE *f1                                                         ;
+  struct entree_service ajout                                      ;
+  struct frais note[MAX_ENTREES_FRAIS]                             ;
 
-  affichage_catalogue()                   ;
+  affichage_catalogue()                                            ;
 
   while(t1 == 0)
   {
     printf("Saisir le numéro du service à ajouter sur la note : ") ;
-    t2 = scanf("%d", &ajout_frais)        ;
+    t2 = scanf("%d", &ajout_frais)                                 ;
     if((t2 == 0) || (ajout_frais > nb_services))
     {
-      printf("Erreur de saisie.\n")       ;
-      while((poubelle=getchar()) != '\n') ;
+      printf("Erreur de saisie.\n")                                ;
+      while((poubelle=getchar()) != '\n')                          ;
     }
     else
     {
-      t1 = 1                              ;
+      t1 = 1                                                       ;
     }
   }
 
-  ajout = catalogue_services[ajout_frais] ;
+  ajout = catalogue_services[ajout_frais]                          ;
 
-  f1=fopen(p_entree_note, "r")            ;
-  fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
+  f1=fopen(p_entree_note, "r")                                     ;
+  fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli)               ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
   while(!feof(f1))
   {
     fscanf(f1, "%lu %s %f", &note[i].datefrais, note[i].nomfrais, &note[i].montantfrais) ;
-    i++                                      ;
+    i++                                                            ;
   }
-  fclose(f1)                                 ;
+  fclose(f1)                                                       ;
 
-  note[i].datefrais = calendrier[0].date     ;
-  strcpy(note[i].nomfrais, ajout.nom_service);
-  note[i].montantfrais = ajout.prix_service  ;
+  note[i].datefrais = calendrier[0].date                           ;
+  strcpy(note[i].nomfrais, ajout.nom_service)                      ;
+  note[i].montantfrais = ajout.prix_service                        ;
 
-  i++                                        ;
-  j = 0                                      ;
+  i++                                                              ;
+  j = 0                                                            ;
 
-  f1=fopen(p_entree_note, "w")               ;
+  f1=fopen(p_entree_note, "w")                                     ;
   fprintf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ;
   while(j < i)
   {
     fprintf(f1, "%lu %s %f", note[j].datefrais, note[j].nomfrais, note[j].montantfrais) ;
-    j++                                      ;
+    j++                                                            ;
   }
-  fclose(f1)                                 ;
-  printf("Le service a bien été ajouté à la note. \n");
+  fclose(f1)                                                       ;
+  printf("Le service a bien été ajouté à la note. \n")             ;
 }
 
 /*############################################
@@ -3308,15 +3308,15 @@ void paiement_note(char p_entree_note[])
   struct frais note[MAX_ENTREES_FRAIS]                        ;
 
 
-  f1=fopen(p_entree_note, "r")                       ;
-  fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
+  f1=fopen(p_entree_note, "r")                                ;
+  fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli)          ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
   while(!feof(f1))
   {
     fscanf(f1, "%lu %s %f", &note[i].datefrais, note[i].nomfrais, &note[i].montantfrais) ;
-    note_total += note[i].montantfrais ;
-    i++                                ;
+    note_total += note[i].montantfrais                 ;
+    i++                                                ;
   }
-  fclose(f1)                           ;
+  fclose(f1)                                           ;
 
   for(k = 0 ; i < k ; j++)
   {
@@ -3336,7 +3336,7 @@ void paiement_note(char p_entree_note[])
 
     printf("%s %s %.2f", date_chaine, note[i].nomfrais, note[i].montantfrais) ;
   }
-  printf("Le montant total de la note est : %.2f €.\n", note_total) ;
+  printf("Le montant total de la note est : %.2f €.\n", note_total)           ;
 
   while(test == 0)
   {
@@ -3397,61 +3397,32 @@ void recreation_note(char p_entree_note[])
 
 /*############################################
 #                                            #
-#                   depart                   #
+#               supprime_note                #
 #                                            #
 ##############################################
-Gestion du départ: si note à régler alors afficher la note.
+
+Appelée par depart() ou annul_origine().
+Supprime la note.
 
 */
-void depart()
+
+void supprime_note(long unsigned int p_code_resa)
 {
-  char note_nom_cli[MAX_NOM_CLI], note_pnom_cli[MAX_PNOM_CLI] ;
-  char temporaire[11], entree_note[20]                        ;
-  int i=0, t1 =0 , t2                                         ;
-  FILE *f1                                                    ;
-  float note_total = 0                                        ;
-  long unsigned int id_resa                                   ;
-  struct frais note[MAX_ENTREES_FRAIS]                        ;
+  char entree_note[20], temporaire[11]                             ;
+  int test                                                         ;
 
-  while(t1 == 0)
-  {
-    printf("Saisir le numéro de réservation : " ) ;
-    t2 = scanf("%lu", &id_resa)                   ;
-    if(t2 == 0)
-    {
-      printf("Erreur de saisie\n")        ;
-      while((poubelle=getchar()) != '\n') ;
-    }
-    else
-    {
-      t1 = 1 ;
-    }
-  }
+  temporaire[0] = '\0'                                             ;
+  entree_note[0] = '\0'                                            ;
+  strcat(entree_note, DOSSIER_NOTES)                               ;
+  sprintf(temporaire, "%lu", p_code_resa)                          ;
+  strcat(entree_note, temporaire)                                  ;
+  strcat(entree_note, ".txt")                                      ;
 
-  temporaire[0] = '\0'                          ;
-  entree_note[0] = '\0'                         ;
-  strcat(entree_note, DOSSIER_NOTES)            ;
-  sprintf(temporaire, "%lu", id_resa)           ;
-  strcat(entree_note, temporaire)               ;
-  strcat(entree_note, ".txt")                   ;
-  f1=fopen(entree_note, "r")                    ;
-  fscanf(f1, "%s %s\n", note_nom_cli, note_pnom_cli) ; /*Pour avoir accès à toutes les informations rapidement et de manière indépendante de la réservation, on met dans la première ligne du fichier nom et prénom du client*/
-  while(!feof(f1))
+  test = unlink(entree_note)                                       ;
+  if(test == -1)
   {
-    fscanf(f1, "%lu %s %f", &note[i].datefrais, note[i].nomfrais, &note[i].montantfrais) ;
-    note_total += note[i].montantfrais ;
-    i++                                ;
-  }
-  fclose(f1)                           ;
-
-  if (i>0)
-  {
-    printf("Il reste une note à payer \n");
-    affichage_note(entree_note)           ;
-  }
-  else
-  {
-    printf("Aucune note à payer. Bon départ ! \n");
+    printf("Erreur dans la suppression du fichier\n")              ;
+    printf("Supprimez manuellemenet le fichier %s\n", entree_note) ;
   }
 }
 
@@ -3486,21 +3457,21 @@ void catalogue_services_menu()
     switch(choix_cat)
     {
       case 1:
-        affichage_catalogue()    ;
-        break                    ;
+        affichage_catalogue()                ;
+        break                                ;
       case 2:
-        modif_services()         ;
-        break                    ;
+        modif_services()                     ;
+        break                                ;
       case 3:
-        saisie_services()        ;
-        break                    ;
+        saisie_services()                    ;
+        break                                ;
       case 9:
         printf("Retour au menu principal\n") ;
-        break                    ;
+        break                                ;
       default:
-        mauvais_choix(choix_cat) ;
+        mauvais_choix(choix_cat)             ;
         while((poubelle=getchar()) != '\n')  ;
-        break                    ;
+        break                                ;
     }
   }
 }
@@ -3533,7 +3504,7 @@ void modif_services()
       printf("Nom actuel du service : %s\n", service.nom_service)       ;
       printf("Nouveau nom ('fin' pour terminer) : ")                    ;
       scanf("%s", nom_serv)                                             ;
-      printf("%s\n", nom_serv);
+      printf("%s\n", nom_serv)                                          ;
       if (strcmp(nom_serv, "fin")== 0)
       {
         printf("Fin de la modification. Retour au menu précédent. \n")  ;
@@ -3597,20 +3568,20 @@ Supprime un service
 */
 void suppression_service()
 {
-  char nom_rech[MAX_NOM_SERVICE] ;
-  int i = 0, numero=NON_TROUVE   ;
+  char nom_rech[MAX_NOM_SERVICE]                      ;
+  int i = 0, numero=NON_TROUVE                        ;
   if (nb_services== 0)
   {
     printf("Il n'y a actuellement aucun service dans le catalogue pour la suppression.\n") ;
   }
   else
   {
-    printf("Nom du service à supprimer : ")         ;
-    scanf("%s", nom_rech)                           ;
-    numero = rech_services(nom_rech)                ;
+    printf("Nom du service à supprimer : ")           ;
+    scanf("%s", nom_rech)                             ;
+    numero = rech_services(nom_rech)                  ;
     if (numero == NON_TROUVE)
       {
-        printf("%s non trouvé \n", nom_rech)        ;
+        printf("%s non trouvé \n", nom_rech)          ;
       }
     else
     {
@@ -3618,9 +3589,9 @@ void suppression_service()
       {
         catalogue_services[i]=catalogue_services[i+1] ;
       }
-      nb_services--                                 ;
-      printf("%s supprimé \n", nom_rech)            ;
-      sauv_catalogue_services=1                     ;
+      nb_services--                                   ;
+      printf("%s supprimé \n", nom_rech)              ;
+      sauv_catalogue_services=1                       ;
     }
   }
 }
@@ -3651,10 +3622,10 @@ void saisie_services()
     }
     else
     {
-      printf("Saisir le prix : ")        ; /*test pour éviter des prix avec virgule au lieu du point*/
-      scanf("%f", &service.prix_service) ;
-      printf("\n")                       ;
-      catalogue_services[i++] = service  ;
+      printf("Saisir le prix : ")                               ; /*test pour éviter des prix avec virgule au lieu du point*/
+      scanf("%f", &service.prix_service)                        ;
+      printf("\n")                                              ;
+      catalogue_services[i++] = service                         ;
     }
   }
   if(i > 0)
