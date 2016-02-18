@@ -295,7 +295,7 @@ main()
   int chambre_cible = 0 ; /*Chambre recherchée*/
   int choix = 0         ; /* Déclaration de la variable et initialisation à une valeur qui permet de rentrer dans le 'while'. */
   int res_chambre = 0   ; /*Résultat recherche chambres */
-  int test              ;
+  int test, t1, t2      ;
 
   dernier_code_resa()   ;
   chargement_chambres() ;
@@ -335,8 +335,8 @@ main()
       /*printf("7 - Imprimer le programme d'aujourd'hui.\n") ; On ne l'a pas mis dans le planning, mais c'est une idée dont on avait parlé. On verra plus tard si et comment le faire.*/
 
       printf("Choix : ")                                       ;
-      test=scanf("%d", &choix)                                 ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
-      if(test == 0)
+      t1=scanf("%d", &choix)                                 ; /* Attention, à partir de ce moment il y a un '\n' qui traîne dans le buffer. */
+      if(t1 == 0)
       {
         printf("Choix invalide.\n")                            ;
         while((poubelle=getchar()) != '\n')                    ;
@@ -362,7 +362,13 @@ main()
         break                ;
       case 6:
         printf("Entrez le numéro de la chambre à rechercher: ") ;
-        scanf("%d", &chambre_cible)                             ;
+
+        t2 = scanf("%d", &chambre_cible)                        ;
+        if(t2 == 0)
+        {
+          printf("Erreur de saisie.\n")                         ;
+          while((poubelle=getchar()) != '\n')                   ;
+        }
         res_chambre=rech_chambre(chambre_cible)                 ;
         if(res_chambre == NON_TROUVE)
         {
