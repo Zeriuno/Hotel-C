@@ -105,14 +105,6 @@ void paiement_resa()                       ; /* Paiement de la réservation */
 void paiement_cb()                         ; /* Saisie des données de la carte bancaire en cas de paiement par cb */
 void sauvegarde_resa()                     ; /* Les informations sur la réservation sont sauvegardées dans un fichier */
 void depart()                              ; /* Vérification d'une éventuelle note à payer au moment du départ */
-
-
-/*----------------------
-
-Travaux
-----------------------*/
-void travaux()                          ;
-
 void recherche_resa()                      ; /* Modification d'une réservation. Contient toutes les suivantes */
 void chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation */
 void affichage_resa()                      ; /* Affichage de la réservation chargée */
@@ -121,7 +113,15 @@ void modif_resa()                          ; /* Modification des dates et des in
 void modif_resa_cha()                      ;
 void annul_origine()                       ;
 void remboursement()                       ;
+void annul_client()                        ;
 void annulation_resa_planning()            ;
+
+
+/*----------------------
+
+Travaux
+----------------------*/
+void travaux()                          ;
 
 
 
