@@ -2631,10 +2631,16 @@ void annul_origine()
       case 1:
         remboursement()                                          ;
         annulation_resa_planning()                               ;
+        supprime_resa(demande.code_resa)                         ;
+        supprime_note(demande.code_resa)                         ;
         t1 = 1                                                   ;
         break                                                    ;
       case 2:
         annul_client()                                           ;
+        annulation_resa_planning()                               ;
+        supprime_resa(demande.code_resa)                         ;
+        supprime_note(demande.code_resa)                         ;
+        t1 = 1                                                   ;
         break;
       case 9:
         printf("Abandon.\n Retour au menu principal\n")          ;
@@ -2737,7 +2743,6 @@ void annul_client()
         default:
         printf("La réservation sera remboursée à hauteur de soixante-dix pour cent.\n") ;
         remboursement_partiel(REMB_QUINZE)                                 ;
-        annulation_resa_planning()                                         ;
         t1 = 1                                                             ;
         break                                                              ;
     }
