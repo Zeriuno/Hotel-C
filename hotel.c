@@ -1100,7 +1100,7 @@ saison = 1 : haute saison
 
 void calcul_nuitees()
 {
-  int i ;
+  int i                       ;
 
   i = numcase_resa_date_debut ;
   demande.nuitees_resa[0] = 0 ;
