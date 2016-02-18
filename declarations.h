@@ -12,6 +12,8 @@
 #define MAX_NOM_CLI 20 /*taille du nomclient dans la structure resa*/
 #define MAX_PNOM_CLI 20 /*taille du prenomclient dans la structure resa*/
 #define MAX_ENTREES_FRAIS 1000 /* taille du tableau utilisé pour la note */
+#define REMB_SEMAINE 30 /* pourcentage de remboursement en cas d'annulation avec moins de 15 jours de préavis. Passé comme paramètre à remboursement_partiel */
+#define REMB_QUINZE 70 /* pourcentage de remboursement en cas d'annulation avec plus de 15 jours de préavis. Passé comme paramètre à remboursement_partiel */
 
 /*Fichiers*/
 
