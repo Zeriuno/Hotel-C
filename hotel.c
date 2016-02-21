@@ -31,6 +31,26 @@
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
+
+#include <stdio.h>
+
+main()
+{
+  char c          ;
+  char phrase[50] ;
+  int i           ;
+  phrase[0] = '\0';
+  i = 0 ;
+  printf("Saisir une chaîne de caractères avec espaces : ") ;
+  while((c = getchar())!='\n')
+  {
+    phrase[i] = c;
+    i++ ;
+  }
+  printf("Voici la phrase : '%s'\n", phrase) ;
+
+}
+
 * Pour améliorer les préstations, transformer les boucles de recherche while en boucles for.
 * optimiser enregistrement sur fichier et cycle de modification des chambres.
 * optimiser affichage et saisie des descripteurs des chambres.
