@@ -28,6 +28,7 @@
 * v 1.0.0 - 2016-02-16 Réservation fonctionnelle
 * v 1.0.1 - 2016-02-16 Création note
 * v 2.1.5 - 2016-02-18 (almost) feature complete.
+* v 2.1.5.1 - 2016-02-29 Préparation à la sortie des jours (rationalisation du code)
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
