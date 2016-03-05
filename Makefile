@@ -1,8 +1,8 @@
 # Liste des fichiers sources
-SOURCE=hotel.c utilitaires.c
+SOURCE=hotel.c utilitaires.c jours.c
 
 # Liste des fichiers objets
-OBJETS=hotel.o utilitaires.o
+OBJETS=hotel.o utilitaires.o jours.o
 
 hotel : $(OBJETS)
 	cc -o hotel $(OBJETS)
