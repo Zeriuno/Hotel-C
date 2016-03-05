@@ -447,7 +447,7 @@ main()
 
 Prend les jours présents dans le fichier qui tient compte des jours (et saison) et les charge dans le tableau correspondant.
 
-*/
+
 
 void lecture_jours()
 {
@@ -467,7 +467,7 @@ void lecture_jours()
 #                                            #
 ##############################################
 Vérifie si la date du jour d'aujourd'hui correspond au premier jour dans le tableau et dans le calendrier. Si la date a changé, déclanche la mise à jour dans les deux.
-*/
+
 
 void test_date()
 {
@@ -478,7 +478,7 @@ void test_date()
   printf("Test des paramètres\n")      ;
   while(choix_date != 'o')
   {
-    date_chaine[0] = '\0'; /*cette ligne et les onze suivantes étaient dans une fonction à part entière, mais retourner une chaîne de caractères et l'affecter à une variable, je ne sais pas faire*/
+    date_chaine[0] = '\0'; /*cette ligne et les onze suivantes étaient dans une fonction à part entière, mais retourner une chaîne de caractères et l'affecter à une variable, je ne sais pas faire
     a = calendrier[i].date/10000                       ;
     m = (calendrier[i].date - (a * 10000)) / 100       ;
     j = (calendrier[i].date - (a * 10000) - (m * 100)) ;
@@ -520,7 +520,6 @@ void test_date()
 
 Mise à jour du calendrier déclenchée par le test sur la date courante.
 
-*/
 void maj_calendrier(int i)
 {
   char date_chaine[11], temporaire[5] ;
@@ -530,13 +529,13 @@ void maj_calendrier(int i)
 
   programme_crea(i - 1)               ;
 
-  for(j = i; j < ANNEE; j++) /* déplacer les valeurs des jours dans le calendrier: LE FUTUR C'EST MAINTENANT!*/
+  for(j = i; j < ANNEE; j++) /* déplacer les valeurs des jours dans le calendrier: LE FUTUR C'EST MAINTENANT!
   {
     calendrier[j-i] = calendrier[j]   ;
   }
-  for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent: MORE FUTURE (slogan anti-punk)*/
+  for(j = ANNEE - i; j < ANNEE ; j++) /*créer les cases qui manquent: MORE FUTURE (slogan anti-punk)
   {
-    date_chaine[0] = '\0'                                ; /*cette ligne et les onze suivantes étaient dans une fonction à part entière, mais retournaient une chaîne de caractères et l'affectaient à une variable, je ne sais pas faire*/
+    date_chaine[0] = '\0'                                ; /*cette ligne et les onze suivantes étaient dans une fonction à part entière, mais retournaient une chaîne de caractères et l'affectaient à une variable, je ne sais pas faire
     a = calendrier[j-1].date/10000                       ;
     m = (calendrier[j-1].date - (a * 10000)) / 100       ;
     d = (calendrier[j-1].date - (a * 10000) - (m * 100)) ;
@@ -578,10 +577,10 @@ void maj_calendrier(int i)
     {
       calendrier[j].saison = 1                ;
     }
-    choix_saison = 'z'                        ; /*réinitialisation de la variable*/
+    choix_saison = 'z'                        ; /*réinitialisation de la variable
   }
   f1 = fopen(CALENDRIER, "w")                 ;
-  for(j = 0 ; j < ANNEE ; j++) /*jusqu'à la fin du tableau*/
+  for(j = 0 ; j < ANNEE ; j++) /*jusqu'à la fin du tableau
   {
     fprintf(f1, "%lu %d\n", calendrier[j].date, calendrier[j].saison) ;
   }
