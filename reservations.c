@@ -1,5 +1,120 @@
 #include "declarations.h" /*c'est ici que sont les #include et les #define*/
 
+
+
+/*----------------------
+
+Réservations
+----------------------*/
+void dernier_code_resa()                   ; /* Chargement des paramètres, au démarrage */
+void chargement_prix()                     ; /* Chargement des paramètres, au démarrage */
+
+void creer_reservation()                   ; /* Création d'une réservation. Contient toutes les suivantes */
+void cible_date()                          ; /* Saisie de la période demandée */
+void cible_chambre()                       ; /* Saisie de tous les critères demandés pour la chambre */
+void cible_chambre_simple()                ; /* Choix de la chambre simplifié */
+void rech_periode(long unsigned int datearrivee, long unsigned int datedepart) ; /* Identification des cases correspondantes à la période demandée dans le tableau planning */
+void calcul_nuitees()                      ; /* Calcul des nuitées selon saison pour la période demandée*/
+int choix_chambre()                        ; /* Identification des chambres disponibles dans la période selon les critères demandés */
+int choix_chambre_simple()                 ; /* Identification des chambres disponibles dans la période selon les critères simplifiés */
+void saisie_client()                       ; /* Saisie des informations sur le client */
+void nouveau_nb_resa()                     ; /* Un numéro de réservation est affecté à la demande de réservation en cours de traitement */
+void paiement_resa()                       ; /* Paiement de la réservation */
+void paiement_cb()                         ; /* Saisie des données de la carte bancaire en cas de paiement par cb */
+void sauvegarde_resa()                     ; /* Les informations sur la réservation sont sauvegardées dans un fichier */
+void depart()                              ; /* Vérification d'une éventuelle note à payer au moment du départ */
+void supprime_resa(long unsigned int p_code_resa) ;/* Appelée par depart() ou bien suite à l'annulation */
+void recherche_resa()                      ; /* Modification d'une réservation. Contient toutes les suivantes */
+void chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation */
+void affichage_resa()                      ; /* Affichage de la réservation chargée */
+void choix_modif_resa()                    ; /* Choisir entre modification, annulation ou retour au menu principal */
+void modif_resa()                          ; /* Modification des dates et des informations client. */
+void modif_resa_cha()                      ;
+void annul_origine()                       ; /* Menu de choix selon l'origine de la demande d'annulation */
+void remboursement()                       ; /* En cas de remboursement integral */
+void annul_client()                        ; /* Défini si il doit y avoir remboursement, à quel niveau, et puis met à jour le planning */
+void remboursement_partiel(int p_poursan)  ; /* Rembourse le client en fonction du pourcentage indiqué par le paramètre p_poursan */
+
+
+/*Utilitaires*/
+
+char poubelle            ; /*pour vider le buffer des \n*/
+
+
+/*Calendrier*/
+struct jour
+{
+  long unsigned int date ; /*date aaaammjj*/
+  short int saison       ; /*0 basse saison, 1 haute saison*/
+}                        ;
+
+struct jour calendrier[ANNEE] ;
+
+
+/*Prix nuitée*/
+struct prix_nuit
+{
+  int type_chambre        ; /* 0 simple ; 1 double ; 2 triple */
+  int categorie_chambre   ; /* 0 chambre ; 1 suite */
+  float prix_hs           ; /* prix haute saison */
+  float prix_bs           ; /* prix basse saison */
+}                         ;
+
+struct prix_nuit tab_prix_chambres[NB_CHAMBRES_PRIX] ;
+struct prix_nuit nuit                                ;
+
+
+/*Réservations*/
+
+struct resa
+{
+  long unsigned int code_resa    ; /* long unsigned int, cela en garantit l'unicité sur une période assez longue. */
+  int chambre_resa               ; /* Le numéro de la chambre dans laquelle dormira le client */
+  long unsigned int datearrivee  ; /* Date (aaaammjj) de la première nuitée */
+  long unsigned int datedepart   ; /* Date (aaaammjj) de la dernière nuitée */
+  int nuitees_resa[2]            ; /* Case 0 basse saison, case 1 haute saison */
+  char nomclient[MAX_NOM_CLI]    ;
+  char prenomclient[MAX_PNOM_CLI] ;
+  char telclient[12]             ;  /* +33653332003 qui peut être affiché +33 6 53 33 20 03. Vérifier de quelle taille doit être le numéro: 12? */
+  float total_resa               ; /* Montant total de la chambre en fonction des nuitées et de la saison */
+  int mode_paiement              ; /* Comment est reglée la réservation: 1 espèces, 2 chèque, 3 CB, 4 virement */
+}                                ;
+
+struct resa demande              ;
+long unsigned int nb_resa        ; /* Dernière réservation faite, la suivante devra prendre nb_resa+1 */
+long unsigned int planning[MAX_NB_CHAMBRES][ANNEE] ; /* Les valeurs dans ce tableau sont les codes de réservation. 0 est utilisé pour signaler que la chambre est libre; 1 pour déclarer des travaux. */
+int numcase_resa_date_debut, numcase_resa_date_fin ; /*identifient la position dans le planning/calendrier de la case où débute et finit la réservation*/
+
+/* Variables globales concernant les chambres*/
+
+struct cha
+{  /* structure pour les chambres*/
+   /*l'identifiant unique de la chambre est son indice dans le tableau des chambres, qui correspond également à l'indice dans le planning, cela permet de relier les deux informations*/
+  int num_chambre         ; /* Numéro selon la codification de l'hôtel */
+  int type_chambre        ; /* 1 simple, 2 double, 3 triple */
+  int categorie_chambre   ; /* 0 chambre ; 1 suite */
+  int type_lits           ; /* 1 lit simple, 2 deux lits simples, 3 lit double, 4 trois lits simples, 5 lit simple et lit double */
+  int balcon              ; /* 0 pas de balcon; 1 avec balcon */
+  int vue                 ; /* 0 pas de vue; 1 avec vue */
+  int bain                ; /* 0 baignoire; 1 douche */
+  int fumeur              ; /* 0 non fumeur, 1 fumeur */
+  int animaux             ; /* 0 pas d'animaux, 1 animaux acceptés */
+  /*champ remarques en chaîne de caractères*/
+}                         ;
+
+struct cha tab_chambres[MAX_NB_CHAMBRES] ; /*Tableau listant les chambres*/
+struct cha chambre                       ;
+
+
+/* Variables globales concernant les frais*/
+struct frais
+{
+long int datefrais                     ; /*autrement on en fera une string de 9, 'aaaammjj' (8) + '\0'*/
+float montantfrais                     ;
+char  nomfrais[MAX_NOM_SERVICE]        ;
+}                                        ;
+
+
 /*############################################
 #                                            #
 #             PARTIE RESERVATIONS            #
