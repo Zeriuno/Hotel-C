@@ -112,38 +112,6 @@ void annulation_resa_planning()            ; /* Met en acte l'annulation en chan
 void programme_crea(int p_hier)            ; /* Appellé par maj_calendrier, prépare le programme de la journée */
 void programme_lis()                       ; /* Permet de consulter le programme de la journée */
 
-/*----------------------
-
-Réservations
-----------------------*/
-void dernier_code_resa()                   ; /* Chargement des paramètres, au démarrage */
-void chargement_prix()                     ; /* Chargement des paramètres, au démarrage */
-
-void creer_reservation()                   ; /* Création d'une réservation. Contient toutes les suivantes */
-void cible_date()                          ; /* Saisie de la période demandée */
-void cible_chambre()                       ; /* Saisie de tous les critères demandés pour la chambre */
-void cible_chambre_simple()                ; /* Choix de la chambre simplifié */
-void rech_periode(long unsigned int datearrivee, long unsigned int datedepart) ; /* Identification des cases correspondantes à la période demandée dans le tableau planning */
-void calcul_nuitees()                      ; /* Calcul des nuitées selon saison pour la période demandée*/
-int choix_chambre()                        ; /* Identification des chambres disponibles dans la période selon les critères demandés */
-int choix_chambre_simple()                 ; /* Identification des chambres disponibles dans la période selon les critères simplifiés */
-void saisie_client()                       ; /* Saisie des informations sur le client */
-void nouveau_nb_resa()                     ; /* Un numéro de réservation est affecté à la demande de réservation en cours de traitement */
-void paiement_resa()                       ; /* Paiement de la réservation */
-void paiement_cb()                         ; /* Saisie des données de la carte bancaire en cas de paiement par cb */
-void sauvegarde_resa()                     ; /* Les informations sur la réservation sont sauvegardées dans un fichier */
-void depart()                              ; /* Vérification d'une éventuelle note à payer au moment du départ */
-void supprime_resa(long unsigned int p_code_resa) ;/* Appelée par depart() ou bien suite à l'annulation */
-void recherche_resa()                      ; /* Modification d'une réservation. Contient toutes les suivantes */
-void chargement_resa(long unsigned int p_code_resa) ; /* Charge la réservation */
-void affichage_resa()                      ; /* Affichage de la réservation chargée */
-void choix_modif_resa()                    ; /* Choisir entre modification, annulation ou retour au menu principal */
-void modif_resa()                          ; /* Modification des dates et des informations client. */
-void modif_resa_cha()                      ;
-void annul_origine()                       ; /* Menu de choix selon l'origine de la demande d'annulation */
-void remboursement()                       ; /* En cas de remboursement integral */
-void annul_client()                        ; /* Défini si il doit y avoir remboursement, à quel niveau, et puis met à jour le planning */
-void remboursement_partiel(int p_poursan)  ; /* Rembourse le client en fonction du pourcentage indiqué par le paramètre p_poursan */
 
 /*----------------------
 
