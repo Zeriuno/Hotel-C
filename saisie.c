@@ -15,7 +15,7 @@ Afin de permettre de saisir avec des espaces (jusqu'à "\n").
 
 void saisie()
 {
-  char saisie[];
+  char saisie[MAX_PNOM_CLI];
 
   while((c = getchar()) != '\n')
   {
