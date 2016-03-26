@@ -1,4 +1,21 @@
-/*Ajouter les déclarations, et ajouter jours.c dans le Makefile*/
+#include "declarations.h" /*c'est ici que sont les #include et les #define*/
+
+void lecture_jours()       ;
+void test_date()           ;
+void maj_calendrier(int i) ;
+
+
+char poubelle            ; /*pour vider le buffer des \n*/
+
+/*Calendrier*/
+struct jour
+{
+  long unsigned int date ; /*date aaaammjj*/
+  short int saison       ; /*0 basse saison, 1 haute saison*/
+}                        ;
+
+struct jour calendrier[ANNEE] ;
+
 
 /*############################################
 #                                            #
