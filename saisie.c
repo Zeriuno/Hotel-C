@@ -10,7 +10,7 @@
 ##############################################
 
 Afin de permettre de saisir avec des espaces (jusqu'à "\n").
-
+Doit changer pour retourner une chaîne de caractères.
 */
 
 void saisie()
