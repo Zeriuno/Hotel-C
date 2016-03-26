@@ -15,12 +15,15 @@ Afin de permettre de saisir avec des espaces (jusqu'à "\n").
 
 void saisie()
 {
-  char saisie[MAX_PNOM_CLI];
+  char saisie[MAX_PNOM_CLI] ;
+  char c                    ;
+  int i                     ;
 
   while((c = getchar()) != '\n')
   {
-    strcat(saisie, c)  ;
+    saisie[i] = c  ;
+    i++            ;
   }
-  strcat(saisie, '*')  ;
-  strcat(saisie, '\0') ;
+  saisie[i] = '\7' ;
+  saisie[i] = '\0' ;
 }
