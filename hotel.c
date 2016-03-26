@@ -29,6 +29,7 @@
 * v 1.0.1 - 2016-02-16 Création note
 * v 2.1.5 - 2016-02-18 (almost) feature complete.
 * v 2.1.5.1 - 2016-02-29 Préparation à la sortie des jours (rationalisation du code)
+* v 2.1.5.2 - 2016-03-27 Préparation de la saisie avec espaces. Ne peut être intégrée sans changer la lecture également.
 
 Reste à faire:
 * Traiter des chaînes de caractères avec espaces.
