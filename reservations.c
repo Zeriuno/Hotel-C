@@ -1334,6 +1334,16 @@ void chargement_resa(long unsigned int p_code_resa)
   f1 = fopen(entree_resa, "r")            ;
   if(f1 != NULL)
   {
+    /*changer le test du while avec la fonction qui permet de lire un caractère dans un fichier: cherche
+    i= 0 ;
+    while((c=getchar()) != "*")
+    {
+      demande.nomclient[i]=c;
+      i++;
+    }
+    demande.nomclient[i+1] = "\0";
+    */
+
   fscanf(f1, "%lu %d %lu %lu %d %d %s %s %s %f %d", &demande.code_resa, &demande.chambre_resa, &demande.datearrivee, &demande.datedepart, &demande.nuitees_resa[0], &demande.nuitees_resa[1], demande.nomclient, demande.prenomclient, demande.telclient, &demande.total_resa, &demande.mode_paiement) ;
   fclose(f1)                              ;
   }
